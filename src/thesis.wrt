@@ -1,0 +1,337 @@
+\@writefile{atoc}{\value {tocdepth}=-1}
+\@writefile{toc}{\babel@toc {bahasa}{}\relax }
+\@writefile{atoc}{\babel@toc {bahasa}{}\relax }
+\@writefile{lof}{\babel@toc {bahasa}{}\relax }
+\@writefile{lot}{\babel@toc {bahasa}{}\relax }
+\@writefile{atoc}{\babel@toc {bahasa}{}\relax }
+\@writefile{toc}{\contentsline {chapter}{ABSTRAK}{iv}{chapter*.3}\protected@file@percent }
+\@writefile{atoc}{\contentsline {chapter}{ABSTRAK}{iv}{chapter*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{ABSTRACT}{v}{chapter*.4}\protected@file@percent }
+\@writefile{atoc}{\contentsline {chapter}{ABSTRACT}{v}{chapter*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{KATA PENGANTAR}{vi}{chapter*.5}\protected@file@percent }
+\@writefile{atoc}{\contentsline {chapter}{KATA PENGANTAR}{vi}{chapter*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{DAFTAR ISI}{viii}{chapter*.6}\protected@file@percent }
+\@writefile{atoc}{\contentsline {chapter}{DAFTAR ISI}{viii}{chapter*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{DAFTAR LAMPIRAN}{x}{chapter*.8}\protected@file@percent }
+\@writefile{atoc}{\contentsline {chapter}{DAFTAR LAMPIRAN}{x}{chapter*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{DAFTAR GAMBAR}{xi}{chapter*.9}\protected@file@percent }
+\@writefile{atoc}{\contentsline {chapter}{DAFTAR GAMBAR}{xi}{chapter*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{DAFTAR TABEL}{xvi}{chapter*.10}\protected@file@percent }
+\@writefile{atoc}{\contentsline {chapter}{DAFTAR TABEL}{xvi}{chapter*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {I}Pendahuluan}{1}{chapter.1}\protected@file@percent }
+\@writefile{atoc}{\contentsline {chapter}{\numberline {I}Pendahuluan}{1}{chapter.1}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {I.1}Latar Belakang}{1}{section.1.1}\protected@file@percent }
+\@writefile{atoc}{\contentsline {section}{\numberline {I.1}Latar Belakang}{1}{section.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {I.2}Rumusan Masalah}{2}{section.1.2}\protected@file@percent }
+\@writefile{atoc}{\contentsline {section}{\numberline {I.2}Rumusan Masalah}{2}{section.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {I.3}Tujuan}{3}{section.1.3}\protected@file@percent }
+\@writefile{atoc}{\contentsline {section}{\numberline {I.3}Tujuan}{3}{section.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {I.4}Batasan Masalah}{3}{section.1.4}\protected@file@percent }
+\@writefile{atoc}{\contentsline {section}{\numberline {I.4}Batasan Masalah}{3}{section.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {I.5}Metodologi}{3}{section.1.5}\protected@file@percent }
+\@writefile{atoc}{\contentsline {section}{\numberline {I.5}Metodologi}{3}{section.1.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {I.6}Sistematika Pembahasan}{4}{section.1.6}\protected@file@percent }
+\@writefile{atoc}{\contentsline {section}{\numberline {I.6}Sistematika Pembahasan}{4}{section.1.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {II}Studi Literatur}{6}{chapter.2}\protected@file@percent }
+\@writefile{atoc}{\contentsline {chapter}{\numberline {II}Studi Literatur}{6}{chapter.2}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {II.1}\textit {Software Deployment}}{6}{section.2.1}\protected@file@percent }
+\@writefile{atoc}{\contentsline {section}{\numberline {II.1}\textit {Software Deployment}}{6}{section.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {II.1.1}Aktivitas}{6}{subsection.2.1.1}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsection}{\numberline {II.1.1}Aktivitas}{6}{subsection.2.1.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {II.1}{\ignorespaces \textit {Deployment Phase \blx@tocontentsinit {0}\parencite {ARCANGELI2015198}}}}{7}{figure.caption.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {II.1.2}Sejarah}{7}{subsection.2.1.2}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsection}{\numberline {II.1.2}Sejarah}{7}{subsection.2.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {II.1.3}Kategori}{8}{subsection.2.1.3}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsection}{\numberline {II.1.3}Kategori}{8}{subsection.2.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {II.2}Kubernetes}{9}{section.2.2}\protected@file@percent }
+\@writefile{atoc}{\contentsline {section}{\numberline {II.2}Kubernetes}{9}{section.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {II.2.1}\textit {Pod component}}{10}{subsection.2.2.1}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsection}{\numberline {II.2.1}\textit {Pod component}}{10}{subsection.2.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {II.2.2}\textit {Service component}}{10}{subsection.2.2.2}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsection}{\numberline {II.2.2}\textit {Service component}}{10}{subsection.2.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {II.2.3}\textit {Deployment component}}{11}{subsection.2.2.3}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsection}{\numberline {II.2.3}\textit {Deployment component}}{11}{subsection.2.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {II.3}Kubernetes distribution}{11}{section.2.3}\protected@file@percent }
+\@writefile{atoc}{\contentsline {section}{\numberline {II.3}Kubernetes distribution}{11}{section.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {II.3.1}KubeEdge}{11}{subsection.2.3.1}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsection}{\numberline {II.3.1}KubeEdge}{11}{subsection.2.3.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {II.2}{\ignorespaces Arsitektur KubeEdge \blx@tocontentsinit {0}\parencite {kubeedge}}}{12}{figure.caption.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {II.3.2}Microk8s}{12}{subsection.2.3.2}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsection}{\numberline {II.3.2}Microk8s}{12}{subsection.2.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {II.3.3}K3s}{13}{subsection.2.3.3}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsection}{\numberline {II.3.3}K3s}{13}{subsection.2.3.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {II.3}{\ignorespaces Arsitektur K3s \blx@tocontentsinit {0}\parencite {k3s}}}{13}{figure.caption.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {II.4}IoT}{14}{section.2.4}\protected@file@percent }
+\@writefile{atoc}{\contentsline {section}{\numberline {II.4}IoT}{14}{section.2.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {II.4}{\ignorespaces Perangkat IoT yang Terdapat pada Lingkungan Sekitar \blx@tocontentsinit {0}\parencite {sotres2017practical}}}{14}{figure.caption.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {II.5}Penelitian dan Riset Terkait}{15}{section.2.5}\protected@file@percent }
+\@writefile{atoc}{\contentsline {section}{\numberline {II.5}Penelitian dan Riset Terkait}{15}{section.2.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {II.5.1}\textit {Large-Scale Provisioning of Resource Constrained IoT Deployments, LEONORE}}{15}{subsection.2.5.1}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsection}{\numberline {II.5.1}\textit {Large-Scale Provisioning of Resource Constrained IoT Deployments, LEONORE}}{15}{subsection.2.5.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {II.5}{\ignorespaces Arsitektur Leonore \blx@tocontentsinit {0}\parencite {vogler2015leonore}}}{16}{figure.caption.15}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {II.6}{\ignorespaces Sequence Diagram Proses \textit {Deployment} LEONORE \blx@tocontentsinit {0}\parencite {vogler2015leonore}}}{17}{figure.caption.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {II.5.2}DIANE – Dynamic IoT Application Deployment}{17}{subsection.2.5.2}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsection}{\numberline {II.5.2}DIANE – Dynamic IoT Application Deployment}{17}{subsection.2.5.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {II.7}{\ignorespaces \textit {Technical Unit} DIANE \blx@tocontentsinit {0}\parencite {vogler2015diane}}}{18}{figure.caption.17}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {II.8}{\ignorespaces \textit {Deployment Unit} DIANE \blx@tocontentsinit {0}\parencite {vogler2015diane}}}{18}{figure.caption.18}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {II.9}{\ignorespaces Arsitektur DIANE \blx@tocontentsinit {0}\parencite {vogler2015diane}}}{19}{figure.caption.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {II.5.3}China Electronic Toll Colleciton}{19}{subsection.2.5.3}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsection}{\numberline {II.5.3}China Electronic Toll Colleciton}{19}{subsection.2.5.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {II.10}{\ignorespaces Implementasi Sistem \textit {ETC} di China \blx@tocontentsinit {0}\parencite {penelitianterkait1}}}{19}{figure.caption.20}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {II.11}{\ignorespaces Arsitektur Sistem \textit {ETC} di China \blx@tocontentsinit {0}\parencite {penelitianterkait1}}}{20}{figure.caption.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {II.5.4}A Model for the Remote Deployment, Update, and Safe Recovery for Commercial Sensor-Based IoT Systems}{20}{subsection.2.5.4}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsection}{\numberline {II.5.4}A Model for the Remote Deployment, Update, and Safe Recovery for Commercial Sensor-Based IoT Systems}{20}{subsection.2.5.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {II.12}{\ignorespaces Arsitektur Remote \textit {Deployment} \blx@tocontentsinit {0}\parencite {RemoteDeployment}}}{21}{figure.caption.22}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {II.13}{\ignorespaces Perbandingan Tata Cara \textit {Remote Deployment} \blx@tocontentsinit {0}\parencite {RemoteDeployment}}}{21}{figure.caption.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {III}Analisis Persoalan dan Rancangan Solusi}{22}{chapter.3}\protected@file@percent }
+\@writefile{atoc}{\contentsline {chapter}{\numberline {III}Analisis Persoalan dan Rancangan Solusi}{22}{chapter.3}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {III.1}Analisis}{22}{section.3.1}\protected@file@percent }
+\@writefile{atoc}{\contentsline {section}{\numberline {III.1}Analisis}{22}{section.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {III.1.1}Analisis Permasalahan}{22}{subsection.3.1.1}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsection}{\numberline {III.1.1}Analisis Permasalahan}{22}{subsection.3.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {III.1.2}Alternatif Solusi}{23}{subsection.3.1.2}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsection}{\numberline {III.1.2}Alternatif Solusi}{23}{subsection.3.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {III.1.2.1}Membuat sistem berbasis Kubernetes}{23}{subsubsection.3.1.2.1}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsubsection}{\numberline {III.1.2.1}Membuat sistem berbasis Kubernetes}{23}{subsubsection.3.1.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {III.1.2.2}Membuat sistem berbasis \textit {Apache ZooKeper}}{24}{subsubsection.3.1.2.2}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsubsection}{\numberline {III.1.2.2}Membuat sistem berbasis \textit {Apache ZooKeper}}{24}{subsubsection.3.1.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {III.1.2.3}Membuat sistem berbasis LEONORE dan DIANE}{24}{subsubsection.3.1.2.3}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsubsection}{\numberline {III.1.2.3}Membuat sistem berbasis LEONORE dan DIANE}{24}{subsubsection.3.1.2.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {III.1}{\ignorespaces Perbandingan Ketiga Alternatif Solusi}}{25}{table.caption.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {III.1.3}Analisis Kebutuhan Sistem}{25}{subsection.3.1.3}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsection}{\numberline {III.1.3}Analisis Kebutuhan Sistem}{25}{subsection.3.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {III.1.3.1}Deskripsi sistem}{26}{subsubsection.3.1.3.1}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsubsection}{\numberline {III.1.3.1}Deskripsi sistem}{26}{subsubsection.3.1.3.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {III.1}{\ignorespaces Gambaran Umum Arsitektur PERISAI}}{26}{figure.caption.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {III.1.3.2}Karakteristik Pengguna}{27}{subsubsection.3.1.3.2}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsubsection}{\numberline {III.1.3.2}Karakteristik Pengguna}{27}{subsubsection.3.1.3.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {III.2}{\ignorespaces Karakteristik Pengguna}}{27}{table.caption.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {III.1.3.3}Kebutuhan Fungsional}{27}{subsubsection.3.1.3.3}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsubsection}{\numberline {III.1.3.3}Kebutuhan Fungsional}{27}{subsubsection.3.1.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {III.1.3.4}Kebutuhan Non-Fungsional}{27}{subsubsection.3.1.3.4}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsubsection}{\numberline {III.1.3.4}Kebutuhan Non-Fungsional}{27}{subsubsection.3.1.3.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {III.3}{\ignorespaces Kebutuhan Non-Fungsional}}{27}{table.caption.27}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {III.1.3.5}Model \textit {Use case}}{28}{subsubsection.3.1.3.5}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsubsection}{\numberline {III.1.3.5}Model \textit {Use case}}{28}{subsubsection.3.1.3.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {III.2}{\ignorespaces Usecase Diagram}}{28}{figure.caption.28}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {III.2}Rancangan}{29}{section.3.2}\protected@file@percent }
+\@writefile{atoc}{\contentsline {section}{\numberline {III.2}Rancangan}{29}{section.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {III.2.1}Rancangan Struktural}{29}{subsection.3.2.1}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsection}{\numberline {III.2.1}Rancangan Struktural}{29}{subsection.3.2.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {III.3}{\ignorespaces Package Diagram}}{29}{figure.caption.29}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {III.2.2}Rancangan Behavioural}{30}{subsection.3.2.2}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsection}{\numberline {III.2.2}Rancangan Behavioural}{30}{subsection.3.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {III.2.2.1}Alur Mendaftarkan \textit {company}}{30}{subsubsection.3.2.2.1}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsubsection}{\numberline {III.2.2.1}Alur Mendaftarkan \textit {company}}{30}{subsubsection.3.2.2.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {III.4}{\ignorespaces \textit {Use Case} Mendaftarkan \textit {Company}}}{30}{figure.caption.30}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {III.2.2.2}Alur Mendaftarkan \textit {User}}{30}{subsubsection.3.2.2.2}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsubsection}{\numberline {III.2.2.2}Alur Mendaftarkan \textit {User}}{30}{subsubsection.3.2.2.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {III.5}{\ignorespaces \textit {Use Case} Mendaftarkan \textit {User}}}{31}{figure.caption.31}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {III.2.2.3}Alur Manajemen \textit {company}}{31}{subsubsection.3.2.2.3}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsubsection}{\numberline {III.2.2.3}Alur Manajemen \textit {company}}{31}{subsubsection.3.2.2.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {III.6}{\ignorespaces \textit {Use Case} Manajemen \textit {Company}}}{31}{figure.caption.32}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {III.2.2.4}Alur Manajemen \textit {User}}{31}{subsubsection.3.2.2.4}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsubsection}{\numberline {III.2.2.4}Alur Manajemen \textit {User}}{31}{subsubsection.3.2.2.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {III.7}{\ignorespaces \textit {Use Case} Manajemen \textit {User}}}{32}{figure.caption.33}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {III.2.2.5}Alur Login}{32}{subsubsection.3.2.2.5}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsubsection}{\numberline {III.2.2.5}Alur Login}{32}{subsubsection.3.2.2.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {III.8}{\ignorespaces \textit {Use Case} Alur Login}}{32}{figure.caption.34}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {III.2.2.6}Alur Melihat detail \textit {company}}{33}{subsubsection.3.2.2.6}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsubsection}{\numberline {III.2.2.6}Alur Melihat detail \textit {company}}{33}{subsubsection.3.2.2.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {III.9}{\ignorespaces \textit {Use Case} Melihat detail \textit {Company}}}{33}{figure.caption.35}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {III.2.2.7}Alur Melihat user lain di satu \textit {company}}{33}{subsubsection.3.2.2.7}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsubsection}{\numberline {III.2.2.7}Alur Melihat user lain di satu \textit {company}}{33}{subsubsection.3.2.2.7}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {III.10}{\ignorespaces \textit {Use Case} Melihat User Lain pada Satu \textit {Company}}}{34}{figure.caption.36}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {III.2.2.8}Alur Manajemen \textit {Device}}{34}{subsubsection.3.2.2.8}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsubsection}{\numberline {III.2.2.8}Alur Manajemen \textit {Device}}{34}{subsubsection.3.2.2.8}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {III.11}{\ignorespaces \textit {Use Case} Manajemen \textit {Device}}}{35}{figure.caption.37}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {III.2.2.9}Alur Manajemen \textit {Groups}}{35}{subsubsection.3.2.2.9}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsubsection}{\numberline {III.2.2.9}Alur Manajemen \textit {Groups}}{35}{subsubsection.3.2.2.9}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {III.12}{\ignorespaces \textit {Use Case} Manajemen \textit {Groups}}}{36}{figure.caption.38}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {III.2.2.10}Alur Manajemen \textit {Deployment Images}}{36}{subsubsection.3.2.2.10}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsubsection}{\numberline {III.2.2.10}Alur Manajemen \textit {Deployment Images}}{36}{subsubsection.3.2.2.10}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {III.13}{\ignorespaces \textit {Use Case} Manajemen \textit {Deployment Images}}}{37}{figure.caption.39}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {III.2.2.11}Alur Manajemen \textit {Deployment Plan}}{37}{subsubsection.3.2.2.11}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsubsection}{\numberline {III.2.2.11}Alur Manajemen \textit {Deployment Plan}}{37}{subsubsection.3.2.2.11}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {III.14}{\ignorespaces \textit {Use Case} Manajemen \textit {Deployment Plan}}}{38}{figure.caption.40}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {III.2.2.12}Alur \textit {remote deployment}}{38}{subsubsection.3.2.2.12}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsubsection}{\numberline {III.2.2.12}Alur \textit {remote deployment}}{38}{subsubsection.3.2.2.12}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {III.15}{\ignorespaces \textit {Use Case} \textit {Remote Deployment}}}{39}{figure.caption.41}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {III.2.2.13}Alur melihat riwayat \textit {deployment}}{39}{subsubsection.3.2.2.13}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsubsection}{\numberline {III.2.2.13}Alur melihat riwayat \textit {deployment}}{39}{subsubsection.3.2.2.13}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {III.16}{\ignorespaces \textit {Use Case} Melihat Riwayat \textit {Deployment}}}{40}{figure.caption.42}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {III.2.3}Rancangan Detail Komponen Dashboard}{40}{subsection.3.2.3}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsection}{\numberline {III.2.3}Rancangan Detail Komponen Dashboard}{40}{subsection.3.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {III.2.4}Rancangan Detail Komponen Service}{42}{subsection.3.2.4}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsection}{\numberline {III.2.4}Rancangan Detail Komponen Service}{42}{subsection.3.2.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {III.17}{\ignorespaces \textit {Package Diagram Domain Service}}}{42}{figure.caption.43}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {III.2.4.1}Domain \textit {company}}{43}{subsubsection.3.2.4.1}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsubsection}{\numberline {III.2.4.1}Domain \textit {company}}{43}{subsubsection.3.2.4.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {III.18}{\ignorespaces \textit {Company Class Diagram}}}{43}{figure.caption.44}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {III.2.4.2}Domain \textit {user}}{43}{subsubsection.3.2.4.2}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsubsection}{\numberline {III.2.4.2}Domain \textit {user}}{43}{subsubsection.3.2.4.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {III.19}{\ignorespaces \textit {User Class Diagram}}}{44}{figure.caption.45}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {III.2.4.3}Domain \textit {devices}}{44}{subsubsection.3.2.4.3}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsubsection}{\numberline {III.2.4.3}Domain \textit {devices}}{44}{subsubsection.3.2.4.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {III.20}{\ignorespaces \textit {Device Class Diagram}}}{44}{figure.caption.46}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {III.2.4.4}Domain \textit {groups}}{45}{subsubsection.3.2.4.4}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsubsection}{\numberline {III.2.4.4}Domain \textit {groups}}{45}{subsubsection.3.2.4.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {III.21}{\ignorespaces Groups \textit {Class Diagram}}}{45}{figure.caption.47}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {III.2.4.5}Domain \textit {deployment}}{45}{subsubsection.3.2.4.5}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsubsection}{\numberline {III.2.4.5}Domain \textit {deployment}}{45}{subsubsection.3.2.4.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {III.22}{\ignorespaces Deployment \textit {Class Diagram}}}{46}{figure.caption.48}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {III.2.4.6}Domain \textit {external services}}{46}{subsubsection.3.2.4.6}\protected@file@percent }
+\@writefile{atoc}{\contentsline {subsubsection}{\numberline {III.2.4.6}Domain \textit {external services}}{46}{subsubsection.3.2.4.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {III.23}{\ignorespaces Kubernetes Controller \textit {Class Diagram}}}{46}{figure.caption.49}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{DAFTAR PUSTAKA}{49}{chapter*.51}\protected@file@percent }
+\@writefile{atoc}{\contentsline {chapter}{DAFTAR PUSTAKA}{49}{chapter*.51}\protected@file@percent }
+\@writefile{toc}{\value {tocdepth}=-1}
+\@writefile{atoc}{\value {tocdepth}=-1}
+\@writefile{atoc}{\value {tocdepth}=2}
+\@writefile{toc}{\ttl@change@i {\@ne }{chapter}{0pt}{\bfseries }{Lampiran \thecontentslabel .\quad }{}{\hfill \contentspage }\relax }
+\@writefile{atoc}{\ttl@change@i {\@ne }{chapter}{0pt}{\bfseries }{Lampiran \thecontentslabel .\quad }{}{\hfill \contentspage }\relax }
+\@writefile{toc}{\ttl@change@v {chapter}{}{}{}\relax }
+\@writefile{atoc}{\ttl@change@v {chapter}{}{}{}\relax }
+\@writefile{toc}{\contentsline {chapter}{\numberline {A}Perbandingan Distribusi Kubernetes}{50}{appendix.A}\protected@file@percent }
+\@writefile{atoc}{\contentsline {chapter}{\numberline {A}Perbandingan Distribusi Kubernetes}{50}{appendix.A}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{lot}{\contentsline {table}{\numberline {A.1}{\ignorespaces Perbandingan Tiga Distribusi Kubenernetes pada Lingkungan IoT}}{50}{table.caption.52}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {B}Tabel Kebutuhan}{51}{appendix.B}\protected@file@percent }
+\@writefile{atoc}{\contentsline {chapter}{\numberline {B}Tabel Kebutuhan}{51}{appendix.B}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{lot}{\contentsline {table}{\numberline {B.1}{\ignorespaces Kebutuhan Fungsional}}{51}{table.caption.53}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {B.2}{\ignorespaces Tabel Use case}}{53}{table.caption.55}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {C}Tampilan halaman dashboard}{54}{appendix.C}\protected@file@percent }
+\@writefile{atoc}{\contentsline {chapter}{\numberline {C}Tampilan halaman dashboard}{54}{appendix.C}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{lof}{\contentsline {figure}{\numberline {C.1}{\ignorespaces Halaman Login}}{54}{figure.caption.56}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {C.2}{\ignorespaces Halaman \textit {Account}}}{54}{figure.caption.57}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {C.3}{\ignorespaces Halaman \textit {Device}}}{55}{figure.caption.58}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {C.4}{\ignorespaces Actions pada Tabel \textit {Device}}}{55}{figure.caption.59}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {C.5}{\ignorespaces Modal Menambahkan \textit {Device}}}{55}{figure.caption.60}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {C.6}{\ignorespaces Halaman \textit {Device Detail}}}{56}{figure.caption.61}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {C.7}{\ignorespaces Modal Menambahkan \textit {Group} pada \textit {Device Detail}}}{56}{figure.caption.62}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {C.8}{\ignorespaces Modal Menghapus Device pada Halaman \textit {Device Detail}}}{57}{figure.caption.63}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {C.9}{\ignorespaces Halaman \textit {Groups}}}{57}{figure.caption.64}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {C.10}{\ignorespaces \textit {Actions} pada Tabel \textit {Groups}}}{57}{figure.caption.65}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {C.11}{\ignorespaces Modal Menambahkan \textit {Groups}}}{58}{figure.caption.66}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {C.12}{\ignorespaces Halaman \textit {Groups Detail}}}{58}{figure.caption.67}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {C.13}{\ignorespaces Modal Menambahkan \textit {Group} pada \textit {Groups Detail}}}{59}{figure.caption.68}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {C.14}{\ignorespaces Modal Menghapus \textit {Groups} pada Halaman \textit {Groups Detail}}}{59}{figure.caption.69}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {C.15}{\ignorespaces Halaman \textit {Deployment}}}{60}{figure.caption.70}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {C.16}{\ignorespaces Modal Menambahkan \textit {Deployment}}}{60}{figure.caption.71}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {C.17}{\ignorespaces Modal Menambahkan \textit {Image} Pada Halaman \textit {Deployment}}}{61}{figure.caption.72}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {C.18}{\ignorespaces Halaman \textit {Deployment Detail}}}{61}{figure.caption.73}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {C.19}{\ignorespaces Modal Menghapus Deployment pada Halaman \textit {Deployment Detail}}}{62}{figure.caption.74}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {D}Pengujian Komponen}{63}{appendix.D}\protected@file@percent }
+\@writefile{atoc}{\contentsline {chapter}{\numberline {D}Pengujian Komponen}{63}{appendix.D}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{lof}{\contentsline {figure}{\numberline {D.1}{\ignorespaces Daftar Nama Cluster yang Tersedia pada Service}}{63}{figure.caption.75}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.2}{\ignorespaces Hasil Pembuatan Virtual Machine pada GCP}}{63}{figure.caption.76}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.3}{\ignorespaces Daftar Kegunaan Port}}{63}{figure.caption.77}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.4}{\ignorespaces Hasil Firewall Rule pada GCP}}{64}{figure.caption.78}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.5}{\ignorespaces Instalasi Master Node di \textit {Virtual Machine}}}{64}{figure.caption.79}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.6}{\ignorespaces Pengambilan Token Registrasi Cluster}}{64}{figure.caption.80}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.7}{\ignorespaces Instalasi Worker Node di \textit {Virtual Machine}}}{64}{figure.caption.81}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.8}{\ignorespaces Konfigurasi \textit {Cluster} pada \textit {Master Node GCP}}}{65}{figure.caption.82}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.9}{\ignorespaces Pemindahan Konfigurasi \textit {Cluster} pada \textit {Master Node GCP}}}{65}{figure.caption.83}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.10}{\ignorespaces Hostname Raspsi Master Nodes}}{65}{figure.caption.84}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.11}{\ignorespaces Spesifikasi Raspsi Master Nodes}}{66}{figure.caption.85}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.12}{\ignorespaces Hostname Raspsi Worker Nodes}}{66}{figure.caption.86}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.13}{\ignorespaces Spesifikasi Raspsi Worker Nodes}}{66}{figure.caption.87}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.14}{\ignorespaces \textit {Additional Command} untuk RaspberryPi}}{67}{figure.caption.88}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.15}{\ignorespaces Penambahan cgroups pada \textit {Cmdline}}}{67}{figure.caption.89}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.16}{\ignorespaces Instalasi Master Raspi \textit {Node}}}{67}{figure.caption.90}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.17}{\ignorespaces Master Raspi Generate Token}}{67}{figure.caption.91}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.18}{\ignorespaces Instalasi Worker Raspi \textit {Node}}}{67}{figure.caption.92}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.19}{\ignorespaces Kubernetes Config RaspberryPi}}{68}{figure.caption.93}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.20}{\ignorespaces Menambagkan Kubernetes Config RaspberryPi pada Sistem}}{68}{figure.caption.94}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.21}{\ignorespaces \textit {Request dan Response Pengujian} P01}}{69}{figure.caption.95}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.22}{\ignorespaces \textit {Request dan Response Pengujian} P02}}{69}{figure.caption.96}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.23}{\ignorespaces \textit {Request dan Response Pengujian} P03}}{70}{figure.caption.97}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.24}{\ignorespaces Pembuatan \textit {company} Untuk Pengujian P04}}{70}{figure.caption.98}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.25}{\ignorespaces \textit {Request dan Response Pengujian} P04}}{71}{figure.caption.99}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.26}{\ignorespaces \textit {Request dan Response Pengujian} P05}}{71}{figure.caption.100}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.27}{\ignorespaces \textit {Request dan Response Pengujian} P06}}{72}{figure.caption.101}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.28}{\ignorespaces Redirect ke \textit {Halaman Index} pada Pengujian P07}}{72}{figure.caption.102}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.29}{\ignorespaces Muncul Modal Penanda Login Gagal}}{72}{figure.caption.103}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.30}{\ignorespaces Mengunjungi Halaman Account pada Pengujian P08 dan P09}}{73}{figure.caption.104}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.31}{\ignorespaces Pembuatan \textit {Device} untuk Pengujian P12}}{73}{figure.caption.105}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.32}{\ignorespaces Pembuatan \textit {Device} untuk Pengujian P12}}{73}{figure.caption.106}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.33}{\ignorespaces Hasil Penghapusan \textit {Device} untuk Pengujian P15}}{74}{figure.caption.107}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.34}{\ignorespaces Hasil Pembuatan \textit {Group} untuk Pengujian P16}}{74}{figure.caption.108}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.35}{\ignorespaces Error ketika Membuat \textit {Group} baru untuk Pengujian P17}}{74}{figure.caption.109}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.36}{\ignorespaces Hasil Penghapusan \textit {Group} untuk Pengujian P19}}{75}{figure.caption.110}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.37}{\ignorespaces Mengakses \textit {Dashboard} melalui mobile}}{76}{figure.caption.111}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.38}{\ignorespaces Mengakses \textit {Dashboard} Melalui Chromium \textit {Based} Browser}}{77}{figure.caption.112}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.39}{\ignorespaces Mengakses \textit {Dashboard} Melalui Safari Browser}}{77}{figure.caption.113}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.40}{\ignorespaces Mengakses user \textit {service} tanpa kredensial}}{77}{figure.caption.114}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.41}{\ignorespaces Mengakses admin \textit {service} tanpa kredensial}}{78}{figure.caption.115}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {D.42}{\ignorespaces Mengakses \textit {service} kubernetes tanpa kredensial}}{78}{figure.caption.116}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {E}Pengujian Sistem RaspberryPi}{79}{appendix.E}\protected@file@percent }
+\@writefile{atoc}{\contentsline {chapter}{\numberline {E}Pengujian Sistem RaspberryPi}{79}{appendix.E}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{lof}{\contentsline {figure}{\numberline {E.1}{\ignorespaces Python Docker LED Script}}{79}{figure.caption.117}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {E.2}{\ignorespaces Pembuatan \textit {Company} Raspi Company}}{80}{figure.caption.118}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {E.3}{\ignorespaces Pembuatan \textit {User} Raspi-User}}{80}{figure.caption.119}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {E.4}{\ignorespaces Pembuatan \textit {Device} Raspi}}{81}{figure.caption.120}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {E.5}{\ignorespaces Pembuatan \textit {Groups} Raspi}}{81}{figure.caption.121}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {E.6}{\ignorespaces Riwayat \textit {deployment} "raspi-deployment-bink"}}{81}{figure.caption.122}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {E.7}{\ignorespaces Layout Sederhana \textit {Clustser} RaspberryPi}}{82}{figure.caption.123}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {E.8}{\ignorespaces Hasil Pengujian Sistem Target Deployment Raspi}}{83}{figure.caption.124}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {E.9}{\ignorespaces Hasil Pengujian Sistem Custom Deployment Raspi}}{84}{figure.caption.125}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {F}Pengujian Sistem GCP}{85}{appendix.F}\protected@file@percent }
+\@writefile{atoc}{\contentsline {chapter}{\numberline {F}Pengujian Sistem GCP}{85}{appendix.F}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{lof}{\contentsline {figure}{\numberline {F.1}{\ignorespaces Pembuatan \textit {Company} pada Cluster \textit {GCP}}}{85}{figure.caption.126}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {F.2}{\ignorespaces Pembuatan \textit {User} pada Cluster \textit {GCP}}}{85}{figure.caption.127}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {F.3}{\ignorespaces \textit {User} Sukses Melakukan Login}}{86}{figure.caption.128}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {F.4}{\ignorespaces Pembuatan \textit {Device} pada \textit {Cluster GCP}}}{86}{figure.caption.129}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {F.5}{\ignorespaces Pembuatan \textit {Deployment Plan} pada \textit {Cluster GCP}}}{87}{figure.caption.130}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {F.6}{\ignorespaces Hasil \textit {Remote Deployment} pada \textit {Cluster GCP}}}{87}{figure.caption.131}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {F.7}{\ignorespaces Hasil Data MQTT dari Hasil Deployment}}{87}{figure.caption.132}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {F.8}{\ignorespaces Hasil Penghapusan \textit {Remote Deployment} pada \textit {Cluster GCP}}}{87}{figure.caption.133}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {F.9}{\ignorespaces Hasil Penghapusan \textit {Deployment Plan} pada \textit {Cluster GCP}}}{88}{figure.caption.134}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {F.10}{\ignorespaces Hasil Penghapusan \textit {Deployment Images} pada \textit {Cluster GCP}}}{88}{figure.caption.135}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {G}Pengujian Kegagalan Deployment}{89}{appendix.G}\protected@file@percent }
+\@writefile{atoc}{\contentsline {chapter}{\numberline {G}Pengujian Kegagalan Deployment}{89}{appendix.G}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{lof}{\contentsline {figure}{\numberline {G.1}{\ignorespaces \textit {User} Sukses Melakukan Login}}{89}{figure.caption.136}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {G.2}{\ignorespaces Membuat \textit {Deployment Plan} dengan Label temperatur=false}}{89}{figure.caption.137}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {G.3}{\ignorespaces Kegagalan \textit {Scheduling} Karena Tidak Ada Label yang Sesuai}}{90}{figure.caption.138}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {G.4}{\ignorespaces Penghapusan \textit {Deployment} Karena \textit {Timeout}}}{90}{figure.caption.139}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {G.5}{\ignorespaces Membuat Deployment Image dengan nonexist image}}{90}{figure.caption.140}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {G.6}{\ignorespaces Membuat deployment plan dengan repository nonexists}}{91}{figure.caption.141}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {G.7}{\ignorespaces Kegagalan dalam Proses \textit {Deployment}}}{91}{figure.caption.142}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {G.8}{\ignorespaces Penghapusan \textit {Deployment} karena Melewati \textit {Timeout}}}{91}{figure.caption.143}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {H}Tabel Pengujian}{92}{appendix.H}\protected@file@percent }
+\@writefile{atoc}{\contentsline {chapter}{\numberline {H}Tabel Pengujian}{92}{appendix.H}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{lot}{\contentsline {table}{\numberline {H.1}{\ignorespaces Skenario dan Hasil Pengujian Domain \textit {Company}}}{92}{table.caption.144}\protected@file@percent }
+\@writefile{toc}{\contentsfinish }
+\@writefile{atoc}{\contentsfinish }
+\@writefile{lof}{\contentsfinish }
+\@writefile{lot}{\contentsfinish }
+\@writefile{lot}{\contentsline {table}{\numberline {H.2}{\ignorespaces Skenario dan Hasil Pengujian Domain \textit {User}}}{93}{table.caption.145}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {H.3}{\ignorespaces Skenario dan Hasil Pengujian Domain \textit {Device}}}{94}{table.caption.146}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {H.4}{\ignorespaces Skenario dan Hasil Pengujian Domain \textit {Groups}}}{94}{table.caption.147}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {H.5}{\ignorespaces Skenario dan Hasil Pengujian Sistem \textit {RaspberryPi}}}{95}{table.caption.148}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {H.6}{\ignorespaces Skenario dan Hasil Pengujian Sistem pada \textit {Cluster GCP}}}{97}{table.caption.150}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {H.7}{\ignorespaces Skenario dan Hasil Pengujian Sistem degan Kasus Gagal}}{98}{table.caption.151}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {H.8}{\ignorespaces Skenario dan Hasil Pengujian \textit {Security Testing}}}{99}{table.caption.152}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {H.9}{\ignorespaces Skenario dan Hasil Pengujian \textit {compatibility Testing}}}{99}{table.caption.153}\protected@file@percent }
+\@writefile{atoc}{\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file }
