@@ -24,3 +24,6 @@ __pycache__
 **/data
 .DS_Store
 -p
+references/*
+!/references/paper
+!/references/paper-summary
