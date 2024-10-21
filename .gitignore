@@ -26,4 +26,6 @@ __pycache__
 -p
 references/*
 !/references/paper
+!/references/paper/*
 !/references/paper-summary
+!/references/paper-summary/*
