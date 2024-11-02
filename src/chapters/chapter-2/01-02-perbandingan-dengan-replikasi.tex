@@ -1,0 +1,7 @@
+\subsection{Perbandingan dengan Replikasi}
+
+Replikasi menyeluruh adalah salah satu cara umum untuk mencapai ketahanan data tinggi. Teknik ini memaksakan \textit{bandwidth} dan penyimpanan yang sangat tinggi. Peningkatan ketahanan berarti peningkatan jumlah replikasi dan jumlah replika yang tinggi meningkatkan keperluan \textit{bandwidth} dan penyimpanan dari sistem \parencite{weatherspoon2002erasure}.
+
+Untuk menyimpan data dengan nilai ketahanan empat kegagalan, data harus ditulis lima kali di tempat yang berbeda. \textit{Erasure coding} dapat mengurangi penyimpanan. Sebagai contoh, untuk mengurangi penyimpanan sebanyak 1.33x dari data asal menggunakan \textit{erasure coding} dengan pendekatan kode Reed-Solomon, dapat digunakan konfigurasi $(12, 4)$, yaitu dua belas fragmen data dan empat fragmen kode \parencite{huang2012erasure}.
+
+Namun, yang dikorbankan \textit{erasure coding} dibandingkan replikasi adalah kinerja. Penurunan kinerja terjadi ketika berurusan dengan data yang hilang atau \textit{offline} dan data penyimpanan yang sering diakses. Pada kasus $(12, 4)$ yang sebelumnya, untuk membangun ulang data perlu membaca dari dua belas fragmen terpisah, ini meningkatkan kemungkinan untuk mengenai penyimpanan yang sering diakses dan biaya jaringan dan \textit{input-output} sehingga menambahkan latensi dalam operasi membaca. Sementara itu, operasi membaca bisa dikembalikan tanpa operasi apapun di sebuah node sembarang pada replikasi \parencite{huang2012erasure}.

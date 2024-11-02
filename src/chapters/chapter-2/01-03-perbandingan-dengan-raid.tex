@@ -1,0 +1,18 @@
+\subsection{Perbandingan dengan RAID}
+
+Cara lain untuk mencapai ketahanan data tinggi adalah dengan menggunakan RAID (\textit{Redundant Array of Inexpensive Disks}). RAID adalah sebuah sistem untuk menggunakan banyak \textit{disk} untuk kebutuhan redundansi data, peningkatan kinerja, atau keduanya. Taksonomi RAID memperkenalkan skema penomoran untuk membedakan cara pengenalan redundansi dan penyebaran data di antara kelompok \textit{disk} \parencite{katz2010raid}.
+
+% Perlu ngejelasin masing masing raid ga?
+% \begin{itemize}
+%     \item RAID 0 
+%     \item RAID 1 
+%     \item RAID 2 
+%     \item RAID 3 
+%     \item RAID 4 
+%     \item RAID 5 
+%     \item RAID 6 
+% \end{itemize}
+
+\textit{Erasure code} adalah \textit{superset} dari sistem RAID dengan beberapa RAID menggunakan skema proteksi error yang sama. Namun, RAID tidak memberikan ketahanan yang cukup untuk tingkat kegagalan yang tinggi pada area yang luas \parencite{weatherspoon2002erasure}. Konfigurasi standar RAID tidak memiliki ketahanan lebih dari dua kegagalan, kegagalan lebih dari dua memerlukan konfigurasi \textit{nested} yang tidak terstandarkan.
+
+Kelebihan dari RAID adalah tingkat \textit{input-output} per detik dan \textit{transfer rate} yang tinggi dibandingkan replikasi dan \textit{erasure coding} karena operasi pembacaan dan penulisan dapat dijalankan pada \textit{disk} yang berbeda secara konkuren \parencite{katz2010raid}. RAID tertentu juga menggunakan penyimpanan yang lebih sedikit untuk redundansi yang sama dibandingkan penggunaan replikasi. 
