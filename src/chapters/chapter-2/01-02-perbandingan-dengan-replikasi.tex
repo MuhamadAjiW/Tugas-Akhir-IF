@@ -1,7 +1,22 @@
 \subsection{Perbandingan dengan Replikasi}
 
-Replikasi menyeluruh adalah salah satu cara umum untuk mencapai ketahanan data tinggi. Teknik ini memaksakan \textit{bandwidth} dan penyimpanan yang sangat tinggi. Peningkatan ketahanan berarti peningkatan jumlah replikasi dan jumlah replika yang tinggi meningkatkan keperluan \textit{bandwidth} dan penyimpanan dari sistem \parencite{weatherspoon2002erasure}.
+Replikasi menyeluruh dengan menyalin data bit-per-bit adalah salah satu cara umum untuk mencapai ketahanan data tinggi. Teknik ini memaksakan \textit{bandwidth} dan penyimpanan yang sangat tinggi. Peningkatan ketahanan berarti peningkatan jumlah replikasi dan jumlah replika yang tinggi meningkatkan keperluan \textit{bandwidth} dan penyimpanan dari sistem \parencite{weatherspoon2002erasure}.
 
-Untuk menyimpan data dengan nilai ketahanan empat kegagalan, data harus ditulis lima kali di tempat yang berbeda. \textit{Erasure coding} dapat mengurangi penyimpanan. Sebagai contoh, untuk mengurangi penyimpanan sebanyak 1.33x dari data asal menggunakan \textit{erasure coding} dengan pendekatan kode Reed-Solomon, dapat digunakan konfigurasi $(12, 4)$, yaitu dua belas fragmen data dan empat fragmen kode \parencite{huang2012erasure}.
+Untuk menyimpan data dengan nilai ketahanan empat kegagalan, data harus ditulis lima kali di tempat yang berbeda. \textit{Erasure coding} dapat mengurangi penyimpanan. Sebagai contoh, untuk mengurangi penyimpanan sebanyak 1.33x dari data asal dengan ketahanan yang sama, \textit{erasure coding} berpendekatan kode Reed-Solomon dapat digunakan dengan konfigurasi $(12, 4)$, yaitu dua belas fragmen data dan empat fragmen kode.
 
 Namun, yang dikorbankan \textit{erasure coding} dibandingkan replikasi adalah kinerja. Penurunan kinerja terjadi ketika berurusan dengan data yang hilang atau \textit{offline} dan data penyimpanan yang sering diakses. Pada kasus $(12, 4)$ yang sebelumnya, untuk membangun ulang data perlu membaca dari dua belas fragmen terpisah, ini meningkatkan kemungkinan untuk mengenai penyimpanan yang sering diakses dan biaya jaringan dan \textit{input-output} sehingga menambahkan latensi dalam operasi membaca. Sementara itu, operasi membaca bisa dikembalikan tanpa operasi apapun di sebuah node sembarang pada replikasi \parencite{huang2012erasure}.
+
+Untuk meraih ketahanan pesan $t$, replikasi menggunakan penyimpanan $M$ sebanyak
+
+\[M = \text{Ukuran pesan} \times (t + 1)\]
+
+Dibandingkan \textit{erasure coding} yang menggunakan reed-solomon, dapat dihitung rasio penyimpanan \textit{erasure coding} dengan replikasi $R$, yaitu
+
+\[R = \frac{\text{Ukuran pesan} \times (t + 1)}{\text{Ukuran pesan} \times \frac{\text{k + t}}{k}} \]
+
+Setelah penyederhanaan, didapatkan
+
+\[R = \frac{k + kt}{k + t}\]
+
+% Berdasarkan persamaan tersebut didapatkan bahwa penyimpanan replikasi akan selalu lebih besar dibandingkan \textit{erasure coding}. Perbedaan penyimpanan yang digunakan terpengaruhi oleh $t$, ketahanan dari sistem, dan $k$, jumlah persebaran yang digunakan pada kode Reed-solomon.
+Berdasarkan persamaan tersebut didapatkan perbedaan penyimpanan yang digunakan terpengaruhi oleh $t$, ketahanan dari sistem, dan $k$, jumlah persebaran yang digunakan pada kode Reed-solomon. Untuk tingkat ketahanan yang sama, penyimpanan replikasi akan selalu lebih besar dibandingkan \textit{erasure coding} kecuali jika $k$ bernilai 1.
