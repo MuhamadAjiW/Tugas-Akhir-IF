@@ -1,1 +1,8 @@
-\subsection{Memori}
+\subsection{Latensi Memori}
+\label{sec:latensi-memori}
+
+Latensi memori adalah latensi yang disebabkan oleh \textit{request} memory yang dilakukan oleh prosesor. Pada arsitektur modern, sistem memori seringkali bersifat berjenjang, mulai dari tembolok prosesor dengan level tertentu (L1, L2, L3), modul memori utama (RAM, \textit{Random Access Memory}), dan sistem penyimpanan. Semakin jauh memori dari prosesor, semakin lama waktu yang dibutuhkan dan menerima data \parencite{hennessy2011computer}.
+
+Memori beroperasi menggunakan sebuah \textit{clock cycle} dan latensi diukur berdasarkan \textit{clock cycle tersebut}. Misalnya, DRAM (\textit{Dynamic Random Access Memory}) memiliki parameter \textit{timing} tertentu yang menentukan berapa \textit{clock cycle} yang diperlukan untuk operasi menulis atau membaca. Parameter \textit{timing} ini termasuk latensi CAS (\textit{Column Address Strobe}), \textit{delay} dari RAS (\textit{Row Address Strobe}) ke CAS, dan waktu \textit{Row Precharge}. Masing-masing berkontribusi ke \textit{delay} total yang dibutuhkan untuk mengakses memori. latensi DRAM seringkali dispesifikasikan menggunakan parameter timing seperti latensi CAS. Sebagai contoh, CL16 berarti memori tersebut membutuhkan 16 \textit{clock cycle} untuk mengakses data \parencite{jacob2010memory}.
+
+Karena tembolok prosesor hanya bisa menyimpan sedikit data dan sistem penyimpanan seringkali memiliki latensi yang besar dan terkait dengan perangkat lunak untuk merujuk data, penekanan tinggi dari sistem analisis \textit{real-time} berada pada memory. Memori memiliki peran penting dalam menentukan kinerja sistem, khususnya pada pekerjaan yang menggunakan data berjumlah besar \parencite{clapp2015quantifying}.
