@@ -1,6 +1,10 @@
-\section{\textit{Key-value Store Database}}
+\section{\textit{Key-value Database}}
 \label{sec:key-value-store-database}
 
-\input{chapters/chapter-2/03-01-in-memory-cache.tex}
-\input{chapters/chapter-2/03-02-lsm-tree.tex}
-\input{chapters/chapter-2/03-03-direct-ssd-access.tex}
+\textit{Key-value database} adalah tipe database dengan data disimpan pada sebuah format \textit{key-value} dan dioptimisasi untuk operasi \textit{read} dan \textit{write} untuk data tersebut. Data diambil berdasarkan \textit{key} unik atau sejumlah \textit{key} unik untuk mengambil nilai yang diasosiasikan pada masing-masing \textit{key}. Nilai yang ada dapat berupa data sederhana seperti string dan \textit{numbers} atau objek kompleks \parencite{mongo2024keyvalue}. Dalam beberapa tahun, sistem \textit{database} telah berevolusi dari \textit{database} relasional yang menyimpan data di kolom dan baris ke \textit{database} terdistribusi NoSQL yang memungkinkan solusi per kasus.
+
+Ada beberapa \textit{use case} ketika penggunaan \textit{key-value database} adalah solusi yang optimal, yaitu ketika akses \textit{random} data \textit{real time}; mekanisme \textit{caching} untuk data yang sering diakses atau konfigurasi berdasarkan kunci; dan aplikasi didesain berdasarkan \textit{query} berdasarkan key yang sederhana. Pada penelitian ini \textit{key-value database} digunakan karena implementasinya yang sederhana dan mudah dikembangkan untuk mensimulasikan berbagai situasi.
+
+% ::NOTE: Are these relevant? Depends on the title, no?::
+% \input{chapters/chapter-2/03-01-in-memory-cache.tex}
+% \input{chapters/chapter-2/03-02-lsm-tree.tex}

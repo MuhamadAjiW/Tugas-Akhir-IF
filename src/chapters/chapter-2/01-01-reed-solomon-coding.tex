@@ -3,64 +3,64 @@
 
 Pada tahun 1960, I. Reed dan G. Solomon mengembangkan teknik pengkodean blok yang disebut kode Reed-Solomon. Saat ini, kode Reed-Solomon tetap populer karena sesuai dengan standar dan implementasi yang efisien di berbagai format perangkat keras dan perangkat lunak \parencite{minio2022erasure}. \textit{Erasure code} Reed-Solomon menyediakan teknik sederhana yang efisien untuk mengkodekan ulang informasi sehingga kegagalan beberapa disk dalam susunan disk tidak mengganggu ketersediaan data \parencite{manasse2009reed}.
 
-Kode Reed-Solomon memanfaatkan matematika pada medan berhingga atau disebut juga medan Galois. Medan berhingga adalah himpunan yang memiliki operasi pertambahan, pengurangan, perkalian, dan pembagian (kecuali dengan nol) yang didefinisikan dan memenuhi aturan tertentu. Sebuah grup dalam medan berhingga memiliki sifat seperti berikut 
-\parencite{forney2005finitefields}:
+% Kode Reed-Solomon memanfaatkan matematika pada medan berhingga atau disebut juga medan Galois. Medan berhingga adalah himpunan yang memiliki operasi pertambahan, pengurangan, perkalian, dan pembagian (kecuali dengan nol) yang didefinisikan dan memenuhi aturan tertentu. Sebuah grup dalam medan berhingga memiliki sifat seperti berikut 
+% \parencite{forney2005finitefields}:
 
-\begin{itemize}
-    \item \textit{Closure}: untuk setiap $a \in G$, $b \in G$, elemen $a \oplus b$ berada pada $G$.
-    \item \textit{Associative}: untuk setiap $a,b,c \in G$, $(a \oplus b) \oplus c = a \oplus (b \oplus c)$.
-    \item \textit{Identity}: Ada elemen identitas $0$ pada $G$ yang mana $a \oplus 0 = 0 \oplus a = a$ untuk semua $a \in G$.
-    \item \textit{Inverse}: Untuk setiap $a \in G$, ada sebuah \textit{inverse} $(-a)$ sehingga $a \oplus (-a) = 0$.
-\end{itemize}
+% \begin{itemize}
+%     \item \textit{Closure}: untuk setiap $a \in G$, $b \in G$, elemen $a \oplus b$ berada pada $G$.
+%     \item \textit{Associative}: untuk setiap $a,b,c \in G$, $(a \oplus b) \oplus c = a \oplus (b \oplus c)$.
+%     \item \textit{Identity}: Ada elemen identitas $0$ pada $G$ yang mana $a \oplus 0 = 0 \oplus a = a$ untuk semua $a \in G$.
+%     \item \textit{Inverse}: Untuk setiap $a \in G$, ada sebuah \textit{inverse} $(-a)$ sehingga $a \oplus (-a) = 0$.
+% \end{itemize}
 
 Kode Reed-Solomon dikarakterisasi dengan tiga parameter: jumlah alfabet $q$ yang merupakan tingkatan medan berhingga, panjang blok $n$, dan panjang pesan $k$, dengan $k < n \le q$. Panjang blok biasanya adalah konstanta kelipatan dari panjang pesan. Selain itu, panjang blok adalah sama dengan atau kurang satu dari jumlah alfabet. Dengan menambahkan $t \le n - k$ simbol pengecek ke dalam data. Sebuah kode Reed-Solomon dapat membenarkan hingga $t$ kehilangan pada lokasi yang diketahui dan diberikan kepada algoritma. Pemilihan $t$ tergantung pada perancang kode dan dapat dipilih dalam batasan yang luas \parencite{riley2001introduction}.
 
-Pada pandangan awal \textcite{reed1960polynomial}, setiap \textit{codeword} dari kode Reed-Solomon adalah sebuah urutan nilai fungsi polinomial dengan derajat kurang dari $k$. Untuk mendapatkan \textit{codeword} dari kode Reed-Solomon, simbol pesan diperlakukan sebagai koefisien dari polinomial $p$ dengan derajat kurang dari $k$, di atas medan terhingga $F$ dengan berjumlah $q$ elemen. Selanjutnya, polinomial $q$ dievaluasi pada $n \le q$ poin yang berbeda $a, \ldots, a_n$ pada medan $F$, dan urutan nilainya adalah \textit{codeword} yang dihasilkan. Pilihan umum untuk poin yang dievaluasi termasuk $\{0, 1, 2, \ldots, n-1\}$, $\{0, 1, a, a^2, \ldots, a^{n-2}\}$, atau untuk $n < q, \{1, a, a^2, \ldots, a^{n-1}\}, \ldots$ dengan $a$ adalah elemen primitif dari $F$.
+% Pada pandangan awal \textcite{reed1960polynomial}, setiap \textit{codeword} dari kode Reed-Solomon adalah sebuah urutan nilai fungsi polinomial dengan derajat kurang dari $k$. Untuk mendapatkan \textit{codeword} dari kode Reed-Solomon, simbol pesan diperlakukan sebagai koefisien dari polinomial $p$ dengan derajat kurang dari $k$, di atas medan terhingga $F$ dengan berjumlah $q$ elemen. Selanjutnya, polinomial $q$ dievaluasi pada $n \le q$ poin yang berbeda $a, \ldots, a_n$ pada medan $F$, dan urutan nilainya adalah \textit{codeword} yang dihasilkan. Pilihan umum untuk poin yang dievaluasi termasuk $\{0, 1, 2, \ldots, n-1\}$, $\{0, 1, a, a^2, \ldots, a^{n-2}\}$, atau untuk $n < q, \{1, a, a^2, \ldots, a^{n-1}\}, \ldots$ dengan $a$ adalah elemen primitif dari $F$.
 
-Secara formal, set C dari \textit{codewords} kode Reed-Solomon didefinisikan sebagai berikut: \[C = \{(p(a_1),p(a_2),\ldots,p(a_n)) \mid p \text{ polynomial dalam } F \text{ dengan derajat } < k\}\]
+% Secara formal, set C dari \textit{codewords} kode Reed-Solomon didefinisikan sebagai berikut: \[C = \{(p(a_1),p(a_2),\ldots,p(a_n)) \mid p \text{ polynomial dalam } F \text{ dengan derajat } < k\}\]
 
-Meskupin jumlah dari polinomial berbeda dengan derajat kurang dari $k$ dan jumlah pesan berbeda keduanya sama dengan $q^k$ sehingga setiap pesan dapat dipetakan secara unik ke polinomial tersebut, ada beberapa cara yang berbeda untuk melakukan enkoding ini. Konstruksi asli dari \textcite{reed1960polynomial} mengartikan pesan $x$ sebagai koefisien dari polinomial $p$, sedangkan konstruksi selanjutnya mengartikan pesan sebagai nilai dari polinomial pada $k$ titik pertama $a_1,\ldots,a_k$ dan mendapatkan polinomial $p$ dengan menginterpolasikan nilai-nilai ini dengan polinomial dengan derajat kurang dari $k$.
+% Meskupin jumlah dari polinomial berbeda dengan derajat kurang dari $k$ dan jumlah pesan berbeda keduanya sama dengan $q^k$ sehingga setiap pesan dapat dipetakan secara unik ke polinomial tersebut, ada beberapa cara yang berbeda untuk melakukan enkoding ini. Konstruksi asli dari \textcite{reed1960polynomial} mengartikan pesan $x$ sebagai koefisien dari polinomial $p$, sedangkan konstruksi selanjutnya mengartikan pesan sebagai nilai dari polinomial pada $k$ titik pertama $a_1,\ldots,a_k$ dan mendapatkan polinomial $p$ dengan menginterpolasikan nilai-nilai ini dengan polinomial dengan derajat kurang dari $k$.
 
-Pada konstruksi asli dari \textcite{reed1960polynomial}, pesan $m = (m_0, \ldots , m_{k-1}) \in F^k$ dipetakan ke sebuah polinomial $p_m$ dengan \[p_m(a) = \sum_{i=0}^{k-1}{m_i}{a^i}\]
+% Pada konstruksi asli dari \textcite{reed1960polynomial}, pesan $m = (m_0, \ldots , m_{k-1}) \in F^k$ dipetakan ke sebuah polinomial $p_m$ dengan \[p_m(a) = \sum_{i=0}^{k-1}{m_i}{a^i}\]
 
-\textit{Codeword} didapatkan dengan mengevaluasi $p_x$ pada $n$ poin berbeda $a_1, \ldots, a_n$ pada medan $F$. Dengan demikian, fungsi pengkodean klasik $C : {F^k} -> {F^m}$ untuk kode Reed-Solomon didefinisikan sebagai berikut:
+% \textit{Codeword} didapatkan dengan mengevaluasi $p_x$ pada $n$ poin berbeda $a_1, \ldots, a_n$ pada medan $F$. Dengan demikian, fungsi pengkodean klasik $C : {F^k} -> {F^m}$ untuk kode Reed-Solomon didefinisikan sebagai berikut:
 
-\[
-    C(m) = \begin{bmatrix}
-        p_m(a_0)\\
-        p_m(a_1)\\
-        \ldots\\
-        p_m(a_{n-1})
-    \end{bmatrix}  
-\]
+% \[
+%     C(m) = \begin{bmatrix}
+%         p_m(a_0)\\
+%         p_m(a_1)\\
+%         \ldots\\
+%         p_m(a_{n-1})
+%     \end{bmatrix}  
+% \]
 
-Fungsi $C$ adalah pemetaan linear yang memenuhi $C(m) = Am$ untuk matriks $A$ berukuran ${n} \times {k}$ dengan elemen dari $F$:
+% Fungsi $C$ adalah pemetaan linear yang memenuhi $C(m) = Am$ untuk matriks $A$ berukuran ${n} \times {k}$ dengan elemen dari $F$:
 
-\[
-    C(m) = Am =
-    \begin{bmatrix}
-        1 & a_0 & a_0^2 & \cdots & a_0^{k-1} \\
-        1 & a_1 & a_1^2 & \cdots & a_1^{k-1} \\
-        \vdots & \vdots & \vdots & \ddots & \vdots \\
-        1 & a_{n-1} & a_{n-1}^2 & \cdots & a_{n-1}^{k-1}
-    \end{bmatrix}
-    \begin{bmatrix}
-        m_0 \\
-        m_1 \\
-        \vdots \\
-        m_{k-1}
-    \end{bmatrix}
-\]
+% \[
+%     C(m) = Am =
+%     \begin{bmatrix}
+%         1 & a_0 & a_0^2 & \cdots & a_0^{k-1} \\
+%         1 & a_1 & a_1^2 & \cdots & a_1^{k-1} \\
+%         \vdots & \vdots & \vdots & \ddots & \vdots \\
+%         1 & a_{n-1} & a_{n-1}^2 & \cdots & a_{n-1}^{k-1}
+%     \end{bmatrix}
+%     \begin{bmatrix}
+%         m_0 \\
+%         m_1 \\
+%         \vdots \\
+%         m_{k-1}
+%     \end{bmatrix}
+% \]
 
-Matrix ini adalah matriks Vandermonde dengan $a_1,\ldots,a_{n-1} \in F$. Matriks Vandermonde adalah sebuah matriks dengan progresi geometris di setiap barisnya. Matriks ini memfasilitasi evaluasi polinomial dengan kolom ke $j$ berkorespondensi dengan $j - 1$ dari poin evaluasi. Sifat penting dari matriks ini \textit{non-singular}, yaitu determinan dari matriks Vandermonde dihitung dan tidak nol jika dan hanya jika semua $a_i$ berbeda dengan persamaan sebagai berikut
+% Matrix ini adalah matriks Vandermonde dengan $a_1,\ldots,a_{n-1} \in F$. Matriks Vandermonde adalah sebuah matriks dengan progresi geometris di setiap barisnya. Matriks ini memfasilitasi evaluasi polinomial dengan kolom ke $j$ berkorespondensi dengan $j - 1$ dari poin evaluasi. Sifat penting dari matriks ini \textit{non-singular}, yaitu determinan dari matriks Vandermonde dihitung dan tidak nol jika dan hanya jika semua $a_i$ berbeda dengan persamaan sebagai berikut
 
-\[
-    \det(V) = \prod_{0 \leq i < j \leq m} (x_j - x_i)
-\]
+% \[
+%     \det(V) = \prod_{0 \leq i < j \leq m} (x_j - x_i)
+% \]
 
-Dengan perhitungan determinan tersebut, matriks ini selalu dapat di-\textit{inverse} ketika titik-titik evaluasinya berbeda. \textit{Inverse} dari matriks diperlukan untuk mengembalikan pesan ke bentuk semula. Selain itu, matriks Vandermode juga memiliki independensi linear yang artinya masing-masing kolom terpisah secara linear dari kolom yang lainnya.
+% Dengan perhitungan determinan tersebut, matriks ini selalu dapat di-\textit{inverse} ketika titik-titik evaluasinya berbeda. \textit{Inverse} dari matriks diperlukan untuk mengembalikan pesan ke bentuk semula. Selain itu, matriks Vandermode juga memiliki independensi linear yang artinya masing-masing kolom terpisah secara linear dari kolom yang lainnya.
 
-Ada beberapa cara untuk menghasailkan kode Reed-Solomon yang sistematis. Salah satunya adalah dengan menggunakan interpolasi lagrange untuk dalam perhitungan polinomial $p_m$ sehingga $p_m(a_i) = m_i \text{ untuk semua } i \in \{0,\ldots,k-1\}$. Untuk menghasilkan matriks pengkodean sistematis, matriks Vandermonde A dikalikan dengan \textit{inverse} dari submatriks kuadrat kiri A.
+Ada beberapa cara untuk menghasilkan kode Reed-Solomon yang sistematis. Salah satunya adalah dengan menggunakan interpolasi lagrange untuk dalam perhitungan polinomial $p_m$ sehingga $p_m(a_i) = m_i \text{ untuk semua } i \in \{0,\ldots,k-1\}$. Untuk menghasilkan matriks pengkodean sistematis, matriks Vandermonde A dikalikan dengan \textit{inverse} dari submatriks kuadrat kiri A.
 
 \[
     G = {(\text{Submatriks kuadrat kiri } A)}^{-1} \cdot A = 
@@ -68,12 +68,12 @@ Ada beberapa cara untuk menghasailkan kode Reed-Solomon yang sistematis. Salah s
         1 & 0 & 0 & \cdots & 0 & g_{1,k+1} & \cdots & g_{1,n} \\
         0 & 1 & 0 & \cdots & 0 & g_{2,k+1} & \cdots & g_{2,n} \\
         0 & 0 & 1 & \cdots & 0 & g_{3,k+1} & \cdots & g_{3,n} \\
-        \vdots & \vdots & \vdots & & \vdots & \vdots & & \vdots \\
+        \vdots & \vdots & \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
         0 & \cdots & 0 & \cdots & 1 & g_{k,k+1} & \cdots & g_{k,n}
     \end{bmatrix}
 \]
 
-Sehingga didapat persamaan untuk pemetaan linear $C(m) = Gm$ untuk matriks $G$ berukuran ${n} \times {k}$ dengan elemen dari $F$
+Matrix ini adalah gabungan matriks identitas dengan matriks Vandermonde. Matriks Vandermonde adalah sebuah matriks dengan progresi geometris di setiap barisnya. Matriks ini memfasilitasi evaluasi polinomial dengan kolom ke $j$ berkorespondensi dengan $j - 1$ dari poin evaluasi. Sifat penting dari matriks ini \textit{non-singular}, yaitu determinan dari matriks Vandermonde dihitung dan tidak nol jika dan hanya jika semua $a_i$ berbeda. Sehingga didapat persamaan untuk pemetaan linear $C(m) = Gm$ untuk matriks $G$ berukuran ${n} \times {k}$ dengan elemen dari $F$
 
 \[
     C(m) = Gm = 
@@ -81,7 +81,7 @@ Sehingga didapat persamaan untuk pemetaan linear $C(m) = Gm$ untuk matriks $G$ b
         1 & 0 & 0 & \cdots & 0 & g_{1,k+1} & \cdots & g_{1,n} \\
         0 & 1 & 0 & \cdots & 0 & g_{2,k+1} & \cdots & g_{2,n} \\
         0 & 0 & 1 & \cdots & 0 & g_{3,k+1} & \cdots & g_{3,n} \\
-        \vdots & \vdots & \vdots & & \vdots & \vdots & & \vdots \\
+        \vdots & \vdots & \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
         0 & \cdots & 0 & \cdots & 1 & g_{k,k+1} & \cdots & g_{k,n}
     \end{bmatrix}
     \begin{bmatrix}
