@@ -1,5 +1,4 @@
 \subsection{Kode Reed-Solomon}
-\label{sec:kode-reed-solomon}
 
 Pada tahun 1960, I. Reed dan G. Solomon mengembangkan teknik pengkodean blok yang disebut kode Reed-Solomon. Saat ini, kode Reed-Solomon tetap populer karena sesuai dengan standar dan implementasi yang efisien di berbagai format perangkat keras dan perangkat lunak \parencite{minio2022erasure}. \textit{Erasure code} Reed-Solomon menyediakan teknik sederhana yang efisien untuk mengkodekan ulang informasi sehingga kegagalan beberapa disk dalam susunan disk tidak mengganggu ketersediaan data \parencite{manasse2009reed}.
 
@@ -101,9 +100,9 @@ Pemulihan pesan terkode yang rusak $C(m)'$ dilakukan memanfaatkan sifat indepens
 \[1 \times m = G'^{-1} \times C(m)'\]
 \[m = G'^{-1} \times C(m)'\]
 
-Berdasarkan pengkodean yang dilakukan, kode Reed-Solomon menyediakan ketahanan sejumlah $t$ kegagalan dengan penggunaan penyimpanan $M$ sebanyak
+Berdasarkan pengkodean yang dilakukan, kode Reed-Solomon menyediakan ketahanan sejumlah $t$ kegagalan dengan penggunaan penyimpanan $M$ yang dapat dihitung dengan rumus seperti berikut
 
 \[M = \text{Ukuran pesan} \times \frac{k + t}{k}\]
 
-Namun, perlu diingat bahwa dilakukan perhitungan matriks seperti yang sudah dijelaskan sebelumnya untuk meraih ketahanan tersebut. Perhitungan ini akan menambah \textit{response time} dari operasi yang dilakukan.
+Namun, perlu diingat bahwa untuk \textit{erasure coding} mencapai ukuran tersebut, perhitungan matriks seperti yang sudah dijelaskan sebelumnya perlu dilakukan. Perhitungan ini akan menambah \textit{response time} dari operasi.
 % ::TODO: How detailed should this section be?::
