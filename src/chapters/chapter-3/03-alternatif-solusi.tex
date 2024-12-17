@@ -1,0 +1,13 @@
+\subsection{Alternatif Solusi}
+\label{sec:alternatif-solusi}
+
+Berdasarkan analisis permasalahan pada bagian \ref{sec:analisis-permasalahan} serta studi literatur, terdapat berbagai macam alternatif solusi untuk kebutuhan sistem tersebut.
+
+\subsubsection{Menggunakan sistem Memcached gabungan dengan \textit{database} lain}
+Pendekatan ini mengkombinasikan antara sistem \textit{in-memory key-value store} milik Memcache dan menggunakan \textit{database} terpisah sebagai tempat penyimpanan data \textit{persistence}. Replikasi dan \textit{erasure coding} dapat dilakukan pada data persisten yang disimpan pada \textit{database} tersebut. Kelebihan dari pendekatan ini adalah kemudahan dari implementasi dibandingkan pengembangan sendiri ataupun modifikasi \textit{database} yang sudah lebih kompleks. Namun, kekurangannya adalah \textit{overhead} penggunaan memori dari menjalankan Memcached dan \textit{database} terpisah. Dari ketiga alternatif solusi, kemudahan implementasi dan kekurangan yang dapat ditoleransi menjadikan alternatif ini solusi yang dipilih dalam penelitian ini.
+
+\subsubsection{Menggunakan sistem Memcached dengan fitur-fitur yang dibutuhkan dikembangkan sendiri}
+Pendekatan ini membangun fitur-fitur yang dibutuhkan untuk penelitian di atas Memcached secara mandiri. Kelebihan dari pendekatan ini kebebasan yang tinggi sehingga sistem dapat disesuaikan untuk eksperimen. Namun, pendekatan ini sulit mencerminkan kondisi nyata. Selain itu, kinerja sistem yang dikembangkan juga bergantung erat pada waktu serta kemampuan pengembangan peneliti.
+
+\subsubsection{Mengembangkan sistem yang sudah memiliki fitur lengkap dengan mengganti \textit{source-code database} untuk fitur yang dibutuhkan}
+Pengembangan ini membangun mengganti fitur yang dibutuhkan untuk penelitian di atas \textit{database} lebih kompleks dari Memcached. Pendekatan ini memiliki kelebihan kedekatan kondisi eksperimen dengan dunia nyata. Namun, pendekatan ini sulit dilakukan karena membutuhkan waktu yang lama untuk memahami dan mengubah \textit{source-code database} yang kompleks.
