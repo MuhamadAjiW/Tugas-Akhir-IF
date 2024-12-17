@@ -1,0 +1,14 @@
+\section{Memcached}
+
+Memchached adalah salah satu \textit{key-value store} bersifat \textit{in-memory} yang populer dan simpel \parencite{nishtala2013scaling}. Memcached sering digunakan sebagai \textit{cache} atau \textit{session store} untuk berbagai macam aplikasi. Teknologi ini dirancang untuk meningkatkan kinerja aplikasi dengan menyimpan data yang sering diakses di dalam memori sehingga waktu akses menjadi jauh lebih cepat dibandingkan dengan mengakses data dari disk. Memcached juga memiliki arsitektur \textit{multithreaded} yang dapat mempercepat operasi.
+
+\subsection{Distribusi Data pada Memcached}
+Memcached mendistribusikan data melalui teknik \textit{hashing}. \textit{Key} yang dimasukkan akan diproses menggunakan fungsi hash untuk menentukan server tempat data disimpan. Arsitektur Memcached membagi bagian kontrol pada server dan klien. Klien berperan sebagai \textit{controller} yang mengetahui cara menentukan server tempat data disimpan. Sementara itu, server bertanggung jawab untuk menyimpan dan mengambil \textit{value} yang disimpan \parencite{memcached_documentation}.
+
+\subsection{\textit{Persistence} pada Memcached}
+Sebagai \textit{key-value store} yang bersifat\textit{in-memory}, Memcached tidak memiliki dukungan bawaan untuk \textit{persistence} dalam bentuk apapun. Artinya data yang disimpan di Memcached bersifat sementara dan akan hilang ketika server di-\textit{restart} atau jika terjadi kegagalan pada sistem. Namun, penggunaan database atau penulisan ke file di luar Memcache dapat dilakukan untuk mengatasi keterbatasan ini.
+
+\subsection{\textit{Replication} pada Memcached}
+Memcache tidak memiliki fitur replikasi bawaan. Tidak ada cara bawaan untuk mereplikasi data dari satu \textit{node} ke yang lainnya. Namun, klien sebagai \textit{controller} dapat diatur untuk menyimpan data yang sama di beberapa \textit{node} Memcached secara manual. Selain itu, dapat digunakan juga middleware untuk mengatur replikasi data antar node Memcached secara otomatis.
+
+Sifat Memcached yang minimalis dapat membantu dalam pengembangan sistem yang diperlukan untuk penelitian ini. Dengan desain yang sederhana, Memcached memungkinkan pengembangan sistem yang lebih cepat dan efisien. Sifatnya yang minimal juga mengurangi potensi kerusakan atau konflik yang terjadi ketika sistem mengalami perubahan atau penyesuaian. Hal tersebut menjadikan Memcached pilihan yang ideal untuk prototipe atau eksperimen yang akan dilakukan.
