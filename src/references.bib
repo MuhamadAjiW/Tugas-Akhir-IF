@@ -231,3 +231,43 @@
   year      = {2002},
   publisher = {ACM New York, NY, USA}
 }
+
+@inproceedings{nishtala2013scaling,
+  author    = {Nishtala, Rajesh and Fugal, Hans and Grimm, Steven and Kwiatkowski, Marc and Lee, Herman and Li, Harry C. and McElroy, Ryan and Paleczny, Mike and Peek, Daniel and Saab, Paul and Stafford, David and Tung, Tony and Venkataramani, Venkateshwaran},
+  title     = {Scaling Memcache at Facebook},
+  year      = {2013},
+  publisher = {USENIX Association},
+  address   = {USA},
+  abstract  = {Memcached is a well known, simple, in-memory caching solution. This paper describes how Facebook leverages memcached as a building block to construct and scale a distributed key-value store that supports the world's largest social network. Our system handles billions of requests per second and holds trillions of items to deliver a rich experience for over a billion users around the world.},
+  booktitle = {Proceedings of the 10th USENIX Conference on Networked Systems Design and Implementation},
+  pages     = {385–398},
+  numpages  = {14},
+  location  = {Lombard, IL},
+  series    = {nsdi'13}
+}
+
+@manual{memcached_documentation,
+  title  = {Memcached Documentation},
+  author = {{Memcached Developers}},
+  year   = {2024},
+  url    = {https://docs.memcached.org/},
+  note   = {Accessed: 2024-12-17}
+}
+
+@inproceedings{yiu2017erasure,
+  author    = {Yiu, Matt M. T. and Chan, Helen H. W. and Lee, Patrick P. C.},
+  title     = {Erasure coding for small objects in in-memory KV storage},
+  year      = {2017},
+  isbn      = {9781450350358},
+  publisher = {Association for Computing Machinery},
+  address   = {New York, NY, USA},
+  url       = {https://doi.org/10.1145/3078468.3078470},
+  doi       = {10.1145/3078468.3078470},
+  abstract  = {We present MemEC, an erasure-coding-based in-memory key-value (KV) store that achieves high availability and fast recovery while keeping low data redundancy across storage servers. MemEC is specifically designed for workloads dominated by small objects. By encoding objects in entirety, MemEC is shown to incur 60\% less storage redundancy for small objects than existing replication- and erasure-coding-based approaches. It also supports graceful transitions between decentralized requests in normal mode (i.e., no failures) and coordinated requests in degraded mode (i.e., with failures). We evaluate our MemEC prototype via testbed experiments under read-heavy and update-heavy YCSB workloads. We show that MemEC achieves high throughput and low latency in both normal and degraded modes, and supports fast transitions between the two modes.},
+  booktitle = {Proceedings of the 10th ACM International Systems and Storage Conference},
+  articleno = {14},
+  numpages  = {12},
+  keywords  = {in-memory storage, erasure coding},
+  location  = {Haifa, Israel},
+  series    = {SYSTOR '17}
+}
