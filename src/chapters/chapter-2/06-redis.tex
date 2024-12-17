@@ -1,0 +1,9 @@
+\section{Redis}
+
+Redis adalah salah satu \textit{key-value store} bersifat \textit{in-memory} yang populer dan berkinerja tinggi \parencite{chen2016towards}. Redis digunakan secara luas dalam sistem terdistribusi serta aplikasi yang membutuhkan akses data cepat.
+
+Disebabkan data yang terletak pada memori utama bersifat \textit{non-persistent}, data dapat hilang ketika terjadi \textit{crash} yang tidak terduga. Untuk mengatasi permasalahan ini, Redis memiliki beberapa teknik yang dapat diterapkan, yaitu dengan menyimpan data secara periodik sebagai \textit{image files} dengan RDB (\textit{Redis Database Backup}) atau dengan menyimpan pembaruan \textit{log} ke \textit{disk} untuk memastikan keamanan data.
+
+% Redis mendukung replikasi dengan model \textit{master-slave} untuk meningkatkan ketersediaan data dan mempercepat akses.
+
+% Sifat penyimpanan yang sederhana dari Redis menjadikannya 
