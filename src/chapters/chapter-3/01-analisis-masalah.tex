@@ -1,4 +1,16 @@
 \subsection{Analisis Permasalahan}
 \label{sec:analisis-permasalahan}
 
-::TODO: fill::
+Berdasarkan latar belakang yang telah diuraikan pada bagian I.1, penggunaan \textit{erasure coding} pada sebuah sistem dapat mengurangi kebutuhan penyimpanan data dengan tetap menjaga integritas dan ketahanan data. Walaupun membutuhkan sumber daya komputasi dalam penerapannya, pengurangan ukuran data keseluruhan yang diperlukan menyebabkan juga turunnya ukuran data yang perlu dikirim ke \textit{node} lainnya. Hal ini menyebabkan mungkinnya terdapat suatu kondisi ketika {response time} yang diperlukan untuk melakukan operasi pada \textit{erasure coding} lebih rendah jika dibandingkan dengan melakukan operasi yang sama pada sistem yang menggunakan \textit{replikasi} untuk mencapai ketahanan tersebut.
+
+Untuk mencapai kondisi tersebut, perlu ditentukan faktor-faktor yang dapat membedakan \textit{response time} pada sistem berbasis \textit{erasure coding} dan sistem berbasis replikasi. Berdasarkan studi literatur yang telah ditentukan, riset ini akan menganalisis faktor-faktor berupa ukuran data yang besar, ketahanan yang tinggi, dan jaringan yang lambat untuk mencari kondisi ketika sistem berbasis \textit{erasure coding} menghasilkan \textit{response time} yang lebih rendah dibandingkan dengan sistem berbasis \textit{replikasi}. Dengan demikian, diperlukan sistem yang dapat mensimulasikan operasi pada sistem \textit{erasure coding} dan replikasi sekaligus memvariasikan faktor-faktor tersebut dalam operasinya tanpa memengaruhi kinerja sistem di sisi lain.
+
+Dari keperluan tersebut, dirumuskan kebutuhan sebuah perangkat lunak antara lain
+\begin{enumerate}
+
+    \item Sistem harus mensimulasikan kondisi \textit{database} terdistribusi yang menggunakan replikasi ataupun \textit{erasure coding}.
+    \item Sistem harus dapat memvariasikan ukuran data, tingkat ketahanan, dan kecepatan jaringan.
+    \item Sistem harus dapat  menjalankan eksperimen berulang kali untuk mendapatkan median, dan data persentil dari eksperimen.
+
+\end{enumerate}
+  
