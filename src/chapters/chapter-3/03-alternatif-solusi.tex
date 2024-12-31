@@ -10,7 +10,7 @@ Salah satu kebutuhan sistem adalah sistem harus dapat mensimulasikan kondisi dat
 Seperti yang dijelaskan pada bagian \ref{sec:erasure-coding}, penerapan \textit{erasure coding} akan memerlukan komputasi yang tinggi, khususnya pada pembangunan ulang data. Hal ini membuat erasure coding lebih layak jika digunakan untuk operasi \textit{write}. Oleh karena itu, RocksDB dipilih sebagai \textit{persistent storage} karena berfokus pada kinerja \textit{write} yang tinggi. Penggunaan RocksDB juga dilakukan seperti \textit{library} sehingga memudahkan pengembangan sistem yang modular. 
 
 \subsubsection{Menggunakan algoritma erasure coding selain Reed-Solomon}
-
+Algoritma Reed-Solomon dipilih sebagai algoritma untuk \textit{erasure coding} karena algoritma ini juga memiliki kemampuan untuk ketahanan yang tidak terbatas. Selain itu, algoritma ini juga berbasis \textit{block} sehingga lebih sesuai untuk penyimpanan data. Algoritma ini juga sudah banyak digunakan pada sistem penyimpanan data terdistribusi.
 
 % Pendekatan ini mengkombinasikan antara sistem \textit{in-memory key-value store} milik Memcache dan menggunakan \textit{database} terpisah sebagai tempat penyimpanan data \textit{persistence}. Replikasi dan \textit{erasure coding} dapat dilakukan pada data persisten yang disimpan pada \textit{database} tersebut. Kelebihan dari pendekatan ini adalah kemudahan dari implementasi dibandingkan pengembangan sendiri ataupun modifikasi \textit{database} yang sudah lebih kompleks. Namun, kekurangannya adalah \textit{overhead} penggunaan memori dari menjalankan Memcached dan \textit{database} terpisah. Dari ketiga alternatif solusi, kemudahan implementasi dan kekurangan yang dapat ditoleransi menjadikan alternatif ini solusi yang dipilih dalam penelitian ini.
 
