@@ -1,3 +1,11 @@
 \section{Risiko}
 \label{sec:risiko}
-Bagian ini menjelaskan tentang implementasi ::TODO: fill::
+Berikut risiko yang mungkin dihadapi dalam pelaksanaan penelitian ini beserta rencana mitigasinya:
+
+\begin{enumerate}
+    \item Kompleksitas dalam implementasi dapat menghambat pelaksanaan penelitian ataupun memperburuk data untuk analisis dengan memberikan kebutuhan komputasi yang tidak selayaknya. Hal yang dapat dilakukan untuk menurunkan kompleksitas dalam implementasi adalah dengan menggunakan pustaka yang matang bila memungkinkan. Selain itu, bisa juga dilakukan validasi awal pada implementasi yang lebih sederhana untuk memastikan implementasi berfungsi sesuai kebutuhan sebelum diterapkan secara penuh.
+    \item Terdapat kesulitan untuk mendapatkan dinamika perangkat yang terpisah secara geografis. Hal ini membutuhkan penggunaan \textit{cloud computing} yang memerlukan biaya tambahan. Mitigasi dapat dilakukan dengan menggunakan \textit{credit} pemberian platform \textit{cloud computing}. Jika masih tidak memungkinkan, penggunaan \textit{virtual machine} lokal dengan simulasi jaringan yang lambat dapat digunakan sebagai alternatif.
+    \item Risiko lain yang perlu dipertimbangkan adalah untuk memvariasikan kecepatan komputasi. Hal ini memerlukan penggunaan perangkat keras yang berbeda-beda. Mitigasi yang dilakukan adalah dengan menggunakan \textit{credit} pemberian platform \textit{cloud computing}. Jika masih tidak memungkinkan, penggunaan \textit{virtual machine} lokal dengan alokasi \textit{resource} yang disesuaikan.
+    \item Kesalahan analisis hasil dapat terjadi jika terdapat kesalahan interpretasi hasil. Mitigasi yang dilakukan adalah dengan melakukan validasi dan menggunakan analisis statistik yang valid. Misalnya penggunaan \textit{percentile} yang lebih tahan terhadap \textit{outlier} dibandingkan dengan \textit{mean}.
+    \item Kesalahan analisis juga dapat terjadi jika ada kesalahan dalam konfigurasi yang diguakan untuk perbandingan. Perbandingan \textit{erasure coding} dan replikasi memerlukan konfigurasi yang sama dan perbedaan konfigurasi dapat memengaruhi hasil penelitian. Cara untuk mencegah hal ini terjadi adalah dengan menentukan konfigurasi yang seragam dan terdokumentasi dengan jelas ketika penelitian berlangsung.
+\end{enumerate}
