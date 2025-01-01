@@ -7,16 +7,7 @@ Seperti yang telah dijelaskan pada \ref{sec:alternatif-solusi}, solusi yang dipi
   \item \textbf{Client} yang dapat mengumpulkan data serta memvariasikan faktor-faktor sesuai kebutuhan eksperimen.
 \end{enumerate}
 
-Selain itu, pengembangan akan dilakukan dengan menggunakan bahasa pemrograman Rust karena Rust merupakan bahasa sistem berkinerja tinggi. Selain itu, Rust sudah memiliki \textit{support} untuk semua kakas yang dibutuhkan. Pengembangan akan memanfaatkan pustaka yang ada untuk mempermudah pengembangan. Penjelasan detail mengenai modul-modul tersebut dapat dilihat pada lampiran a.
+Selain itu, pengembangan akan dilakukan dengan menggunakan bahasa pemrograman Rust karena Rust merupakan bahasa sistem berkinerja tinggi. Selain itu, Rust sudah memiliki \textit{support} untuk semua kakas yang dibutuhkan. Pengembangan akan memanfaatkan pustaka yang ada untuk mempermudah pengembangan. Penjelasan detail mengenai modul-modul tersebut dapat dilihat pada lampiran \ref{appendix:module}.
 
-Eksperimen ini dijalankan dengan \textit{client} mengirimkan \textit{request} ke \textit{database node} untuk melakukan operasi tertentu. Kemudian \textit{database node} akan melakukan operasi yang diminta. Setelah itu, \textit{database node} dapat melakukan \textit{erasure coding} sesuai konfigurasi dan mendistribusikan data yang diterima. Penjelasan detail mengenai flow terdapat pada lampiran b. Selain itu, gambaran umum arsitektur sistem dapat dilihat pada lampiran c
-
-\ref{fig:general-architecture}.
+Eksperimen ini dijalankan dengan \textit{client} mengirimkan \textit{request} ke \textit{database node} untuk melakukan operasi tertentu. Kemudian \textit{database node} akan melakukan operasi yang diminta. Setelah itu, \textit{database node} dapat melakukan \textit{erasure coding} sesuai konfigurasi dan mendistribusikan data yang diterima. Gambaran umum arsitektur sistem dapat dilihat pada lampiran \ref{appendix:architecture}. Sementara itu, penjelasan detail mengenai flow terdapat pada lampiran \ref{appendix:flow}.
   
-% TODO: Penjelasan Modul, pindahkan gambar ke lampiran
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.95\textwidth]{resources/chapter-3/general-architecture.png}
-    \caption{Gambaran Umum Arsitektur Sistem Eksperimen}
-    \label{fig:general-architecture}
-  \end{figure}

@@ -2,6 +2,14 @@
 
 Sesuai batasan yang telah ditetapkan, sistem terdistribusi adalah sistem yang terdiri dari lebih dari satu perangkat dan terpisah pada letak geografis yang berbeda. Ketika merancang layanan terdistribusi, ada tiga properti yang seringkali diinginkan: \textit{consistency}, \textit{availability}, dan \textit{partition tolerance}. Tidak mungkin untuk mendapatkan ketiga-tiganya \parencite{gilbert2002brewer}.
 
-\input{chapters/chapter-2/04-01-consistency.tex}
-\input{chapters/chapter-2/04-02-availability.tex}
-\input{chapters/chapter-2/04-03-partition-tolerance.tex}
+\subsection{Consistency}
+
+Definisi \textit{consistency} adalah kondisi sebuah layanan sebagai objek data atomik. Pada kondisi \textit{strong consistency}, harus ada urutan total pada semua operasi sehingga setiap operasi terlihat seolah-olah selesai pada suatu waktu. Hal ini setara dengan mengharuskan \textit{request} dari sebuah \textit{shared memory} terdistribusi untuk seolah-olah dieksekusi pada satu \textit{node} \parencite{gilbert2002brewer}.
+
+\subsection{Availability}
+
+Untuk sebuah sistem terdistribusi bersifat \textit{available}, setiap \textit{request} yang diterima oleh \textit{node} yang tidak rusak harus menghasilkan sebuah \textit{response}. Dengan itu, semua algoritma yang digunakan oleh layanan tersebut harus berhenti pada akhirnya \parencite{gilbert2002brewer}. Sifat \textit{availability} yang kuat adalah \textit{response time} yang rendah dan \textit{throughput} yang tinggi
+
+\subsection{Partition Tolerance}
+
+Untuk sebuah sistem bersifat \textit{partition tolerant}, jaringan harus diizinkan terpartisi dalam pesan yang dikirim dari satu \textit{node} ke yang lainnya. Ketika sebuah jaringan dipartisi, pesan yang dikirim dari \textit{node} di satu komponen partisi ke \textit{node} di komponen lain akan hilang. Sistem yang bersifat \textit{partition tolerant} dapat mempertahankan pesan tersebut walaupun terjadi partisi dalam jaringan \parencite{gilbert2002brewer}.

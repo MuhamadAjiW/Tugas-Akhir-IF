@@ -271,3 +271,24 @@
   location  = {Haifa, Israel},
   series    = {SYSTOR '17}
 }
+
+@article{dong2021rocksdb,
+  author     = {Dong, Siying and Kryczka, Andrew and Jin, Yanqin and Stumm, Michael},
+  title      = {RocksDB: Evolution of Development Priorities in a Key-value Store Serving Large-scale Applications},
+  year       = {2021},
+  issue_date = {November 2021},
+  publisher  = {Association for Computing Machinery},
+  address    = {New York, NY, USA},
+  volume     = {17},
+  number     = {4},
+  issn       = {1553-3077},
+  url        = {https://doi.org/10.1145/3483840},
+  doi        = {10.1145/3483840},
+  abstract   = {This article is an eight-year retrospective on development priorities for RocksDB, a key-value store developed at Facebook that targets large-scale distributed systems and that is optimized for Solid State Drives (SSDs). We describe how the priorities evolved over time as a result of hardware trends and extensive experiences running RocksDB at scale in production at a number of organizations: from optimizing write amplification, to space amplification, to CPU utilization. We describe lessons from running large-scale applications, including that resource allocation needs to be managed across different RocksDB instances, that data formats need to remain backward- and forward-compatible to allow incremental software rollouts, and that appropriate support for database replication and backups are needed. Lessons from failure handling taught us that data corruption errors needed to be detected earlier and that data integrity protection mechanisms are needed at every layer of the system. We describe improvements to the key-value interface. We describe a number of efforts that in retrospect proved to be misguided. Finally, we describe a number of open problems that could benefit from future research.},
+  journal    = {ACM Trans. Storage},
+  month      = oct,
+  articleno  = {26},
+  numpages   = {32},
+  keywords   = {Key-value stores, large-scale applications, RocksDB, SSD, compaction, databases}
+}
+

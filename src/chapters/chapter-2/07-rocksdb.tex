@@ -1,0 +1,21 @@
+\section{RocksDB}
+
+RocksDB adalah sebuah \textit{key-value store database} yang dikembangkan oleh Facebook dengan menargetkan sistem terdistribusi berskala besar \parencite{dong2021rocksdb}. RocksDB dibangun berdasarkan LevelDB, yang sebelumnya dikembangkan oleh Google, namun dengan penambahan berbagai fitur untuk meningkatkan kinerja dan fleksibilitasnya. Beberapa fitur tambahan dari RocksDB termasuk kompresi dan \textit{transactions}.
+
+Salah satu keunggulan utama RocksDB adalah sifatnya yang \textit{open-source} dan \textit{highly customizable}. Sifat-sifat tersebut memberikan fleksibilitas kepada penggunanya untuk menyesuaikan \textit{database} sesuai dengan kebutuhan spesifik aplikasi. Fleksibilitas ini memungkinkan RocksDB untuk digunakan dalam berbagai kasus, dari \textit{database engine}, \textit{caching on SSD}, \textit{stream processing}, hingga \textit{queueing services}.
+
+\subsection{Log-Structured Merge Tree}
+
+Salah satu dasar RocksDB adalah implementasi struktur data yang dikenal sebagai \textit{log-structured merge tree} (LSM Tree). LSM Tree adalah sebuah struktur yang dirancang untuk memberikan kinerja baik dalam operasi tulis berfrekuensi tinggi. Cara kerja LSM Tree adalah dengan menyimpan data yang ditulis pada \textit{memtable} terlebih dahulu sebelum disimpan pada \textit{sstable}. \textit{Memtable} adalah struktur data yang disimpan di dalam memori dan digunakan untuk menampung data yang baru ditulis. Sementara itu, \textit{sstable} adalah struktur data yang disimpan di dalam disk dan digunakan untuk menyimpan data yang sudah ditulis pada \textit{memtable}.
+
+Konfigurasi yang tinggi pada RocksDB memungkinkan pengguna untuk menyesuaikan laju \textit{flush} antara \textit{memtable} dan \textit{disk} serta pengelolaan memori. Dengan konfigurasi tersebut, RocksDB memberikan keleluasaan dalam kinerja sesuai dengan karakteristik yang dibutuhkan aplikasi.
+
+\subsection{Persistence pada RocksDB}
+
+RocksDB memiliki mekanisme untuk memastikan bahwa data yang ditulis tetap persisten ketika terjadi gangguan atau kerusakan sistem. Salah satu mekanisme tersebut adalah dengan melakukan \textit{write-ahead logging} (WAL). WAL adalah teknik yang digunakan untuk memastikan bahwa data yang ditulis ke dalam disk tetap aman dan tidak hilang ketika terjadi kegagalan sistem. Dengan menggunakan WAL, RocksDB akan menulis data yang baru ditulis ke dalam disk terlebih dahulu sebelum data tersebut disimpan ke dalam \textit{memtable}. Oleh karena itu, RocksDB dapat menjamin ketahanan data meskipun terjadi kegagalan pada sistem. Data yang baru saja ditulis namun belum disimpan dalam \textit{disk} tetap dapat dipulihkan menggunakan \textit{log}.
+
+\subsection{Support untuk Replikasi dan Backup}
+
+RocksDB adalah \textit{single-node library}, artinya RocksDB tidak menyediakan mekanisme replikasi dan \textit{backup} secara bawaan. Aplikasi-aplikasi yang menggunakan RocksDB bertanggung jawab untuk replikasi dan \textit{backup} jika dibutuhkan. Setiap aplikasi mengimplementasikan fungsi ini dengan caranya masing-masing \parencite{dong2021rocksdb}. 
+
+Hal ini memberikan fleksibilitas kepada pengembang untuk memilih metode implementasi replikasi dan \textit{backup} yang sesuai dengan kebutuhan. Khususnya pada eksperimen ini, fleksibilitas tersebut memungkinkan metode implementasi yang bervariasi untuk meningkatkan ketahanan dari sistem yang dibuat.
