@@ -1,0 +1,24 @@
+\chapter{Perbandingan Algoritma Erasure Coding dalam Rancangan Implementasi}
+\label{appendix:ec-algorithms}
+
+Terdapat beberapa algoritma yang dipertimbangkan untuk implementasi \textit{erasure coding} selain Reed-Solomon \parencite{manasse2009reed}. Algoritma tersebut antara lain adalah kode LDPC (\textit{Low-Density Parity-Check}) \parencite{gallagher1962ldpc}, kode BCH (\textit{Bose-Chaudhuri-Hocquenghem}) \parencite{bose1960bch}, algoritma berbasis XOR (Terdapat berbagai macam sumber dan implementasi untuk algoritma XOR), kode Fountain \parencite{asteris2014fountain}, dan \textit{Regenerating Codes} \parencite{rashmi2012regenerating}. Berikut perbandingan masing-masing algoritma 
+
+\begin{table}[ht]
+    \centering
+    \caption{Perbandingan algoritma erasure coding}
+    \resizebox{\textwidth}{!}{
+        \begin{tabular}{|l|l|p{3cm}|p{2.2cm}|p{3cm}|p{3cm}|}
+            \hline
+            \rowcolor{black!10} Algoritma & Basis & Komputasi & Distance & Kelebihan & Kekurangan \\ \hline
+            Reed-Solomon & Block level & Polynomial Interpolation & Optimal & Efisiensi penyimpanan tinggi & Komputasi kompleks \\ \hline
+            LDPC Codes & Bit level & Sparse Matrix operations & Hampir \newline Optimal & Kecepatan \textit{encoding/decoding} tinggi untuk \textit{data streaming} & Membutuhkan \textit{overhead} untuk operasi \textit{block}  \\ \hline
+            BCH Codes & Block level & Syndrome decoding & Optimal & Efisien untuk \textit{burst errors} & Kompleksitas meningkat dengan ukuran data \\ \hline
+            XOR-based & Bit level & XOR operations & Optimal & Komputasi sangat sederhana & Kemampuan pemulihan data terbatas\\ \hline
+            Fountain Codes & Symbol level & Linear encoding/decoding & Probabilistik & Menghasilkan \textit{encoding} tidak terbatas & Bersifat probabilistik \\ \hline
+            Regenerating Codes & Block level & Linear encoding/decoding & Optimal & \textit{Bandwidth} lebih rendah dibanding Reed-Solomon untuk repair & Kompleksitas koordinasi dan overhead penyimpanan antar node tinggi  \\ \hline
+        \end{tabular}
+    }
+    \label{tab:ec-algorithm}
+\end{table}
+
+Distance adalah nilai \textit{overhead} memori algoritma tersebut dalam mengatasi kegagalan \textit{node}. Nilai distance optimal adalah $k + m = n$ dimana $k$ adalah jumlah \textit{data block}, $m$ adalah jumlah \textit{parity block}, dan $n$ adalah jumlah total \textit{block} yang dibutuhkan. Simbol yang sama digunakan untuk redundansi. Penjelasan implementasi dapat dilihat pada referensi masing-masing algoritma.
