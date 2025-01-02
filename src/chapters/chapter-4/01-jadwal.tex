@@ -2,10 +2,9 @@
 \label{sec:jadwal-pelaksanaan}
 Aktivitas-aktivitas yang akan dilakukan untuk memenuhi kebutuhan eksperiman adalah seperti yang dapat dilihat pada tabel \ref{tab:rincian-aktivitas}.
 
-\begin{table}[ht]
-\centering
-\caption{Daftar Aktivitas Tugas Akhir}
-\begin{tabular}{|p{1cm}|p{6cm}|p{6cm}|}
+\begin{longtable}{|p{1cm}|p{6cm}|p{6cm}|}
+\caption{Daftar Aktivitas Tugas Akhir} 
+\label{tab:rincian-aktivitas} \\
 \hline
 \rowcolor{black!10} ID & Kegiatan & Hasil \\ \hline
 K-1  & Melakukkan kajian pustaka & Bab II pada proposal tugas akhir \\ \hline
@@ -13,20 +12,20 @@ K-2  & Melakukan analisis permasalahan untuk topik tugas akhir & Bab I pada prop
 K-3  & Merancang solusi penyelesaian masalah & Bab III dan Bab IV pada proposal tugas akhir \\ \hline
 K-4  & Melakukan finalisasi proposal tugas akhir & Proposal tugas akhir \\ \hline
 K-5  & Melakukan seminar proposal tugas akhir & - \\ \hline
-K-6  & Melakukan implementasi sistem \textit{key-value store database} untuk membandingkan \textit{erasure coding} dengan replikasi \textit{} & Sistem \textit{key-value store database} yang dapat mengumpulkan data untuk perbandingan \textit{erasure coding} dan replikasi \\ \hline
-K-7  & Melakukan eksperimen untuk pengumpulan data \textit{response time} operasi pada sistem \textit{erasure coding} dan replikasi yang divariasikan sesuai rancangan & Data \textit{response time} operasi pada sistem \textit{erasure coding} dan replikasi \\ \hline
-K-8  & Melakukan analisis data eksperimen & Hasil analisis \\ \hline
-K-9  & Menyusun laporan tugas akhir secara keseluruhan & Laporan tugas akhir \\ \hline
-K-10  & Melakukan sidang tugas akhir & - \\ \hline
-\end{tabular}
-\label{tab:rincian-aktivitas}
-\end{table}
+K-6  & Melakukan implementasi modul \textit{database node} pada sistem & Sistem \textit{key-value store database} yang dikembangkan memiliki bagian \textit{in-memory} dan \textit{persistent storage} sudah terintegrasi melalui \textit{controller} \\ \hline
+K-7  & Melakukan implementasi \textit{storage module} pada sistem & Sistem \textit{key-value store database} yang dikembangkan dapat mensimulasikan operasi pada sistem \textit{erasure coding} dan replikasi \\ \hline
+K-8  & Melakukan implementasi \textit{data collection module} pada sistem & Sistem yang dikembangkan dapat mengumpulkan data untuk perbandingan \textit{erasure coding} dan replikasi \\ \hline
+K-9  & Melakukan eksperimen untuk pengumpulan data \textit{response time} operasi pada sistem \textit{erasure coding} dan replikasi yang divariasikan sesuai rancangan & Data \textit{response time} operasi pada sistem \textit{erasure coding} dan replikasi \\ \hline
+K-10  & Melakukan analisis data eksperimen & Dokumen Hasil analisis \\ \hline
+K-11  & Menyusun laporan tugas akhir secara keseluruhan & Laporan tugas akhir \\ \hline
+K-12  & Melakukan sidang tugas akhir & - \\ \hline 
+\end{longtable}
 
 Dari aktivitas-aktivitas tersebut, jadwal perencanaan pelaksanaan masing-masing aktivitas dapat dilihat pada tabel \ref{tab:jadwal-part1} dan \ref{tab:jadwal-part2}.
 
-\begin{table}[ht]
+\begin{table}[!ht]
 \centering
-\caption{Jadwal Tugas Akhir Periode Oktober 2024 hingga Februari 2025}
+\caption{Jadwal Tugas Akhir Oktober 2024--Februari 2025}
 \resizebox{\textwidth}{!}{
 \begin{ganttchart}[
     title/.append style={fill=black!10},
@@ -72,12 +71,17 @@ Dari aktivitas-aktivitas tersebut, jadwal perencanaan pelaksanaan masing-masing 
     \ganttbar{K-3}{7}{12} \\
     \ganttbar{K-4}{12}{13} \\
     \ganttbar{K-5}{14}{16} \\
+    \ganttbar{K-6}{14}{18} \\
+    \ganttbar{K-7}{19}{20} \\
 
 \end{ganttchart}
 }
 \label{tab:jadwal-part1}
+\end{table}
+
+\begin{table}[!ht]
 \centering
-\caption{Jadwal Tugas Akhir Periode Maret 2025 hingga Juni 2025}
+\caption{Jadwal Tugas Akhir Maret 2025--Juni 2025}
 \resizebox{\textwidth}{!}{
 \begin{ganttchart}[
     title/.append style={fill=black!10},
@@ -113,15 +117,16 @@ Dari aktivitas-aktivitas tersebut, jadwal perencanaan pelaksanaan masing-masing 
     \gantttitle{16}{1}
     \gantttitle{23}{1}\\
 
-    \ganttbar{K-6}{1}{4} \\
-    \ganttbar{K-7}{5}{6} \\
-    \ganttbar{K-8}{7}{12} \\
-    \ganttbar{K-9}{12}{13} \\
-    \ganttbar{K-10}{14}{16} \\
+    \ganttbar{K-7}{1}{2} \\
+    \ganttbar{K-8}{3}{6} \\
+    \ganttbar{K-9}{7}{8} \\
+    \ganttbar{K-10}{9}{10} \\
+    \ganttbar{K-11}{11}{14} \\
+    \ganttbar{K-12}{15}{17} \\
 
 \end{ganttchart}
 }
 \label{tab:jadwal-part2}
 \end{table}
 
-
+% \pagebreak
