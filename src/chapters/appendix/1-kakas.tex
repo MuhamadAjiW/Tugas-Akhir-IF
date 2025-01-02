@@ -1,3 +1,62 @@
-\chapter{Perbandingan Kakas dalam Rancangan Implementasi}
+\chapter{Perbandingan Rancangan Implementasi}
 \label{appendix:tools}
 
+Sebelum memilih kakas Memcached sebagai \textit{in-memory key-value store} dan RocksDB sebagai \textit{persistent database} dalam satu \textit{node}, terdapat beberapa pertimbangan dalam pemilihan arsitektur serta kakas dalam rancangan implementasi
+
+\section{Perbandingan Pengembangan Sistem}
+
+Terdapat beberapa solusi yang dipertimbangkan dalam pembangunan sistem, yaitu membangun sistem dengan 
+
+\subsection{Mengembangkan sistem secara modular dengan in-memory key-value store dan persistent storage terpisah}
+Pendekatan ini mengkombinasikan antara sistem \textit{in-memory key-value store} dengan menggunakan \textit{database} terpisah sebagai tempat penyimpanan data \textit{persistence}. Replikasi dan \textit{erasure coding} dapat dilakukan pada data persisten yang disimpan pada \textit{database} tersebut. Kelebihan dari pendekatan ini adalah kemudahan dari implementasi dibandingkan pengembangan sendiri ataupun modifikasi \textit{database} yang sudah lebih kompleks. Namun, kekurangannya adalah \textit{overhead} penggunaan memori dari menjalankan \textit{in-memory key-value store} dan \textit{database} terpisah. Dari ketiga alternatif solusi, kemudahan implementasi dan kekurangan yang dapat ditoleransi menjadikan alternatif ini solusi yang dipilih dalam penelitian ini.
+
+\subsection{Mengembangkan sistem mock database}
+Pendekatan ini membangun semua fitur-fitur yang dibutuhkan secara mandiri. Kelebihan dari pendekatan ini kebebasan yang tinggi sehingga sistem dapat disesuaikan untuk eksperimen. Namun, pendekatan ini sulit mencerminkan kondisi nyata. Selain itu, kinerja sistem yang dikembangkan juga bergantung erat pada waktu serta kemampuan pengembangan peneliti.
+
+\subsection{Mengembangkan sistem yang sudah memiliki fitur in memory database dan persistent storage}
+Pengembangan ini membangun mengganti fitur yang dibutuhkan untuk penelitian di atas \textit{database} lebih kompleks dari Memcached. Pendekatan ini memiliki kelebihan kedekatan kondisi eksperimen dengan dunia nyata. Namun, pendekatan ini sulit dilakukan karena membutuhkan waktu yang lama untuk memahami dan mengubah \textit{source-code database} yang kompleks.
+
+\section{Perbandingan Kakas}
+Setelah menentukan solusi pengembangan sistem secara modular, terdapat beberapa kakas yang dapat dipilih untuk solusi tersebut. Disebabkan pemilihan solusi modular, kakas yang dipertimbangkan untuk digunakan meliputi kakas \textit{in-memory key-value store} dan kakas untuk \textit{persistent database}.
+
+\subsection{In-memory key-value store}
+Memcached dipilih sebagai \textit{in-memory key-value store} karena sifatnya yang simpel dan fokus yang terpusat hanya sebagai \textit{in-memory key-value store} tanpa banyak fitur lainnya. Selain Memcached, kakas yang dipertimbangkan untuk digunakan sebagai \textit{in-memory key-value store} adalah seperti yang ada pada tabel \ref{tab:tools-kv}.
+
+\begin{table}[h]
+    \centering
+    \caption{Perbandingan kakas in-memory key-value store}
+    \resizebox{\textwidth}{!}{
+        \begin{tabular}{|l|l|p{3cm}|p{3cm}|p{3cm}|}
+            \hline
+            \rowcolor{black!10} Kakas & Deskripsi & Kelebihan & Kekurangan \\ \hline
+            Redis & a & b & c\\ \hline
+            Memcached & a & b & c \\ \hline
+        \end{tabular}
+    }
+    \label{tab:tools-kv}
+\end{table}
+
+Dari kakas-kakas tersebut, seperti yang sudah dijelaskan pada bagian \ref{chapter:rencana-pelaksanaan}, dipilih Memcached sebagai kakas untuk eksperimen ini.
+
+\subsection{Persistent database}
+RocksDB dipilih sebagai \textit{persistent storage} karena berfokus pada kinerja \textit{write} yang tinggi. Penggunaan RocksDB juga dilakukan seperti \textit{library} sehingga memudahkan pengembangan sistem yang modular. Selain RocksDB, kakas yang dipertimbangkan untuk digunakan sebagai \textit{persistent database} adalah seperti yang ada pada tabel \ref{tab:tools-db}
+
+\begin{table}[h]
+    \centering
+    \caption{Perbandingan kakas persistent database}
+    \resizebox{\textwidth}{!}{
+        \begin{tabular}{|l|p{3cm}|p{3cm}|p{3cm}|}
+            \hline
+            \rowcolor{black!10} Kakas & Deskripsi & Kelebihan & Kekurangan \\ \hline
+            Dragonfly & a & b & c \\ \hline
+            Cassandra & a & b & c \\ \hline
+            RocksDB & a & b & c \\ \hline
+            LevelDB & a & b & c \\ \hline
+            DynamoDB & a & b & c \\ \hline
+            MongoDB & a & b & c \\ \hline
+        \end{tabular}
+    }
+    \label{tab:tools-db}
+\end{table}
+
+% Dari kakas-kakas tersebut, seperti yang sudah dijelaskan pada bagian \ref{chapter:rencana-pelaksanaan}, dipilih RocksDB sebagai kakas untuk eksperimen ini.
