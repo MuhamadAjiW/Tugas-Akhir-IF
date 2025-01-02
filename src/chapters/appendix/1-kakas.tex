@@ -20,23 +20,24 @@ Pengembangan ini membangun mengganti fitur yang dibutuhkan untuk penelitian di a
 Setelah menentukan solusi pengembangan sistem secara modular, terdapat beberapa kakas yang dapat dipilih untuk solusi tersebut. Disebabkan pemilihan solusi modular, kakas yang dipertimbangkan untuk digunakan meliputi kakas \textit{in-memory key-value store} dan kakas untuk \textit{persistent database}.
 
 \subsection{In-memory key-value store}
-Memcached dipilih sebagai \textit{in-memory key-value store} karena sifatnya yang simpel dan fokus yang terpusat hanya sebagai \textit{in-memory key-value store} tanpa banyak fitur lainnya. Selain Memcached, kakas yang dipertimbangkan untuk digunakan sebagai \textit{in-memory key-value store} adalah seperti yang ada pada tabel \ref{tab:tools-kv}.
+Memcached dipilih sebagai \textit{in-memory key-value store}. Selain Memcached, kakas yang dipertimbangkan untuk digunakan sebagai \textit{in-memory key-value store} adalah seperti yang ada pada tabel \ref{tab:tools-kv} \parencite{redis_docs} \parencite{dragonflydb_docs} \parencite{memcached_documentation}.
 
 \begin{table}[h]
     \centering
     \caption{Perbandingan kakas in-memory key-value store}
     \resizebox{\textwidth}{!}{
-        \begin{tabular}{|l|l|p{3cm}|p{3cm}|p{3cm}|}
+        \begin{tabular}{|l|p{5cm}|p{5cm}|p{3cm}|}
             \hline
-            \rowcolor{black!10} Kakas & Deskripsi & Kelebihan & Kekurangan \\ \hline
-            Redis & a & b & c\\ \hline
-            Memcached & a & b & c \\ \hline
+            \rowcolor{black!10} Kakas & Kelebihan & Kekurangan & Notes \\ \hline
+            Redis & +Support struktur data kompleks \newline +Support transaksi kompleks & -Single Threaded \newline -Kompleks & Ada support untuk replikasi \\ \hline
+            DragonflyDB & +Multithreaded \newline +Support struktur data kompleks \newline +Support transaksi kompleks & -Lebih kompleks dari Memcached, lebih simpel dari Redis \newline -Relatif baru, komunitas terbatas dibanding kedua alternatif & Rilis 2023, Ada support untuk replikasi\\ \hline
+            Memcached & +Simpel \newline +Multithreaded & -Struktur data terbatas \newline -Transaksi terbatas & Sangat minimalis \\ \hline
         \end{tabular}
     }
     \label{tab:tools-kv}
 \end{table}
 
-Dari kakas-kakas tersebut, seperti yang sudah dijelaskan pada bagian \ref{chapter:rencana-pelaksanaan}, dipilih Memcached sebagai kakas untuk eksperimen ini.
+Dari kakas-kakas tersebut, seperti yang sudah dijelaskan pada bagian \ref{chapter:rencana-pelaksanaan}, dipilih Memcached sebagai kakas untuk eksperimen ini. Alasan utama pemilihan Memcached adalah sifatnya yang paling simpel, kinerja \textit{multithreaded}-nya, serta tidak dibutuhkannya fitur-fitur yang dimiliki Redis dan Dragonfly.
 
 \subsection{Persistent database}
 RocksDB dipilih sebagai \textit{persistent storage} karena berfokus pada kinerja \textit{write} yang tinggi. Penggunaan RocksDB juga dilakukan seperti \textit{library} sehingga memudahkan pengembangan sistem yang modular. Selain RocksDB, kakas yang dipertimbangkan untuk digunakan sebagai \textit{persistent database} adalah seperti yang ada pada tabel \ref{tab:tools-db}
@@ -45,15 +46,14 @@ RocksDB dipilih sebagai \textit{persistent storage} karena berfokus pada kinerja
     \centering
     \caption{Perbandingan kakas persistent database}
     \resizebox{\textwidth}{!}{
-        \begin{tabular}{|l|p{3cm}|p{3cm}|p{3cm}|}
+        \begin{tabular}{|l|p{5cm}|p{5cm}|p{3cm}|}
             \hline
-            \rowcolor{black!10} Kakas & Deskripsi & Kelebihan & Kekurangan \\ \hline
-            Dragonfly & a & b & c \\ \hline
-            Cassandra & a & b & c \\ \hline
-            RocksDB & a & b & c \\ \hline
-            LevelDB & a & b & c \\ \hline
-            DynamoDB & a & b & c \\ \hline
-            MongoDB & a & b & c \\ \hline
+            \rowcolor{black!10} Kakas & Kelebihan & Kekurangan & Notes \\ \hline
+            Cassandra & b & c & Utamanya Wide-Column Store\\ \hline
+            RocksDB & b & c & Pengembangan LevelDB\\ \hline
+            LevelDB & b & c & Dasar dari RocksDB\\ \hline
+            DynamoDB & b & c & Managed dan berbayar\\ \hline
+            MongoDB & b & c & Utamanya Dokumen database\\ \hline
         \end{tabular}
     }
     \label{tab:tools-db}
