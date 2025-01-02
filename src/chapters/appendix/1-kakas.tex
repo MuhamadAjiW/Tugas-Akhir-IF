@@ -52,7 +52,7 @@ RocksDB dipilih sebagai \textit{persistent storage} karena berfokus pada kinerja
             Cassandra & +Horizontal Scalability baik \newline +Sudah ada referensi implementasi erasure coding pada paper lain & -Eventual Consistency \newline -Latensi tinggi untuk operasi write \newline -Sangat Kompleks & Utamanya Wide-Column Store\\ \hline
             ScyllaDB & +Lebih efisien dan performant dibandingkan Cassandra \newline +Memiliki pilihan strong consistency & -Lebih kompleks dibandingkan Cassandra \newline -Ekosistem terbatas & Mirip dan kompatibel dengan Cassandra. \\ \hline
             RocksDB & +Kinerja tinggi untuk operasi write \newline +Recovery menggunakan write ahead log & -Single Node \newline -Keterbatasan pada concurrent writes & Pengembangan LevelDB\\ \hline
-            LevelDB & +Simpel \newline +Penggunaan memori kecil \newline +Kinerja tinggi untuk operasi write & -Fitur terbatas seperti indexing dan query multi-kolom \newline -Operasi write skala besar masih lebih lambat dibandingkan RocksDB \newline -Keterbatasan pada concurrent writes & Dasar dari RocksDB\\ \hline
+            LevelDB & +Simpel \newline +Penggunaan memori kecil \newline +Kinerja tinggi untuk operasi write & -Fitur terbatas seperti compression dan data terbatas pada string \newline -Operasi write skala besar masih lebih lambat dibandingkan RocksDB \newline -Keterbatasan pada concurrent writes & Dasar dari RocksDB\\ \hline
             MongoDB & +Support query kompleks \newline +Penggunaan fleksibel & -Operasi kurang optimal \newline -Konsumsi memori besar \newline -Storage overhead besar & Utamanya Dokumen database\\ \hline
         \end{tabular}
     }
