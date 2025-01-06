@@ -61,8 +61,8 @@ Kode Reed-Solomon dikarakterisasi dengan tiga parameter: jumlah alfabet $q$ yang
 
 Ada beberapa cara untuk menghasilkan kode Reed-Solomon yang sistematis. Salah satunya adalah dengan menggunakan interpolasi lagrange untuk dalam perhitungan polinomial $p_m$ sehingga $p_m(a_i) = m_i \text{ untuk semua } i \in \{0,\ldots,k-1\}$. Untuk menghasilkan matriks pengkodean sistematis, matriks Vandermonde A dikalikan dengan \textit{inverse} dari submatriks kuadrat kiri A.
 
-\[
-    G = {(\text{Submatriks kuadrat kiri } A)}^{-1} \cdot A = 
+\begin{align}
+    G = {(\text{Sub kuadrat kiri } A)}^{-1} \cdot A = 
     \begin{bmatrix}
         1 & 0 & 0 & \cdots & 0 & g_{1,k+1} & \cdots & g_{1,n} \\
         0 & 1 & 0 & \cdots & 0 & g_{2,k+1} & \cdots & g_{2,n} \\
@@ -70,11 +70,12 @@ Ada beberapa cara untuk menghasilkan kode Reed-Solomon yang sistematis. Salah sa
         \vdots & \vdots & \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
         0 & \cdots & 0 & \cdots & 1 & g_{k,k+1} & \cdots & g_{k,n}
     \end{bmatrix}
-\]
+    \label{eq:encoding_matrix}
+\end{align}
 
-Matrix ini adalah gabungan matriks identitas dengan matriks Vandermonde. Matriks Vandermonde adalah sebuah matriks dengan progresi geometris di setiap barisnya. Matriks ini memfasilitasi evaluasi polinomial dengan kolom ke $j$ berkorespondensi dengan $j - 1$ dari poin evaluasi. Sifat penting dari matriks ini \textit{non-singular}, yaitu determinan dari matriks Vandermonde dihitung dan tidak nol jika dan hanya jika semua $a_i$ berbeda. Sehingga didapat persamaan untuk pemetaan linear $C(m) = Gm$ untuk matriks $G$ berukuran ${n} \times {k}$ dengan elemen dari $F$
+Matrix \ref{eq:encoding_matrix} adalah gabungan matriks identitas dengan matriks Vandermonde. Matriks Vandermonde adalah sebuah matriks dengan progresi geometris di setiap barisnya. Matriks ini memfasilitasi evaluasi polinomial dengan kolom ke $j$ berkorespondensi dengan $j - 1$ dari poin evaluasi. Sifat penting dari matriks ini \textit{non-singular}, yaitu determinan dari matriks Vandermonde dihitung dan tidak nol jika dan hanya jika semua $a_i$ berbeda. Sehingga didapat persamaan untuk pemetaan linear $C(m) = Gm$ untuk matriks $G$ berukuran ${n} \times {k}$ dengan elemen dari $F$
 
-\[
+\begin{align}
     C(m) = Gm = 
     \begin{bmatrix}
         1 & 0 & 0 & \cdots & 0 & g_{1,k+1} & \cdots & g_{1,n} \\
@@ -89,19 +90,24 @@ Matrix ini adalah gabungan matriks identitas dengan matriks Vandermonde. Matriks
         \vdots \\
         m_{k-1}
     \end{bmatrix}
-\]
+    \label{eq:encoding_equation}
+\end{align}
 
-Pada matriks ini, tidak semua kolom $g_{x,y}$ perlu digunakan. Dapat ditentukan kolom yang digunakan sejumlah $t \le n - k$ untuk dapat membenarkan $t$ kehilangan pada lokasi yang diketahui dan diberikan kepada algoritma \parencite{riley2001introduction}.
+Pada matriks \ref{eq:encoding_equation}, tidak semua kolom $g_{x,y}$ perlu digunakan. Dapat ditentukan kolom yang digunakan sejumlah $t \le n - k$ untuk dapat membenarkan $t$ kehilangan pada lokasi yang diketahui dan diberikan kepada algoritma \parencite{riley2001introduction}. Pemulihan dilakukan seperti pada persamaan \ref{eq:recovery_equation}.
 
-Pemulihan pesan terkode yang rusak $C(m)'$ dilakukan memanfaatkan sifat indepensi dan \textit{non-singular} linear dari matrix Vandermonde. Sifat \textit{non-singular} menyebabkan matriks transformasi $G$ selalu memiliki inverse dan independensi linear memungkinkan $G'^{-1} \times G' = 1$ dan $G' \times m = C(m)'$ dengan $G'$ adalah matriks transformasi yang digunakan sebelumnya setelah kolom bersesuaian dengan bagian pesan yang hilang dihapus. Dengan penyederhanaan, didapatkan persamaan yang digunakan untuk memulihkan pesan:
+\begin{align}
+    G' \times m &= C(m)' \notag \\
+    G'^{-1} \times G' \times m &= G'^{-1} \times C(m)' \notag \\
+    1 \times m &= G'^{-1} \times C(m)' \notag \\
+    m &= G'^{-1} \times C(m)'
+    \label{eq:recovery_equation}
+\end{align}
 
-\[G' \times m = C(m)'\]
-\[G'^{-1} \times G' \times m = G'^{-1} \times C(m)'\]
-\[1 \times m = G'^{-1} \times C(m)'\]
-\[m = G'^{-1} \times C(m)'\]
+Berdasarkan pengkodean yang dilakukan, kode Reed-Solomon menyediakan ketahanan sejumlah $t$ kegagalan dengan penggunaan penyimpanan $M$ yang dapat dihitung dengan rumus \ref{eq:ec_storage}
 
-Berdasarkan pengkodean yang dilakukan, kode Reed-Solomon menyediakan ketahanan sejumlah $t$ kegagalan dengan penggunaan penyimpanan $M$ yang dapat dihitung dengan rumus seperti berikut
-
-\[M = \text{Ukuran pesan} \times \frac{k + t}{k}\]
+\begin{equation}
+    M = \text{Ukuran pesan} \times \frac{k + t}{k}
+    \label{eq:ec_storage}
+\end{equation}
 
 Namun, perlu diingat bahwa untuk \textit{erasure coding} mencapai ukuran tersebut, perhitungan matriks seperti yang sudah dijelaskan sebelumnya perlu dilakukan. Perhitungan ini akan menambah \textit{response time} dari operasi.

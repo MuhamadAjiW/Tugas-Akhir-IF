@@ -25,6 +25,8 @@
 
 \titleformat{\subsubsubsection}
 {\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titleformat*{\section}{\normalsize\bfseries}
+\titleformat*{\subsection}{\normalsize\bfseries}
 \titlespacing*{\subsubsubsection}
 {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 
@@ -45,6 +47,7 @@
 \usepackage{chngcntr}
 \usepackage{etoolbox}
 \usepackage{array}
+\usepackage{float}
 \usepackage[hidelinks]{hyperref}       % Package untuk link di daftar isi. Ubah jadi \usepackage[hidelinks]{hyperref} apabila ingin menghilangkan kotak merah disekitar link
 \usepackage{titlesec}       % Package Format judul
 \usepackage{titletoc}       % Package Format judul di toc
@@ -58,6 +61,7 @@
 \usepackage{listings}
 \usepackage{csquotes}
 \usepackage{amsmath,amssymb,amsfonts}
+\usepackage{multirow}
 
 % Gantt chart
 \usepackage{pgfgantt}
@@ -139,7 +143,7 @@
 \renewcommand{\baselinestretch}{1.5}
 
 % Setting judul
-\chapterfont{\centering \large}
+% \chapterfont{\centering \large}
 \titleformat{\chapter}[display]
   {\Large\centering\bfseries}
   {\chaptertitlename\ \thechapter}{0pt}
