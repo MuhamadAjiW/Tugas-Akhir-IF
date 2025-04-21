@@ -120,10 +120,10 @@ Arsitektur dari sistem mengasumsikan kebutuhan untuk konsistensi yang tinggi. Un
 
 Operasi akan disalurkan melalui sebuah \textit{load-balancer} sebelum mencapai \textit{database node}. Operasi \textit{write} akan secara ekslusif disalurkan pada \textit{leader}. Kemudian untuk ketahanan, data akan didistribusikan pada \textit{follower} sesuai dengan konfigurasi modul \textit{redundancy}. Sementara itu, operasi \textit{read} dapat dilakukan pada \textit{database node} manapun. Pada sistem \textit{erasure coding}, jika pada \textit{node} tersebut tidak terdapat nilai data yang dicari, maka \textit{node} akan melakukan \textit{request} ke semua node lainnya untuk melakukan rekonstruksi data.
 
-\subsection{Flow Operasi Sistem}
+\subsection{Alur Transaksi}
 \label{subsection:system-flow}
 
-Flow untuk operasi \textit{read} dapat dilihat pada gambar \ref{fig:flow-read-mermaidjs} dengan \textit{request} masuk ke \textit{load balancer} kemudian disalurkan ke \textit{database node} yang tersedia. \textit{Database node} akan melakukan operasi \textit{read} pada \textit{key-value store} dan mengembalikan hasil operasi ke \textit{load balancer} untuk dikirimkan ke \textit{client} jika tersedia. Jika tidak, maka \textit{database node} akan melakukan rekonstruksi data dari \textit{erasure-coded persistent data} yang tersebar pada \textit{node-node} lainnya. Pada replikasi, data akan diambil dari \textit{node} lain yang memiliki data yang sama.
+Alur untuk transaksi \textit{read} dapat dilihat pada gambar \ref{fig:flow-read-mermaidjs} dengan \textit{request} masuk ke \textit{load balancer} kemudian disalurkan ke \textit{database node} yang tersedia. \textit{Database node} akan melakukan operasi \textit{read} pada \textit{key-value store} dan mengembalikan hasil operasi ke \textit{load balancer} untuk dikirimkan ke \textit{client} jika tersedia. Jika tidak, maka \textit{database node} akan melakukan rekonstruksi data dari \textit{erasure-coded persistent data} yang tersebar pada \textit{node-node} lainnya. Pada replikasi, data akan diambil dari \textit{node} lain yang memiliki data yang sama.
 
 \begin{figure}[!ht]
     \centering
@@ -132,7 +132,7 @@ Flow untuk operasi \textit{read} dapat dilihat pada gambar \ref{fig:flow-read-me
     \label{fig:flow-read-mermaidjs}
 \end{figure}
 
-Flow untuk operasi \textit{read} dapat dilihat pada gambar \ref{fig:flow-write-mermaidjs} dengan \textit{request} masuk ke \textit{load balancer} kemudian disalurkan ke \textit{database node} yang merupakan leader. Leader kemudian akan melakukan operasi \textit{erasure coding} lalu menyebarkan \textit{shard} ke \textit{follower} yang tersedia. Setelah semua \textit{follower} menerima \textit{shard}, maka operasi \textit{write} dianggap selesai. Operasi \textit{write} pada replikasi juga akan menunggu semua \textit{follower} menerima data sebelum dianggap selesai. 
+Alur untuk transaksi \textit{read} dapat dilihat pada gambar \ref{fig:flow-write-mermaidjs} dengan \textit{request} masuk ke \textit{load balancer} kemudian disalurkan ke \textit{database node} yang merupakan leader. Leader kemudian akan melakukan operasi \textit{erasure coding} lalu menyebarkan \textit{shard} ke \textit{follower} yang tersedia. Setelah semua \textit{follower} menerima \textit{shard}, maka operasi \textit{write} dianggap selesai. Operasi \textit{write} pada replikasi juga akan menunggu semua \textit{follower} menerima data sebelum dianggap selesai. 
 
 \begin{figure}[!ht]
     \centering
