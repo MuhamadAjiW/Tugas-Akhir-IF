@@ -1,12 +1,12 @@
-\subsection{Modul}
-\label{subsection:modules}
+\subsection{Rancangan Struktural}
+\label{subsection:rancangan-struktural}
 
-Kebutuhan fungsional dan non-fungsional tersebut dipetakan pada modul-modul yang diimplementasikan dalam sistem eksperimen. Setiap modul dirancang untuk memenuhi tujuan spesifik sesuai dengan kebutuhan sistem.
+Kebutuhan fungsional dan non-fungsional tersebut dipetakan pada struktur yang diimplementasikan dalam sistem eksperimen sebagai bagian modul. Setiap modul dirancang untuk memenuhi tujuan spesifik sesuai dengan kebutuhan sistem.
 
 \subsubsection{Database Node}
 \label{subsubsection:database-node}
 
-\textit{Database Node} merupakan modul utama yang berperan sebagai \textit{key-value store} pada eksperimen ini. Berdasarkan keputusan yang diambil pada bagian \ref{subsection:modules}, modul ini akan dibuat modular dengan komponen-komponen terpisah. Memcached akan digunakan sebagai \textit{in-memory key-value store} dan RocksDB sebagai \textit{persistent database}. Untuk menggabungkan kedua komponen tersebut, akan dibuat komponen tambahan yang berperan sebagai \textit{controller}.
+\textit{Database Node} merupakan modul utama yang berperan sebagai \textit{key-value store} pada eksperimen ini. Berdasarkan keputusan yang diambil pada bagian \ref{subsection:rancangan-struktural}, modul ini akan dibuat modular dengan komponen-komponen terpisah. Memcached akan digunakan sebagai \textit{in-memory key-value store} dan RocksDB sebagai \textit{persistent database}. Untuk menggabungkan kedua komponen tersebut, akan dibuat komponen tambahan yang berperan sebagai \textit{controller}.
 
 Komponen \textit{controller} akan berperan untuk mengambil data dari memori jika tersedia dan dari \textit{database} jika data tidak ditemukan di memori untuk operasi \textit{read}. Sementara itu, pada operasi \textit{write}, \textit{controller} akan berperan untuk menyebarkan data yang diproses menggunakan \textit{storage module} ke \textit{database node} lainnya. \textit{Controller} juga akan berperan untuk mengelola konsistensi antar-node menggunakan algoritma konsensus. Penjelasan mengenai peran \textit{database node} pada arsitektur sistem keseluruhan dapat dilihat pada bagian \ref{subsection:system-architecture}.
 
