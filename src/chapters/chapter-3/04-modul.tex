@@ -1,0 +1,53 @@
+\subsection{Modul}
+\label{subsection:modules}
+
+Kebutuhan fungsional dan non-fungsional tersebut dipetakan pada modul-modul yang diimplementasikan dalam sistem eksperimen. Setiap modul dirancang untuk memenuhi tujuan spesifik sesuai dengan kebutuhan sistem.
+
+\subsubsection{Database Node}
+\label{subsubsection:database-node}
+
+\textit{Database Node} merupakan modul utama yang berperan sebagai \textit{key-value store} pada eksperimen ini. Berdasarkan keputusan yang diambil pada bagian \ref{subsection:modules}, modul ini akan dibuat modular dengan komponen-komponen terpisah. Memcached akan digunakan sebagai \textit{in-memory key-value store} dan RocksDB sebagai \textit{persistent database}. Untuk menggabungkan kedua komponen tersebut, akan dibuat komponen tambahan yang berperan sebagai \textit{controller}.
+
+Komponen \textit{controller} akan berperan untuk mengambil data dari memori jika tersedia dan dari \textit{database} jika data tidak ditemukan di memori untuk operasi \textit{read}. Sementara itu, pada operasi \textit{write}, \textit{controller} akan berperan untuk menyebarkan data yang diproses menggunakan \textit{storage module} ke \textit{database node} lainnya. \textit{Controller} juga akan berperan untuk mengelola konsistensi antar-node menggunakan algoritma konsensus. Penjelasan mengenai peran \textit{database node} pada arsitektur sistem keseluruhan dapat dilihat pada bagian \ref{subsection:system-architecture}.
+
+Merujuk analisis kebutuhan sistem pada bagian \ref{sec:analisis-kebutuhan-sistem}, modul \textit{database node} memenuhi kebutuhan 1 dan 2, yaitu:
+
+\begin{enumerate}
+    \item Sistem harus dapat mensimulasikan kondisi \textit{database} terdistribusi yang menggunakan replikasi ataupun \textit{erasure coding}.
+    \item Sistem harus dapat menyimpan data secara \textit{persistent} untuk mensimulasikan kegagalan dan pemulihan.
+\end{enumerate}
+
+Sedangkan merujuk kebutuhan fungsional dan non-fungsional pada bagian \ref{subsection:system-requirements}, modul ini harus memenuhi kebutuhan fungsional F-1, F-2, F-6, F-7, F-8, dan F-11 serta non-fungsional NF-1, NF-2, NF-3, dan NF-4.
+
+\subsubsection{Storage Module}
+\label{subsubsection:storage-module}
+
+Modul ini berfungsi untuk mengatur mekanisme \textit{database node} dalam meningkatkan ketahanan data. Salah satu peran yang dilakukan adalah \text{encode/decode} untuk \textit{erasure coding} data yang diterima dan membaginya ke dalam beberapa bagian \textit{shard} yang kemudian akan dikembalikan pada komponen \textit{controller} pada \textit{database node} untuk didistribusikan. Selain itu, modul ini juga akan menghadirkan pilihan untuk menggunakan replikasi data. Pengkhususan modul ini dari modul-modul lainnya dilakukan untuk mengisolasi perbedaan antara replikasi dan \textit{erasure coding} tanpa mengubah variabel lainnya.
+
+Merujuk pada bagian \ref{sec:analisis-kebutuhan-sistem}, \textit{Storage Module} memenuhi kebutuhan 1, yaitu:
+
+\begin{enumerate}
+    \item Sistem harus dapat mensimulasikan kondisi \textit{database} terdistribusi yang menggunakan replikasi ataupun \textit{erasure coding}.
+\end{enumerate}
+
+Sedangkan merujuk kebutuhan fungsional dan non-fungsional pada bagian \ref{subsection:system-requirements}, modul ini harus memenuhi kebutuhan fungsional F-4, F-5, dan F-11 serta non-fungsional NF-1, NF-3, dan NF-4.
+
+\subsubsection{Data Collection Module}
+\label{subsubsection:data-collection-module}
+
+Modul ini merupakan modul yang berperan untuk melakukan \textit{request} dan melakukan transaksi pada sistem. Hal utama yang akan dilakukan oleh modul ini adalah pengumpulan data dari eksperimen. Oleh karena itu, modul ini akan memiliki fitur yang dapat memvariasikan ukuran data, transaksi, dan \textit{timer} untuk mengukur \textit{response time} dari operasi. Selain itu, modul ini juga perlu dilengkapi dengan otomasi agar dapat menjalankan eksperimen berulang kali untuk mendapatkan data persentil dari eksperimen.
+
+Merujuk pada bagian \ref{sec:analisis-kebutuhan-sistem}, \textit{Data Collection Module} memenuhi kebutuhan 3 dan 4, yaitu:
+
+\begin{enumerate}
+    \setcounter{enumi}{2}
+    \item Sistem harus dapat memvariasikan ukuran data, tingkat ketahanan, kecepatan jaringan, dan kemampuan komputasi.
+    \item Sistem harus dapat menjalankan eksperimen berulang kali untuk mendapatkan data persentil dari eksperimen.
+\end{enumerate}
+
+Sedangkan merujuk kebutuhan fungsional dan non-fungsional pada bagian \ref{subsection:system-requirements}, modul ini harus memenuhi kebutuhan fungsional F-3, F-9, F-10, dan F-11
+
+\subsubsection{Modul Lainnya}
+\label{subsubsection:other-modules}
+
+Selain ketiga modul yang sudah dijelaskan, akan terdapat beberapa modul minor yang diperlukan untuk meningkatkan kinerja sistem dan mempermudah keberjalanan eksperimen. Contoh modul-modul tersebut antara lain adalah \textit{load balancer}, \textit{logger}, dan \textit{startup-script}. \textit{Load balancer} berfungsi untuk mendistribusikan \textit{request} dari \textit{client} ke \textit{database node} yang tersedia. Modul \textit{logger} berfungsi untuk mencatat kinerja sistem serta memudahkan analisis hasil eksperimen. Sedangkan modul \textit{startup-script} akan membantu pembangunan sistem \textit{key-value store database} secara keseluruhan untuk mengatur konfigurasi ketahanan sistem. Modul-modul ini tidak memiliki peran yang krusial dalam sistem, namun membantu dalam mempermudah pengembangan dan analisis. Dinamika eksperimen tidak menutup kemungkinan adanya modul tambahan yang diperlukan. Beberapa kebutuhan pada poin 4 bagian \ref{sec:analisis-kebutuhan-sistem} akan diimplementasikan melalui \textit{platform} tempat eksperimen dilakukan.

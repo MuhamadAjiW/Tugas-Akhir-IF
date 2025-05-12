@@ -1,4 +1,5 @@
-\chapter{Implementasi Sistem Uji Kinerja Erasure Coding dan Replikasi}
+\chapter{Analisis Persoalan dan Rancangan Solusi}
+\label{chapter:analisis-persoalan-dan-rancangan-solusi}
 
 Tujuan utama penulisan bab ini adalah untuk menjelaskan proses solusi atas masalah pencarian kondisi ketika \textit{erasure coding} memiliki \textit{response time} yang lebih cepat dibandingkan replikasi. Bagian ini memaparkan proses analisis masalah, rancangan solusi, serta implementasi solusi.
 
@@ -7,14 +8,15 @@ Tujuan utama penulisan bab ini adalah untuk menjelaskan proses solusi atas masal
 
 \input{chapters/chapter-3/01-analisis-masalah.tex}
 
-\input{chapters/chapter-3/02-kebutuhan-sistem.tex}
+\input{chapters/chapter-3/02-alternatif-solusi.tex}
 
-\input{chapters/chapter-3/03-alternatif-solusi.tex}
+\input{chapters/chapter-3/03-kebutuhan-sistem.tex}
 
 \section{Rancangan}
 
-\input{chapters/chapter-3/04-arsitektur-sistem.tex}
+Seperti yang telah dijelaskan pada \ref{sec:alternatif-solusi}, solusi yang dipilih adalah membuat sistem dengan mengkombinasikan Memcached sebagai \textit{in-memory key-value store} dan menggunakan RocksDB sebagai \textit{persistent database}. Replikasi dan \textit{erasure coding} hanya dilakukan pada data persisten yang disimpan pada \textit{database} tersebut.
 
-\section{Implementasi}
+\input{chapters/chapter-3/04-modul.tex}
 
-::TODO::
+\input{chapters/chapter-3/05-arsitektur-sistem.tex}
+

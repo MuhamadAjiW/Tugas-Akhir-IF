@@ -4,4 +4,15 @@
 % Berdasarkan latar belakang yang telah diuraikan pada \ref{sec:latar-belakang}, penggunaan \textit{erasure coding} pada sebuah sistem dapat mengurangi kebutuhan penyimpanan data dengan tetap menjaga integritas dan ketahanan data. Walaupun membutuhkan sumber daya komputasi dalam penerapannya, pengurangan ukuran data keseluruhan yang diperlukan menyebabkan juga turunnya ukuran data yang perlu dikirim ke \textit{node} lainnya.Hal ini menyebabkan mungkinnya terdapat suatu kondisi ketika {response time} yang diperlukan untuk melakukan operasi pada \textit{erasure coding} lebih rendah jika dibandingkan dengan melakukan operasi yang sama pada sistem yang menggunakan \textit{replikasi} untuk mencapai ketahanan tersebut.
 
 Berdasarkan latar belakang dan studi literatur yang telah ditentukan, ada kondisi ketika sistem berbasis \textit{erasure coding} menghasilkan \textit{response time} yang lebih rendah dibandingkan dengan sistem berbasis \textit{replikasi} karena walaupun membutuhkan komputasi, ukuran data yang dikirimkan untuk ketahanan lebih rendah dibandingkan replikasi. Riset ini akan menganalisis faktor-faktor untuk mencapai kondisi tersebut. Faktor yang dianalisis antara lain ukuran data yang besar, ketahanan yang tinggi, dan jaringan yang lambat. Dengan demikian, diperlukan sistem yang dapat mensimulasikan operasi pada sistem \textit{erasure coding} dan replikasi sekaligus memvariasikan faktor-faktor tersebut dalam operasinya tanpa memengaruhi kinerja sistem di sisi lain.
-  
+
+Dari permasalahan tersebut, dirumuskan kebutuhan sebuah perangkat lunak antara lain
+\begin{enumerate}
+
+    \item Sistem harus dapat mensimulasikan kondisi \textit{database} terdistribusi yang menggunakan replikasi ataupun \textit{erasure coding}.
+    \item Sistem harus dapat menyimpan data secara \textit{persistent} untuk mensimulasikan kegagalan dan pemulihan.
+    \item Sistem harus dapat memvariasikan ukuran data, tingkat ketahanan, kecepatan jaringan, dan kemampuan komputasi.
+    \item Sistem harus dapat menjalankan eksperimen berulang kali untuk mendapatkan data persentil dari eksperimen.
+    
+\end{enumerate}
+
+Penjelasan lebih detail mengenai kebutuhan sistem terdapat pada lampiran \ref{subsection:modules}.
