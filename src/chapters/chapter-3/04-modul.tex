@@ -10,7 +10,7 @@ Kebutuhan fungsional dan non-fungsional tersebut dipetakan pada modul-modul yang
 
 Komponen \textit{controller} akan berperan untuk mengambil data dari memori jika tersedia dan dari \textit{database} jika data tidak ditemukan di memori untuk operasi \textit{read}. Sementara itu, pada operasi \textit{write}, \textit{controller} akan berperan untuk menyebarkan data yang diproses menggunakan \textit{storage module} ke \textit{database node} lainnya. \textit{Controller} juga akan berperan untuk mengelola konsistensi antar-node menggunakan algoritma konsensus. Penjelasan mengenai peran \textit{database node} pada arsitektur sistem keseluruhan dapat dilihat pada bagian \ref{subsection:system-architecture}.
 
-Merujuk analisis kebutuhan sistem pada bagian \ref{sec:analisis-kebutuhan-sistem}, modul \textit{database node} memenuhi kebutuhan 1 dan 2, yaitu:
+Merujuk analisis kebutuhan sistem pada bagian \ref{sec:analisis-permasalahan}, modul \textit{database node} memenuhi kebutuhan 1 dan 2, yaitu:
 
 \begin{enumerate}
     \item Sistem harus dapat mensimulasikan kondisi \textit{database} terdistribusi yang menggunakan replikasi ataupun \textit{erasure coding}.
@@ -24,7 +24,7 @@ Sedangkan merujuk kebutuhan fungsional dan non-fungsional pada bagian \ref{subse
 
 Modul ini berfungsi untuk mengatur mekanisme \textit{database node} dalam meningkatkan ketahanan data. Salah satu peran yang dilakukan adalah \text{encode/decode} untuk \textit{erasure coding} data yang diterima dan membaginya ke dalam beberapa bagian \textit{shard} yang kemudian akan dikembalikan pada komponen \textit{controller} pada \textit{database node} untuk didistribusikan. Selain itu, modul ini juga akan menghadirkan pilihan untuk menggunakan replikasi data. Pengkhususan modul ini dari modul-modul lainnya dilakukan untuk mengisolasi perbedaan antara replikasi dan \textit{erasure coding} tanpa mengubah variabel lainnya.
 
-Merujuk pada bagian \ref{sec:analisis-kebutuhan-sistem}, \textit{Storage Module} memenuhi kebutuhan 1, yaitu:
+Merujuk pada bagian \ref{sec:analisis-permasalahan}, \textit{Storage Module} memenuhi kebutuhan 1, yaitu:
 
 \begin{enumerate}
     \item Sistem harus dapat mensimulasikan kondisi \textit{database} terdistribusi yang menggunakan replikasi ataupun \textit{erasure coding}.
@@ -37,7 +37,7 @@ Sedangkan merujuk kebutuhan fungsional dan non-fungsional pada bagian \ref{subse
 
 Modul ini merupakan modul yang berperan untuk melakukan \textit{request} dan melakukan transaksi pada sistem. Hal utama yang akan dilakukan oleh modul ini adalah pengumpulan data dari eksperimen. Oleh karena itu, modul ini akan memiliki fitur yang dapat memvariasikan ukuran data, transaksi, dan \textit{timer} untuk mengukur \textit{response time} dari operasi. Selain itu, modul ini juga perlu dilengkapi dengan otomasi agar dapat menjalankan eksperimen berulang kali untuk mendapatkan data persentil dari eksperimen.
 
-Merujuk pada bagian \ref{sec:analisis-kebutuhan-sistem}, \textit{Data Collection Module} memenuhi kebutuhan 3 dan 4, yaitu:
+Merujuk pada bagian \ref{sec:analisis-permasalahan}, \textit{Data Collection Module} memenuhi kebutuhan 3 dan 4, yaitu:
 
 \begin{enumerate}
     \setcounter{enumi}{2}
@@ -50,4 +50,4 @@ Sedangkan merujuk kebutuhan fungsional dan non-fungsional pada bagian \ref{subse
 \subsubsection{Modul Lainnya}
 \label{subsubsection:other-modules}
 
-Selain ketiga modul yang sudah dijelaskan, akan terdapat beberapa modul minor yang diperlukan untuk meningkatkan kinerja sistem dan mempermudah keberjalanan eksperimen. Contoh modul-modul tersebut antara lain adalah \textit{load balancer}, \textit{logger}, dan \textit{startup-script}. \textit{Load balancer} berfungsi untuk mendistribusikan \textit{request} dari \textit{client} ke \textit{database node} yang tersedia. Modul \textit{logger} berfungsi untuk mencatat kinerja sistem serta memudahkan analisis hasil eksperimen. Sedangkan modul \textit{startup-script} akan membantu pembangunan sistem \textit{key-value store database} secara keseluruhan untuk mengatur konfigurasi ketahanan sistem. Modul-modul ini tidak memiliki peran yang krusial dalam sistem, namun membantu dalam mempermudah pengembangan dan analisis. Dinamika eksperimen tidak menutup kemungkinan adanya modul tambahan yang diperlukan. Beberapa kebutuhan pada poin 4 bagian \ref{sec:analisis-kebutuhan-sistem} akan diimplementasikan melalui \textit{platform} tempat eksperimen dilakukan.
+Selain ketiga modul yang sudah dijelaskan, akan terdapat beberapa modul minor yang diperlukan untuk meningkatkan kinerja sistem dan mempermudah keberjalanan eksperimen. Contoh modul-modul tersebut antara lain adalah \textit{load balancer}, \textit{logger}, dan \textit{startup-script}. \textit{Load balancer} berfungsi untuk mendistribusikan \textit{request} dari \textit{client} ke \textit{database node} yang tersedia. Modul \textit{logger} berfungsi untuk mencatat kinerja sistem serta memudahkan analisis hasil eksperimen. Sedangkan modul \textit{startup-script} akan membantu pembangunan sistem \textit{key-value store database} secara keseluruhan untuk mengatur konfigurasi ketahanan sistem. Modul-modul ini tidak memiliki peran yang krusial dalam sistem, namun membantu dalam mempermudah pengembangan dan analisis. Dinamika eksperimen tidak menutup kemungkinan adanya modul tambahan yang diperlukan. Beberapa kebutuhan pada poin 4 bagian \ref{sec:analisis-permasalahan} akan diimplementasikan melalui \textit{platform} tempat eksperimen dilakukan.

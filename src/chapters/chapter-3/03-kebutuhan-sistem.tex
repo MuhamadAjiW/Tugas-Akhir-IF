@@ -6,46 +6,52 @@ Hasil analisis permasalahan pada Bagian \ref{sec:analisis-permasalahan} diturunk
 \subsubsection{Kebutuhan Fungsional}
 \label{subsection:functional-requirements}
 
-Dalam pengembangannya, sistem eksperimen ini harus memenuhi beberapa kebutuhan fungsional. Kebutuhan fungsional yang diturunkan dari analisis permasalahan pada bagian \ref{sec:analisis-permasalahan} adalah sebagai berikut:
+Dalam pengembangannya, sistem eksperimen ini harus memenuhi beberapa kebutuhan fungsional. Kebutuhan fungsional yang diturunkan dari analisis permasalahan pada bagian \ref{sec:analisis-permasalahan} adalah dapat dilihat pada tabel \ref{sec:alternatif-solusi}.
 
-\begin{table}[ht]
-\centering
+\begin{longtable}{|l|p{13cm}|}
 \caption{Kebutuhan Fungsional}
-\resizebox{\textwidth}{!}{
-    \begin{tabular}{|l|p{12cm}|}
-    \hline
-    \rowcolor{black!10} ID & Deskripsi Kebutuhan \\ \hline
-    F-1 & Sistem harus dapat melakukan operasi \textit{read} dan \text{write} pada sebuah \textit{key-value store database} \\ \hline
-    F-2 & Sistem harus dapat menyimpan data secara \textit{persistent} \\ \hline
-    F-3 & Sistem harus dapat mencatat waktu transaksi dari \textit{request} masuk hingga operasi selesai \\ \hline
-    F-4 & Sistem harus dapat meng-\textit{encode} data menggunakan \textit{erasure coding} \\ \hline
-    F-5 & Sistem harus dapat merekonstruksi data dari data yang disimpan menggunakan \textit{erasure coding} \\ \hline
-    F-6 & Sistem harus dapat mendistribusikan data atau sebagian data ke \textit{node} lain untuk keperluan ketahanan data \\ \hline
-    F-7 & Sistem harus dapat dikonfigurasi untuk menggunakan replikasi ataupun \textit{erasure coding} tanpa mengganti konfigurasi lainnya \\ \hline
-    F-8 & Sistem harus dapat dikonfigurasi untuk mencapai tingkat ketahanan tertentu tanpa mengganti konfigurasi lainnya \\ \hline
-    F-9 & Sistem harus dapat mensimulasikan \textit{request} dengan ukuran data yang bervariasi \\ \hline
-    F-10 & Sistem harus dapat menjalankan \textit{request} secara berulang kali dan bervariasi secara otomatis untuk pengumpulan data \\ \hline
-    F-11 & Sistem harus dapat melakukan \textit{logging} dari \textit{request} dan operasi untuk kebutuhan analisis \\ \hline
-    \end{tabular}
-}
-\end{table}
+\label{tab:functional-requirements} \\
+\hline
+\rowcolor{black!10} ID & Deskripsi Kebutuhan \\ \hline
+\endfirsthead
+
+\caption[]{Kebutuhan Fungsional (lanjutan)} \\
+\hline
+\rowcolor{black!10} ID & Deskripsi Kebutuhan \\ \hline
+\endhead
+
+F-1 & Sistem harus dapat melakukan operasi \textit{read} dan \text{write} pada sebuah \textit{key-value store database} \\ \hline
+F-2 & Sistem harus dapat menyimpan data secara \textit{persistent} \\ \hline
+F-3 & Sistem harus dapat mencatat waktu transaksi dari \textit{request} masuk hingga operasi selesai \\ \hline
+F-4 & Sistem harus dapat meng-\textit{encode} data menggunakan \textit{erasure coding} \\ \hline
+F-5 & Sistem harus dapat merekonstruksi data dari data yang disimpan menggunakan \textit{erasure coding} \\ \hline
+F-6 & Sistem harus dapat mendistribusikan data atau sebagian data ke \textit{node} lain untuk keperluan ketahanan data \\ \hline
+F-7 & Sistem harus dapat dikonfigurasi untuk menggunakan replikasi ataupun \textit{erasure coding} tanpa mengganti konfigurasi lainnya \\ \hline
+F-8 & Sistem harus dapat dikonfigurasi untuk mencapai tingkat ketahanan tertentu tanpa mengganti konfigurasi lainnya \\ \hline
+F-9 & Sistem harus dapat mensimulasikan \textit{request} dengan ukuran data yang bervariasi \\ \hline
+F-10 & Sistem harus dapat menjalankan \textit{request} secara berulang kali dan bervariasi secara otomatis untuk pengumpulan data \\ \hline
+F-11 & Sistem harus dapat melakukan \textit{logging} dari \textit{request} dan operasi untuk kebutuhan analisis \\ \hline
+\end{longtable}
 
 \subsubsection{Kebutuhan Non-fungsional}
 \label{subsection:non-functional-requirements}
 
-Dalam pengembangannya, sistem eksperimen ini harus memenuhi beberapa kebutuhan non-fungsional. Kebutuhan fungsional ini diturunkan dari bagian \ref{sec:latar-belakang} dan analisis kebutuhan pada bagian \ref{sec:analisis-kebutuhan-sistem}. Kebutuhan non-fungsional sistem adalah sebagai berikut:
+Dalam pengembangannya, sistem eksperimen ini harus memenuhi beberapa kebutuhan non-fungsional. Kebutuhan fungsional ini diturunkan dari bagian \ref{sec:latar-belakang} dan analisis permasalahan pada bagian \ref{sec:analisis-permasalahan}. Kebutuhan non-fungsional sistem dapat dilihat pada tabel \ref{tab:non-functional-requirements}.
 
-\begin{table}[h]
-\centering
+\begin{longtable}{|l|p{13cm}|}
 \caption{Kebutuhan Non-Fungsional}
-\resizebox{\textwidth}{!}{
-    \begin{tabular}{|l|p{12cm}|}
-    \hline
-    \rowcolor{black!10} ID & Deskripsi Kebutuhan \\ \hline
-    NF-1 & Sistem harus menyediakan \textit{consistency} yang tinggi dengan \textit{request} ke \textit{node} manapun harus menghasilkan hasil yang sama \\ \hline
-    NF-2 & Sistem harus memiliki \textit{availability} yang tinggi dengan harus dapat tetap tersedia walaupun beberapa \textit{node} ada dalam kondisi gagal \\ \hline
-    NF-3 & Sistem harus menggunakan penyimpanan minimal untuk skalabilitas dan efisensi biaya \\ \hline
-    NF-4 & Sistem harus menyediakan \textit{response time} rendah untuk operasi \textit{read} dan \textit{write} \\ \hline
-    \end{tabular}
-}
-\end{table}
+\label{tab:non-functional-requirements} \\
+\hline
+\rowcolor{black!10} ID & Deskripsi Kebutuhan \\ \hline
+\endfirsthead
+
+\caption[]{Kebutuhan Non-Fungsional (lanjutan)} \\
+\hline
+\rowcolor{black!10} ID & Deskripsi Kebutuhan \\ \hline
+\endhead
+
+NF-1 & Sistem harus menyediakan \textit{consistency} yang tinggi dengan \textit{request} ke \textit{node} manapun harus menghasilkan hasil yang sama \\ \hline
+NF-2 & Sistem harus memiliki \textit{availability} yang tinggi dengan harus dapat tetap tersedia walaupun beberapa \textit{node} ada dalam kondisi gagal \\ \hline
+NF-3 & Sistem harus menggunakan penyimpanan minimal untuk skalabilitas dan efisensi biaya \\ \hline
+NF-4 & Sistem harus menyediakan \textit{response time} rendah untuk operasi \textit{read} dan \textit{write} \\ \hline
+\end{longtable}
