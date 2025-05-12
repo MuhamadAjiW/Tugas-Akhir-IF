@@ -1,7 +1,7 @@
 \subsection{Rancangan Struktural}
 \label{subsection:rancangan-struktural}
 
-Kebutuhan fungsional dan non-fungsional tersebut dipetakan pada struktur yang diimplementasikan dalam sistem eksperimen sebagai bagian modul. Setiap modul dirancang untuk memenuhi tujuan spesifik sesuai dengan kebutuhan sistem.
+Kebutuhan fungsional dan non-fungsional tersebut dipetakan pada struktur yang diimplementasikan dalam sistem eksperimen sebagai bagian modul. Setiap modul dirancang untuk memenuhi tujuan spesifik sesuai dengan kebutuhan sistem. Detail terkait setiap modul ini dapat dilihat pada bagian \ref{subsection:detail-modul}.
 
 \subsubsection{Database Node}
 \label{subsubsection:database-node}
@@ -47,7 +47,4 @@ Merujuk pada bagian \ref{sec:analisis-permasalahan}, \textit{Data Collection Mod
 
 Sedangkan merujuk kebutuhan fungsional dan non-fungsional pada bagian \ref{subsection:system-requirements}, modul ini harus memenuhi kebutuhan fungsional F-3, F-9, F-10, dan F-11
 
-\subsubsection{Modul Lainnya}
-\label{subsubsection:other-modules}
-
-Selain ketiga modul yang sudah dijelaskan, akan terdapat beberapa modul minor yang diperlukan untuk meningkatkan kinerja sistem dan mempermudah keberjalanan eksperimen. Contoh modul-modul tersebut antara lain adalah \textit{load balancer}, \textit{logger}, dan \textit{startup-script}. \textit{Load balancer} berfungsi untuk mendistribusikan \textit{request} dari \textit{client} ke \textit{database node} yang tersedia. Modul \textit{logger} berfungsi untuk mencatat kinerja sistem serta memudahkan analisis hasil eksperimen. Sedangkan modul \textit{startup-script} akan membantu pembangunan sistem \textit{key-value store database} secara keseluruhan untuk mengatur konfigurasi ketahanan sistem. Modul-modul ini tidak memiliki peran yang krusial dalam sistem, namun membantu dalam mempermudah pengembangan dan analisis. Dinamika eksperimen tidak menutup kemungkinan adanya modul tambahan yang diperlukan. Beberapa kebutuhan pada poin 4 bagian \ref{sec:analisis-permasalahan} akan diimplementasikan melalui \textit{platform} tempat eksperimen dilakukan.
+Selain ketiga modul tersebut, akan terdapat beberapa komponen minor yang bekerja bersama modul-modul tersebut. Contoh komponen-komponen tersebut antara lain adalah \textit{logger}, \textit{tracer}, dan \textit{startup-script}. Komponen \textit{logger} dan \textit{tracer} berfungsi untuk mencatat kinerja sistem serta memudahkan analisis hasil eksperimen. Komponen \textit{startup-script} membantu pembangunan sistem \textit{key-value store database} secara keseluruhan untuk mengatur konfigurasi ketahanan sistem. Komponen-komponen ini akan dijelaskan lebih lanjut pada bagian \ref{subsection:detail-modul}.
