@@ -1,43 +1,45 @@
 \subsection{Rancangan Struktural}
 \label{subsection:rancangan-struktural}
 
-Kebutuhan fungsional dan non-fungsional tersebut dipetakan pada struktur yang diimplementasikan dalam sistem eksperimen sebagai bagian modul. Setiap modul dirancang untuk memenuhi tujuan spesifik sesuai dengan kebutuhan sistem. Detail terkait setiap modul ini dapat dilihat pada bagian \ref{subsection:detail-modul}.
+Kebutuhan fungsional dan non-fungsional dipetakan pada struktur sistem yang diimplementasikan sebagai kumpulan komponen. Komponen didefinisikan sebagai sebuah unit fungsional yang berdiri sendiri dan dapat disusun. Beberapa komponen disusun secara hierarkis dan membentuk subsistem yang mewakili domain tanggung jawab tertentu dalam sistem. Setiap komponen dirancang untuk memenuhi tujuan spesifik berdasarkan kebutuhan sistem. Detail terkait setiap komponen ini dapat dilihat pada bagian \ref{subsection:detail-komponen}.
 
-\subsubsection{Database Node}
-\label{subsubsection:database-node}
+\subsubsection{Node}
+\label{subsubsection:node}
 
-\textit{Database Node} merupakan modul utama yang berperan sebagai \textit{key-value store} pada eksperimen ini. Berdasarkan keputusan yang diambil pada bagian \ref{subsection:rancangan-struktural}, modul ini akan dibuat modular dengan komponen-komponen terpisah. Memcached akan digunakan sebagai \textit{in-memory key-value store} dan RocksDB sebagai \textit{persistent database}. Untuk menggabungkan kedua komponen tersebut, akan dibuat komponen tambahan yang berperan sebagai \textit{controller}.
+\textit{Node} adalah satuan fungsional utama yang berperan sebagai entitas dalam sistem terdistribusi yang dikembangkan. Dalam eksperimen ini, \textit{Node} berfungsi sebagai \textit{key-value store}. Sesuai dengan perancangan pada bagian \ref{subsection:rancangan-struktural}, \textit{Node} dibangun secara modular dengan beberapa komponen yang tergabung dalam beberapa subsistem.
 
-Komponen \textit{controller} akan berperan untuk mengambil data dari memori jika tersedia dan dari \textit{database} jika data tidak ditemukan di memori untuk operasi \textit{read}. Sementara itu, pada operasi \textit{write}, \textit{controller} akan berperan untuk menyebarkan data yang diproses menggunakan \textit{storage module} ke \textit{database node} lainnya. \textit{Controller} juga akan berperan untuk mengelola konsistensi antar-node menggunakan algoritma konsensus. Penjelasan mengenai peran \textit{database node} pada arsitektur sistem keseluruhan dapat dilihat pada bagian \ref{subsection:system-architecture}.
+Secara umum, struktur \textit{Node} terdiri dari:
 
-Merujuk analisis kebutuhan sistem pada bagian \ref{sec:analisis-permasalahan}, modul \textit{database node} memenuhi kebutuhan 1 dan 2, yaitu:
+\begin{enumerate}
+    \item Subsistem penyimpanan: Subsistem ini bertanggung jawab untuk fungsionalitas \textit{key-value store} dalam sebuah \textit{Node}. Subsistem ini akan terdiri atas komponen \textit{in-memory store}, \textit{persistent store}, dan \textit{transaction log}. Subsistem ini juga mengkonfigurasi \textit{Node} untuk menggunakan replikasi atau \textit{erasure coding}.
+    \item Subsistem kontrol: Subsistem ini bertanggung jawab mengelola transaksi dan konsistensi antar-\textit{Node}. Pengelolaan tersebut dilakukan dengan mengaplikasikan algoritma konsensus untuk menjaga konsistensi data antar-\textit{Node}. Subsistem ini juga bertanggung jawab untuk melakukan \textit{recovery} data dari \textit{transaction log} jika terjadi kegagalan pada \textit{Node}.
+    \item Komponen HTTP \textit{server}: Komponen ini berperan sebagai antarmuka komunikasi antara \textit{client} dan \textit{Node}.
+    \item Komponen komunikasi antar-\textit{Node}: Komponen ini berfungsi untuk mengelola komunikasi antar-\textit{Node} dalam sistem terdistribusi. Komponen ini juga bertanggung jawab untuk mendistribusikan data ke \textit{Node} lain.
+\end{enumerate}
+
+Merujuk analisis kebutuhan sistem pada bagian \ref{sec:analisis-permasalahan}, \textit{Node} memenuhi kebutuhan 1 dan 2, yaitu:
 
 \begin{enumerate}
     \item Sistem harus dapat mensimulasikan kondisi \textit{database} terdistribusi yang menggunakan replikasi ataupun \textit{erasure coding}.
     \item Sistem harus dapat menyimpan data secara \textit{persistent} untuk mensimulasikan kegagalan dan pemulihan.
 \end{enumerate}
 
-Sedangkan merujuk kebutuhan fungsional dan non-fungsional pada bagian \ref{subsection:system-requirements}, modul ini harus memenuhi kebutuhan fungsional F-1, F-2, F-6, F-7, F-8, dan F-11 serta non-fungsional NF-1, NF-2, NF-3, dan NF-4.
+Sedangkan merujuk kebutuhan fungsional dan non-fungsional pada bagian \ref{subsection:system-requirements}, \textit{Node} memenuhi kebutuhan fungsional F-1, F-2, F-4, F-5, F-6, F-7, F-8, dan F-11 serta non-fungsional NF-1, NF-2, NF-3, dan NF-4.
 
-\subsubsection{Storage Module}
-\label{subsubsection:storage-module}
+\subsubsection{Data Collector}
+\label{subsubsection:data-collector}
 
-Modul ini berfungsi untuk mengatur mekanisme \textit{database node} dalam meningkatkan ketahanan data. Salah satu peran yang dilakukan adalah \text{encode/decode} untuk \textit{erasure coding} data yang diterima dan membaginya ke dalam beberapa bagian \textit{shard} yang kemudian akan dikembalikan pada komponen \textit{controller} pada \textit{database node} untuk didistribusikan. Selain itu, modul ini juga akan menghadirkan pilihan untuk menggunakan replikasi data. Pengkhususan modul ini dari modul-modul lainnya dilakukan untuk mengisolasi perbedaan antara replikasi dan \textit{erasure coding} tanpa mengubah variabel lainnya.
+\textit{Data Collector} adalah satuan fungsional yang bertugas untuk melakukan \textit{request} dan transaksi pada sistem untuk mengumpulkan data eksperimen. \textit{Data Collector} ini memiliki fitur yang memungkinkan variasi dalam ukuran data, jumlah transaksi, dan pengukuran \textit{response time} untuk operasi. Selain itu, komponen ini juga dilengkapi dengan otomatisasi untuk menjalankan eksperimen berulang kali untuk mendapatkan data yang representatif dari eksperimen.
 
-Merujuk pada bagian \ref{sec:analisis-permasalahan}, \textit{Storage Module} memenuhi kebutuhan 1, yaitu:
+Secara umum, struktur \textit{Data Collector} terdiri dari:
 
 \begin{enumerate}
-    \item Sistem harus dapat mensimulasikan kondisi \textit{database} terdistribusi yang menggunakan replikasi ataupun \textit{erasure coding}.
+    \item Komponen testing: Komponen ini bertanggung jawab untuk melakukan \textit{request} dan transaksi pada sistem.
+    \item Komponen \textit{logging} dan \textit{tracing}: Komponen ini mengelola pencatatan dan pelacakan operasi yang dilakukan oleh sistem secara keseluruhan.
+    \item Komponen \textit{reporting}: Komponen ini bertanggung jawab untuk mengumpulkan dan menyajikan hasil eksperimen dalam bentuk laporan.
 \end{enumerate}
 
-Sedangkan merujuk kebutuhan fungsional dan non-fungsional pada bagian \ref{subsection:system-requirements}, modul ini harus memenuhi kebutuhan fungsional F-4, F-5, dan F-11 serta non-fungsional NF-1, NF-3, dan NF-4.
-
-\subsubsection{Data Collection Module}
-\label{subsubsection:data-collection-module}
-
-Modul ini merupakan modul yang berperan untuk melakukan \textit{request} dan melakukan transaksi pada sistem. Hal utama yang akan dilakukan oleh modul ini adalah pengumpulan data dari eksperimen. Oleh karena itu, modul ini akan memiliki fitur yang dapat memvariasikan ukuran data, transaksi, dan \textit{timer} untuk mengukur \textit{response time} dari operasi. Selain itu, modul ini juga perlu dilengkapi dengan otomasi agar dapat menjalankan eksperimen berulang kali untuk mendapatkan data persentil dari eksperimen.
-
-Merujuk pada bagian \ref{sec:analisis-permasalahan}, \textit{Data Collection Module} memenuhi kebutuhan 3 dan 4, yaitu:
+Merujuk pada bagian \ref{sec:analisis-permasalahan}, \textit{Data Collector} memenuhi kebutuhan 3 dan 4, yaitu:
 
 \begin{enumerate}
     \setcounter{enumi}{2}
@@ -45,6 +47,4 @@ Merujuk pada bagian \ref{sec:analisis-permasalahan}, \textit{Data Collection Mod
     \item Sistem harus dapat menjalankan eksperimen berulang kali untuk mendapatkan data persentil dari eksperimen.
 \end{enumerate}
 
-Sedangkan merujuk kebutuhan fungsional dan non-fungsional pada bagian \ref{subsection:system-requirements}, modul ini harus memenuhi kebutuhan fungsional F-3, F-9, F-10, dan F-11
-
-Selain ketiga modul tersebut, akan terdapat beberapa komponen minor yang bekerja bersama modul-modul tersebut. Contoh komponen-komponen tersebut antara lain adalah \textit{logger}, \textit{tracer}, dan \textit{startup-script}. Komponen \textit{logger} dan \textit{tracer} berfungsi untuk mencatat kinerja sistem serta memudahkan analisis hasil eksperimen. Komponen \textit{startup-script} membantu pembangunan sistem \textit{key-value store database} secara keseluruhan untuk mengatur konfigurasi ketahanan sistem. Komponen-komponen ini akan dijelaskan lebih lanjut pada bagian \ref{subsection:detail-modul}.
+Sedangkan merujuk kebutuhan fungsional dan non-fungsional pada bagian \ref{subsection:system-requirements}, \textit{Data Collector} memenuhi kebutuhan fungsional F-3, F-9, F-10, dan F-11
