@@ -1,7 +1,11 @@
 \subsubsection{Rancangan Detail Subsistem Penyimpanan}
 \label{subsubsection:detail-subsistem-penyimpanan}
 
-Subsistem penyimpanan adalah subsistem yang bertanggung jawab untuk fungsionalitas \textit{key-value store} dalam sebuah \textit{Node}. Subsistem ini akan terdiri atas komponen \textit{in-memory store}, \textit{persistent store}, \textit{transaction log}. Subsistem ini juga mengkonfigurasi \textit{Node} untuk menggunakan replikasi atau \textit{erasure coding}. Ilustrasi struktur subsistem penyimpanan dapat dilihat pada gambar \ref{fig:storage-subsystem-structure}.
+Subsistem penyimpanan adalah subsistem yang bertanggung jawab untuk fungsionalitas \textit{key-value store} dalam sebuah \textit{Node}. Subsistem ini akan terdiri atas komponen \textit{in-memory store}, \textit{persistent store}, \textit{transaction log}. Subsistem ini juga mengkonfigurasi \textit{Node} untuk menggunakan replikasi atau \textit{erasure coding}.
+
+Mengikuti solusi yang sudah dipilih pada bagian \ref{sec:alternatif-solusi}, subsistem penyimpanan bersifat modular dengan Memcached sebagai \textit{in-memory key-value store} dan RocksDB sebagai \textit{persistent storage}. Memcached memiliki struktur \textit{server} dan \textit{client} sehingga subsistem ini berisi \textit{client} Memcached untuk berkomunikasi dengan \textit{server}. Pada rancangannya, dalam satu perangkat akan dijalankan satu \textit{server} Memcached untuk tiap \textit{Node} yang ada. Sementara itu, RocksDB dapat dijalankan pada tiap node tanpa memerlukan \textit{server}.
+
+Ilustrasi struktur subsistem penyimpanan dapat dilihat pada gambar \ref{fig:storage-subsystem-structure}.
 
 % _TODO: Change image
 \begin{figure}[ht]
