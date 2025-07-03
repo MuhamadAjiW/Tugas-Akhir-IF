@@ -1,7 +1,7 @@
 \subsection{Alternatif Solusi}
 \label{sec:alternatif-solusi}
 
-Berdasarkan permasalahan pada bagian \ref{sec:analisis-permasalahan}, terdapat berbagai macam alternatif solusi untuk menyelesaikan permasalahan tersebut. Pada penelitian ini, solusi yang dipilih adalah dengan membuat sistem yang mengkombinasikan Memcached sebagai \textit{in-memory key value store} dengan RocksDB sebagai \textit{persistent storage} dengan Reed-Solomon sebagai algoritma \textit{erasure coding}.
+Berdasarkan permasalahan pada bagian \ref{sec:analisis-permasalahan}, terdapat berbagai macam alternatif solusi untuk menyelesaikan permasalahan tersebut. Pada penelitian ini, solusi yang dipilih adalah dengan membuat sistem yang mengkombinasikan \textit{in-memory key value store} dengan RocksDB sebagai \textit{persistent storage} dengan Reed-Solomon sebagai algoritma \textit{erasure coding}.
 
 \subsubsection{Perbandingan Pengembangan Sistem}
 
@@ -19,7 +19,7 @@ Terdapat beberapa solusi yang dipertimbangkan dalam pembangunan sistem, yaitu me
 
   \item Mengembangkan sistem yang sudah memiliki fitur in memory database dan persistent storage
   
-  Pengembangan ini membangun mengganti fitur yang dibutuhkan untuk penelitian di atas \textit{database} lebih kompleks dari Memcached. Pendekatan ini memiliki kelebihan kedekatan kondisi eksperimen dengan dunia nyata. Namun, pendekatan ini sulit dilakukan karena membutuhkan waktu yang lama untuk memahami dan mengubah \textit{source-code database} yang kompleks.
+  Pengembangan ini membangun mengganti fitur yang dibutuhkan untuk penelitian di atas \textit{database} lebih kompleks. Pendekatan ini memiliki kelebihan kedekatan kondisi eksperimen dengan dunia nyata. Namun, pendekatan ini sulit dilakukan karena membutuhkan waktu yang lama untuk memahami dan mengubah \textit{source-code database} yang kompleks.
 \end{enumerate}
 
 \subsubsection{Perbandingan Kakas}
@@ -28,7 +28,7 @@ Setelah menentukan solusi pengembangan sistem secara modular, terdapat beberapa 
 \begin{enumerate}
     \item In-memory key-value store
     
-    Memcached dipilih sebagai \textit{in-memory key-value store}. Selain Memcached, kakas yang dipertimbangkan untuk digunakan sebagai \textit{in-memory key-value store} adalah seperti yang ada pada tabel \ref{tab:tools-kv} \parencite{redis_docs} \parencite{dragonflydb_docs} \parencite{memcached_docs}.
+    Implementasi \textit{cache} dengan dependensi internal Moka dipilih sebagai \textit{in-memory key-value store} \parencite{moka_rs_github}. Semua kakas \textit{in-memory key-value store} lain yang dipertimbangkan pada tabel \ref{tab:tools-kv} bersifat eksternal dan akan menambah latensi jaringan.
 
     \begin{table}[h]
         \centering
@@ -37,15 +37,20 @@ Setelah menentukan solusi pengembangan sistem secara modular, terdapat beberapa 
             \begin{tabular}{|l|p{5cm}|p{5cm}|p{3cm}|}
                 \hline
                 \rowcolor{black!10} Kakas & Kelebihan & Kekurangan & Notes \\ \hline
-                Redis & +Support struktur data kompleks \newline +Support transaksi kompleks & -Single Threaded \newline -Kompleks & Ada support untuk replikasi \\ \hline
-                DragonflyDB & +Multithreaded \newline +Support struktur data kompleks \newline +Support transaksi kompleks & -Lebih kompleks dari Memcached, lebih simpel dari Redis \newline -Relatif baru, komunitas terbatas dibanding kedua alternatif & Rilis 2023, Ada support untuk replikasi\\ \hline
-                Memcached & +Simpel \newline +Multithreaded & -Struktur data terbatas \newline -Transaksi terbatas & Sangat minimalis \\ \hline
+                Redis & +Support struktur data kompleks \newline +Support transaksi kompleks & -Eksternal, tidak ada integrated rust \newline -Single Threaded \newline -Kompleks & Ada support untuk replikasi \\ \hline
+                DragonflyDB & +Multithreaded \newline +Support struktur data kompleks \newline +Support transaksi kompleks & -Eksternal, tidak ada integrated rust \newline -Lebih kompleks dari Memcached, lebih simpel dari Redis \newline -Relatif baru, komunitas terbatas dibanding kedua alternatif & Rilis 2023, Ada support untuk replikasi\\ \hline
+                Memcached & +Simpel \newline +Multithreaded & -Eksternal, tidak ada integrated rust \newline -Struktur data terbatas \newline -Transaksi terbatas & Sangat minimalis \\ \hline
+                cached & +Library internal \newline +API sederhana \newline  +Support macro untuk cache function & -Fitur terbatas (tidak sekompleks Moka) \newline -Kurang optimal untuk skala besar & Belum ada versi release 1.0 tetapi repositori masih aktif\\ \hline
+                moka & +Library internal \newline +Thread-safe \newline +Fitur eviction/TTL & -Fitur terbatas dibanding Redis/Dragonfly \newline -Kurang optimal untuk skala besar & Belum ada versi release 1.0 tetapi repositori masih aktif\\ \hline
+                lru & +Library internal \newline +Implementasi sederhana & -Terlalu sederhana \newline -Transaksi tidak bisa async \newline -Kurang optimal untuk skala besar & Belum ada versi release 1.0 tetapi repositori masih aktif\\ \hline
+                HashMap Manual & +Kontrol penuh pada implementasi \newline +Tanpa dependensi eksternal & -Perlu banyak implementasi manual & Cocok untuk eksperimen kecil, perlu implementasi manual untuk fitur cache seperti TTL dan \textit{multithreading}\\ \hline
             \end{tabular}
         }
         \label{tab:tools-kv}
     \end{table}
 
-    Dari kakas-kakas tersebut, dipilih Memcached sebagai kakas untuk eksperimen ini. Alasan utama pemilihan Memcached adalah sifatnya yang paling simpel, kinerja \textit{multithreaded}-nya, serta tidak dibutuhkannya fitur-fitur yang dimiliki Redis dan Dragonfly.
+
+    Dari kakas-kakas tersebut, dipilih Moka sebagai kakas untuk eksperimen ini. Alasan utama pemilihan Moka adalah karena dapat diintegrasikan langsung sebagai library tanpa overhead komunikasi jaringan dan memiliki fitur yang cukup lengkap seperti \textit{eviction} dan \textit{time-to-live} (TTL). Selain itu, Moka juga memiliki performa yang baik untuk operasi \textit{read} dan \textit{write} yang tinggi, sehingga cocok untuk eksperimen ini.
     
     \item Persistent database
     
