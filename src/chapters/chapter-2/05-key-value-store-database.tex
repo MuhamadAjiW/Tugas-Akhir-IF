@@ -2,4 +2,21 @@
 
 \textit{Key-value database} adalah tipe database dengan data disimpan pada sebuah format \textit{key-value} dan dioptimasi untuk operasi \textit{read} dan \textit{write} untuk data tersebut. Data diambil berdasarkan \textit{key} unik atau sejumlah \textit{key} unik untuk mengambil nilai yang diasosiasikan pada masing-masing \textit{key}. Nilai yang ada dapat berupa data sederhana seperti string dan \textit{numbers} atau objek kompleks \parencite{mongo2024keyvalue}. Dalam beberapa tahun, sistem \textit{database} telah berevolusi dari \textit{database} relasional yang menyimpan data di kolom dan baris ke \textit{database} terdistribusi NoSQL yang memungkinkan solusi per kasus.
 
-Ada beberapa \textit{use case} ketika penggunaan \textit{key-value database} adalah solusi yang optimal, yaitu ketika akses \textit{random} data \textit{real time}; mekanisme \textit{caching} untuk data yang sering diakses atau konfigurasi berdasarkan kunci; dan aplikasi didesain berdasarkan \textit{query} berdasarkan key yang sederhana. Pada penelitian ini \textit{key-value database} digunakan karena implementasinya yang sederhana dan mudah dikembangkan untuk mensimulasikan berbagai situasi.
+% Ada beberapa \textit{use case} ketika penggunaan \textit{key-value database} adalah solusi yang optimal, yaitu ketika akses \textit{random} data \textit{real time}; mekanisme \textit{caching} untuk data yang sering diakses atau konfigurasi berdasarkan kunci; dan aplikasi didesain berdasarkan \textit{query} berdasarkan key yang sederhana. Pada penelitian ini \textit{key-value database} digunakan karena implementasinya yang sederhana dan mudah dikembangkan untuk mensimulasikan berbagai situasi.
+
+Solusi \textit{key-value database} dapat ditemukan pada penggunaan berikut \parencite{aws_keyvalue_docs}:
+
+\begin{enumerate}
+  \item \textbf{Caching}: Menyimpan data yang sering diakses untuk meningkatkan performa aplikasi.
+  \item \textbf{Session Store}: Menyimpan data sesi pengguna pada aplikasi web.
+  \item \textbf{Configuration Management}: Menyimpan konfigurasi aplikasi yang dapat diambil berdasarkan kunci tertentu.
+  \item \textbf{Real-time Recommendation}: Menyimpan data rekomendasi yang sering berubah dan diakses secara cepat.
+\end{enumerate}
+
+Penggunaan-penggunaan tersebut memiliki karakteristik data:
+\begin{itemize}
+  \item \textbf{Berukuran kecil hingga sedang}. Nilai (value) yang disimpan biasanya tidak masif, melainkan berupa potongan data seperti objek JSON, string konfigurasi, atau informasi sesi yang ringkas. Sebagai contoh, sistem \textit{key-value store} yang sudah ada seperti Memcached memiliki batas ukuran senilai 1 MB per item \parencite{memcached_docs}, DynamoDB memiliki batas ukuran senilai 400 KB \parencite{dynamodb_docs}, DragonflyDB memiliki batas ukuran 256 MB \parencite{dragonflydb_docs}, dan Redis memiliki batas ukuran 512 MB per key \parencite{redis_docs}.
+  \item \textbf{Memerlukan skalabilitas dan ketersediaan tinggi}. Berdasarkan penggunaan yang disebutkan sebelumnya, akses data perlu dilakukan dengan cepat dan sistem penyimpanan harus dapat diskalakan dengan mudah.
+  \item \textbf{Diakses secara keseluruhan sebagai satu unit}. Dalam penggunaan-penggunaan tersebut, data pada value dibaca atau ditulis sebagai satu blok utuh. Operasi jarang ditujukan untuk memanipulasi sebagian kecil dari isi value, melainkan mengambil atau mengganti seluruhnya berdasarkan key.
+\end{itemize}
+
