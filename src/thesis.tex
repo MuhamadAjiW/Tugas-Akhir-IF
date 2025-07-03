@@ -59,7 +59,6 @@
 
 \newpage
 
-\titleformat*{\section}{\bfseries\large}
 \pagenumbering{arabic}
 
 %----------------------------------------------------------------%
@@ -74,6 +73,13 @@
 % Dafter Bab
 % Untuk menambahkan daftar bab, buat berkas bab misalnya `chapter-6` di direktori `chapters`, dan masukkan ke sini.
 %----------------------------------------------------------------%
+% Set all section levels to the same font size (12pt)
+
+% Adjust spacing around section titles
+\titlespacing*{\section}{0pt}{12pt}{8pt}
+\titlespacing*{\subsection}{0pt}{8pt}{6pt}
+\titlespacing*{\subsubsection}{0pt}{6pt}{4pt}
+
 \input{chapters/chapter-1}
 \input{chapters/chapter-2}
 \input{chapters/chapter-3}
