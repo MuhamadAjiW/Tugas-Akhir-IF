@@ -1,0 +1,17 @@
+\subsection{Karakteristik Sistem Terdistribusi}
+
+Sistem terdistribusi sebagai sistem dengan komponen yang satu sama lain berkomunikasi dan berkoordinasi menggunakan \textit{message passing} memiliki karakter yang berbeda dengan sistem monolitik: konkurensi komponen, tidak adanya waktu global, dan kegagalan independen dari komponen \parencite{coulouris2012distributed}. Karakter ini menyebabkan sistem terdistribusi memiliki tantangan dan keterbatasan yang berbeda dengan sistem monolitik.
+
+Sebuah model formal yang mendeskripsikan batasan sistem terdistribusi adalah Teorema CAP. Teorema ini menyatakan bahwa dalam merancang sebuah sistem terdistribusi terdapat tiga properti utama yang diinginkan: \textit{consistency}, \textit{availability}, dan \textit{partition tolerance}. Dari ketiga properti tersebut, mustahil sebuah sistem penyimpanan data terdistribusi untuk memberikan ketiganya secara bersamaan. Arsitek sistem harus melakukan kompromi dengan memilih dua properti yang diprioritaskan \parencite{gilbert2002brewer}.
+
+\subsubsection{Consistency}
+
+Definisi \textit{consistency} adalah kondisi sebuah layanan sebagai objek data atomik. Pada kondisi \textit{strong consistency}, harus ada urutan total pada semua operasi sehingga setiap operasi terlihat seolah-olah selesai pada suatu waktu. Hal ini setara dengan mengharuskan \textit{request} dari sebuah \textit{shared memory} terdistribusi untuk seolah-olah dieksekusi pada satu \textit{node} \parencite{gilbert2002brewer}.
+
+\subsubsection{Availability}
+
+Untuk sebuah sistem terdistribusi bersifat \textit{available}, setiap \textit{request} yang diterima oleh \textit{node} yang tidak rusak harus menghasilkan sebuah \textit{response}. Dengan itu, semua algoritma yang digunakan oleh layanan tersebut harus berhenti pada akhirnya \parencite{gilbert2002brewer}. Sifat \textit{availability} yang kuat adalah \textit{response time} yang rendah dan \textit{throughput} yang tinggi
+
+\subsubsection{Partition Tolerance}
+
+Untuk sebuah sistem bersifat \textit{partition tolerant}, jaringan harus diizinkan terpartisi dalam pesan yang dikirim dari satu \textit{node} ke yang lainnya. Ketika sebuah jaringan dipartisi, pesan yang dikirim dari \textit{node} di satu komponen partisi ke \textit{node} di komponen lain akan hilang. Sistem yang bersifat \textit{partition tolerant} dapat mempertahankan pesan tersebut walaupun terjadi partisi dalam jaringan \parencite{gilbert2002brewer}.

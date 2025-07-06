@@ -1,0 +1,17 @@
+\subsection{Konsensus}
+
+Salah satu metode untuk mengkoordinasikan aksi dari \textit{node} dalam sistem terdistribusi adalah dengan menggunakan algoritma konsensus. Algoritma konsensus adalah algoritma yang bertujuan untuk mencapai kesepakatan pada satu nilai data di antara sekelompok proses atau node. Tujuan utama dari algoritma konsensus adalah untuk memastikan bahwa semua node yang berpartisipasi dalam sistem pada akhirnya menyetujui hasil yang sama meskipun terjadi kegagalan beberapa node atau komunikasi antar node \parencite{coulouris2012distributed}. Proses ini berperan penting untuk menerapkan properti \textit{consistency} dan yang telah dibahas sebelumnya.
+
+Permasalahan yang diselesaikan oleh algoritma konsensus adalah replikasi \textit{state machine}. Dalam banyak arsitektur terdistribusi, sebuah layanan direplikasi di beberapa mesin untuk mencapai nilai \textit{fault tolerance} yang diinginkan. Replikasi ini membutuhkan setiap replika untuk mengeksekusi urutan perintah dengan sama persis. Konsensus digunakan untuk memastikan urutan perintah tersebut. Terdapat beberapa algoritma konsensus yang digunakan untuk mencapai tujuan yang sama, algoritma tersebut antara lain adalah Paxos, Raft, dan Zab. Setiap algoritma memiliki pendekatan dan karakteristik yang berbeda dalam mencapai konsensus di antara node.
+
+\subsubsection{Paxos}
+
+Paxos adalah sebuah keluarga algoritma konsensus yang diperkenalkan oleh Leslie Lamport pada tahun 1998. Algoritma ini dianggap sebagai salah satu fondasi teoritis untuk konsensus dalam sistem terdistribusi yang dapat mengalami kegagalan dan terkenal dalam pembuktian kebenarannya yang formal namun sulit untuk diimplementasikan secara praktis \parencite{lamport1998part}. Paxos meodelkan interaksi antar \textit{node} melalui peran yang berbeda: \textit{proposers}, \textit{acceptors}, dan \textit{learners}. Peran \textit{proposer} adalah mengusulkan nilai, \textit{acceptors} memberikan persetujuan terhadap nilai yang diusulkan, dan \textit{learners} menerima nilai yang telah disetujui. Disebabkan sifatnya yang konseptual, terdapat berbagai macam algoritma Paxos yang memiliki kelebihan dan kekurangannya masing-masing.
+
+\subsubsection{Raft}
+
+Raft adalah algoritma konsensus yang dirancang untuk lebih mudah dipahami dan diimplementasikan dibandingkan dengan Paxos. Raft memperkenalkan konsep pemimpin (leader) yang bertanggung jawab untuk mengelola log perintah dan memastikan bahwa semua replika menerima perintah dalam urutan yang sama. Jika pemimpin gagal, proses pemilihan pemimpin baru akan dilakukan untuk menjaga kelangsungan sistem \parencite{ongaro2014search}. Pendekatan Raft yang terstruktur dan penekanan pada pemimpin tunggal membuat perilaku konsensus lebih mudah diprediksi dan diimplementasikan.
+
+\subsubsection{Zab}
+
+Zab (Zookeeper Atomic Broadcast) adalah protokol konsensus yang digunakan oleh Apache ZooKeeper untuk memastikan konsistensi data dalam sistem terdistribusi. Zab menggabungkan elemen-elemen dari Paxos dan Raft, dengan fokus pada ketersediaan dan toleransi partisi. Zab dioptimalkan untuk arsitektur \textit{primary-backup}, yaitu ketika terdapat \textit{node} utama yang menangani semua operasi tulis yang kemudian disiarkan ke \textit{node} cadangan \parencite{junqueira2011zab}. Zab memberikan jaminan yang kuat untuk ZooKeeper, terutama dalam hal urutan pesan dan pemulihan dari kegagalan.
