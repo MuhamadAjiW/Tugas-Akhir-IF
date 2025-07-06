@@ -494,3 +494,21 @@
   publisher = {USENIX Association},
   month     = feb
 }
+
+@inproceedings{ng2023omni,
+  author    = {Ng, Harald and Haridi, Seif and Carbone, Paris},
+  title     = {Omni-Paxos: Breaking the Barriers of Partial Connectivity},
+  year      = {2023},
+  isbn      = {9781450394871},
+  publisher = {Association for Computing Machinery},
+  address   = {New York, NY, USA},
+  url       = {https://doi.org/10.1145/3552326.3587441},
+  doi       = {10.1145/3552326.3587441},
+  abstract  = {Omni-Paxos is a system for state machine replication that is completely resilient to partial network partitions, a major source of service disruptions in recent years. Omni-Paxos achieves its resilience through a decoupled design that separates the execution and state of leader election from log replication. The leader election builds on the concept of quorum-connected servers, with the sole focus on connectivity. Additionally, by decoupling reconfiguration from log replication, Omni-Paxos provides flexible and parallel log migration that improves the performance and robustness of reconfiguration. Our evaluation showcases two benefits over state-of-the-art protocols: (1) guaranteed recovery in at most four election timeouts under extreme partial network partitions, and (2) up to 8x shorter reconfiguration periods with 46\% less I/O at the leader.},
+  booktitle = {Proceedings of the Eighteenth European Conference on Computer Systems},
+  pages     = {314–330},
+  numpages  = {17},
+  keywords  = {reconfiguration, partial connectivity, state machine replication, consensus},
+  location  = {Rome, Italy},
+  series    = {EuroSys '23}
+}

@@ -1,0 +1,20 @@
+
+\subsection{Perbandingan Pengembangan Sistem}
+\label{subsection:perbandingan-pengembangan-sistem}
+
+Terdapat beberapa solusi yang dipertimbangkan dalam pembangunan sistem, yaitu membangun sistem dengan 
+
+\begin{enumerate}
+  \item Mengembangkan sistem secara modular dengan in-memory key-value store dan persistent storage terpisah
+  
+  Pendekatan ini mengkombinasikan antara sistem \textit{in-memory key-value store} dengan menggunakan \textit{database} terpisah sebagai tempat penyimpanan data \textit{persistence}. Replikasi dan \textit{erasure coding} dapat dilakukan pada data persisten yang disimpan pada \textit{database} tersebut. Kelebihan dari pendekatan ini adalah kemudahan dari implementasi dibandingkan pengembangan sendiri ataupun modifikasi \textit{database} yang sudah lebih kompleks. Namun, kekurangannya adalah \textit{overhead} penggunaan memori dari menjalankan \textit{in-memory key-value store} dan \textit{database} terpisah. Dari ketiga alternatif solusi, kemudahan implementasi dan kekurangan yang dapat ditoleransi menjadikan alternatif ini solusi yang dipilih dalam penelitian ini.
+
+
+  \item Mengembangkan sistem mock database
+  
+  Pendekatan ini membangun semua fitur-fitur yang dibutuhkan secara mandiri. Kelebihan dari pendekatan ini kebebasan yang tinggi sehingga sistem dapat disesuaikan untuk eksperimen. Namun, pendekatan ini sulit mencerminkan kondisi nyata. Selain itu, kinerja sistem yang dikembangkan juga bergantung erat pada waktu serta kemampuan pengembangan peneliti.
+
+  \item Mengembangkan sistem yang sudah memiliki fitur in memory database dan persistent storage
+  
+  Pengembangan ini membangun mengganti fitur yang dibutuhkan untuk penelitian di atas \textit{database} lebih kompleks. Pendekatan ini memiliki kelebihan kedekatan kondisi eksperimen dengan dunia nyata. Namun, pendekatan ini sulit dilakukan karena membutuhkan waktu yang lama untuk memahami dan mengubah \textit{source-code database} yang kompleks.
+\end{enumerate}

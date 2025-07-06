@@ -1,0 +1,22 @@
+\subsection{Alternatif Algoritma Konsensus}
+\label{subsection:alternatif-algoritma-konsensus}
+
+Terdapat beberapa algoritma konsensus yang dapat digunakan untuk mencapai konsistensi data antar-\textit{Node} seperti yang dijelaskan pada bagian \ref{subsection:konsensus}. Tabel \ref{tab:consensus-algorithm} menunjukkan perbandingan beberapa algoritma konsensus yang dipertimbangkan untuk digunakan dalam eksperimen ini.
+
+\begin{table}[ht]
+    \centering
+    \caption{Perbandingan Algoritma Konsensus}
+    \resizebox{\textwidth}{!}{
+      \begin{tabular}{|l|p{5cm}|p{5cm}|p{3cm}|}
+          \hline
+          \rowcolor{black!10} \textbf{Algoritma} & \textbf{Kelebihan} & \textbf{Kekurangan} & \textbf{Referensi} \\ \hline
+          Raft & +Mudah dipahami \newline +Terdapat library rust yang matang & Berfokus pada \textit{log replication} & \parencite{ongaro2014search} \\ \hline
+          Multi-Paxos & +Terdapat library rust yang matang & -Implementasi tidak modular dan sulit dipahami & \parencite{lamport1998part} \\ \hline
+          OmniPaxos & +Lebih tahan partisi jaringan parsial \newline +Desain modular konsensus dan \textit{replication} \newline +Protokol dikembangkan dengan bahasa Rust & -Masih dalam tahap penelitian awal & \parencite{ng2023omni} \\ \hline
+          Konsensus Manual & +Kontrol penuh pada implementasi \newline +Tanpa dependensi eksternal & -Perlu banyak implementasi manual \newline -Tidak ada jaminan konsistensi \newline -Perlu pembuktian implementasi & - \\ \hline
+      \end{tabular}
+    }
+    \label{tab:consensus-algorithm}
+\end{table}
+
+OmniPaxos dipilih sebagai algoritma konsensus karena menawarkan efisiensi dan fleksibilitas yang lebih baik dibandingkan dengan algoritma konsensus lainnya. Desain modular OmniPaxos memungkinkan modifikasi mekanisme replikasi menggunakan \textit{erasure coding} tanpa mengubah bagian konsensus. Selain itu, OmniPaxos juga dikembangkan dengan bahasa Rust yang sesuai dengan kebutuhan eksperimen ini. Meskipun masih dalam tahap penelitian awal, OmniPaxos menunjukkan potensi yang besar untuk digunakan dalam sistem terdistribusi yang membutuhkan konsistensi tinggi dan toleransi terhadap partisi jaringan parsial.

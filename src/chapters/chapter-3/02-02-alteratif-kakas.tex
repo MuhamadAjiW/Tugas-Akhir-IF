@@ -1,0 +1,59 @@
+\subsection{Perbandingan Kakas}
+\label{subsection:perbandingan-kakas}
+
+Setelah menentukan solusi pengembangan sistem secara modular, terdapat beberapa kakas yang perlu dipilih untuk solusi tersebut. Bagian ini akan membahas kakas yang dipertimbangkan untuk digunakan dalam eksperimen ini, perbandingan masing-masing kakas, serta alasan pemilihan kakas yang digunakan.
+
+\subsubsection{Pemilihan Bahasa Pemrograman}
+\label{subsubsection:pilihan-bahasa-pemrograman}
+
+Solusi akan dikembangkan menggunakan bahasa Rust. Pemilihan bahasa Rust didasarkan pada keunggulan bahasa ini dalam hal kinerja, keamanan, dan kemudahan pengembangan sistem terdistribusi. Khususnya dalam hal \textit{memory safety} dan \textit{concurrency safety} yang menjadi fokus utama dalam pengembangan sistem terdistribusi. Selain itu, Rust juga memiliki ekosistem yang berkembang pesat dengan banyak library yang mendukung pengembangan sistem. Disebabkan pemilihan solusi modular, kakas yang dipertimbangkan untuk digunakan meliputi kakas \textit{in-memory key-value store} dan kakas untuk \textit{persistent database}.
+
+\subsubsection{Pemilihan In-Memory Key-Value Store}
+\label{subsubsection:in-memory-kv-store}
+
+Komponen \textit{In-Memory Key-Value Store} berperan sebagai \textit{cache} khususnya untuk mengurangi rekonstruksi data pada \textit{erasure coding} dan mengurangi latensi akses data dalam operasi \textit{read}. Tabel \ref{tab:tools-kv} menunjukkan perbandingan beberapa kakas \textit{in-memory key-value store} yang dipertimbangkan untuk digunakan dalam eksperimen ini.
+
+\begin{table}[h]
+    \centering
+    \caption{Perbandingan kakas in-memory key-value store}
+    \resizebox{\textwidth}{!}{
+        \begin{tabular}{|l|p{5cm}|p{5cm}|p{3cm}|}
+            \hline
+            \rowcolor{black!10} Kakas & Kelebihan & Kekurangan & Notes \\ \hline
+            Redis & +Support struktur data kompleks \newline +Support transaksi kompleks & -Eksternal, tidak ada integrated rust \newline -Single Threaded \newline -Kompleks & Ada support untuk replikasi \\ \hline
+            DragonflyDB & +Multithreaded \newline +Support struktur data kompleks \newline +Support transaksi kompleks & -Eksternal, tidak ada integrated rust \newline -Lebih kompleks dari Memcached, lebih simpel dari Redis \newline -Relatif baru, komunitas terbatas dibanding kedua alternatif & Rilis 2023, Ada support untuk replikasi\\ \hline
+            Memcached & +Simpel \newline +Multithreaded & -Eksternal, tidak ada integrated rust \newline -Struktur data terbatas \newline -Transaksi terbatas & Sangat minimalis \\ \hline
+            cached & +Library internal \newline +API sederhana \newline  +Support macro untuk cache function & -Fitur terbatas (tidak sekompleks Moka) \newline -Kurang optimal untuk skala besar & Belum ada versi release 1.0 tetapi repositori masih aktif\\ \hline
+            moka & +Library internal \newline +Thread-safe \newline +Fitur eviction/TTL & -Fitur terbatas dibanding Redis/Dragonfly \newline -Kurang optimal untuk skala besar & Belum ada versi release 1.0 tetapi repositori masih aktif\\ \hline
+            lru & +Library internal \newline +Implementasi sederhana & -Terlalu sederhana \newline -Transaksi tidak bisa async \newline -Kurang optimal untuk skala besar & Belum ada versi release 1.0 tetapi repositori masih aktif\\ \hline
+            HashMap Manual & +Kontrol penuh pada implementasi \newline +Tanpa dependensi eksternal & -Perlu banyak implementasi manual & Cocok untuk eksperimen kecil, perlu implementasi manual untuk fitur cache seperti TTL dan \textit{multithreading}\\ \hline
+        \end{tabular}
+    }
+    \label{tab:tools-kv}
+\end{table}
+
+Dari kakas-kakas tersebut, dipilih Moka sebagai kakas untuk eksperimen ini. Alasan utama pemilihan Moka adalah karena dapat diintegrasikan langsung sebagai library tanpa overhead komunikasi jaringan dan memiliki fitur yang cukup lengkap seperti \textit{eviction} dan \textit{time-to-live} (TTL). Selain itu, Moka juga memiliki performa yang baik untuk operasi \textit{read} dan \textit{write} yang tinggi, sehingga cocok untuk eksperimen ini.
+
+\subsubsection{Pemilihan Persistent Database}
+\label{subsubsection:persistent-database}
+
+Komponen \textit{Persistent Database} berperan sebagai penyimpanan data \textit{persistent} untuk memenuhi kebutuhan yang sudah disebutkan di bagian \ref{sec:analisis-permasalahan}. Tabel \ref{tab:tools-db} menunjukkan perbandingan beberapa kakas \textit{persistent database} yang dipertimbangkan untuk digunakan dalam eksperimen ini.
+
+\begin{table}[h]
+    \centering
+    \caption{Perbandingan kakas persistent database}
+    \resizebox{\textwidth}{!}{
+        \begin{tabular}{|l|p{5cm}|p{5cm}|p{3cm}|}
+            \hline
+            \rowcolor{black!10} Kakas & Kelebihan & Kekurangan & Notes \\ \hline
+            Cassandra & +Horizontal Scalability baik \newline +Sudah ada referensi implementasi erasure coding pada paper lain & -Eventual Consistency \newline -Latensi tinggi untuk operasi write \newline -Sangat Kompleks & Utamanya Wide-Column Store\\ \hline
+            ScyllaDB & +Lebih efisien dan performant dibandingkan Cassandra \newline +Memiliki pilihan strong consistency & -Lebih kompleks dibandingkan Cassandra \newline -Ekosistem terbatas & Mirip dan kompatibel dengan Cassandra. \\ \hline
+            RocksDB & +Kinerja tinggi untuk operasi write \newline +Recovery menggunakan write ahead log & -Single Node \newline -Keterbatasan pada concurrent writes & Pengembangan LevelDB\\ \hline
+            LevelDB & +Simpel \newline +Penggunaan memori kecil \newline +Kinerja tinggi untuk operasi write & -Fitur terbatas seperti compression dan data terbatas pada string \newline -Operasi write skala besar masih lebih lambat dibandingkan RocksDB \newline -Keterbatasan pada concurrent writes & Dasar dari RocksDB\\ \hline
+            MongoDB & +Support query kompleks \newline +Penggunaan fleksibel & -Operasi kurang optimal \newline -Konsumsi memori besar \newline -Storage overhead besar & Utamanya Dokumen database\\ \hline
+        \end{tabular}
+    }
+    \label{tab:tools-db}
+\end{table}
+
+Dari kakas-kakas tersebut, dipilih RocksDB sebagai kakas untuk eksperimen ini. Selain RocksDB, LevelDB juga merupakan kandidat yang kuat untuk eksperimen ini karena sifatnya yang simpel. Namun, pada akhirnya, RocksDB dipilih karena pengembangannya yang masih aktif, kinerja \textit{write} yang lebih tinggi, serta fitur-fitur tambahan seperti \textit{compression} dan penyimpanan data dalam \textit{byte}.
