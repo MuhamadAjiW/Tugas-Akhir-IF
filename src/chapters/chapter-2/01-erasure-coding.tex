@@ -1,4 +1,4 @@
-\section{\textit{Erasure Coding}}
+\section{Erasure Coding}
 \label{sec:erasure-coding}
 
 \textit{Erasure Coding} adalah sebuah metode proteksi data untuk sistem penyimpanan terdistribusi dengan membagi file data menjadi blok data dan \textit{parity} lalu mengkodekannya sehingga data primer dapat dipulihkan bahkan jika bagian dari data terkodenya tidak tersedia. Sistem penyimpanan terdistribusi yang dapat diskalakan secara horizontal mengandalkan \textit{erasure coding} untuk menyediakan proteksi data dengan menyimpan data terkode di beberapa \textit{drive} dan node. Jika sebuah \textit{drive} atau node gagal, data asli dapat dibangun ulang dari blok yang tersimpan pada \textit{drive} dan node lain \parencite{minio2022erasure}.

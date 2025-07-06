@@ -1,0 +1,21 @@
+\subsubsection{Data Collector}
+\label{subsubsection:data-collector}
+
+Komponen \textit{Data Collector} adalah bagian dari eksperimen yang bertugas untuk mengumpulkan data eksperimen. \textit{Data Collector} ini memiliki fitur yang memungkinkan variasi dalam ukuran data, jumlah transaksi, dan pengukuran \textit{response time} untuk operasi. Selain itu, komponen ini juga dilengkapi dengan otomatisasi untuk menjalankan eksperimen berulang kali untuk mendapatkan data yang representatif dari eksperimen.
+
+Secara umum, struktur \textit{Data Collector} terdiri dari:
+
+\begin{enumerate}
+    \item Komponen testing: Komponen ini bertanggung jawab untuk menjalankan testing dengan melakukan \textit{request} dan transaksi pada sistem. Variasi ukuran data, jumlah transaksi, dan pengukuran \textit{response time} dilakukan pada komponen ini. Komponen ini juga mengelola pengulangan eksperimen untuk mendapatkan data yang representatif.
+    \item Komponen \textit{logging}: Komponen ini mengelola pencatatan dan pelacakan operasi yang dilakukan oleh sistem secara keseluruhan. Hal yang dikumpulkan antara lain ukuran data, jumlah transaksi, dan \textit{response time} untuk setiap operasi yang dilakukan. Komponen ini juga mengelola penyimpanan data eksperimen yang telah dikumpulkan menjadi bentuk yang dapat dianalisis.
+\end{enumerate}
+
+Merujuk pada bagian \ref{subsection:analisis-permasalahan}, \textit{Data Collector} memenuhi kebutuhan 3 dan 4, yaitu:
+
+\begin{enumerate}
+    \setcounter{enumi}{2}
+    \item Sistem harus dapat memvariasikan ukuran data, tingkat ketahanan, kecepatan jaringan, dan kemampuan komputasi.
+    \item Sistem harus dapat menjalankan eksperimen berulang kali untuk mendapatkan data persentil dari eksperimen.
+\end{enumerate}
+
+Sedangkan merujuk kebutuhan fungsional dan non-fungsional pada bagian \ref{subsection:system-requirements}, \textit{Data Collector} memenuhi kebutuhan fungsional F-3, F-9, F-10, dan F-11

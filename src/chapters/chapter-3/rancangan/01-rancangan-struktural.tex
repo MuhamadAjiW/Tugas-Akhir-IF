@@ -1,0 +1,9 @@
+\subsection{Rancangan Struktural}
+\label{subsection:rancangan-struktural}
+
+Seperti yang telah dijelaskan pada \ref{subsection:alternatif-solusi}, solusi yang dipilih adalah membuat sistem dengan mengkombinasikan \textit{in-memory key-value store} dan menggunakan RocksDB sebagai \textit{persistent database}. Replikasi dan \textit{erasure coding} hanya dilakukan pada data persisten yang disimpan pada \textit{database} tersebut sedangkan \textit{in-memory key-value store} berperan seperti \textit{cache} untuk meningkatkan kinerja sistem, khususnya untuk mengurangi rekonstruksi data dari \textit{persistent database} untuk \textit{erasure coding} pada operasi \textit{read}.
+
+Mengikuti pendekatan pada \ref{subsubsection:pemilihan-pengembangan-sistem}, solusi dirancang untuk dibuat dalam bentuk komponen-komponen. Beberapa komponen disusun secara hierarkis dan membentuk subsistem yang mewakili domain tanggung jawab tertentu dalam sistem. Setiap komponen dirancang untuk memenuhi tujuan spesifik berdasarkan kebutuhan sistem.
+
+\input{chapters/chapter-3/rancangan/01-01-node.tex}
+\input{chapters/chapter-3/rancangan/01-02-data-collector.tex}
