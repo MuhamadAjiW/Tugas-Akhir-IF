@@ -1,4 +1,5 @@
 \subsection{Erasure coding for small objects in in-memory KV storage}
+\label{subsection:erasure-small-objects}
 
 Riset yang dilakukan oleh Yiu \textit{et al} pada tahun 2017 ini memperkenalkan terkait sebuah prototipe \textit{in-memory key-value store} berbasis \textit{erasure coding} yang mencapai \textit{availability} tinggi dengan pemulihan cepat \parencite{yiu2017erasure}. Prototipe ini diberi nama MemEC. MemEC didesain secara spesifik untuk beban kerja yang didominasi oleh benda kecil. \textit{Erasure coding} yang diterapkan pada MemEC bersifat novel dengan seluruh data yang disimpan, berupa \textit{key}, \textit{value}, dan \textit{metadata} diterapkan \textit{erasure coding} pada penyimpanannya. Percobaan ini juga mensimulasikan kondisi ketika kegagalan sering terjadi dan menganalisis kinerja MemEC ketika dalam kondisi tersebut.
 

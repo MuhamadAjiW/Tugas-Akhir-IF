@@ -463,3 +463,34 @@
   year         = {2011},
   organization = {IEEE}
 }
+
+@inproceedings{mu2014paxos,
+  author    = {Mu, Shuai and Chen, Kang and Wu, Yongwei and Zheng, Weimin},
+  title     = {When paxos meets erasure code: reduce network and storage cost in state machine replication},
+  year      = {2014},
+  isbn      = {9781450327497},
+  publisher = {Association for Computing Machinery},
+  address   = {New York, NY, USA},
+  url       = {https://doi.org/10.1145/2600212.2600218},
+  doi       = {10.1145/2600212.2600218},
+  abstract  = {Paxos-based state machine replication is a key technique to build highly reliable and available distributed services, such as lock servers, databases and other data storage systems. Paxos can tolerate any minority number of node crashes in an asynchronous network environment. Traditionally, Paxos is used to perform a full copy replication across all participants. However, full copy is expensive both in term of network and storage cost, especially in wide area with commodity hard drives.In this paper, we discussed the non-triviality and feasibility of combining erasure code into Paxos protocol, and presented an improved protocol named RS-Paxos (Reed Solomon Paxos). To the best of our knowledge, we are the first to propose such a combination. Compared to Paxos, RS-Paxos requires a limitation on the number of possible failures. If the number of tolerated failures decreases by 1, RS-Paxos can save over 50\% of network transmission and disk I/O. To demonstrate the benefits of our protocol, we designed and built a key-value store based on RS-Paxos, and evaluated it on EC2 with various settings. Experiment results show that RS-Paxos achieves at most 2.5x improvement on write throughput and as much as 30\% reduction on latency, in common configurations.},
+  booktitle = {Proceedings of the 23rd International Symposium on High-Performance Parallel and Distributed Computing},
+  pages     = {61–72},
+  numpages  = {12},
+  keywords  = {state machine replication, paxos, erasure code, consensus, asynchronous message passing model},
+  location  = {Vancouver, BC, Canada},
+  series    = {HPDC '14}
+}
+
+@inproceedings{wang2020craft,
+  author    = {Zizhong Wang and Tongliang Li and Haixia Wang and Airan Shao and Yunren Bai and Shangming Cai and Zihan Xu and Dongsheng Wang},
+  title     = {{CRaft}: An Erasure-coding-supported Version of Raft for Reducing Storage Cost and Network Cost},
+  booktitle = {18th USENIX Conference on File and Storage Technologies (FAST 20)},
+  year      = {2020},
+  isbn      = {978-1-939133-12-0},
+  address   = {Santa Clara, CA},
+  pages     = {297--308},
+  url       = {https://www.usenix.org/conference/fast20/presentation/wang-zizhong},
+  publisher = {USENIX Association},
+  month     = feb
+}
