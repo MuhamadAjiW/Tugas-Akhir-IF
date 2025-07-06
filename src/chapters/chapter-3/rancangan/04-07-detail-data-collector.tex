@@ -1,23 +1,13 @@
 \subsubsection{Rancangan Detail Data Collector}
 \label{subsubsection:detail-data-collector}
 
-Data Collector adalah komponen yang bertanggung jawab untuk mengumpulkan data dari sistem dan menyimpannya dalam format yang sesuai untuk analisis lebih lanjut. Komponen ini akan mengumpulkan data dari berbagai sumber, termasuk log sistem, metrik kinerja, dan informasi lainnya yang relevan.
-Data Collector juga akan menyediakan antarmuka untuk mengakses data yang telah dikumpulkan, sehingga memudahkan pengguna untuk melakukan analisis dan visualisasi data.
+Seperti yang sudah dijelaskan pada bagian \ref{subsubsection:data-collector}, \textit{Data Collector} merupakan komponen yang bertanggung jawab untuk mengumpulkan data eksperimen dari sistem yang sedang diuji. Komponen ini berperan penting dalam menyediakan data yang diperlukan untuk analisis kinerja dan evaluasi sistem. Selain itu, \textit{Data Collector} juga menyediakan antarmuka yang memungkinkan pengguna untuk melakukan eksperimen dengan sistem menggunakan variabel jumlah \textit{virtual user}, ukuran data, \textit{bandwidth}, dan konfigurasi sistem yang digunakan. Ilustrasi struktur \textit{Data Collector} yang lebih detail dapat dilihat pada gambar \ref{fig:data-collector-structure}.
 
-Struktur \textit{Data Collector} terdiri dari:
-
-\begin{enumerate}
-    \item Komponen testing: Komponen ini bertanggung jawab untuk melakukan \textit{request} dan transaksi pada sistem.
-    \item Komponen \textit{logging} dan \textit{tracing}: Komponen ini mengelola pencatatan dan pelacakan operasi yang dilakukan oleh sistem secara keseluruhan.
-    \item Komponen \textit{reporting}: Komponen ini bertanggung jawab untuk mengumpulkan dan menyajikan hasil eksperimen dalam bentuk laporan.
-\end{enumerate}
-
-Ilustrasi struktur Data Collector dapat dilihat pada gambar \ref{fig:data-collector-structure}.
-
-% _TODO: Change image
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.95\textwidth]{resources/chapter-3/general-architecture.png}
+    \includegraphics[width=0.55\textwidth]{resources/chapter-3/data-collector-architecture.png}
     \caption{Struktur Data Collector}
     \label{fig:data-collector-structure}
 \end{figure}
+
+Komponen internal yang ada pada \textit{Data Collector} adalah \textit{Input Parser} yang berfungsi untuk mem-parsing input dari pengguna dan \textit{Config Parser} yang berfungsi untuk membaca konfigurasi sistem yang digunakan dalam eksperimen untuk kemudian dibangun.
