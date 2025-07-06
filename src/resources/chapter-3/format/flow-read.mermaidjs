@@ -1,22 +1,21 @@
+%%{init: {'theme': 'neutral', 'sequence': {'diagramMarginX': 20, 'diagramMarginY': 20, 'boxMargin': 10, 'boxTextMargin': 5, 'noteMargin': 10, 'messageMargin': 35}}}%%
 sequenceDiagram
-    Data Collection-->>+Load Balancer: Read()
-    Load Balancer-->>+Controller: Forward()
-    Controller-->>+In-Memory: Get()
-    alt Data exists locally in memory
-        In-Memory-->>+Controller: Value
+    Client-->>+Client Interface: Read()
+    Client Interface-->>+Consensus Component: Get()
+    Consensus Component-->>+In-Memory Store: Get()
+    alt Data exists locally in memory store
+        In-Memory Store-->>+Consensus Component: Value
     else Data does not exist locally in memory
-        In-Memory-->>+Controller: None
-        Controller-->>+ Other Node: Get()
-        Other Node-->>+ Controller: Encoded Shard/Value
-        opt Quorum is not reached
-            Controller-->>+Other Node: Retry or Abort()
-        end
-        opt Node uses erasure coding
-            Controller-->>+Persistent: Get()
-            Persistent-->>+Controller: Encoded Shard
-            Controller-->>+Storage Module: Encoded Shards
-            Storage Module-->>+Controller: Value
+        In-Memory Store-->>+Consensus Component: None
+        Consensus Component-->>+Persistent: Get()
+        alt System does not use erasure coding
+            Persistent-->>+Consensus Component: Value
+        else System uses erasure coding
+            Persistent-->>+Consensus Component: Encoded Shard
+            Consensus Component-->>+Other Nodes: Get()
+            Other Nodes-->>+Consensus Component: Encoded Shard
+            Consensus Component-->>+Consensus Component: Decode()
         end
     end
-    Controller-->>+Load Balancer: Value
-    Load Balancer-->>+Data Collection: Value
+    Consensus Component-->>+Client Interface: Value
+    Client Interface-->>+Client: Value

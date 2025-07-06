@@ -1,18 +1,15 @@
+%%{init: {'theme': 'neutral', 'sequence': {'diagramMarginX': 20, 'diagramMarginY': 20, 'boxMargin': 10, 'boxTextMargin': 5, 'noteMargin': 10, 'messageMargin': 35}}}%%
 sequenceDiagram
-    Data Collection-->>+Load Balancer: Write()
-    Load Balancer-->>+Leader Controller: Forward()
-    opt Leader Node uses erasure coding
-        Leader Controller-->>-Leader Storage Module: encode()
-        Leader Storage Module-->>+Leader Controller: Encoded Data
+    Client-->>+Client Interface: Write()
+    Client Interface-->>+Consensus Component: Set()
+    alt System does not use erasure coding
+        Consensus Component-->>+Other Nodes: Value
+    else System uses erasure coding
+        Consensus Component-->>+Consensus Component: Encode()
+        Consensus Component-->>+Other Nodes: Encoded Shard
     end
-    Leader Controller-->>+ Follower Controller: Encoded Shard
-    Follower Controller-->>+ Leader Controller: Acknowledgement
-    alt Quorum is reached
-        Leader Controller-->>+Leader Persistent: Encoded Shard()
-        Leader Controller-->>+Leader In-Memory: Data()
-        Leader Controller-->>+Follower Controller: Write Persistent and In-Memory()
-    else Quorum is not reached
-        Leader Controller-->>+Follower Controller: Retry or Abort()
-    end
-    Leader Controller-->>+Load Balancer: OK()
-    Load Balancer-->>+Data Collection: OK()
+    Other Nodes-->>+Consensus Component: Acknowledgment
+    Consensus Component-->>+In-Memory Store: Set()
+    Consensus Component-->>+Persistent Store: Set()
+    Consensus Component-->>+Client Interface: OK
+    Client Interface-->>+Client: OK
