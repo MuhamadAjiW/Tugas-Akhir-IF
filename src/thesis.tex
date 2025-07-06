@@ -11,6 +11,9 @@
 %--------------------------------------------------------------------%
 \documentclass[bahasa, 12pt, a4paper, onecolumn, oneside, final]{report}
 
+\hyphenpenalty=100000
+\tolerance=10000
+
 \input{config/if-itb-thesis.sty}
 \input{config/hypenation-id.tex}
 
@@ -42,7 +45,7 @@
 % \input{chapters/abstract-en}
 % \input{chapters/forewords}
 
-\titleformat*{\section}{\centering\bfseries\Large\MakeUpperCase}
+% \titleformat*{\section}{\centering\bfseries\Large\MakeUpperCase}
 \titlespacing*{\chapter}{0pt}{0pt}{4pt}
 
 % Setting judul toc, lot, lof, bib
@@ -59,6 +62,7 @@
 
 \newpage
 
+% \titleformat*{\section}{\bfseries\large}
 \pagenumbering{arabic}
 
 %----------------------------------------------------------------%
@@ -73,22 +77,26 @@
 % Dafter Bab
 % Untuk menambahkan daftar bab, buat berkas bab misalnya `chapter-6` di direktori `chapters`, dan masukkan ke sini.
 %----------------------------------------------------------------%
-% Set all section levels to the same font size (12pt)
 
 % Adjust spacing around section titles
 \titlespacing*{\section}{0pt}{12pt}{8pt}
-\titlespacing*{\subsection}{0pt}{8pt}{6pt}
-\titlespacing*{\subsubsection}{0pt}{6pt}{4pt}
+\titlespacing*{\section}{0pt}{8pt}{6pt}
+\titlespacing*{\section}{0pt}{6pt}{4pt}
 
 \input{chapters/chapter-1}
+
 \input{chapters/chapter-2}
+
 \input{chapters/chapter-3}
+
+% \input{chapters/schedule}
+
 \input{chapters/chapter-4}
 % \input{chapters/chapter-5}
 %---------------------------------------------------------------%
 
 % Daftar pustaka
-\printbibliography{}
+\printbibliography
 
 % Setting judul lampiran
 \titlespacing*{\chapter}{0pt}{0pt}{0pt}
@@ -97,6 +105,6 @@
 % Setting judul anak lampiran
 \titleformat*{\section}{\bfseries}
 
-\input{chapters/appendix/appendix.tex}
+\input{chapters/appendix/appendix}
 
 \end{document}
