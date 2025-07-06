@@ -1,12 +1,12 @@
-\section{Rancangan Struktural}
-\label{sec:rancangan-struktural}
+\subsection{Rancangan Struktural}
+\label{subsection:rancangan-struktural}
 
-Kebutuhan fungsional dan non-fungsional dipetakan pada struktur sistem yang diimplementasikan sebagai kumpulan komponen. Komponen didefinisikan sebagai sebuah unit fungsional yang berdiri sendiri dan dapat disusun. Beberapa komponen disusun secara hierarkis dan membentuk subsistem yang mewakili domain tanggung jawab tertentu dalam sistem. Setiap komponen dirancang untuk memenuhi tujuan spesifik berdasarkan kebutuhan sistem. Detail terkait setiap komponen ini dapat dilihat pada bagian \ref{sec:detail-komponen}.
+Kebutuhan fungsional dan non-fungsional dipetakan pada struktur sistem yang diimplementasikan sebagai kumpulan komponen. Komponen didefinisikan sebagai sebuah unit fungsional yang berdiri sendiri dan dapat disusun. Beberapa komponen disusun secara hierarkis dan membentuk subsistem yang mewakili domain tanggung jawab tertentu dalam sistem. Setiap komponen dirancang untuk memenuhi tujuan spesifik berdasarkan kebutuhan sistem. Detail terkait setiap komponen ini dapat dilihat pada bagian \ref{subsection:detail-komponen}.
 
 \subsection{Node}
 \label{subsection:node}
 
-\textit{Node} adalah satuan fungsional utama yang berperan sebagai entitas dalam sistem \textit{database} terdistribusi yang dikembangkan. Dalam eksperimen ini, \textit{Node} berfungsi sebagai \textit{key-value store}. Sesuai dengan perancangan pada bagian \ref{sec:rancangan-struktural}, \textit{Node} dibangun secara modular dengan beberapa komponen yang tergabung dalam beberapa subsistem.
+\textit{Node} adalah satuan fungsional utama yang berperan sebagai entitas dalam sistem \textit{database} terdistribusi yang dikembangkan. Dalam eksperimen ini, \textit{Node} berfungsi sebagai \textit{key-value store}. Sesuai dengan perancangan pada bagian \ref{subsection:rancangan-struktural}, \textit{Node} dibangun secara modular dengan beberapa komponen yang tergabung dalam beberapa subsistem.
 
 % Secara umum, struktur \textit{Node} terdiri dari:
 
@@ -17,14 +17,14 @@ Kebutuhan fungsional dan non-fungsional dipetakan pada struktur sistem yang diim
 %     \item Komponen komunikasi antar-\textit{Node}: Komponen ini berfungsi untuk mengelola komunikasi antar-\textit{Node} dalam sistem terdistribusi. Komponen ini juga bertanggung jawab untuk mendistribusikan data ke \textit{Node} lain.
 % \end{enumerate}
 
-Merujuk analisis kebutuhan sistem pada bagian \ref{sec:analisis-permasalahan}, \textit{Node} memenuhi kebutuhan 1 dan 2, yaitu:
+Merujuk analisis kebutuhan sistem pada bagian \ref{subsection:analisis-permasalahan}, \textit{Node} memenuhi kebutuhan 1 dan 2, yaitu:
 
 \begin{enumerate}
     \item Sistem harus dapat mensimulasikan kondisi \textit{database} terdistribusi yang menggunakan replikasi ataupun \textit{erasure coding}.
     \item Sistem harus dapat menyimpan data secara \textit{persistent} untuk mensimulasikan kegagalan dan pemulihan.
 \end{enumerate}
 
-Sedangkan merujuk kebutuhan fungsional dan non-fungsional pada bagian \ref{sec:system-requirements}, \textit{Node} memenuhi kebutuhan fungsional F-1, F-2, F-4, F-5, F-6, F-7, F-8, dan F-11 serta non-fungsional NF-1, NF-2, NF-3, dan NF-4.
+Sedangkan merujuk kebutuhan fungsional dan non-fungsional pada bagian \ref{subsection:system-requirements}, \textit{Node} memenuhi kebutuhan fungsional F-1, F-2, F-4, F-5, F-6, F-7, F-8, dan F-11 serta non-fungsional NF-1, NF-2, NF-3, dan NF-4.
 
 \subsubsection{Data Collector}
 \label{subsubsection:data-collector}
@@ -39,7 +39,7 @@ Secara umum, struktur \textit{Data Collector} terdiri dari:
 %     \item Komponen \textit{reporting}: Komponen ini bertanggung jawab untuk mengumpulkan dan menyajikan hasil eksperimen dalam bentuk laporan.
 % \end{enumerate}
 
-Merujuk pada bagian \ref{sec:analisis-permasalahan}, \textit{Data Collector} memenuhi kebutuhan 3 dan 4, yaitu:
+Merujuk pada bagian \ref{subsection:analisis-permasalahan}, \textit{Data Collector} memenuhi kebutuhan 3 dan 4, yaitu:
 
 \begin{enumerate}
     \setcounter{enumi}{2}
@@ -47,4 +47,4 @@ Merujuk pada bagian \ref{sec:analisis-permasalahan}, \textit{Data Collector} mem
     \item Sistem harus dapat menjalankan eksperimen berulang kali untuk mendapatkan data persentil dari eksperimen.
 \end{enumerate}
 
-Sedangkan merujuk kebutuhan fungsional dan non-fungsional pada bagian \ref{sec:system-requirements}, \textit{Data Collector} memenuhi kebutuhan fungsional F-3, F-9, F-10, dan F-11
+Sedangkan merujuk kebutuhan fungsional dan non-fungsional pada bagian \ref{subsection:system-requirements}, \textit{Data Collector} memenuhi kebutuhan fungsional F-3, F-9, F-10, dan F-11

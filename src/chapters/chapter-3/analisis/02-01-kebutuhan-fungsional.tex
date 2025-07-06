@@ -1,0 +1,30 @@
+
+\subsubsection{Kebutuhan Fungsional}
+\label{subsubsection:functional-requirements}
+
+Dalam pengembangannya, sistem eksperimen ini harus memenuhi beberapa kebutuhan fungsional. Kebutuhan fungsional yang diturunkan dari analisis permasalahan pada bagian \ref{subsection:analisis-permasalahan} adalah dapat dilihat pada tabel \ref{subsection:alternatif-solusi}.
+
+\begin{longtable}{|l|p{13cm}|}
+\caption{Kebutuhan Fungsional}
+\label{tab:functional-requirements} \\
+\hline
+\rowcolor{black!10} ID & Deskripsi Kebutuhan \\ \hline
+\endfirsthead
+
+\caption[]{Kebutuhan Fungsional (lanjutan)} \\
+\hline
+\rowcolor{black!10} ID & Deskripsi Kebutuhan \\ \hline
+\endhead
+
+F-1 & Sistem harus dapat melakukan operasi \textit{read} dan \text{write} pada sebuah \textit{key-value store database} \\ \hline
+F-2 & Sistem harus dapat menyimpan data secara \textit{persistent} \\ \hline
+F-3 & Sistem harus dapat mencatat waktu transaksi dari \textit{request} masuk hingga operasi selesai \\ \hline
+F-4 & Sistem harus dapat meng-\textit{encode} data menggunakan \textit{erasure coding} \\ \hline
+F-5 & Sistem harus dapat merekonstruksi data dari data yang disimpan menggunakan \textit{erasure coding} \\ \hline
+F-6 & Sistem harus dapat mendistribusikan data atau sebagian data ke \textit{node} lain untuk keperluan ketahanan data \\ \hline
+F-7 & Sistem harus dapat dikonfigurasi untuk menggunakan replikasi ataupun \textit{erasure coding} tanpa mengganti konfigurasi lainnya \\ \hline
+F-8 & Sistem harus dapat dikonfigurasi untuk mencapai tingkat ketahanan tertentu tanpa mengganti konfigurasi lainnya \\ \hline
+F-9 & Sistem harus dapat mensimulasikan \textit{request} dengan ukuran data yang bervariasi \\ \hline
+F-10 & Sistem harus dapat menjalankan \textit{request} secara berulang kali dan bervariasi secara otomatis untuk pengumpulan data \\ \hline
+F-11 & Sistem harus dapat melakukan \textit{logging} dari \textit{request} dan operasi untuk kebutuhan analisis \\ \hline
+\end{longtable}

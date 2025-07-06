@@ -1,12 +1,7 @@
-\subsection{Perbandingan Kakas}
-\label{subsection:perbandingan-kakas}
-
-Setelah menentukan solusi pengembangan sistem secara modular, terdapat beberapa kakas yang perlu dipilih untuk solusi tersebut. Bagian ini akan membahas kakas yang dipertimbangkan untuk digunakan dalam eksperimen ini, perbandingan masing-masing kakas, serta alasan pemilihan kakas yang digunakan.
-
 \subsubsection{Pemilihan Bahasa Pemrograman}
 \label{subsubsection:pilihan-bahasa-pemrograman}
 
-Solusi akan dikembangkan menggunakan bahasa Rust. Pemilihan bahasa Rust didasarkan pada keunggulan bahasa ini dalam hal kinerja, keamanan, dan kemudahan pengembangan sistem terdistribusi. Khususnya dalam hal \textit{memory safety} dan \textit{concurrency safety} yang menjadi fokus utama dalam pengembangan sistem terdistribusi. Selain itu, Rust juga memiliki ekosistem yang berkembang pesat dengan banyak library yang mendukung pengembangan sistem. Disebabkan pemilihan solusi modular, kakas yang dipertimbangkan untuk digunakan meliputi kakas \textit{in-memory key-value store} dan kakas untuk \textit{persistent database}.
+Bahasa Rust dipilih sebagai bahasa pemrograman untuk eksperimen ini. Alasan pemilihan bahasa Rust didasarkan pada keunggulan bahasa ini dalam hal kinerja, keamanan, dan kemudahan pengembangan sistem terdistribusi. Khususnya dalam hal \textit{memory safety} dan \textit{concurrency safety} yang menjadi fokus utama dalam pengembangan sistem terdistribusi. Selain itu, Rust juga memiliki ekosistem yang berkembang pesat dengan banyak library yang mendukung pengembangan sistem.
 
 \subsubsection{Pemilihan In-Memory Key-Value Store}
 \label{subsubsection:in-memory-kv-store}
@@ -37,7 +32,7 @@ Dari kakas-kakas tersebut, dipilih Moka sebagai kakas untuk eksperimen ini. Alas
 \subsubsection{Pemilihan Persistent Database}
 \label{subsubsection:persistent-database}
 
-Komponen \textit{Persistent Database} berperan sebagai penyimpanan data \textit{persistent} untuk memenuhi kebutuhan yang sudah disebutkan di bagian \ref{sec:analisis-permasalahan}. Tabel \ref{tab:tools-db} menunjukkan perbandingan beberapa kakas \textit{persistent database} yang dipertimbangkan untuk digunakan dalam eksperimen ini.
+Komponen \textit{Persistent Database} berperan sebagai penyimpanan data \textit{persistent} untuk memenuhi kebutuhan yang sudah disebutkan di bagian \ref{subsection:analisis-permasalahan}. Tabel \ref{tab:tools-db} menunjukkan perbandingan beberapa kakas \textit{persistent database} yang dipertimbangkan untuk digunakan dalam eksperimen ini.
 
 \begin{table}[h]
     \centering

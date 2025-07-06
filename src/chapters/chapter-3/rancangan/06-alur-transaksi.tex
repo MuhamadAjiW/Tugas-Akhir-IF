@@ -1,5 +1,5 @@
-\section{Alur Transaksi}
-\label{sec:system-flow}
+\subsection{Alur Transaksi}
+\label{subsection:system-flow}
 
 Alur untuk transaksi \textit{read} dapat dilihat pada gambar \ref{fig:flow-read-mermaidjs} dengan \textit{request} masuk ke \textit{Node} yang tersedia. \textit{node} melakukan operasi \textit{read} pada \textit{key-value store} dan mengembalikan hasil operasi ke \textit{client} jika tersedia. Jika tidak, maka \textit{Node} melakukan rekonstruksi data dari \textit{erasure-coded persistent data} yang tersebar pada \textit{node-node} lainnya. Pada replikasi, data diambil dari \textit{Node} lain yang memiliki data yang sama.
 

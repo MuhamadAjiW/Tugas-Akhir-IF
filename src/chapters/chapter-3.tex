@@ -3,23 +3,5 @@
 
 Tujuan utama penulisan bab ini adalah untuk menjelaskan proses solusi atas masalah pencarian kondisi ketika \textit{erasure coding} memiliki \textit{response time} yang lebih cepat dibandingkan replikasi. Bagian ini memaparkan proses analisis masalah, rancangan solusi, serta implementasi solusi.
 
-
-\section{Analisis}
-
-\input{chapters/chapter-3/01-analisis-masalah.tex}
-
-\input{chapters/chapter-3/02-alternatif-solusi.tex}
-
-\input{chapters/chapter-3/03-kebutuhan-sistem.tex}
-
-\section{Rancangan}
-
-Seperti yang telah dijelaskan pada \ref{sec:alternatif-solusi}, solusi yang dipilih adalah membuat sistem dengan mengkombinasikan \textit{in-memory key-value store} dan menggunakan RocksDB sebagai \textit{persistent database}. Replikasi dan \textit{erasure coding} hanya dilakukan pada data persisten yang disimpan pada \textit{database} tersebut.
-
-\input{chapters/chapter-3/04-rancangan-struktural.tex}
-
-\input{chapters/chapter-3/05-arsitektur-sistem.tex}
-
-\input{chapters/chapter-3/06-alur-transaksi.tex}
-
-\input{chapters/chapter-3/07-detail-komponen.tex}
+\input{chapters/chapter-3/01-analisis.tex}
+\input{chapters/chapter-3/02-rancangan.tex}
