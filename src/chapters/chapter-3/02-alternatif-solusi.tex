@@ -1,9 +1,9 @@
-\subsection{Alternatif Solusi}
+\section{Alternatif Solusi}
 \label{sec:alternatif-solusi}
 
 Berdasarkan permasalahan pada bagian \ref{sec:analisis-permasalahan}, terdapat berbagai macam alternatif solusi untuk menyelesaikan permasalahan tersebut. Pada penelitian ini, solusi yang dipilih adalah dengan membuat sistem yang mengkombinasikan \textit{in-memory key value store} dengan RocksDB sebagai \textit{persistent storage} dengan Reed-Solomon sebagai algoritma \textit{erasure coding}.
 
-\subsubsection{Perbandingan Pengembangan Sistem}
+\subsection{Perbandingan Pengembangan Sistem}
 
 Terdapat beberapa solusi yang dipertimbangkan dalam pembangunan sistem, yaitu membangun sistem dengan 
 
@@ -22,7 +22,7 @@ Terdapat beberapa solusi yang dipertimbangkan dalam pembangunan sistem, yaitu me
   Pengembangan ini membangun mengganti fitur yang dibutuhkan untuk penelitian di atas \textit{database} lebih kompleks. Pendekatan ini memiliki kelebihan kedekatan kondisi eksperimen dengan dunia nyata. Namun, pendekatan ini sulit dilakukan karena membutuhkan waktu yang lama untuk memahami dan mengubah \textit{source-code database} yang kompleks.
 \end{enumerate}
 
-\subsubsection{Perbandingan Kakas}
+\subsection{Perbandingan Kakas}
 Setelah menentukan solusi pengembangan sistem secara modular, terdapat beberapa kakas yang dapat dipilih untuk solusi tersebut. Disebabkan pemilihan solusi modular, kakas yang dipertimbangkan untuk digunakan meliputi kakas \textit{in-memory key-value store} dan kakas untuk \textit{persistent database}.
 
 \begin{enumerate}
@@ -77,7 +77,7 @@ Setelah menentukan solusi pengembangan sistem secara modular, terdapat beberapa 
 
 \end{enumerate}
 
-\subsubsection{Perbandingan Algoritma Erasure Coding}
+\subsection{Perbandingan Algoritma Erasure Coding}
 Terdapat beberapa algoritma yang dipertimbangkan untuk implementasi \textit{erasure coding} selain Reed-Solomon \parencite{manasse2009reed}. Algoritma tersebut antara lain adalah kode LDPC (\textit{Low-Density Parity-Check}) \parencite{gallagher1962ldpc}, kode BCH (\textit{Bose-Chaudhuri-Hocquenghem}) \parencite{bose1960bch}, algoritma berbasis XOR (Terdapat berbagai macam sumber dan implementasi untuk algoritma XOR), kode Fountain \parencite{asteris2014fountain}, dan \textit{Regenerating Codes} \parencite{rashmi2012regenerating}. Berikut perbandingan masing-masing algoritma 
 
 \begin{table}[ht]
