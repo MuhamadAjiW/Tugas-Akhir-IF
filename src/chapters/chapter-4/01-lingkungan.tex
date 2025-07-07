@@ -3,7 +3,7 @@
 
 Pengembangan sistem \textit{distributed key-value store database} dilakukan pada lingkungan komputer lokal dalam \textit{virtual machine}. Berikut merupakan penjelasan implementasi dari masing-masing bagian secara terperinci yang menjadi dua bagian, yaitu perangkat lunak dan perangkat keras. Pengembangan dilakukan pada \textit{virtual machine} karena sistem memiliki pustaka yang tidak tersedia pada sistem operasi yang digunakan pada komputer lokal. Selain itu, \textit{virtual machine} juga memberikan kemudahan untuk mengatur konfigurasi sistem yang dibutuhkan untuk pengembangan sistem ini tanpa mempengaruhi sistem operasi utama yang digunakan pada komputer lokal.
 
-Seperti yang dijelaskan pada bagian \ref{subsubsection:pilihan-bahasa-pemrograman}, implementasi \textit{distributed key-value store database} dibuat dengan menggunakan bahasa pemrograman Rust dan menggunakan pustaka bahasa tersebut. Masing-masing node dalam sistem berjalan dalam sebuah proses yang terpisah. Walaupun begitu, komunikasi antar node dilakukan dengan \textit{socket} menggunakan protokol \textit{TCP} sehingga setiap node dapat berjalan pada komputer yang berbeda jika diperlukan.
+Seperti yang dijelaskan pada bagian \ref{subsubsection:pilihan-bahasa-pemrograman}, implementasi \textit{distributed key-value store database} dibuat dengan menggunakan bahasa pemrograman Rust dan menggunakan pustaka bahasa tersebut. Masing-masing node dalam sistem berjalan dalam sebuah proses yang terpisah. Walaupun begitu, komunikasi antar node dilakukan dengan \textit{socket} menggunakan protokol \textit{TCP} sehingga setiap node dapat berjalan pada komputer yang berbeda jika diperlukan. Spesifikasi dari lingkungan yang digunakan untuk pengembangan sistem adalah sebagai berikut:
 
 \begin{enumerate}
   \item \textbf{Perangkat Keras}
@@ -51,9 +51,9 @@ Seperti yang dijelaskan pada bagian \ref{subsubsection:pilihan-bahasa-pemrograma
       \begin{enumerate}
         \item GNU screen (Versi: 4.09.0)
         \item jq (Versi: 1.6)
-        \item iptables (Versi: 1.8.7)
-        \item tc (dari paket iproute2) (Versi: 5.15.0)
-        \item sysstat (mpstat) (Versi: 12.5.2)
+        \item iptables (Versi: 1.8.9)
+        \item tc (dari paket iproute2) (Versi: 6.1.0)
+        \item sysstat (mpstat) (Versi: 12.6.1)
       \end{enumerate}
     \end{enumerate}
 \end{enumerate}
