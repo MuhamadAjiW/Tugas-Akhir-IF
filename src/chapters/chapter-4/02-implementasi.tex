@@ -1,2 +1,12 @@
 \section{Implementasi}
 \label{sec:implementation}
+
+Bagian ini menjelaskan implementasi dari sistem \textit{distributed key-value store database} yang telah dibangun secara terperinci. Seperti yang telah dijelaskan pada bagian \ref{subsection:rancangan-struktural}, sistem dikembangkan sebagai sebuah \textit{Node} yang dibangun secara modular. Selain itu, dibangun juga \textit{Data Collector} yang berfungsi sebagai pengumpul data dari pengujian sistem. Penjelasan bagian ini dimulai dari batasan implementasi, dilanjutkan dengan kakas yang digunakan dalam pembuatan sistem, dan diakhiri dengan penjelasan mengenai implementasi dari masing-masing komponen sistem.
+
+Mengulangi definisi yang disebutkan pada bagian \ref{sec:rancangan}, \textit{Node} adalah satuan fungsional utama yang berperan sebagai entitas dalam sistem \textit{database} terdistribusi yang dikembangkan dan \textit{Data Collector} adalah bagian dari eksperimen yang bertugas untuk mengumpulkan data eksperimen.
+
+\input{chapters/chapter-4/02-01-batasan-implementasi.tex}
+\input{chapters/chapter-4/02-02-kakas-yang-digunakan.tex}
+\input{chapters/chapter-4/02-03-setup.tex}
+\input{chapters/chapter-4/02-04-implementasi-node.tex}
+\input{chapters/chapter-4/02-05-implementasi-data-collector.tex}
