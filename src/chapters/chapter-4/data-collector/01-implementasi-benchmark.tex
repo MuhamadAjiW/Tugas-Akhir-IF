@@ -1,2 +1,75 @@
 \subsubsection{Implementasi Komponen Benchmark}
 \label{subsubsection:implementasi-benchmark}
+
+Seperti yang dijelaskan pada rancangan di bagian \ref{subsubsection:detail-data-benchmark}, komponen \textit{benchmark} bertanggung jawab untuk melakukan pengujian kinerja dari \textit{key-value store database} yang sudah dibangun. Dalam melakukan pengujian kinerja tersebut, komponen ini juga memiliki kemampuan untuk mengelola sistem yang sedang diuji, termasuk memulai, menghentikan, dan menghapus data dari masing-masing \textit{node} dari \textit sistem {key-value store database}.
+
+Implementasi komponen \textit{benchmark} dilakukan dengan menggunakan bahasa bash untuk mengelola proses sistem dan menggunakan Javascript sebagai \textit{client}. Implementasi menggunakan bahasa bash terdapat pada file scripts.sh dengan bentuk fungsi. Beberapa fungsi dapat dipanggil secara manual melalui terminal oleh pengguna seperti yang sudah disebutkan sebelumnya pada bagian \ref{subsubsection:data-collector}.
+
+Seperti yang dapat dilihat pada gambar \ref{fig:benchmark-structure}, komponen \textit{benchmark} memiliki beberapa fungsi yang dapat dikelompokkan menjadi konfigurasi sistem atau utilitas, manajemen \textit{node}, dan eksekutor \textit{benchmark} utama.
+
+Fungsi-fungsi yang dikelompokkan menjadi konfigurasi sistem adalah sebagai berikut:
+
+\begin{enumerate}
+  \item create\_screen\_session
+
+  Membuat sesi \textit{screen} baru untuk menjalankan proses sistem \textit{key-value store database}. Sesi ini akan digunakan untuk menjalankan setiap \textit{node} secara terpisah.
+
+  \item start\_terminal
+
+  Memulai terminal baru untuk menjalankan perintah secara interaktif. Terminal ini akan digunakan untuk menjalankan perintah-perintah yang diperlukan selama pengujian kinerja.
+
+  \item validate\_config
+
+  Memeriksa apakah konfigurasi yang diberikan valid dan sesuai dengan yang diharapkan. Jika konfigurasi tidak valid, fungsi ini akan memberikan pesan kesalahan yang sesuai. Konfigurasi ditentukan pada file ./etc/config.json yang berisi tentang informasi \textit{node}. Untuk masing-masing node, konfigurasi yang ada adalah \textit{ip}, \textit{port}, \textit{port http}, \textit{path} untuk \textit{transaction log}, dan \textit{path} untuk data persisten \textit{key-value store database}. Konfigurasi global yang ada selain konfigurasi masing-masing node adalah \textit{storage}, yaitu jumlah \textit{data shard} dan \textit{parity shard} untuk erasure coding serta ukuran \textit{payload} maksimal yang akan diterima sistem.
+
+  \item clean
+
+  Membersihkan data persisten dan log dari semua \textit{node} yang ada. Fungsi ini akan menghapus direktori ./db/node* dan ./logs/* untuk memastikan bahwa sistem dimulai dalam kondisi bersih sebelum pengujian kinerja dilakukan.
+
+  \item add\_netem\_limits
+
+  Menambahkan pembatasan \textit{bandwidth} pada \textit{interface} jaringan untuk mensimulasikan kondisi jaringan. Fungsi ini menggunakan kakas iptables untuk menandai paket tempat berjalannya sistem \textit{key-value store database} dan menerapkan \textit{traffic control} (tc) dengan netem \textit{bandwidth} pada \textit{interface} jaringan yang digunakan oleh sistem tersebut.
+
+  \item remove\_netem\_limits
+  
+  Menghapus pembatasan \textit{bandwidth} yang telah diterapkan sebelumnya. Fungsi ini akan menghapus aturan yang telah ditambahkan pada fungsi add\_netem\_limits untuk mengembalikan kondisi jaringan ke keadaan normal.
+  
+\end{enumerate}
+
+Fungsi-fungsi yang dikelompokkan menjadi manajemen \textit{node} adalah sebagai berikut:
+
+\begin{enumerate}
+  \item run\_node
+
+  Menjalankan satu \textit{node} dari sistem \textit{key-value store database} sesuai dengan konfigurasi yang telah ditentukan. Konfigurasi ditentukan pada file ./etc/config.json yang berisi tentang informasi \textit{node}. Untuk masing-masing node, konfigurasi yang ada adalah \textit{ip}, \textit{port}, \textit{port http}, \textit{path} untuk \textit{transaction log}, dan \textit{path} untuk data persisten \textit{key-value store database}.
+
+  \item run\_all
+  
+  Menjalankan semua \textit{node} dari sistem \textit{key-value store database} sesuai dengan konfigurasi yang telah ditentukan. Konfigurasi ditentukan pada file ./etc/config.json yang berisi tentang informasi \textit{node}. Konfigurasi global yang ada selain konfigurasi masing-masing node adalah \textit{storage}, yaitu jumlah \textit{data shard} dan \textit{parity shard} untuk erasure coding serta ukuran \textit{payload} maksimal yang akan diterima sistem.
+  
+  \item stop\_all
+  
+  Menghentikan semua sesi \textit{screen} terkait sistem \textit{key-value store database} yang sedang berjalan. Fungsi ini akan mencari sesi \textit{screen} dengan nama penanda proses sistem dan menghentikan semua sesi tersebut. Fungsi ini digunakan untuk membersihkan proses yang berjalan sebelum memulai benchmark baru. Pengguna dapat memanggil fungsi ini secara manual melalui terminal.
+\end{enumerate}
+
+
+Fungsi-fungsi yang dikelompokkan menjadi eksekutor \textit{benchmark} utama adalah sebagai berikut:
+
+\begin{enumerate}  
+  \item bench\_system
+  
+  Menjalankan benchmark k6 terhadap sistem yang sedang berjalan. Melakukan iterasi melalui parameter konfigurasi testing, yaitu bandwidth, virtual\_users, dan size. Untuk setiap kombinasi parameter, fungsi ini akan menerapkan pembatasan bandwidth menggunakan fungsi \textit{add\_netem\_limits}, menjalankan monitoring CPU dengan \textit{mpstat}, menjalankan benchmark k6 dengan skrip JavaScript yang sesuai (read/write), dan menyimpan hasil benchmark dalam format JSON serta log CPU. Setelah selesai, fungsi ini akan menghapus pembatasan bandwidth yang telah diterapkan.
+
+  \item bench\_system\_with\_reset
+
+  Menjalankan benchmark k6 terhadap sistem yang sedang berjalan dengan mereset kondisi sistem sebelum pengujian. Fungsi ini akan menghentikan semua proses yang berjalan, menghapus data yang ada, dan memulai ulang sistem sebelum menjalankan benchmark. Hal ini bertujuan untuk memastikan bahwa pengujian dilakukan dalam kondisi yang bersih dan konsisten.
+  
+  \item bench\_baseline
+  
+  Menjalankan benchmark terhadap sistem lain sebagai pembanding \textit{baseline}. Fungsi ini akan menjalankan \textit{script} k6 yang dituju untuk menguji sistem etcd sebagai \textit{baseline}. 
+  
+  \item run\_bench\_suite
+  
+  Menjalankan seluruh rangkaian pengujian \textit{benchmark} dengan semua kombinasi variabel yang ditentukan. Fungsi ini menjalankan benchmark komprehensif dengan replikasi dan \textit{erasure coding}, read dan write, variasi \textit{bandwidth}, \textit{virtual users}, dan \textit{payload size} yang ditentukan.
+\end{enumerate}
+
