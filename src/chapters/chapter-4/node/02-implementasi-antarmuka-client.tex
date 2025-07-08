@@ -7,7 +7,7 @@ Antarmuka \textit{client} diimplementasikan menggunakan pustaka actix-web. Pusta
     \centering
     \caption{Endpoint dari Antarmuka Client}
     \resizebox{\textwidth}{!}{
-        \begin{tabular}{|l|p{4cm}|p{4cm}|p{4cm}|}
+        \begin{tabular}{|l|l|p{5cm}|p{5cm}|}
             \hline
             \rowcolor{black!10} Method & Endpoint & Fungsi & Request Body \\ \hline
             GET & \text{/health} & Memeriksa status kesehatan server & -- \\ \hline
@@ -20,7 +20,7 @@ Antarmuka \textit{client} diimplementasikan menggunakan pustaka actix-web. Pusta
             POST & \text{/bulk} & Melakukan beberapa operasi dalam satu permintaan (maksimum 100 operasi) & \{\texttt{"key": str}\} \\ \hline
         \end{tabular}
     }
-    \label{tab:tools-db}
+    \label{tab:client-interface-endpoint}
 \end{table}
 
-Seperti yang dapat dilihat pada tabel \ref{tab:tools-db}, antarmuka \textit{client} menyediakan endpoint untuk operasi \textit{bulk} untuk optimasi kinerja, namun antarmuka ini tidak digunakan dalam pengumpulan data. Hal ini karena pengumpulan data dilakukan dengan cara satu per satu lebih mencerminkan cara kerja \textit{client} yang sebenarnya. Selain itu, antarmuka ini juga menyediakan endpoint untuk mendapatkan status dari node dan cluster, serta dokumentasi API yang berguna untuk \textit{troubleshooting} dan pengembangan. Implementasi antarmuka \textit{client} terdapat dalam fungsi run\_http\_loop pada kelas Node.
+Antarmuka \textit{client} menyediakan endpoint untuk operasi \textit{bulk} untuk optimasi kinerja, namun antarmuka ini tidak digunakan dalam pengumpulan data. Hal ini karena pengumpulan data dilakukan dengan cara satu per satu lebih mencerminkan cara kerja \textit{client} yang sebenarnya. Selain itu, antarmuka ini juga menyediakan endpoint untuk mendapatkan status dari node dan cluster, serta dokumentasi API yang berguna untuk \textit{troubleshooting} dan pengembangan. Implementasi antarmuka \textit{client} terdapat dalam fungsi run\_http\_loop pada kelas Node.
