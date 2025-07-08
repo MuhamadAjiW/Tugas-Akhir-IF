@@ -4,18 +4,52 @@
 Implementasi \textit{Data Collector} dilakukan dengan mengikuti rancangan yang telah ditetapkan pada bagian \ref{subsection:rancangan-struktural}. Berbeda dengan \textit{Node}, \textit{data collector} tidak berbentuk satu program yang utuh, melainkan terdiri dari beberapa komponen skrip yang saling berinteraksi. Skrip-skrip tersebut bertugas untuk mengumpulkan data dari \textit{benchmark} sistem yang dilakukan pada \textit{Node} dan menyimpannya dalam format yang dapat dianalisis lebih lanjut. Selain itu, komponen ini juga berinteraksi dengan pengguna untuk mengatur konfigurasi eksperimen dan mengelola sistem yang akan diuji. Implementasi dari \textit{Data Collector} banyaknya terdapat pada file scripts.sh. Berikut adalah perintah yang dapat digunakan oleh pengguna dalam mengoperasikan \textit{Data Collector} melalui file tersebut:
 
 \begin{enumerate}
-  \item clean: Menghapus semua data \textit{persistent} dari sistem dan juga \textit{log} dari Node.
-  \item run\_node: Menjalankan fungsi run\_node pada komponen \textit{benchmark}.
-  \item run\_all: Menjalankan fungsi run\_all pada komponen \textit{benchmark}.
-  \item run\_benchmark: Menjalankan fungsi run\_benchmark pada komponen \textit{benchmark}.
+  \item clean
+  
+  Menghapus semua data \textit{persistent} dari sistem dan juga \textit{log} dari Node.
+  
+  \item run\_node
+  
+  Menjalankan fungsi run\_node pada komponen \textit{benchmark}.
+  
+  \item run\_all
+  
+  Menjalankan fungsi run\_all pada komponen \textit{benchmark}.
+  
+  \item run\_benchmark
+  
+  Menjalankan fungsi run\_benchmark pada komponen \textit{benchmark}.
+  
   \item stop\_all: Menjalankan fungsi stop\_all pada komponen \textit{benchmark}.
-  \item bench\_system: Menjalankan fungsi bench\_system pada komponen \textit{benchmark}.
-  \item bench\_system\_with\_reset: Menjalankan fungsi bench\_system\_with\_reset pada komponen \textit{benchmark}.
-  \item bench\_baseline: Menjalankan fungsi bench\_baseline pada komponen \textit{benchmark}.
-  \item run\_bench\_suite: Menjalankan fungsi run\_bench\_suite pada komponen \textit{benchmark}.
-  \item add\_netem\_limits: Menjalankan fungsi add\_netem\_limits pada komponen \textit{benchmark}.
-  \item remove\_netem\_limits: Menjalankan fungsi remove\_netem\_limits pada komponen \textit{benchmark}.
-  \item help: Menampilkan daftar perintah yang tersedia beserta penjelasannya. Perintah ini akan menampilkan informasi tentang perintah-perintah yang dapat digunakan dalam \textit{Data Collector} dan cara penggunaannya.
+  
+  \item bench\_system
+  
+  Menjalankan fungsi bench\_system pada komponen \textit{benchmark}.
+  
+  
+  \item bench\_system\_with\_reset
+  
+  Menjalankan fungsi bench\_system\_with\_reset pada komponen \textit{benchmark}.
+  
+  \item bench\_baseline
+  
+  Menjalankan fungsi bench\_baseline pada komponen \textit{benchmark}.
+  
+  \item run\_bench\_suite
+  
+  Menjalankan fungsi run\_bench\_suite pada komponen \textit{benchmark}.
+  
+  \item add\_netem\_limits
+  
+  Menjalankan fungsi add\_netem\_limits pada komponen \textit{benchmark}.
+  
+  \item remove\_netem\_limits
+  
+  Menjalankan fungsi remove\_netem\_limits pada komponen \textit{benchmark}.
+  
+  \item help
+  
+  Menampilkan daftar perintah yang tersedia beserta penjelasannya. Perintah ini akan menampilkan informasi tentang perintah-perintah yang dapat digunakan dalam \textit{Data Collector} dan cara penggunaannya.
 \end{enumerate}
 
 Komponen-komponen \textit{Data Collector} diimplementasikan dalam bahasa pemrograman Bash dan JavaScript. Rincian implementasi dari masing-masing komponen dijelaskan pada subbab pada bagian ini.
