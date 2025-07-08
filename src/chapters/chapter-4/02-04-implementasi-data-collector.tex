@@ -1,7 +1,24 @@
 \subsection{Implementasi Data Collector}
 \label{subsection:implementasi-data-collector}
 
-Implementasi \textit{Data Collector} dilakukan dengan mengikuti rancangan yang telah ditetapkan pada bagian \ref{subsection:rancangan-struktural}. Berbeda dengan \textit{Node}, \textit{data collector} tidak berbentuk satu program yang utuh, melainkan terdiri dari beberapa komponen skrip yang saling berinteraksi. Skrip-skrip tersebut bertugas untuk mengumpulkan data dari pengujian sistem yang dilakukan pada \textit{Node} dan menyimpannya dalam format yang dapat dianalisis lebih lanjut. Komponen-komponen rancangan tersebut diimplementasikan dalam bahasa pemrograman Bash dan JavaScript. Rincian implementasi dari masing-masing komponen dijelaskan pada subbab pada bagian ini.
+Implementasi \textit{Data Collector} dilakukan dengan mengikuti rancangan yang telah ditetapkan pada bagian \ref{subsection:rancangan-struktural}. Berbeda dengan \textit{Node}, \textit{data collector} tidak berbentuk satu program yang utuh, melainkan terdiri dari beberapa komponen skrip yang saling berinteraksi. Skrip-skrip tersebut bertugas untuk mengumpulkan data dari \textit{benchmark} sistem yang dilakukan pada \textit{Node} dan menyimpannya dalam format yang dapat dianalisis lebih lanjut. Selain itu, komponen ini juga berinteraksi dengan pengguna untuk mengatur konfigurasi eksperimen dan mengelola sistem yang akan diuji. Implementasi dari \textit{Data Collector} banyaknya terdapat pada file scripts.sh. Berikut adalah perintah yang dapat digunakan oleh pengguna dalam mengoperasikan \textit{Data Collector} melalui file tersebut:
+
+\begin{enumerate}
+  \item clean: Menghapus semua data \textit{persistent} dari sistem dan juga \textit{log} dari Node.
+  \item run\_node: Menjalankan \textit{Node} pada sistem yang akan diuji. Fungsi ini akan dijelaskan lebih lanjut pada bagian \ref{subsubsection:implementasi-benchmark}.
+  \item run\_all: Menjalankan semua \textit{Node} yang telah dikonfigurasi pada sistem yang akan diuji. Fungsi ini akan dijelaskan lebih lanjut pada bagian \ref{subsubsection:implementasi-benchmark}.
+  \item run\_benchmark: Menjalankan \textit{benchmark} sistem yang telah dibangun. Fungsi ini akan dijelaskan lebih lanjut pada bagian \ref{subsubsection:implementasi-benchmark}.
+  \item stop\_all: Menghentikan semua \textit{Node} yang sedang berjalan pada sistem yang diuji. Fungsi ini akan dijelaskan lebih lanjut pada bagian \ref{subsubsection:implementasi-benchmark}.
+  \item bench\_system: Menjalankan \textit{benchmark} sistem. Fungsi ini akan dijelaskan lebih lanjut pada bagian \ref{subsubsection:implementasi-benchmark}.
+  \item bench\_system\_with\_reset: Menjalankan \textit{benchmark} sistem dengan sistem yang baru. Fungsi ini akan dijelaskan lebih lanjut pada bagian \ref{subsubsection:implementasi-benchmark}.
+  \item bench\_baseline: Menjalankan \textit{benchmark} sistem lain sebagai pembanding. Fungsi ini akan dijelaskan lebih lanjut pada bagian \ref{subsubsection:implementasi-benchmark}.
+  \item run\_bench\_suite: Menjalankan \textit{benchmark} dengan kombinasi variabel lengkap. Fungsi ini akan dijelaskan lebih lanjut pada bagian \ref{subsubsection:implementasi-benchmark}.
+  \item add\_netem\_limits: Menambahkan batasan jaringan pada sistem yang akan diuji. Fungsi ini akan dijelaskan lebih lanjut pada bagian \ref{subsubsection:implementasi-benchmark}. Perintah ini akan mengatur konfigurasi jaringan yang akan digunakan dalam pengujian, seperti kecepatan jaringan, latensi, dan kehilangan paket.
+  \item remove\_netem\_limits: Menghapus batasan jaringan pada sistem yang akan diuji. Fungsi ini akan dijelaskan lebih lanjut pada bagian \ref{subsubsection:implementasi-benchmark}.
+  \item help: Menampilkan daftar perintah yang tersedia beserta penjelasannya. Perintah ini akan menampilkan informasi tentang perintah-perintah yang dapat digunakan dalam \textit{Data Collector} dan cara penggunaannya.
+\end{enumerate}
+
+Komponen-komponen \textit{Data Collector} diimplementasikan dalam bahasa pemrograman Bash dan JavaScript. Rincian implementasi dari masing-masing komponen dijelaskan pada subbab pada bagian ini.
 
 \input{chapters/chapter-4/data-collector/01-implementasi-benchmark.tex}
 \input{chapters/chapter-4/data-collector/02-implementasi-log-management.tex}
