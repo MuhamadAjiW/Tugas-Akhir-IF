@@ -64,12 +64,23 @@ Fungsi-fungsi yang dikelompokkan menjadi eksekutor \textit{benchmark} utama adal
 
   Menjalankan benchmark k6 terhadap sistem yang sedang berjalan dengan mereset kondisi sistem sebelum pengujian. Fungsi ini akan menghentikan semua proses yang berjalan, menghapus data yang ada, dan memulai ulang sistem sebelum menjalankan benchmark. Hal ini bertujuan untuk memastikan bahwa pengujian dilakukan dalam kondisi yang bersih dan konsisten.
   
-  \item bench\_baseline
-  
-  Menjalankan benchmark terhadap sistem lain sebagai pembanding \textit{baseline}. Fungsi ini akan menjalankan \textit{script} k6 yang dituju untuk menguji sistem etcd sebagai \textit{baseline}. 
-  
   \item run\_bench\_suite
   
   Menjalankan seluruh rangkaian pengujian \textit{benchmark} dengan semua kombinasi variabel yang ditentukan. Fungsi ini menjalankan benchmark komprehensif dengan replikasi dan \textit{erasure coding}, read dan write, variasi \textit{bandwidth}, \textit{virtual users}, dan \textit{payload size} yang ditentukan.
 \end{enumerate}
 
+Selain fungsi-fungsi tersebut, bagian dari komponen \textit{benchmark} adalah \textit{script} Javascript yang digunakan untuk menjalankan benchmark k6. File-file terkait yang digunakan untuk menjalankan \textit{client} adalah:
+
+\begin{itemize}
+  \item ./benchmark/script-write.js
+
+  File ini berisi skrip JavaScript yang digunakan untuk melakukan pengujian tulis (write) pada sistem \textit{key-value store database} menggunakan k6. Skrip ini akan mengirimkan permintaan \textit{write} ke sistem dan mengukur kinerja respons. Nilai yang dikirim di-\textit{encode} menjadi \textit{base64} untuk memastikan bahwa data yang dikirim dapat diterima oleh sistem. Oleh karena itu, ukuran \textit{payload} yang dikirim akan lebih besar dari ukuran yang ditentukan dalam konfigurasi. Akan tetapi, hal ini membuat gambaran kinerja sistem menjadi lebih fleksibel karena dapat menyimpan data dalam bentuk apapun.
+
+  \item ./benchmark/script-read.js
+  
+  File ini berisi skrip JavaScript yang digunakan untuk melakukan pengujian baca (read) pada sistem \textit{key-value store database} menggunakan k6. Skrip ini akan mengirimkan permintaan \textit{read} ke sistem dan mengukur kinerja respons. Sebelum menjalankan permintaan \textit{read}, \textit{script} ini akan mengirimkan permintaan \textit{write} untuk memastikan bahwa data yang akan dibaca sudah tersedia di sistem. Sama seperti pada \textit{script} write, nilai yang dikirim di-\textit{encode} menjadi \textit{base64} untuk memastikan bahwa data yang dikirim dapat diterima oleh sistem.
+
+  \item ./benchmark/oneshot.js
+  
+  File ini berisi skrip JavaScript yang digunakan untuk melakukan pengujian \textit{oneshot} pada sistem \textit{key-value store database} menggunakan k6. Skrip ini akan mengirimkan permintaan \textit{write} atau \textit{read} satu kali saja. Tujuannya adalah untuk memverifikasi bahwa sistem dapat menerima permintaan dengan benar. Selain itu, \textit{script} ini juga membantu dalam proses \textit{debugging}.
+\end{itemize}
