@@ -1,2 +1,23 @@
 \subsubsection{Implementasi Persistent Store}
 \label{subsubsection:implementasi-persistent-store}
+
+Komponen \textit{Persistent Store} diimplementasikan menggunakan pustaka rocksdb sesuai dengan rancangan yang telah ditetapkan pada bagian \ref{subsubsection:detail-persistent-store}. Komponen ini berperan sebagai tempat penyimpanan utama dari \textit{key-value store database} yang diimplementasikan. Data yang di-\textit{encode} atau direplikasi disimpan pada komponen ini.
+
+Pada implementasinya, komponen ini terdapat pada kelas KvPersistent yang merupakan \textit{wrapper} dari pustaka rocksdb. Kelas ini menyediakan antarmuka yang terdapat pada tabel \ref{tab:persistent-store-interface}.
+
+\begin{table}[h]
+    \centering
+    \caption{Antarmuka Persistent Store}
+    \resizebox{\textwidth}{!}{
+        \begin{tabular}{|l|p{7cm}|p{4cm}|}
+            \hline
+            \rowcolor{black!10} Method & Fungsi & Arguments \\ \hline
+            get & Mengambil nilai berdasarkan kunci. Nilai adalah berupa tipe \textit{generic} yang diberikan ketika membuat \textit{object} & \{\texttt{"key": str}\} \\ \hline
+            set & Menyimpan \textit{key-value pair}. Pada \textit{erasure coding} hanya menyimpan \textit{fragment} & \{\texttt{"key": str, "value": str}\} \\ \hline
+            remove & Menghapus \textit{key-value pair} & \{\texttt{"key": str}\} \\ \hline
+        \end{tabular}
+    }
+    \label{tab:persistent-store-interface}
+\end{table}
+
+Kelas ini dibuat sebagai \textit{generic} dengan data yang disimpan dapat diatur menjadi sebuah kelas tertentu. Hal ini memungkinkan komponen \textit{Persistent Store} untuk digunakan pada berbagai jenis data yang berbeda. Penggunaan \textit{erasure coding} memerlukan metadata tambahan pada data berupa \textit{version} dan \textit{index} seperti yang telah dijelaskan pada bagian \ref{subsubsection:implementasi-konsensus}. Data ini berbeda dengan replikasi yang tidak membutuhkan metadata apapun.

@@ -1,2 +1,23 @@
 \subsubsection{Implementasi Memory Store}
 \label{subsubsection:implementasi-memory-store}
+
+Komponen \textit{Memory Store} diimplementasikan menggunakan pustaka moka sesuai dengan rancangan yang telah ditetapkan pada bagian \ref{subsubsection:detail-in-memory-store}. Komponen ini berperan sebagai \textit{cache} dari \textit{key-value store database} yang diimplementasikan. Untuk kedua jenis penyimpanan, baik replikasi maupun \textit{erasure coding}, komponen ini menyimpan data utuh. Tujuan utamanya adalah untuk meningkatkan kinerja sistem dengan mengurangi latensi akses \textit{disk} yang lebih lambat dibandingkan akses \textit{memory}. Selain itu, untuk \textit{erasure coding}, komponen ini juga mengurangi operasi rekonstruksi data yang memerlukan waktu lama untuk operasi \textit{read}.
+
+Pada implementasinya, komponen ini terdapat pada kelas KvMemory yang merupakan \textit{wrapper} dari pustaka moka. Kelas ini menyediakan antarmuka yang terdapat pada tabel \ref{tab:memory-store-interface}.
+
+\begin{table}[h]
+    \centering
+    \caption{Antarmuka Persistent Store}
+    \resizebox{\textwidth}{!}{
+        \begin{tabular}{|l|p{7cm}|p{4cm}|}
+            \hline
+            \rowcolor{black!10} Method & Fungsi & Arguments \\ \hline
+            get & Mengambil nilai berdasarkan kunci. Nilai adalah berupa \textit{binary array} untuk mempercepat operasi & \{\texttt{"key": str}\} \\ \hline
+            set & Menyimpan \textit{key-value pair}. & \{\texttt{"key": str, "value": str}\} \\ \hline
+            remove & Menghapus \textit{key-value pair} & \{\texttt{"key": str}\} \\ \hline
+        \end{tabular}
+    }
+    \label{tab:memory-store-interface}
+\end{table}
+
+Berbeda dengan implementasi \textit{Persistent Store}, komponen \textit{Memory Store} tidak menggunakan kelas \textit{generic}. Hal ini karena peran komponen ini sebagai \textit{cache} tidak memerlukan banyak pengolahan data setelah diambil dari \textit{memory}. Dengan menggunakan tipe data \textit{binary array}, data yang diambil dari \textit{memory} dapat langsung dikirimkan ke jaringan tanpa perlu diserialisasi ulang.
