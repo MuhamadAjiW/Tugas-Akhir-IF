@@ -3,12 +3,58 @@
 
 Berdasarkan perbandingan alternatif yang dilakukan pada bagian \ref{subsubsection:pemilihan-algoritma-konsensus}, algoritma konsensus yang dipilih adalah OmniPaxos. Disebabkan OmniPaxos pada awalnya dikembangkan dalam bahasa pemrograman Rust dan bersifat \textit{open source}, maka implementasi algoritma konsensus ini dilakukan dengan menggunakan melakukan \textit{fork} pada pustaka OmniPaxos yang telah tersedia.
 
-Pustaka OmniPaxos yang dimodifikasi untuk keperluan implementasi sistem ini merupakan OmniPaxos versi 0.2.2. Sesuai dengan perancangan pada bagian \ref{subsubsection:detail-komponen-konsensus}, perubahan yang dilakukan pada pustaka ini mencakup integrasi dari implementasi \textit{erasure coding}. Berikut adalah penjelasan mengenai modifikasi pada pustaka OmniPaxos:
+Pustaka OmniPaxos yang dimodifikasi untuk keperluan implementasi sistem ini merupakan OmniPaxos versi 0.2.2. Dalam implementasinya, OmniPaxos memiliki beberapa jenis pesan yang digunakan untuk komunikasi antar \textit{node} dalam \textit{cluster}. Pesan-pesan ini mencakup pesan untuk fase \textit{prepare}, \textit{accept}, dan \textit{commit} yang merupakan bagian dari algoritma konsensus OmniPaxos. Tabel \ref{tab:omnipaxos-messages} menunjukkan jenis-jenis pesan yang digunakan dalam omnipaxos serta deskripsi penggunaan dari pesan tersebut. Pesan-pesan ini berbentuk \textit{binary} dan menggunakan pustaka serde untuk \textit{serialization}.
+
+\begin{table}[h]
+    \centering
+    \caption{Jenis Pesan OmniPaxos}
+    \resizebox{\textwidth}{!}{
+        \begin{tabular}{|l|p{11cm}|}
+            \hline
+            \rowcolor{black!10} Tipe Pesan & Deskripsi \\ \hline
+            PrepareReq & Pesan permintaan dari follower untuk meminta leader mengirim ulang pesan Prepare setelah crash-recovery atau pesan hilang. \\ \hline
+            Prepare & Pesan dari leader yang baru terpilih untuk memulai fase Prepare dalam konsensus Paxos, berisi informasi ballot, indeks yang diputuskan, dan status log. \\ \hline
+            Promise & Pesan balasan dari follower kepada leader sebagai respons terhadap Prepare, berisi janji untuk tidak menerima proposal dengan ballot lebih rendah dan informasi sinkronisasi log. \\ \hline
+            AcceptSync & Pesan dari leader untuk mensinkronisasi log semua replika dalam fase persiapan, berisi pembaruan log untuk sinkronisasi follower dengan leader. \\ \hline
+            AcceptDecide & Pesan dari leader berisi entri yang akan direplikasi dan indeks yang diputuskan terbaru dalam fase accept. \\ \hline
+            Accepted & Pesan konfirmasi dari follower kepada leader bahwa entri telah diterima dan disimpan di log lokal. \\ \hline
+            NotAccepted & Pesan penolakan dari follower kepada leader ketika entri tidak dapat diterima karena follower sudah berjanji pada leader dengan ballot lebih tinggi. \\ \hline
+            Decide & Pesan dari leader kepada follower untuk memutuskan entri hingga indeks tertentu dalam log, menandakan bahwa entri tersebut telah mencapai konsensus. \\ \hline
+            ProposalForward & Pesan untuk meneruskan proposal klien dari follower kepada leader, berisi daftar entri yang akan direplikasi. \\ \hline
+            Compaction & Pesan permintaan untuk kompaksi log, dapat berupa Trim (menghapus entri hingga indeks tertentu) atau Snapshot (membuat snapshot log). \\ \hline
+            AcceptStopSign & Pesan dari leader kepada follower untuk menerima StopSign yang menandakan akhir konfigurasi cluster, digunakan untuk rekonfigurasi. \\ \hline
+            ForwardStopSign & Pesan untuk meneruskan StopSign dari follower kepada leader, digunakan dalam proses rekonfigurasi cluster. \\ \hline
+        \end{tabular}
+    }
+    \label{tab:omnipaxos-messages}
+\end{table}
+
+Sesuai dengan perancangan pada bagian \ref{subsubsection:detail-komponen-konsensus}, perubahan yang dilakukan pada pustaka ini mencakup integrasi dari implementasi \textit{erasure coding}. Berikut adalah penjelasan mengenai modifikasi pada pustaka OmniPaxos:
 
 \begin{enumerate}
   \item \textit{OmniPaxosEC}: Kelas baru yang merupakan modifikasi dari kelas OmniPaxos. Kelas ini mengimplementasikan logika konsensus dengan dukungan \textit{erasure coding} dengan distribusi data yang telah di-\textit{erasure coding} ke beberapa \textit{node}. 
   \item \textit{Erasure Coding Service}: Kelas tambahan yang bertanggung jawab untuk mengelola proses \textit{erasure coding} pada data yang disimpan. Implementasi ini menggunakan algoritma Reed-Solomon untuk melakukan \textit{erasure coding} dan rekonstruksi data seperti yang sudah dijelaskan pada bagian \ref{subsubsection:pemilihan-algoritma-erasure-coding}. Implementasi ini dilakukan dengan menggunakan pustaka Rust reed-solomon-erasure versi 6.0 dan menggunakan fitur simd-accel. Pustaka ini digunakan dalam kelas baru \textit{OmniPaxosEC}.
 \end{enumerate}
+
+Menyesuaikan dengan keperluan implementasi \textit{Key-value store database}, nilai yang disimpan dan disetujui dalam konsensus adalah nilai dari \textit{key-value pair} yang disimpan dalam sistem. Untuk mengoperasikan \textit{database} tersebut, masing-masing \textit{node} juga mengirimkan jenis operasi yang perlu dilakukan untuk \textit{key-value pair} tersebut dengan implementasi enum OperationType. Jenis operasi yang dikirimkan dapat dilihat pada tabel \ref{tab:omnipaxos-operations}. Operasi-operasi ini akan diterapkan pada \textit{key-value store} yang ada pada masing-masing \textit{node} setelah nilai disepakati.
+
+\begin{table}[h]
+    \centering
+    \caption{Jenis Operasi untuk Pesan Database}
+    \resizebox{\textwidth}{!}{
+        \begin{tabular}{|l|p{9cm}|}
+            \hline
+            \rowcolor{black!10} Tipe Operasi & Deskripsi \\ \hline
+            OperationType::NULL & Operasi \textit{placeholder} atau fungsi kontrol yang tidak berhubungan dengan \textit{database} \\ \hline
+            OperationType::GET & Operasi untuk mengambil nilai dari \textit{key-value pair} yang ditentukan. \\ \hline
+            OperationType::RECONSTRUCT & Operasi untuk melakukan rekonstruksi data pada \textit{key-value pair} untuk \textit{erasure coding}. \\ \hline
+            OperationType::SET & Operasi untuk menyimpan atau memperbarui nilai pada \textit{key-value pair} yang ditentukan. \\ \hline
+            OperationType::DELETE & Operasi untuk menghapus \textit{key value pair} yang ditentukan dari \textit{database}. \\ \hline
+          \end{tabular}
+    }
+    \label{tab:omnipaxos-operations}
+\end{table}
+
 
 Beberapa poin tambahan terkait mekanisme komponen konsensus yang diimplementasikan adalah sebagai berikut:
 \begin{itemize}
@@ -22,4 +68,4 @@ Beberapa poin tambahan terkait mekanisme komponen konsensus yang diimplementasik
 
 Dalam pengujian, sistem yang sama persis dapat dibangun dengan hanya membedakan kelas konsensus yang digunakan. Sistem replikasi akan menggunakan kelas OmniPaxos yang asli, sedangkan sistem \textit{erasure coding} akan menggunakan kelas OmniPaxosEC yang telah dimodifikasi. Hal ini sesuai dengan kebutuhan sistem pada bagian \ref{subsection:system-requirements}, yaitu sistem dapat dikonfigurasi untuk menggunakan replikasi ataupun \textit{erasure coding} tanpa mengganti konfigurasi lainnya.
 
-OmniPaxos termodifikasi dibangun dalam bentuk \textit{package} atau dalam bahasa pemrograman Rust, menggunakan \textit{crate}. Pustaka ini dapat digunakan sebagai pustaka independen yang dapat diimpor ke dalam proyek Rust lainnya. Implementasi OmniPaxos berada pada repositori berbeda dengan repositori induk sistem.
+OmniPaxos termodifikasi dibangun dalam bentuk \textit{package} atau dalam bahasa pemrograman Rust, menggunakan \textit{crate}. Pustaka ini dapat digunakan sebagai pustaka independen yang dapat diimpor ke dalam proyek Rust lainnya. Implementasi OmniPaxos berada pada repositori berbeda dengan repositori induk sistem. Struktur internal implementasi konsensus dapat dilihat pada gambar \ref{fig:consensus-component-structure}
