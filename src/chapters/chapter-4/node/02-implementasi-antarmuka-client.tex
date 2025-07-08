@@ -1,2 +1,26 @@
 \subsubsection{Implementasi Antarmuka Client}
 \label{subsubsection:implementasi-antarmuka-client}
+
+Antarmuka \textit{client} diimplementasikan menggunakan pustaka actix-web. Pustaka ini menyediakan \textit{web server} dengan antarmuka HTTP. Peran dari komponen ini adalah untuk menerima operasi dari \textit{client}. Gambaran peran dari komponen ini dapat dilihat pada gambar \ref{fig:client-interface-component} dan pemetaan endpoint dapat dilihat pada tabel \ref{tab:client-interface-endpoint}.
+
+\begin{table}[h]
+    \centering
+    \caption{Endpoint dari Antarmuka Client}
+    \resizebox{\textwidth}{!}{
+        \begin{tabular}{|l|p{3cm}|p{3cm}|p{3cm}|}
+            \hline
+            \rowcolor{black!10} Method & Endpoint & Fungsi & Request Body \\ \hline
+            GET & \text{/health} & Memeriksa status kesehatan server & -- \\ \hline
+            GET & \text{/status} & Mendapatkan informasi node & -- \\ \hline
+            GET & \text{/cluster} & Mendapatkan status cluster & -- \\ \hline
+            GET & \text{/docs} & Mendapatkan dokumentasi API & -- \\ \hline
+            POST & \text{/get} & Mengambil nilai berdasarkan kunci & \{\texttt{"key": str}\} \\ \hline
+            POST & \text{/put} & Menyimpan pasangan kunci-nilai & \{\texttt{"key": str, "value": str}\} \\ \hline
+            POST & \text{/delete} & Menghapus pasangan kunci-nilai & \{\texttt{"key": str}\} \\ \hline
+            POST & \text{/bulk} & Melakukan beberapa operasi dalam satu permintaan (maksimum 100 operasi) & \{\texttt{"key": str}\} \\ \hline
+        \end{tabular}
+    }
+    \label{tab:tools-db}
+\end{table}
+
+Seperti yang dapat dilihat pada tabel \ref{tab:tools-db}, antarmuka \textit{client} menyediakan endpoint untuk operasi \textit{bulk} untuk optimasi kinerja, namun antarmuka ini tidak digunakan dalam pengumpulan data. Hal ini karena pengumpulan data dilakukan dengan cara satu per satu lebih mencerminkan cara kerja \textit{client} yang sebenarnya. Selain itu, antarmuka ini juga menyediakan endpoint untuk mendapatkan status dari node dan cluster, serta dokumentasi API yang berguna untuk \textit{troubleshooting} dan pengembangan.
