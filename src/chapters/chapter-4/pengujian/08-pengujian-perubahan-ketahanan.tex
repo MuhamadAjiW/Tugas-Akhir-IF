@@ -1,0 +1,13 @@
+\subsubsection{Pengujian perubahan konfigurasi ketahanan sistem}
+\label{subsubsection:pengujian-perubahan-konfigurasi-ketahanan}
+
+Pengujian ini mencakup fungsional F-8, yaitu bahwa sistem harus dapat mengubah konfigurasi ketahanan sistem tanpa mempengaruhi operasi lainnya. Pengujian dilakukan dengan kode pengujian P-10. Pengujian ini mencakup proses mengubah konfigurasi sistem dengan jumlah \textit{data shard} dan \textit{parity shard} yang berbeda-beda. Pengujian ini dilakukan dengan mengubah konfigurasi sistem pada file config.json yang sudah dijelaskan pada bagian \ref{subsection:setup-pengujian}.
+
+Pengujian perubahan konfigurasi ketahanan sistem dengan kode pengujian P-10 dilakukan dengan langkah-langkah sebagai berikut:
+\begin{enumerate}
+  \item Mengubah konfigurasi sistem pada file config.json dengan jumlah \textit{data shard} dan \textit{parity shard} yang berbeda.
+  \item Menyalakan ulang sistem untuk menerapkan perubahan konfigurasi. Konfirmasi dapat dilakukan dengan mengirim \textit{request} HTTP pada \textit{endpoint} /status dan memastikan bahwa sistem sudah memiliki \textit{leader}.
+  \item Melakukan pengujian operasi \textit{write} dan \textit{read} untuk memastikan bahwa sistem masih berfungsi dengan baik setelah perubahan konfigurasi.
+\end{enumerate}
+
+Hasil yang diharapkan setelah tes dijalankan adalah sistem dapat berfungsi dengan baik setelah perubahan konfigurasi. Sistem harus dapat menyimpan dan mengambil data dengan jumlah \textit{data shard} dan \textit{parity shard} yang telah ditentukan.
