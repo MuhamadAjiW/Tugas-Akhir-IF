@@ -1,2 +1,13 @@
 \subsubsection{Pengujian pengumpulan data}
 \label{subsubsection:pengujian-pengumpulan-data}
+
+Pengujian ini mencakup fungsional F-10, yaitu bahwa sistem harus dapat menjalankan \textit{request} secara berulang kali dan bervariasi secara otomatis untuk pengumpulan data. Pengujian dilakukan dengan kode pengujian P-12. Pengujian dilakukan dengan menjalankan perintah run\_bench\_suite pada file scripts.sh yang sudah dijelaskan pada bagian \ref{subsection:setup-pengujian}. Setelah itu dilakukan verifikasi dari durasi \textit{benchmark} yang dilakukan bahwa sistem menerima \textit{request} secara berulang kali.
+
+Pengujian pengumpulan data dengan kode pengujian P-12 dilakukan dengan langkah-langkah sebagai berikut:
+\begin{enumerate}
+    \item Menunggu hingga sistem siap menerima \textit{request}. Konfirmasi dapat dilakukan dengan mengirim \textit{request} HTTP pada \textit{endpoint} /status dan memastikan bahwa sistem sudah memiliki \textit{leader}.
+    \item Menjalankan perintah run\_bench\_suite pada file scripts.sh.
+    \item Memastikan bahwa sistem menerima \textit{request} secara berulang kali. Hal ini dapat dilakukan dengan melihat \textit{log} dari sistem dan hasil laporan yang dibuat oleh k6.
+\end{enumerate}
+
+Hasil yang diharapkan setelah tes dijalankan adalah sistem dapat menjalankan \textit{request} secara berulang kali secara otomatis, yaitu dalam satu \textit{benchmark}, sistem tidak hanya menerima satu \textit{request} saja. Perlu dipastikan juga dalam penjalanan run\_bench\_suite tidak terdapat balikan \textit{error} dari sistem.
