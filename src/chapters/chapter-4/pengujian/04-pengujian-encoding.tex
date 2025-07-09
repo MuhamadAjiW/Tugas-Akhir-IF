@@ -8,7 +8,6 @@ Pengujian encoding data menggunakan erasure coding dengan kode pengujian P-6 dil
   \item Menunggu hingga sistem siap menerima \textit{request}. Konfirmasi dapat dilakukan dengan mengirim \textit{request} HTTP pada \textit{endpoint} /status dan memastikan bahwa sistem sudah memiliki \textit{leader}.
   \item Menjalankan \textit{script} oneshot.js dengan argumen \textit{write} untuk melakukan pengujian operasi dasar. \textit{Script} ini akan mengirimkan \textit{request} \textit{write} ke sistem.
   \item Mengirim \textit{request} HTTP pada \textit{endpoint} /fragment untuk memastikan bahwa sistem telah menerima \textit{request} \textit{write} dan telah menyimpan data yang dituliskan dalam bentuk \textit{fragment} yang telah di-\textit{encode}.
-  \item Mengecek \textit{log} yang dihasilkan oleh sistem pada file \textit{output log} dan memastikan bahwa sistem mencatat waktu transaksi.
 \end{enumerate}
 
 Hasil yang diharapkan setelah tes dijalankan adalah sistem menyimpan \textit{log} yang berisi \textit{key-value pair} yang telah di-\textit{encode} sesuai dengan konfigurasi yang telah ditentukan. Untuk \textit{erasure coding}, log yang disimpan harus berisi \textit{key-value pair} yang telah di-\textit{encode} sesuai dengan konfigurasi yang telah ditentukan serta berbeda-beda untuk setiap \textit{node} sesuai dengan index \textit{fragment} yang diterima.

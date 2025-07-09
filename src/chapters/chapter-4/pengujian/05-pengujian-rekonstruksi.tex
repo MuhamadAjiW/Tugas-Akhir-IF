@@ -1,2 +1,16 @@
 \subsubsection{Pengujian rekonstruksi data}
 \label{subsubsection:pengujian-rekonstruksi-data}
+
+Pengujian ini mencakup fungsional F-4, yaitu bahwa sistem harus dapat merekonstruksi data dari data yang disimpan menggunakan \textit{erasure coding}. Pengujian dilakukan dengan kode pengujian P-7. Pengujian ini menggunakan \textit{script} pembantu oneshot.js yang sudah dijelaskan pada bagian \ref{subsubsection:implementasi-benchmark}. Pengujian ini dilakukan dengan menuliskan \textit{key-value pair} ke dalam sistem lalu melakukan operasi \textit{read} pada \textit{key-value pair} tersebut untuk memastikan bahwa data yang disimpan telah di-\textit{encode} sesuai dengan konfigurasi yang telah ditentukan dan dapat direkonstruksi.
+
+Pengujian rekonstruksi data dengan kode pengujian P-7 dilakukan dengan langkah-langkah sebagai berikut:
+\begin{enumerate}
+  \item Menunggu hingga sistem siap menerima \textit{request}. Konfirmasi dapat dilakukan dengan mengirim \textit{request} HTTP pada \textit{endpoint} /status dan memastikan bahwa sistem sudah memiliki \textit{leader}.
+  \item Menjalankan \textit{script} oneshot.js dengan argumen \textit{write} untuk melakukan pengujian operasi dasar. \textit{Script} ini akan mengirimkan \textit{request} \textit{write} ke sistem.
+  \item Mengirim \textit{request} HTTP pada \textit{endpoint} /fragment untuk memastikan bahwa sistem telah menerima \textit{request} \textit{write} dan telah menyimpan data yang dituliskan dalam bentuk \textit{fragment} yang telah di-\textit{encode}.
+  \item Mengirim \textit{request} HTTP pada \textit{endpoint} /read untuk memastikan bahwa sistem dapat mengembalikan nilai \textit{key-value pair} yang telah di-\textit{encode} sesuai dengan konfigurasi yang telah ditentukan.
+\end{enumerate}
+
+Hasil yang diharapkan setelah tes dijalankan adalah sistem mengembalikan nilai \textit{key-value pair} yang telah dituliskan sebelumnya. Sistem harus dapat mengembalikan nilai \textit{key-value pair} yang utuh dan bukan nilai \textit{fragment} yang di-\textit{encode}.
+
+Selain pengujian yang dilakukan dengan kode P-7, pengujian untuk kebutuhan fungsional F-4 juga dilakukan dengan \textit{automated testing} pada \textit{test suite} repository OmniPaxos. Pengujian yang dilakukan pada \textit{test suite} tersebut mengetes implementasi \textit{Erasure Coding Service} yang dibuat terlepas dari sistem \textit{key-value store database}.
