@@ -69,7 +69,15 @@ Fungsi-fungsi yang dikelompokkan menjadi eksekutor \textit{benchmark} utama adal
   Menjalankan seluruh rangkaian pengujian \textit{benchmark} dengan semua kombinasi variabel yang ditentukan. Fungsi ini menjalankan benchmark komprehensif dengan replikasi dan \textit{erasure coding}, read dan write, variasi \textit{bandwidth}, \textit{virtual users}, dan \textit{payload size} yang ditentukan.
 \end{enumerate}
 
-Selain fungsi-fungsi tersebut, bagian dari komponen \textit{benchmark} adalah \textit{script} Javascript yang digunakan untuk menjalankan benchmark k6. File-file terkait yang digunakan untuk menjalankan \textit{client} adalah:
+Pada scripts.js, selain fungsi-fungsi yang disebutkan sebelumnya, terdapat juga variabel-variabel untuk konfigurasi \textit{benchmark} yang akan dilakukan menggunakan run\_bench\_suite. Variabel-variabel tersebut adalah:
+
+\begin{enumerate}
+  \item virtual\_users: \textit{number array} untuk jumlah pengguna virtual yang akan digunakan dalam pengujian. Setiap pengguna virtual akan melakukan permintaan ke sistem secara bersamaan.
+  \item size: \textit{number array} untuk ukuran \textit{payload} yang akan digunakan dalam pengujian. Ukuran ini menentukan seberapa besar data yang disimpan.
+  \item bandwidth: \textit{number array} untuk pembatasan \textit{bandwidth} yang akan diterapkan pada sistem selama pengujian. Pembatasan ini digunakan untuk mensimulasikan kondisi jaringan yang berbeda-beda.
+\end{enumerate}
+
+Selain komponen yang terdapat pada scripts.js, bagian dari komponen \textit{benchmark} adalah \textit{script} Javascript yang digunakan untuk menjalankan benchmark k6. File-file terkait yang digunakan untuk menjalankan \textit{client} adalah:
 
 \begin{itemize}
   \item ./benchmark/script-write.js

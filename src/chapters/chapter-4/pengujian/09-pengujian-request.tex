@@ -1,2 +1,13 @@
-\subsubsection{Pengujian request dengan ukuran data bervariasi}
+\subsubsection{Pengujian Request dengan Ukuran Data bervariasi}
 \label{subsubsection:pengujian-request-ukuran-data}
+
+Pengujian ini mencakup fungsional F-9, yaitu bahwa sistem harus dapat mensimulasikan \textit{request} dengan ukuran data yang bervariasi. Pengujian ini dilakukan dengan kode pengujian P-11. Pengujian dilakukan dengan mengatur variabel \textit{size} dan menjalankan perintah run\_bench\_suite pada file scripts.sh yang sudah dijelaskan pada bagian \ref{subsection:setup-pengujian}.
+
+Pengujian request dengan ukuran data bervariasi dengan kode pengujian P-11 dilakukan dengan langkah-langkah sebagai berikut:
+\begin{enumerate}
+    \item Menunggu hingga sistem siap menerima \textit{request}. Konfirmasi dapat dilakukan dengan mengirim \textit{request} HTTP pada \textit{endpoint} /status dan memastikan bahwa sistem sudah memiliki \textit{leader}.
+    \item Mengatur variabel \textit{size} pada file scripts.js dengan ukuran data yang bervariasi. Variabel ini menentukan seberapa besar data yang akan disimpan dalam sistem.
+    \item Menjalankan perintah run\_bench\_suite pada file scripts.sh untuk menjalankan pengujian dengan ukuran data yang telah ditentukan.
+\end{enumerate}
+
+Hasil yang diharapkan setelah tes dijalankan adalah sistem dapat memulai \textit{benchmark} dengan \textit{request} dengan ukuran data yang bervariasi secara otomatis. Perlu dipastikan juga dalam penjalanan run\_bench\_suite tidak terdapat balikan \textit{error} dari sistem.
