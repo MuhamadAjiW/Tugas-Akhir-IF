@@ -1,2 +1,13 @@
 \subsubsection{Pengujian konfigurasi sistem}
 \label{subsubsection:pengujian-konfigurasi-sistem}
+
+Pengujian ini mencakup fungsional F-7, yaitu bahwa sistem harus dapat dikonfigurasi untuk menggunakan \textit{erasure coding} atau replikasi tanpa mengganti konfigurasi lainnya. Pengujian dilakukan dengan kode pengujian P-9. Pengujian ini mencakup proses menjalankan sistem dengan konfigurasi yang sama dengan \textit{flag} tambahan --erasure dan tanpa \textit{flag} tersebut seperti yang sudah dijelaskan pada bagian \ref{subsection:setup-pengujian}.
+
+Pengujian konfigurasi sistem dengan kode pengujian P-9 dilakukan dengan langkah-langkah sebagai berikut:
+\begin{enumerate}
+  \item Menyalakan sistem dengan konfigurasi \textit{erasure coding} menggunakan \textit{flag} --erasure. Konfirmasi dapat dilakukan dengan mengirim \textit{request} HTTP pada \textit{endpoint} /status dan memastikan bahwa sistem sudah memiliki \textit{leader}.
+  \item Mematikan sistem dengan menggunakan perintah stop\_all pada file scripts.sh.
+  \item Menyalakan ulang sistem tanpa \textit{flag} --erasure. Konfirmasi dapat dilakukan dengan mengirim \textit{request} HTTP pada \textit{endpoint} /status dan memastikan bahwa sistem sudah memiliki \textit{leader}.
+\end{enumerate}
+
+Hasil yang diharapkan setelah tes dijalankan adalah sistem dapat berjalan dengan konfigurasi \textit{erasure coding} dan juga dapat berjalan tanpa \textit{flag} tersebut. Tujuannya adalah untuk memastikan bahwa sistem dapat berjalan dengan konfigurasi yang sama dan hanya berbeda pada penggunaan \textit{erasure coding} atau replikasi.
