@@ -1,2 +1,19 @@
 \subsubsection{Pengujian penyimpanan data persistent}
 \label{subsubsection:pengujian-penyimpanan-data-persistent}
+
+Pengujian ini mencakup fungsional F-2, yaitu bahwa sistem harus dapat menyimpan data secara persistent pada \textit{key-value store database}. Pengujian dilakukan dengan kode pengujian P-3. Pengujian ini menggunakan \textit{script} pembantu oneshot.js yang sudah dijelaskan pada bagian \ref{subsubsection:implementasi-benchmark}.
+
+Pengujian penyimpanan data \textit{persistent} dengan kode pengujian P-3 dilakukan dengan menuliskan \textit{key-value pair} ke dalam sistem, kemudian mematikan sistem, menyalakan kembali sistem dengan flag --continue, dan memastikan bahwa data yang dituliskan sebelumnya masih dapat diterima. Pengujian dilakukan dengan langkah-langkah sebagai berikut:
+
+\begin{enumerate}
+  \item Menunggu hingga sistem siap menerima \textit{request}. Konfirmasi dapat dilakukan dengan mengirim \textit{request} HTTP pada \textit{endpoint} /status dan memastikan bahwa sistem sudah memiliki \textit{leader}.
+  \item Menjalankan \textit{script} oneshot.js dengan argumen \textit{write} untuk melakukan pengujian operasi dasar. \textit{Script} ini akan mengirimkan \textit{request} \textit{write} ke sistem.
+  \item Mengirim request HTTP pada \textit{endpoint} /log untuk memastikan bahwa sistem telah menerima \textit{request} \textit{write} dan telah menyimpan data yang dituliskan.
+  \item Mematikan sistem dengan menggunakan perintah stop\_all pada file scripts.sh.
+  \item Menyalakan ulang sistem dengan menggunakan perintah run\_all pada file scripts.sh dengan tambahan flag --continue. Flag ini akan membuat sistem tidak menghapus data persisten yang sudah ada sebelumnya.
+  \item Menjalankan \textit{script} oneshot.js dengan argumen \textit{read} untuk melakukan pengujian operasi dasar. \textit{Script} ini akan mengirimkan \textit{request} \textit{read} ke sistem.
+  \item Mengirim request HTTP pada \textit{endpoint} /log untuk memastikan bahwa sistem mengembalikan nilai \textit{request} \textit{read} yang sesuai dengan nilai yang disimpan pada \textit{log}.
+  \item Mengulangi pengujian dengan sistem \textit{erasure coding} dan juga dengan sistem replikasi.
+\end{enumerate}
+
+Hasil yang diharapkan setelah tes dijalankan adalah sistem mengembalikan nilai \textit{key-value pair} yang telah dituliskan sebelumnya. Untuk \textit{erasure coding}, sistem harus dapat mengembalikan nilai \textit{key-value pair} yang utuh dan bukan nilai \textit{fragment} yang di-\textit{encode}. Pengujian ini memastikan bahwa data yang disimpan pada sistem tetap ada meskipun sistem dimatikan dan dinyalakan kembali.
