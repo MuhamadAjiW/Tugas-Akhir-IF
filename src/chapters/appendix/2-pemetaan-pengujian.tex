@@ -3,15 +3,18 @@
 
 Lampiran ini menyediakan tabel yang memetakan kebutuhan fungsional dan non-fungsional ke pengujian yang dilakukan. Tujuannya adalah memudahkan pemetaan antara kebutuhan sistem dan pengujian yang dilakukan serta memastikan bahwa semua kebutuhan telah diuji.
 
-\begin{table}
-    \centering
-    \caption{Perbandingan kakas in-memory key-value store}
-    \resizebox{\textwidth}{!}{
-        \begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
-            \hline
-            \rowcolor{black!10} ID Kebutuhan & ID Pengujian & Skenario & Ekspektasi & Realita \\ \hline
+\begin{longtable}{|l|l|p{3cm}|p{3cm}|l|}
+\caption{Pemetaan Pengujian}
+\label{tab:pemetaan-pengujian} \\
+\hline
+\rowcolor{black!10} ID Kebutuhan & ID Pengujian & Skenario & Ekspektasi & Realita \\ \hline
+\endfirsthead
 
-        \end{tabular}
-    }
-    \label{tab:pemetaan-pengujian}
-\end{table}
+\caption[]{Pemetaan Pengujian (lanjutan)} \\
+\hline
+\rowcolor{black!10} ID Kebutuhan & ID Pengujian & Skenario & Ekspektasi & Realita \\ \hline
+\endhead
+
+F-1 & P-1 & Pengujian operasi \textit{write} pada sistem & Sistem dapat menyimpan \textit{key-value pair} menggunakan operasi \textit{write} & Sesuai \\ \hline
+F-1 & P-2 & Pengujian operasi \textit{read} pada sistem & Nilai \textit{value} dapat didapatkan menggunakan operasi \textit{read} & Sesuai \\ \hline
+\end{longtable}
