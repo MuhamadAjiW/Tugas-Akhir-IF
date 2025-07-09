@@ -1,9 +1,11 @@
 \subsubsection{Pengujian consistency}
 \label{subsubsection:pengujian-consistency}
 
-Pengujian ini mencakup non-fungsional NF-1, yaitu bahwa sistem harus menyediakan \textit{consistency} yang tinggi dengan \textit{request} ke \textit{node} manapun harus menghasilkan hasil yang sama. Pengujian dilakukan dengan kode pengujian P-12. Disebabkan kebutuhan ini sulit untuk diuji secara langsung, maka pengujian dilakukan dengan mendekati kebutuhan ini. Pengujian dilakukan dengan menjalankan operasi \textit{write} dan \textit{read} dengan hampir bersamaan pada beberapa \textit{node} yang berbeda. Pengujian ini dilakukan dengan memanfaatkan \textit{script} oneshot.js yang sudah dijelaskan pada bagian \ref{subsubsection:implementasi-benchmark}.
+Pengujian ini mencakup non-fungsional NF-1, yaitu bahwa sistem harus menyediakan \textit{consistency} yang tinggi dengan \textit{request} ke \textit{node} manapun harus menghasilkan hasil yang sama. Pengujian dilakukan dengan kode pengujian P-12. Disebabkan kebutuhan ini sulit untuk diuji secara langsung, maka pengujian dilakukan dengan mendekati kebutuhan ini. 
 
-Pengujian consistency dengan kode pengujian P-13 dilakukan dengan langkah-langkah sebagai berikut:
+
+Pengujian \textit{consistency} dengan kode pengujian P-13 dilakukan dengan menjalankan operasi \textit{write} dan \textit{read} dengan hampir bersamaan pada beberapa \textit{node} yang berbeda. Pengujian ini dilakukan dengan memanfaatkan \textit{script} oneshot.js yang sudah dijelaskan pada bagian \ref{subsubsection:implementasi-benchmark}. Berikut langkah-langkah yang dilakukan dalam pengujian ini:
+
 \begin{enumerate}
     \item Menunggu hingga sistem siap menerima \textit{request}. Konfirmasi dapat dilakukan dengan mengirim \textit{request} HTTP pada \textit{endpoint} /status dan memastikan bahwa sistem sudah memiliki \textit{leader}.
     \item Secara bersamaan, menjalankan \textit{script} oneshot.js dengan argumen \textit{write} dan \textit{read} pada beberapa \textit{node} yang berbeda. Hal ini dilakukan untuk mensimulasikan \textit{request} yang hampir bersamaan ke beberapa \textit{node}.

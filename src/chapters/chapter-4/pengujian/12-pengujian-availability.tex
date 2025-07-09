@@ -1,9 +1,11 @@
 \subsubsection{Pengujian availability}
 \label{subsubsection:pengujian-availability}
 
-Pengujian ini mencakup non-fungsional NF-2, yaitu bahwa sistem harus memiliki \textit{availability} yang tinggi dengan harus dapat tetap tersedia walaupun beberapa \textit{node} ada dalam kondisi gagal. Pengujian dilakukan dengan kode pengujian P-14. Pengujian dilakukan dengan menjalankan sistem, melakukan operasi \textit{write}, mematikan beberapa \textit{node}, dan melakukan operasi \textit{read} dengan beberapa \textit{node} dalam kondisi mati. Pengujian ini dilakukan dengan memanfaatkan \textit{script} oneshot.js yang sudah dijelaskan pada bagian \ref{subsubsection:implementasi-benchmark}.
+Pengujian ini mencakup non-fungsional NF-2, yaitu bahwa sistem harus memiliki \textit{availability} yang tinggi dengan harus dapat tetap tersedia walaupun beberapa \textit{node} ada dalam kondisi gagal. Pengujian dilakukan dengan kode pengujian P-14.
 
-Pengujian availability dengan kode pengujian P-14 dilakukan dengan langkah-langkah sebagai berikut:
+
+Pengujian availability dengan kode pengujian P-14 dilakukan dengan menjalankan sistem, melakukan operasi \textit{write}, mematikan beberapa \textit{node}, dan melakukan operasi \textit{read} dengan beberapa \textit{node} dalam kondisi mati. Pengujian ini dilakukan dengan memanfaatkan \textit{script} oneshot.js yang sudah dijelaskan pada bagian \ref{subsubsection:implementasi-benchmark}. Berikut langkah-langkah yang dilakukan dalam pengujian ini:
+
 \begin{enumerate}
     \item Menunggu hingga sistem siap menerima \textit{request}. Konfirmasi dapat dilakukan dengan mengirim \textit{request} HTTP pada \textit{endpoint} /status dan memastikan bahwa sistem sudah memiliki \textit{leader}.
     \item Menjalankan \textit{script} oneshot.js dengan argumen \textit{write} untuk melakukan pengujian operasi dasar. \textit{Script} ini akan mengirimkan \textit{request} \textit{write} ke sistem.

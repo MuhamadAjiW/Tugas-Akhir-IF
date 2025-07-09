@@ -3,13 +3,14 @@
 
 Pengujian ini mencakup non-fungsional NF-3, yaitu bahwa sistem harus menggunakan penyimpanan minimal untuk skalabilitas dan efisiensi biaya. Pengujian dilakukan dengan kode pengujian P-15. Disebabkan kebutuhan ini sulit untuk diuji secara langsung, pengujian ini hanya mencakup memperlihatkan jumlah penyimpanan yang digunakan oleh sistem.
 
-Pengujian penyimpanan minimal dengan kode pengujian P-15 dilakukan dengan melakukan operasi \textit{write} lalu melihat data yang disimpan pada sistem. Pengujian dilakukan langkah-langkah sebagai berikut:
+Pengujian penyimpanan minimal dengan kode pengujian P-15 dilakukan dengan melakukan operasi \textit{write} lalu melihat data yang disimpan pada sistem. Berikut langkah-langkah yang dilakukan dalam pengujian ini:
 
 \begin{enumerate}
   \item Menunggu hingga sistem siap menerima \textit{request}. Konfirmasi dapat dilakukan dengan mengirim \textit{request} HTTP pada \textit{endpoint} /status dan memastikan bahwa sistem sudah memiliki \textit{leader}.
   \item Mengirim \textit{request} HTTP pada \textit{endpoint} /write untuk menyimpan data ke dalam sistem. Data yang disimpan dapat berupa \textit{key-value pair} yang berisi informasi yang relevan untuk pengujian.
   \item Mengirim \textit{request} HTTP pada \textit{endpoint} /log untuk memastikan bahwa sistem telah menerima \textit{request} \textit{write} dan telah menyimpan data yang dituliskan.
   \item Memeriksa ukuran penyimpanan yang digunakan oleh sistem.
+  \item Mengulangi pengujian dengan sistem \textit{erasure coding} dan juga dengan sistem replikasi.
 \end{enumerate}
 
 Hasil yang diharapkan setelah tes dijalankan adalah sistem dapat menyimpan data dengan ukuran penyimpanan yang minimal. Untuk \textit{erasure coding}, log yang disimpan harus berisi \textit{key-value pair} yang telah di-\textit{encode} sesuai dengan konfigurasi yang telah ditentukan.

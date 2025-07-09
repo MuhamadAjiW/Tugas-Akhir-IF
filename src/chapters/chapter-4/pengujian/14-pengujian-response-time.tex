@@ -1,2 +1,15 @@
 \subsubsection{Pengujian response time rendah}
 \label{subsubsection:pengujian-response-time-rendah}
+
+Pengujian ini mencakup non-fungsional NF-5, yaitu bahwa sistem harus dapat memberikan \textit{response time} yang rendah untuk operasi \textit{write} dan \textit{read}. Pengujian dilakukan dengan kode pengujian P-16. Disebabkan kebutuhan ini sulit untuk diuji secara langsung, maka pengujian ini hanya mencakup memperlihatkan kinerja \textit{response time} sistem.
+
+
+Pengujian \textit{response time} minimal dengan kode pengujian P-16 dilakukan dengan menjalankan perintah run\_bench\_suite pada file scripts.sh yang sudah dijelaskan pada bagian \ref{subsection:setup-pengujian}. Berikut langkah-langkah yang dilakukan dalam pengujian ini:
+
+\begin{enumerate}
+  \item Menunggu hingga sistem siap menerima \textit{request}. Konfirmasi dapat dilakukan dengan mengirim \textit{request} HTTP pada \textit{endpoint} /status dan memastikan bahwa sistem sudah memiliki \textit{leader}.
+  \item Menjalankan perintah run\_bench\_suite pada file scripts.sh untuk menjalankan pengujian \textit{response time} dengan ukuran data yang telah ditentukan.
+  \item Mengulangi pengujian dengan sistem \textit{erasure coding} dan juga dengan sistem replikasi.
+\end{enumerate}
+
+Hasil yang diharapkan setelah tes dijalankan adalah laporan dari k6 dan hasil \textit{trace log} yang dihasilkan oleh sistem. Laporan ini menunjukkan \textit{response time} dari operasi \textit{write} dan \textit{read} yang dilakukan selama pengujian. Perlu dipastikan juga dalam penjalanan run\_bench\_suite tidak terdapat balikan \textit{error} dari sistem.

@@ -1,9 +1,10 @@
 \subsubsection{Pengujian distribusi data}
 \label{subsubsection:pengujian-distribusi-data}
 
-Pengujian ini mencakup fungsional F-5, yaitu bahwa sistem harus dapat mendistribusikan data atau sebagian data ke \textit{node} lain untuk keperluan ketahanan data. Pengujian dilakukan dengan kode pengujian P-8. Pengujian ini menggunakan \textit{script} pembantu oneshot.js yang sudah dijelaskan pada bagian \ref{subsubsection:implementasi-benchmark}. Pengujian ini dilakukan dengan menuliskan \textit{key-value pair} ke dalam sistem. Setelah itu, dilakukan melakukan \textit{request} GET ke \textit{endpoint} /fragment ke beberapa node lain untuk sistem \textit{erasure coding} dan \textit{endpoint} /read untuk sistem replikasi.
+Pengujian ini mencakup fungsional F-5, yaitu bahwa sistem harus dapat mendistribusikan data atau sebagian data ke \textit{node} lain untuk keperluan ketahanan data. Pengujian dilakukan dengan kode pengujian P-8. Pengujian ini menggunakan \textit{script} pembantu oneshot.js yang sudah dijelaskan pada bagian \ref{subsubsection:implementasi-benchmark}. 
 
-Pengujian distribusi data dengan kode pengujian P-8 dilakukan dengan langkah-langkah sebagai berikut:
+Pengujian distribusi data dengan kode pengujian P-8 dilakukan dengan menuliskan \textit{key-value pair} ke dalam sistem. Setelah itu, dilakukan melakukan \textit{request} GET ke \textit{endpoint} /fragment ke beberapa node lain untuk sistem \textit{erasure coding} dan \textit{endpoint} /read untuk sistem replikasi. Berikut langkah-langkah yang dilakukan dalam pengujian ini:
+
 \begin{enumerate}
     \item Menunggu hingga sistem siap menerima \textit{request}. Konfirmasi dapat dilakukan dengan mengirim \textit{request} HTTP pada \textit{endpoint} /status dan memastikan bahwa sistem sudah memiliki \textit{leader}.
     \item Menjalankan \textit{script} oneshot.js dengan argumen \textit{write} untuk melakukan pengujian operasi dasar. \textit{Script} ini akan mengirimkan \textit{request} \textit{write} ke sistem.

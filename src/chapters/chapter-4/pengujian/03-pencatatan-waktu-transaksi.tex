@@ -3,7 +3,7 @@
 
 Pengujian ini mencakup fungsional F-3, yaitu bahwa sistem harus dapat mencatat waktu transaksi dari \textit{request} masuk hingga operasi selesai. Pengujian dibagi dua menjadi pengujian pencatatan waktu transaksi untuk operasi \textit{write} dan operasi \textit{read}. Kode dari pengujian tersebut adalah P-4 dan P-5. Pengujian ini menggunakan \textit{script} pembantu oneshot.js yang sudah dijelaskan pada bagian \ref{subsubsection:implementasi-benchmark}.
 
-Pengujian pencatatan waktu transaksi dengan kode pengujian P-4 dilakukan dengan skenario pengguna mengirimkan \textit{request} \textit{write} ke sistem. Pengujian dilakukan dengan langkah-langkah sebagai berikut:
+Pengujian pencatatan waktu transaksi dengan kode pengujian P-4 dilakukan dengan skenario pengguna mengirimkan \textit{request} \textit{write} ke sistem. Berikut langkah-langkah yang dilakukan dalam pengujian ini:
 
 \begin{enumerate}
   \item Melakukan setup sistem menggunakan \textit{flag} --trace dan --file\_output seperti yang dijelaskan pada bagian \ref{subsection:setup-pengujian}.
@@ -22,7 +22,7 @@ Hasil yang diharapkan adalah sistem menghasilkan \textit{log} yang memiliki info
     \label{fig:log-trace}
 \end{figure}
 
-Pengujian pencatatan waktu transaksi dengan kode pengujian P-5 dilakukan dengan skenario pengguna mengirimkan \textit{request} \textit{read} ke sistem. Pengujian dilakukan dengan langkah-langkah sebagai berikut:
+Pengujian pencatatan waktu transaksi dengan kode pengujian P-5 dilakukan dengan skenario pengguna mengirimkan \textit{request} \textit{read} ke sistem. Berikut langkah-langkah yang dilakukan dalam pengujian ini:
 
 \begin{enumerate}
   \item Melakukan setup sistem menggunakan \textit{flag} --trace dan --file\_output seperti yang dijelaskan pada bagian \ref{subsection:setup-pengujian}.
