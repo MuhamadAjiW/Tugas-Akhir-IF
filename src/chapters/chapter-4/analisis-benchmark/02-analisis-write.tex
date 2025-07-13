@@ -1,7 +1,7 @@
 \subsubsection{Analisis Operasi Write}
 \label{subsubsection:analisis-operasi-write}
 
-Analisis kinerja operasi \textit{write} merupakan inti dari penilitian ini, seperti yang sudah dijelaskan pada berikut \ref{sec:rumusan-masalah}. Analisis ini bertujuan untuk memvalidasi bahwa \textit{erasure coding} dapat mengungguli replikasi dalam kondisi tertentu. Analisis kinerja operasi \textit{write} akan dibagi berdasarkan skenario yang sudah disebutkan pada bagian \ref{subsubsection:setup-benchmark}. Setiap skenario akan dianalisis berdasarkan hasil \textit{benchmark} yang telah dilakukan.
+Analisis kinerja operasi \textit{write} merupakan inti dari penilitian ini, seperti yang sudah dijelaskan pada bagian \ref{sec:rumusan-masalah}. Analisis ini bertujuan untuk memvalidasi bahwa \textit{erasure coding} dapat mengungguli replikasi dalam kondisi tertentu. Analisis kinerja operasi \textit{write} akan dibagi berdasarkan skenario yang sudah disebutkan pada bagian \ref{subsubsection:setup-benchmark}. Setiap skenario akan dianalisis berdasarkan hasil \textit{benchmark} yang telah dilakukan.
 
 \begin{enumerate}
   \item Skenario 1: Internet cepat dan \textit{payload} kecil
@@ -22,14 +22,14 @@ Analisis kinerja operasi \textit{write} merupakan inti dari penilitian ini, sepe
   
   \item Skenario 2: Internet lambat dan \textit{payload} besar
   
-  Skenario kedua dirancang sebagai kondisi ekstrem yang berlawanan dengan skenario pertama dengan keuntungan pada \textit{erasure coding}. Hasil \textit{benchmark} pada skenario ini menunjukkan pembalikan kinerja dramatis dengan sistem berbasis \textit{erasure coding} secara konsisten mengungguli replikasi dengan \textit{response time} yang lebih rendah untuk \textit{payload} yang diuji. Gambar \ref{fig:write-lgload-slownet} menunjukkan perbandingan kinerja operasi \textit{write} pada skenario ini.
+  Skenario kedua dirancang sebagai kondisi ekstrem yang berlawanan dengan skenario pertama dengan keuntungan pada \textit{erasure coding}. Hasil \textit{benchmark} pada skenario ini menunjukkan pembalikan kinerja dramatis dengan sistem berbasis \textit{erasure coding} secara konsisten mengungguli replikasi dengan \textit{response time} yang lebih rendah untuk \textit{payload} yang diuji. Gambar \ref{fig:write-bigload-slownet} menunjukkan perbandingan kinerja operasi \textit{write} pada skenario ini.
 
   \begin{figure}[ht]
       \centering
-      \includegraphics[width=0.8\textwidth]{resources/chapter-4/write_lgload_slownet.png}
+      \includegraphics[width=0.8\textwidth]{resources/chapter-4/write_bigload_slownet.png}
 
       \caption{Kinerja Write pada Internet Lambat dan Payload Besar}
-      \label{fig:write-lgload-slownet}
+      \label{fig:write-bigload-slownet}
   \end{figure}
 
   Hasil dari skenario ini mengkonfirmasi bahwa \textit{erasure coding} dapat mengungguli replikasi dalam kondisi tertentu, yaitu dalam skenario dengan \textit{bandwidth} rendah dan untuk \textit{payload} yang besar. Dalam kondisi ini, waktu transfer data menjadi faktor dominan dalam \textit{response time}. Proses \textit{erasure coding} walaupun lebih kompleks, dapat memberikan \textit{latensi} lebih cepat karena mengurangi jumlah data yang harus ditransfer serta dioperasikan. Lingkungan seperti ini umum ditemukan pada aplikasi yang beroperasi dengan sumber daya jaringan terbatas, seperti aplikasi \textit{internet of things} yang tersebar di area luas, \textit{edge computing}, atau pencadangan data melalui koneksi internet yang lambat. 
@@ -43,55 +43,55 @@ Analisis kinerja operasi \textit{write} merupakan inti dari penilitian ini, sepe
     \includegraphics[width=0.8\textwidth]{resources/chapter-4/write_bigload_avgnet.png}
 
     \caption{Kinerja Write pada Internet Menengah dan Payload Besar}
-    \label{fig:write-lgload-avgnet}
+    \label{fig:write-bigload-avgnet}
   \end{figure}
 
-  Skenario ini menggunakan kombinasi \textit{payload} dan \textit{bandwidth} yang beragam sehingga memberikan diagram dengan grafik yang lebih kompleks. Gambar \ref{fig:write-lgload-avgnet} menunjukkan hasil \textit{benchmark} untuk skenario ini. Dari grafik tersebut, terlihat bahwa keunggulan \textit{erasure coding} semakin berkurang seiring dengan peningkatan \textit{bandwidth} dan penurunan ukuran \textit{payload}. Pada titik tertentu, sistem berbasis replikasi mulai mengungguli sistem berbasis \textit{erasure coding}. Titik impas terjadi ketika penghematan waktu dari transfer data yang lebih sedikit pada \textit{erasure coding} setara dengan penambahan waktu dari proses komputasi \textit{encoding}.
+  Skenario ini menggunakan kombinasi \textit{payload} dan \textit{bandwidth} yang beragam sehingga memberikan diagram dengan grafik yang lebih kompleks. Gambar \ref{fig:write-bigload-avgnet} menunjukkan hasil \textit{benchmark} untuk skenario ini. Dari grafik tersebut, terlihat bahwa keunggulan \textit{erasure coding} semakin berkurang seiring dengan peningkatan \textit{bandwidth} dan penurunan ukuran \textit{payload}. Pada titik tertentu, sistem berbasis replikasi mulai mengungguli sistem berbasis \textit{erasure coding}. Titik impas terjadi ketika penghematan waktu dari transfer data yang lebih sedikit pada \textit{erasure coding} setara dengan penambahan waktu dari proses komputasi \textit{encoding}.
 
   \begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\textwidth]{resources/chapter-4/write_bigload_avgnet_heatmap.png}
 
     \caption{Heatmap Write pada Internet Menengah dan Payload Besar}
-    \label{fig:write-lgload-avgnet-heatmap}
+    \label{fig:write-bigload-avgnet-heatmap}
   \end{figure}
 
-  Untuk memudahkan visualisasi, gambar \ref{fig:write-lgload-avgnet-heatmap} menunjukkan rasio kinerja dari hasil \textit{benchmark} terhadap \textit{payload} dan \textit{bandwidth} yang digunakan dalam persen. Warna biru dan nilai negatif menunjukkan keunggulan sistem berbasis \textit{erasure coding}, sedangkan warna merah dan nilai positif menunjukkan keunggulan sistem berbasis replikasi. Titik impas terlihat pada area transisi antara warna biru dan merah.  Kode yang digunakan untuk menghasilkan gambar ini dapat dilihat pada lampiran \ref{appendix:write-benchmark-code}. Transisi ini dapat dilihat pada gambar tersebut, namun tidak didapat titik yang tepat.
+  Untuk memudahkan visualisasi, gambar \ref{fig:write-bigload-avgnet-heatmap} menunjukkan rasio kinerja dari hasil \textit{benchmark} terhadap \textit{payload} dan \textit{bandwidth} yang digunakan dalam persen. Warna biru dan nilai negatif menunjukkan keunggulan sistem berbasis \textit{erasure coding}, sedangkan warna merah dan nilai positif menunjukkan keunggulan sistem berbasis replikasi. Titik impas terlihat pada area transisi antara warna biru dan merah.  Kode yang digunakan untuk menghasilkan gambar ini dapat dilihat pada lampiran \ref{appendix:write-benchmark-code}. Transisi ini dapat dilihat pada gambar tersebut, namun tidak didapat titik yang tepat.
 
-  Untuk menggambarkan perolehan titik impas, dapat dibuat diagram garis yang menunjukkan rata-rata \textit{response time} sistem berbasis \textit{erasure coding} dan replikasi terhadap \textit{bandwidth} dan ukuran \textit{payload}. Gambar \ref{fig:write-lgload-avgnet-line} menunjukkan diagram garis tersebut. Diagram ini memberikan gambaran visual yang jelas tentang bagaimana kinerja kedua sistem berubah seiring dengan variasi \textit{bandwidth} dan ukuran \textit{payload}.
+  Untuk menggambarkan perolehan titik impas, dapat dibuat diagram garis yang menunjukkan rata-rata \textit{response time} sistem berbasis \textit{erasure coding} dan replikasi terhadap \textit{bandwidth} dan ukuran \textit{payload}. Gambar \ref{fig:write-bigload-avgnet-line} menunjukkan diagram garis tersebut. Diagram ini memberikan gambaran visual yang jelas tentang bagaimana kinerja kedua sistem berubah seiring dengan variasi \textit{bandwidth} dan ukuran \textit{payload}.
 
   \begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\textwidth]{resources/chapter-4/write_bigload_avgnet_line.png}
 
     \caption{Diagram Garis Write pada Internet Menengah dan Payload Besar}
-    \label{fig:write-lgload-avgnet-line}
+    \label{fig:write-bigload-avgnet-line}
   \end{figure}
 
   
-  Namun, untuk mendapatkan nilai yang tepat untuk titik impas antara sistem berbasis \textit{erasure coding} dan sistem berbasis replikasi, perlu dilakukan analisis lebih lanjut. Analisis untuk mendapatkan titik impas dilakukan secara menurunkan hasil \textit{benchmark} yang sudah dilakukan menjadi fungsi menggunakan pendekatan regresi. Fungsi ini kemudian digunakan untuk memperkirakan titik impas. Sebelum melakukan regresi, perlu dilihat \textit{scatter plot} dari hasil \textit{benchmark} sebagai gambaran visual relasi antara \textit{bandwidth}, ukuran \textit{payload}, dan \textit{response time}. Gambar \ref{fig:write-lgload-avgnet-scatter} menunjukkan \textit{scatter plot} tersebut.
+  Namun, untuk mendapatkan nilai yang tepat untuk titik impas antara sistem berbasis \textit{erasure coding} dan sistem berbasis replikasi, perlu dilakukan analisis lebih lanjut. Analisis untuk mendapatkan titik impas dilakukan secara menurunkan hasil \textit{benchmark} yang sudah dilakukan menjadi fungsi menggunakan pendekatan regresi. Fungsi ini kemudian digunakan untuk memperkirakan titik impas. Sebelum melakukan regresi, perlu dilihat \textit{scatter plot} dari hasil \textit{benchmark} sebagai gambaran visual relasi antara \textit{bandwidth}, ukuran \textit{payload}, dan \textit{response time}. Gambar \ref{fig:write-bigload-avgnet-scatter} menunjukkan \textit{scatter plot} tersebut.
 
   \begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\textwidth]{resources/chapter-4/write_bigload_avgnet_scatterplot.png}
 
     \caption{Scatter Plot Write pada Internet Menengah dan Payload Besar}
-    \label{fig:write-lgload-avgnet-scatter}
+    \label{fig:write-bigload-avgnet-scatter}
   \end{figure}
 
   Dari \textit{scatter plot} tersebut, terlihat bahwa hubungan dari \textit{bandwidth} dan ukuran \textit{payload} terhadap \textit{response time} tidak linear. Data yang dimiliki hanya sedikit, yaitu 25 data, sehingga regresi yang dilakukan harus mempertimbangkan risiko \textit{overfitting} yang tinggi. Selain itu, disebabkan lingkungan eksperimen dilakukan pada komputer pribadi, \textit{noise} dari eksperimen dapat mempengaruhi hasil. Dengan mempertimbangkan semua hal tersebut, regresi dilakukan dengan model \textit{ridge regression}. Model ini dipilih karena dapat menangani data yang memiliki banyak \textit{noise} serta mengurangi risiko \textit{overfitting} dengan menambahkan bias pada model regresi.
 
-  Model \textit{ridge regression} gabungan dari \textit{bandwidth} dan \textit{payload} terhadap \textit{response time} menghasilkan model tiga dimensi seperti yang ditunjukkan pada gambar \ref{fig:write-lgload-avgnet-regression}.
+  Model \textit{ridge regression} gabungan dari \textit{bandwidth} dan \textit{payload} terhadap \textit{response time} menghasilkan model tiga dimensi seperti yang ditunjukkan pada gambar \ref{fig:write-bigload-avgnet-regression}.
 
   \begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\textwidth]{resources/chapter-4/write_bigload_avgnet_regression.png}
 
     \caption{Model Regresi Operasi Write}
-    \label{fig:write-lgload-avgnet-regression}
+    \label{fig:write-bigload-avgnet-regression}
   \end{figure}
 
-  Dari model regresi yang dilakukan, kurva pendekatan titik impas antara sistem berbasis \textit{erasure coding} dan sistem berbasis replikasi dapat dihasilkan dengan mencari perpotongan dari model regresi tersebut. Perpotongan didapat dengan menggunakan selisih dan selisih bernilai nol merupakan titik impas. Gambar \ref{fig:write-lgload-avgnet-boundary} menunjukkan analisis titik impas yang dilakukan dengan menggunakan model regresi. Dari perpotongan tersebut dapat dimodelkan menjadi persamaan kurva matematis yang dapat digunakan untuk memperkirakan titik impas pada \textit{bandwidth} dan ukuran \textit{payload} tertentu dengan nilai di atas kurva berarti sistem berbasis \textit{erasure coding} mengungguli sistem berbasis replikasi, dan nilai di bawah kurva berarti sebaliknya.
+  Dari model regresi yang dilakukan, kurva pendekatan titik impas antara sistem berbasis \textit{erasure coding} dan sistem berbasis replikasi dapat dihasilkan dengan mencari perpotongan dari model regresi tersebut. Perpotongan didapat dengan menggunakan selisih dan selisih bernilai nol merupakan titik impas. Gambar \ref{fig:write-bigload-avgnet-boundary} menunjukkan analisis titik impas yang dilakukan dengan menggunakan model regresi. Dari perpotongan tersebut dapat dimodelkan menjadi persamaan kurva matematis yang dapat digunakan untuk memperkirakan titik impas pada \textit{bandwidth} dan ukuran \textit{payload} tertentu dengan nilai di atas kurva berarti sistem berbasis \textit{erasure coding} mengungguli sistem berbasis replikasi, dan nilai di bawah kurva berarti sebaliknya.
 
 
   \begin{figure}[ht]
@@ -99,9 +99,9 @@ Analisis kinerja operasi \textit{write} merupakan inti dari penilitian ini, sepe
     \includegraphics[width=\textwidth]{resources/chapter-4/write_bigload_avgnet_boundary.png}
 
     \caption{Analisis Titik Impas pada Operasi Write}
-    \label{fig:write-lgload-avgnet-boundary}
+    \label{fig:write-bigload-avgnet-boundary}
   \end{figure}
 
-  Kode yang digunakan untuk melakukan regresi ini dapat dilihat pada lampiran \ref{appendix:write-regression-code}. Perlu diketahui juga bahwa model regresi ini tidak mempertimbangkan faktor lain seperti kecepatan komputasi dari sistem yang digunakan, kecepatan akses memori, kecepatan akses disk, ataupun faktor lain yang dapat mempengaruhi \textit{response time}. Model ini hanya valid pada kondisi dan lingkungan eksperimen yang dilakukan. Namun, model ini memberikan gambaran terkait kinerja \textit{erasure codng} dan replikasi dalam kondisi yang sudah disebutkan sebelumnya.
+  Kode yang digunakan untuk melakukan regresi ini dapat dilihat pada lampiran \ref{appendix:write-regression-code}. Perlu diketahui juga bahwa model regresi ini tidak mempertimbangkan faktor lain seperti kecepatan komputasi dari sistem yang digunakan, kecepatan akses memori, kecepatan akses disk, ataupun faktor lain yang dapat mempengaruhi \textit{response time}. Model ini hanya valid pada kondisi dan lingkungan eksperimen yang dilakukan.
 
 \end{enumerate}
