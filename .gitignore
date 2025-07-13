@@ -30,3 +30,4 @@ __pycache__
 references/*
 !/references/paper
 !/references/paper/**/*.pdf
+!/src/resources/**/*.pdf
