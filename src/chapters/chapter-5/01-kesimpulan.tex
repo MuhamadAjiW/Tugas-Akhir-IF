@@ -1,2 +1,11 @@
 \section{Kesimpulan}
 \label{sec:kesimpulan}
+
+Penilitian ini telah menganalisis kinerja \textit{erasure coding} pada \textit{database} terdsitribusi dengan membandingkannya dengan sistem replikasi. Berdasarkan hasil analisis yang sudah dipaparkan, berikut adalah kesimpulan pada penilitian ini:
+
+\begin{enumerate}
+  \item Sebuah operasi pada \textit{database} terdistribusi dengan sistem berbasis \textit{erasure coding} memiliki \textit{threshold} ketika \textit{response time} dari sistem lebih rendah dibandingkan \textit{database} serupa yang menggunakan sistem replikasi. Berdasarkan hasil analisis, untuk operasi \textit{write}, \textit{threshold} tersebut adalah ketika \textit{bandwidth} dan \textit{payload size} dari operasi \textit{write} cukup besar. Namun, tidak terdapat \textit{threashold} yang serupa untuk operasi \textit{read} dengan \textit{erasure coding} tidak pernah mengungguli kinerja replikasi.
+  \item Penggunaan \textit{erasure coding} untuk \textit{use case} sebagai \textit{distributed key-value store database} yang memiliki karakteristik data kecil membuat \textit{erasure coding} menjadi solusi yang tidak sesuai untuk \textit{use case tersebut}. Hal ini diiringi dengan kemajuan teknologi jaringan yang membuat \textit{bandwidth} dan latensi jaringan menjadi lebih cepat.
+  \item Walaupun penggunaan \textit{erasure coding} tidak sesuai untuk \textit{use case} sebagai \textit{distributed key-value store database}, \textit{erasure coding} masih dapat digunakan untuk \textit{use case} lain yang memiliki karakteristik data besar.
+\end{enumerate}
+
