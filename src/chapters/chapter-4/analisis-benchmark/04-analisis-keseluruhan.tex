@@ -1,2 +1,20 @@
 \subsubsection{Analisis Keseluruhan}
 \label{subsubsection:analisis-keseluruhan}
+
+Setelah melakukan analisis terhadap dua operasi \textit{write} dan \textit{read}, bagian analisis ini menyatukan temuan dari evaluasi kinerja operasi tersebut. Tujuannya menyajikan gambaran keseluruhan mengenai \textit{trade-off} fundamental antara \textit{erasure coding} dan replikasi.
+
+Hasil penelitian ini menunjukkan bahwa untuk kedua sistem:
+\begin{itemize}
+  \item \textit{Erasure Coding}
+  
+  Sistem berbasis \textit{erasure coding} selain menawarkan efisiensi penyimpanan yang superior dibandingkan replikasi, juga memiliki keunggulan dalam hal latensi operasi \textit{write} pada beban kerja tertentu. Beban kerja yang dimaksud adalah ketika ukuran data cukup besar dan \textit{bandwidth} jaringan yang tersedia terbatas.
+
+  \item Replikasi
+  
+  Sistem berbasis replikasi menawarkan kinerja operasi \textit{write} yang lebih baik pada beban kerja dengan ukuran data kecil dan \textit{bandwidth} jaringan yang tinggi. Selain itu, replikasi juga unggul dalam operasi \textit{read}. Perlu diperhatikan bahwa replikasi membutuhkan biaya penyimpanan yang lebih tinggi dibandingkan \textit{erasure coding}.
+
+\end{itemize}
+
+Dalam penggunaannya \textit{erasure coding} dan replikasi memiliki kelebihan dan kekurangan masing-masing. Penggunaan \textit{erasure coding} lebih cocok untuk sistem yang memprioritaskan efisiensi penyimpanan dan toleransi kegagalan, sedangkan replikasi lebih sesuai untuk sistem yang mengutamakan kinerja operasi \textit{read} dan \textit{write} pada beban kerja dengan ukuran data kecil.
+
+Pemilihan penggunaan kedua sistem perlu mempertimbangkan karakteristik beban kerja, rasio baca dan tulis, ukuran data, dan infrastruktur jaringan yang tersedia. Dalam \textit{key-value store} yang lazim beroperasi dengan data kecil dan menggunakan infrastruktur \textit{data center} ber-\textit{bandwidth} tinggi, replikasi akan menjadi pilihan yang lebih baik. Namun, untuk sistem yang menangani data besar dan memerlukan efisiensi penyimpanan, dan berinfrastruktur terbatas, \textit{erasure coding} akan lebih diuntungkan.
