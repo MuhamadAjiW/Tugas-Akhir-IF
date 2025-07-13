@@ -8,14 +8,14 @@ Pengaturan variabel yang digunakan dalam \textit{benchmark} dilakukan pada file 
   
   Skenario ini menggambarkan kondisi ekstrim berlawanan dengan hipotesis yang berpihak pada kinerja replikasi. Skenario ini digunakan untuk menguji apakah sistem \textit{erasure coding} masih dapat bersaing dengan sistem replikasi serta melihat keuntungan dari penggunaan replikasi dalam kondisi tersebut. 
 
-  \item Internet rata-rata dan \textit{payload} umum
+  \item Internet lambat dan \textit{payload} besar
+  
+  Skenario ini menggambarkan kondisi ekstrim berlawanan dengan hipotesis yang berpihak pada kinerja \textit{erasure coding}. Skenario ini digunakan untuk menguji apakah sistem replikasi masih dapat bersaing dengan sistem \textit{erasure coding} serta melihat keuntungan dari penggunaan \textit{erasure coding} dalam kondisi tersebut.
+
+  \item Internet menengah dan \textit{payload} besar
   
   Skenario ini bertujuan untuk mencari kondisi perbatasan antara kinerja \textit{erasure coding} dan replikasi. Tujuannya adalah untuk mencari poin ketika sistem \textit{erasure coding} mulai mengungguli sistem replikasi ataupun sebaliknya. Skenario ini juga diharapkan dapat memberikan gambaran umum pengaruh variabel-variabel yang ada terhadap kinerja sistem.
   
-  \item Internet lambat dan \textit{payload} umum
-  
-  Skenario ini menggambarkan kondisi ekstrim berlawanan dengan hipotesis yang berpihak pada kinerja \textit{erasure coding}. Skenario ini digunakan untuk menguji apakah sistem replikasi masih dapat bersaing dengan sistem \textit{erasure coding} serta melihat keuntungan dari penggunaan \textit{erasure coding} dalam kondisi tersebut .
-
 \end{enumerate}
 
 Dari skenario-skenario tersebut, diturunkan beberapa variabel yang akan digunakan pada \textit{benchmark}. Menggunakan sistem \textit{benchmark} yang telah dibuat, variabel ini akan dijalankan untuk semua kombinasi yang dapat dibentuk. Variabel-variabel tersebut dapat dilihat pada tabel \ref{tab:variabel-benchmark}.
@@ -28,9 +28,11 @@ Dari skenario-skenario tersebut, diturunkan beberapa variabel yang akan digunaka
     \hline
     \textbf{Skenario} & \textbf{Ukuran \textit{Payload}} & \textbf{Bandwidth} \\ \hline
     1 & 1024 B & 10 Gbps \\ \hline
-    2 & 200 KB, 400 KB, 600 KB, 800 KB, 1 MB & 10 Mbps, 25 Mbps, 40 Mbps, 55 Mbps, 70 Mbps \\ \hline
-    3 & 200 KB, 400 KB, 600 KB, 800 KB, 1 MB & 256 kbps \\ \hline
+    2 & 200 KB, 400 KB, 600 KB, 800 KB, 1 MB & 1 Mbps \\ \hline
+    3 & 200 KB, 400 KB, 600 KB, 800 KB, 1 MB & 10 Mbps, 25 Mbps, 40 Mbps, 55 Mbps, 70 Mbps \\ \hline
   \end{tabular}
 \end{table}
 
 Terkait ukuran \textit{payload}, nilai yang diambil adalah berdasarkan ukuran \textit{payload} yang umum digunakan pada aplikasi \textit{key-value store} seperti yang dijelaskan pada bagian \ref{sec:key-value-database}. Penambahan linear dilakukan untuk mempermudah analisis data dan mendapatkan pola yang lebih jelas. Selain itu, untuk bandwidth, nilai yang diambil adalah berdasarkan kecepatan internet yang umum digunakan di Indonesia lalu dilakukan penambahan linear dengan alasan yang sama. Nilai-nilai tersebut diambil dari data yang tersedia pada situs Speedtest Global Index\footnote{\url{https://www.speedtest.net/global-index}}.
+
+Dalam sekali \textit{benchmark}, \textit{client} akan dijalankan selama 180 detik untuk melakukan \textit{request} secara terus menerus. Hal ini dilakukan untuk mendapat data yang lebih akurat dan mengurangi pengaruh \textit{outlier} yang mungkin terjadi. Namun, disebabkan lingkungan yang digunakan dalam \textit{benchmark} merupakan komputer pribadi, maka hasil \textit{benchmark} tidak bebas dari gangguan eksternal sehingga hasil dapat tidak konsisten dalam beberapa percobaan.
