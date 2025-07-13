@@ -5,7 +5,7 @@
 \begin{center}
   \center
   \begin{singlespace}
-    \large\bfseries\MakeUppercase{::TODO: fill::}
+    \large\bfseries\MakeUppercase{Erasure Coding Performance Analysis Against Replication on Distributed Key-Value Store Database}
     
     \normalfont\normalsize
     By:
@@ -17,9 +17,11 @@
 
 \begin{singlespace}
   \small
-  ::TODO: fill::
+  Erasure coding algorithms can reduce the amount of data operated in a system. With frequent I/O operation being a major factor in distributed systems performance, erasure coding becomes an attractive solution to improve storage efficiency and system performance. This research aims to analyze the performance of erasure coding compared to replication on distributed key-value store databases, specifically on the system's response time in write and read operations.
 
-  \textbf{\textit{Keywords: ::TODO: fill:: }}
+  To achieve this goal, a distributed database system supporting both redundancy mechanisms is implemented, along with a benchmarking system that can vary network bandwidth and payload size parameters. The research results show that erasure coding has a threshold condition when the response time is lower than replication in write operation. This condition occurs when the network bandwidth is limited and the payload size is sufficiently large. However, replication consistently outperforms erasure coding in read operations due to the complexity of data reconstruction. The use of erasure coding is not suitable for distributed key-value store databases that operate with small data at high-capacity data centers. However, erasure coding may still be considered for systems handling large data with limited network infrastructure and systems that require high storage efficiency.
+
+  \textbf{\textit{Keywords: Distributed System, Erasure Coding, Replication, Database, Key-Value Store }}
 \end{singlespace}
 \clearpage
 
