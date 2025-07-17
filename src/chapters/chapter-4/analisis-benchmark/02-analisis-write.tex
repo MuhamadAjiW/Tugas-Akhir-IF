@@ -56,7 +56,7 @@ Analisis kinerja operasi \textit{write} merupakan inti dari penilitian ini, sepe
     \label{fig:write-bigload-avgnet-heatmap}
   \end{figure}
 
-  Untuk memudahkan visualisasi, gambar \ref{fig:write-bigload-avgnet-heatmap} menunjukkan rasio kinerja dari hasil \textit{benchmark} terhadap \textit{payload} dan \textit{bandwidth} yang digunakan dalam persen. Warna biru dan nilai negatif menunjukkan keunggulan sistem berbasis \textit{erasure coding}, sedangkan warna merah dan nilai positif menunjukkan keunggulan sistem berbasis replikasi. Titik impas terlihat pada area transisi antara warna biru dan merah.  Kode yang digunakan untuk menghasilkan gambar ini dapat dilihat pada lampiran \ref{appendix:write-benchmark-code}. Transisi ini dapat dilihat pada gambar tersebut, namun tidak didapat titik yang tepat.
+  Untuk memudahkan visualisasi, gambar \ref{fig:write-bigload-avgnet-heatmap} menunjukkan rasio kinerja dari hasil \textit{benchmark} terhadap \textit{payload} dan \textit{bandwidth} yang digunakan dalam persen. Warna biru dan nilai negatif menunjukkan keunggulan sistem berbasis \textit{erasure coding}, sedangkan warna merah dan nilai positif menunjukkan keunggulan sistem berbasis replikasi. Titik impas terlihat pada area transisi antara warna biru dan merah.  Kode yang digunakan untuk menghasilkan gambar ini dapat dilihat pada repository Github hasil implementasi \footnote{\url{https://github.com/MuhamadAjiW/DistKV-Erasure-Coding/blob/main/benchmark/benchmark_k6_write.ipynb}}. Transisi ini dapat dilihat pada gambar tersebut, namun tidak didapat titik yang tepat.
 
   Untuk menggambarkan perolehan titik impas, dapat dibuat diagram garis yang menunjukkan rata-rata \textit{response time} sistem berbasis \textit{erasure coding} dan replikasi terhadap \textit{bandwidth} dan ukuran \textit{payload}. Gambar \ref{fig:write-bigload-avgnet-line} menunjukkan diagram garis tersebut. Diagram ini memberikan gambaran visual yang jelas tentang bagaimana kinerja kedua sistem berubah seiring dengan variasi \textit{bandwidth} dan ukuran \textit{payload}.
 
@@ -102,6 +102,6 @@ Analisis kinerja operasi \textit{write} merupakan inti dari penilitian ini, sepe
     \label{fig:write-bigload-avgnet-boundary}
   \end{figure}
 
-  Kode yang digunakan untuk melakukan regresi ini dapat dilihat pada lampiran \ref{appendix:write-regression-code}. Perlu diketahui juga bahwa model regresi ini tidak mempertimbangkan faktor lain seperti kecepatan komputasi dari sistem yang digunakan, kecepatan akses memori, kecepatan akses disk, ataupun faktor lain yang dapat mempengaruhi \textit{response time}. Model ini hanya valid pada kondisi dan lingkungan eksperimen yang dilakukan.
+  Kode yang digunakan untuk melakukan regresi ini dapat dilihat pada repository Github hasil implementasi \footnote{\url{https://github.com/MuhamadAjiW/DistKV-Erasure-Coding/blob/main/benchmark/benchmark_regression.ipynb}}. Perlu diketahui juga bahwa model regresi ini tidak mempertimbangkan faktor lain seperti kecepatan komputasi dari sistem yang digunakan, kecepatan akses memori, kecepatan akses disk, ataupun faktor lain yang dapat mempengaruhi \textit{response time}. Model ini hanya valid pada kondisi dan lingkungan eksperimen yang dilakukan.
 
 \end{enumerate}
