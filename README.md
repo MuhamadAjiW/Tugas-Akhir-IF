@@ -5,7 +5,7 @@ Program Studi Teknik Informatika
 
 **Penulis:** Muhamad Aji Wibisono (13521095)  
 **Pembimbing:** Achmad Imam Kistijantoro, S.T, M.Sc., Ph.D.  
-**Tanggal:** 13 Juli 2025
+**Tanggal:** 17 Juli 2025
 
 ## Deskripsi
 
