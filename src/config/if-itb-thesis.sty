@@ -73,6 +73,12 @@
 \usepackage[none]{hyphenat}
 \usepackage{ragged2e}
 
+% Table alignment settings - force left alignment and smaller font for all table content
+\AtBeginEnvironment{tabular}{\RaggedRight\small}
+\AtBeginEnvironment{longtable}{\RaggedRight\small}
+\AtBeginEnvironment{tabularx}{\RaggedRight\small}
+\AtBeginEnvironment{table}{\RaggedRight\small}
+
 \graphicspath{{resources/}}   % letak direktori penyimpanan gambar
 
 % Setting daftar lampiran

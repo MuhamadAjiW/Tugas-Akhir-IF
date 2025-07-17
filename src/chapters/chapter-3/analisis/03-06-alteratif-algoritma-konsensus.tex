@@ -3,6 +3,9 @@
 
 Terdapat beberapa algoritma konsensus yang dapat digunakan untuk mencapai konsistensi data antar-\textit{Node} seperti yang dijelaskan pada bagian \ref{subsection:konsensus}. Tabel \ref{tab:consensus-algorithm} menunjukkan perbandingan beberapa algoritma konsensus yang dipertimbangkan untuk digunakan dalam eksperimen ini.
 
+OmniPaxos dipilih sebagai algoritma konsensus karena menawarkan efisiensi dan fleksibilitas yang lebih baik dibandingkan dengan algoritma konsensus lainnya. Desain modular OmniPaxos memungkinkan modifikasi mekanisme replikasi menggunakan \textit{erasure coding} tanpa mengubah bagian konsensus. Selain itu, OmniPaxos juga dikembangkan dengan bahasa Rust yang sesuai dengan kebutuhan eksperimen ini. Meskipun masih dalam tahap penelitian awal, OmniPaxos menunjukkan potensi yang besar untuk digunakan dalam sistem terdistribusi yang membutuhkan konsistensi tinggi dan toleransi terhadap partisi jaringan parsial.
+
+
 \begin{table}[ht]
     \centering
     \caption{Perbandingan Algoritma Konsensus}
@@ -18,5 +21,3 @@ Terdapat beberapa algoritma konsensus yang dapat digunakan untuk mencapai konsis
     }
     \label{tab:consensus-algorithm}
 \end{table}
-
-OmniPaxos dipilih sebagai algoritma konsensus karena menawarkan efisiensi dan fleksibilitas yang lebih baik dibandingkan dengan algoritma konsensus lainnya. Desain modular OmniPaxos memungkinkan modifikasi mekanisme replikasi menggunakan \textit{erasure coding} tanpa mengubah bagian konsensus. Selain itu, OmniPaxos juga dikembangkan dengan bahasa Rust yang sesuai dengan kebutuhan eksperimen ini. Meskipun masih dalam tahap penelitian awal, OmniPaxos menunjukkan potensi yang besar untuk digunakan dalam sistem terdistribusi yang membutuhkan konsistensi tinggi dan toleransi terhadap partisi jaringan parsial.

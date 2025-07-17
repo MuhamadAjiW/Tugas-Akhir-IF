@@ -4,6 +4,12 @@
 Berdasarkan perbandingan alternatif yang dilakukan pada bagian \ref{subsubsection:pemilihan-algoritma-konsensus}, algoritma konsensus yang dipilih adalah OmniPaxos. Disebabkan OmniPaxos pada awalnya dikembangkan dalam bahasa pemrograman Rust dan bersifat \textit{open source}, maka implementasi algoritma konsensus ini dilakukan dengan menggunakan melakukan \textit{fork} pada pustaka OmniPaxos yang telah tersedia.
 
 Pustaka OmniPaxos yang dimodifikasi untuk keperluan implementasi sistem ini merupakan OmniPaxos versi 0.2.2. Dalam implementasinya, OmniPaxos memiliki beberapa jenis pesan yang digunakan untuk komunikasi antar \textit{node} dalam \textit{cluster}. Pesan-pesan ini mencakup pesan untuk fase \textit{prepare}, \textit{accept}, dan \textit{commit} yang merupakan bagian dari algoritma konsensus OmniPaxos. Tabel \ref{tab:omnipaxos-messages} menunjukkan jenis-jenis pesan yang digunakan dalam omnipaxos serta deskripsi penggunaan dari pesan tersebut. Pesan-pesan ini berbentuk \textit{binary} dan menggunakan pustaka serde untuk \textit{serialization}.
+Sesuai dengan perancangan pada bagian \ref{subsubsection:detail-komponen-konsensus}, perubahan yang dilakukan pada pustaka ini mencakup integrasi dari implementasi \textit{erasure coding}. Berikut adalah penjelasan mengenai modifikasi pada pustaka OmniPaxos:
+
+\begin{enumerate}
+  \item \textit{OmniPaxosEC}: Kelas baru yang merupakan modifikasi dari kelas OmniPaxos. Kelas ini mengimplementasikan logika konsensus dengan dukungan \textit{erasure coding} dengan distribusi data yang telah di-\textit{erasure coding} ke beberapa \textit{node}. 
+  \item \textit{Erasure Coding Service}: Kelas tambahan yang bertanggung jawab untuk mengelola proses \textit{erasure coding} pada data yang disimpan. Implementasi ini menggunakan algoritma Reed-Solomon untuk melakukan \textit{erasure coding} dan rekonstruksi data seperti yang sudah dijelaskan pada bagian \ref{subsubsection:pemilihan-algoritma-erasure-coding}. Implementasi ini dilakukan dengan menggunakan pustaka Rust reed-solomon-erasure versi 6.0 dan menggunakan fitur simd-accel. Pustaka ini digunakan dalam kelas baru \textit{OmniPaxosEC}.
+\end{enumerate}
 
 \begin{table}[h]
     \centering
@@ -28,13 +34,6 @@ Pustaka OmniPaxos yang dimodifikasi untuk keperluan implementasi sistem ini meru
     }
     \label{tab:omnipaxos-messages}
 \end{table}
-
-Sesuai dengan perancangan pada bagian \ref{subsubsection:detail-komponen-konsensus}, perubahan yang dilakukan pada pustaka ini mencakup integrasi dari implementasi \textit{erasure coding}. Berikut adalah penjelasan mengenai modifikasi pada pustaka OmniPaxos:
-
-\begin{enumerate}
-  \item \textit{OmniPaxosEC}: Kelas baru yang merupakan modifikasi dari kelas OmniPaxos. Kelas ini mengimplementasikan logika konsensus dengan dukungan \textit{erasure coding} dengan distribusi data yang telah di-\textit{erasure coding} ke beberapa \textit{node}. 
-  \item \textit{Erasure Coding Service}: Kelas tambahan yang bertanggung jawab untuk mengelola proses \textit{erasure coding} pada data yang disimpan. Implementasi ini menggunakan algoritma Reed-Solomon untuk melakukan \textit{erasure coding} dan rekonstruksi data seperti yang sudah dijelaskan pada bagian \ref{subsubsection:pemilihan-algoritma-erasure-coding}. Implementasi ini dilakukan dengan menggunakan pustaka Rust reed-solomon-erasure versi 6.0 dan menggunakan fitur simd-accel. Pustaka ini digunakan dalam kelas baru \textit{OmniPaxosEC}.
-\end{enumerate}
 
 Menyesuaikan dengan keperluan implementasi \textit{Key-value store database}, nilai yang disimpan dan disetujui dalam konsensus adalah nilai dari \textit{key-value pair} yang disimpan dalam sistem. Untuk mengoperasikan \textit{database} tersebut, masing-masing \textit{node} juga mengirimkan jenis operasi yang perlu dilakukan untuk \textit{key-value pair} tersebut dengan implementasi enum OperationType. Jenis operasi yang dikirimkan dapat dilihat pada tabel \ref{tab:omnipaxos-operations}. Operasi-operasi ini akan diterapkan pada \textit{key-value store} yang ada pada masing-masing \textit{node} setelah nilai disepakati.
 
