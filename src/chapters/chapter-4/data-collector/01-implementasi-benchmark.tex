@@ -79,7 +79,7 @@ Pada scripts.js, selain fungsi-fungsi yang disebutkan sebelumnya, terdapat juga 
 
 Selain komponen yang terdapat pada scripts.js, bagian dari komponen \textit{benchmark} adalah \textit{script} Javascript yang digunakan untuk menjalankan benchmark k6. File-file terkait yang digunakan untuk menjalankan \textit{client} adalah:
 
-\begin{itemize}
+\begin{enumerate}
   \item ./benchmark/script-write.js
 
   File ini berisi skrip JavaScript yang digunakan untuk melakukan pengujian tulis (write) pada sistem \textit{key-value store database} menggunakan k6. Skrip ini akan mengirimkan permintaan \textit{write} ke sistem dan mengukur kinerja respons. Nilai yang dikirim di-\textit{encode} menjadi \textit{base64} untuk memastikan bahwa data yang dikirim dapat diterima oleh sistem. Oleh karena itu, ukuran \textit{payload} yang dikirim akan lebih besar dari ukuran yang ditentukan dalam konfigurasi. Akan tetapi, hal ini membuat gambaran kinerja sistem menjadi lebih fleksibel karena dapat menyimpan data dalam bentuk apapun.
@@ -91,4 +91,4 @@ Selain komponen yang terdapat pada scripts.js, bagian dari komponen \textit{benc
   \item ./benchmark/oneshot.js
   
   File ini berisi skrip JavaScript yang digunakan untuk melakukan pengujian \textit{oneshot} pada sistem \textit{key-value store database} menggunakan k6. Skrip ini akan mengirimkan permintaan \textit{write} atau \textit{read} satu kali saja. Tujuannya adalah untuk memverifikasi bahwa sistem dapat menerima permintaan dengan benar. Selain itu, \textit{script} ini juga membantu dalam proses \textit{debugging}.
-\end{itemize}
+\end{enumerate}

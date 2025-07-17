@@ -4,7 +4,7 @@
 Setelah melakukan analisis terhadap dua operasi \textit{write} dan \textit{read}, bagian analisis ini menyatukan temuan dari evaluasi kinerja operasi tersebut. Tujuannya menyajikan gambaran keseluruhan mengenai \textit{trade-off} fundamental antara \textit{erasure coding} dan replikasi.
 
 Hasil penelitian ini menunjukkan bahwa untuk kedua sistem:
-\begin{itemize}
+\begin{enumerate}
   \item \textit{Erasure Coding}
   
   Sistem berbasis \textit{erasure coding} selain menawarkan efisiensi penyimpanan yang superior dibandingkan replikasi, juga memiliki keunggulan dalam hal latensi operasi \textit{write} pada beban kerja tertentu. Beban kerja yang dimaksud adalah ketika ukuran data cukup besar dan \textit{bandwidth} jaringan yang tersedia terbatas.
@@ -13,7 +13,7 @@ Hasil penelitian ini menunjukkan bahwa untuk kedua sistem:
   
   Sistem berbasis replikasi menawarkan kinerja operasi \textit{write} yang lebih baik pada beban kerja dengan ukuran data kecil dan \textit{bandwidth} jaringan yang tinggi. Selain itu, replikasi juga unggul dalam operasi \textit{read}. Perlu diperhatikan bahwa replikasi membutuhkan biaya penyimpanan yang lebih tinggi dibandingkan \textit{erasure coding}.
 
-\end{itemize}
+\end{enumerate}
 
 Dalam penggunaannya \textit{erasure coding} dan replikasi memiliki kelebihan dan kekurangan masing-masing. Penggunaan \textit{erasure coding} lebih cocok untuk sistem yang memprioritaskan efisiensi penyimpanan dan toleransi kegagalan, sedangkan replikasi lebih sesuai untuk sistem yang mengutamakan kinerja operasi \textit{read} dan \textit{write} pada beban kerja dengan ukuran data kecil.
 
