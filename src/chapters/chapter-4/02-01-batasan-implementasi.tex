@@ -5,7 +5,7 @@ Berikut adalah batasan implementasi yang ditetapkan dalam pengembangan sistem:
 \begin{enumerate}
   \item Semua batasan masalah yang telah ditetapkan pada bagian \ref{sec:batasan-masalah}.
   \item Operasi yang didukung hanya pembacaan (\textit{read}) dan penulisan (\textit{write}); tidak mengakomodasi operasi penghapusan atau transaksi multi-kunci atau transaksi kompleks lainnya.
-  \item Pengujian performa hanya dilakukan pada lingkungan lokal (loopback) dengan alat \texttt{k6} dan \texttt{mpstat}.
+  \item Pengujian performa hanya dilakukan pada lingkungan lokal (loopback) dengan alat k6 dan mpstat.
   \item Konfigurasi \textit{membership} dari sebuah \textit{cluster} bersifat statis; tidak mengakomodasi perubahan \textit{node} pada waktu berjalan.
   \item Konfigurasi \textit{erasure coding} (jumlah data shard dan parity shard) bersifat statis; tidak mengakomodasi penyesuaian dinamis pada waktu berjalan.
   \item Tidak ada pengujian toleransi kesalahan yang kompleks; kegagalan yang diuji hanya \textit{crash-stop}.
