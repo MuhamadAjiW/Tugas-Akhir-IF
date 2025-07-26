@@ -59,7 +59,7 @@ Kode Reed-Solomon dikarakterisasi dengan tiga parameter: jumlah alfabet $q$ yang
 
 % Dengan perhitungan determinan tersebut, matriks ini selalu dapat di-\textit{inverse} ketika titik-titik evaluasinya berbeda. \textit{Inverse} dari matriks diperlukan untuk mengembalikan pesan ke bentuk semula. Selain itu, matriks Vandermode juga memiliki independensi linear yang artinya masing-masing kolom terpisah secara linear dari kolom yang lainnya.
 
-Ada beberapa cara untuk menghasilkan kode Reed-Solomon yang sistematis. Salah satunya adalah dengan menggunakan interpolasi lagrange untuk dalam perhitungan polinomial $p_m$ sehingga $p_m(a_i) = m_i \text{ untuk semua } i \in \{0,\ldots,k-1\}$. Untuk menghasilkan matriks pengkodean sistematis, matriks Vandermonde A dikalikan dengan \textit{inverse} dari submatriks kuadrat kiri A.
+Ada beberapa cara untuk menghasilkan kode Reed-Solomon yang sistematis. Salah satunya adalah dengan menggunakan interpolasi lagrange untuk dalam perhitungan polinomial $p_m$ sehingga $p_m(a_i) = m_i \text{ untuk semua } i \in \{0,\ldots,k-1\}$ \parencite{plank1996tutorial}. Untuk menghasilkan matriks pengkodean sistematis, matriks Vandermonde A dikalikan dengan \textit{inverse} dari submatriks kuadrat kiri A.
 
 \begin{align}
     G = {(\text{Sub kuadrat kiri } A)}^{-1} \cdot A = 
@@ -110,4 +110,18 @@ Berdasarkan pengkodean yang dilakukan, kode Reed-Solomon menyediakan ketahanan s
     \label{eq:ec_storage}
 \end{equation}
 
-Namun, perlu diingat bahwa untuk \textit{erasure coding} mencapai ukuran tersebut, perhitungan matriks seperti yang sudah dijelaskan sebelumnya perlu dilakukan. Perhitungan ini akan menambah \textit{response time} dari operasi.
+Namun, perlu diingat bahwa untuk \textit{erasure coding} mencapai ukuran tersebut, perhitungan matriks seperti yang sudah dijelaskan sebelumnya perlu dilakukan. Perhitungan matriks Reed-Solomon memiliki kompleksitas yang bergantung pada konfigurasi serta ukuran pesan yang digunakan. Dengan demikian, kompleksitas komputasi untuk kode Reed-Solomon adalah perkalian matriks yang dapat dinyatakan dengan rumus \ref{eq:ec_complexity} dengan $n$ adalah jumlah \textit{node} data ($k$) dan \textit{node parity} ($t$).
+
+\begin{equation}
+    O(k \cdot n \cdot \frac{\text{Ukuran Pesan}}{k})
+    \label{eq:ec_complexity}
+\end{equation}
+
+Perhitungan $k$ baris adalah perkalian matriks identitas dan disederhanakan dengan menyalin data. Oleh sebab itu, kompleksitas yang membutuhkan komputasi signifikan adalah perkalian matriks yang dilakukan pada $t$ baris. Dengan demikian, kompleksitas komputasi untuk kode Reed-Solomon adalah seperti yang dinyatakan pada rumus \ref{eq:ec_complexity_final}.
+
+\begin{equation}
+    O(k \cdot t \cdot \frac{\text{Ukuran Pesan}}{k}) = O(t \cdot \text{Ukuran Pesan})
+    \label{eq:ec_complexity_final}
+\end{equation}
+
+Dari persamaan tersebut, dapat dilihat bahwa perhitungan ini akan menambah \textit{response time} dari operasi relatif terhadap ukuran pesan yang digunakan.

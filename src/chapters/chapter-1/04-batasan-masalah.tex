@@ -4,9 +4,10 @@
 Terdapat batasan yang diambil dalam pelaksanaan tugas akhir ini,
 
 \begin{enumerate}
-    \item Eksperimen akan berfokus pada analisis \textit{response time} dari \textit{request} klien hingga transaksi selesai dan klien mendapatkan balasan. Semua faktor yang mempengaruhi \textit{response time}, seperti \textit{network latency} dan \textit{disk I/O} akan dipertimbangkan dalam pengukuran ini.
-    \item Sistem terdistribusi dibatasi sebagai sistem yang terdiri dari lebih dari satu perangkat dan terpisah secara logis.
-    \item Sistem adalah bersifat \textit{critical}, sehingga memerlukan \textit{fault tolerance} dan \textit{data consistency} yang tinggi.
-    \item Implementasi untuk simulasi akan terbatas pada \textit{key-value store} yang memiliki \textit{persistent storage}. Implementasi dapat menggunakan \textit{library} ataupun aplikasi tambahan untuk keperluan tertentu.
-    \item Transaksi pada \textit{database} dibatasi dengan operasi \textit{read} dan \textit{write} dengan fokus utama penelitian ada pada operasi \textit{write} 
+    \item Analisis kinerja terbatas pada \textit{response time} dari \textit{request} klien hingga transaksi selesai dan klien mendapatkan balasan.
+    \item Analisis tidak membahas mengenai skenario pemulihan yang perlu dilakukan ketika terjadi kehilangan data pada sebuah \textit{node} atau perubahan konfigurasi sistem. 
+    \item Transaksi dibatasi dengan operasi \textit{read} dan \textit{write}.
+    \item Sistem adalah \textit{key-value store} terdistribusi yang bersifat \textit{critical} sehingga memerlukan \textit{persistent storage} untuk \textit{fault tolerance} dan \textit{data consistency}.
+    \item Sistem terdistribusi dibatasi sebagai sistem yang terpisah secara logis. Sistem tidak terpisah secara fisik atau berada pada letak geografis yang berbeda.
+    \item Implementasi sistem percobaan dapat menggunakan \textit{library} dan aplikasi tambahan dapat digunakan untuk keperluan pengumpulan data.
 \end{enumerate}
