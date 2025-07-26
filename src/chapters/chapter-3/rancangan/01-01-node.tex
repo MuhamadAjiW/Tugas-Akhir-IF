@@ -1,7 +1,7 @@
 \subsubsection{Node}
 \label{subsubsection:node}
 
-\textit{Node} adalah satuan fungsional utama yang berperan sebagai entitas dalam sistem \textit{database} terdistribusi yang dikembangkan. Sesuai dengan perancangan pada bagian \ref{subsection:rancangan-struktural}, \textit{Node} dibangun secara modular dengan beberapa komponen yang tergabung dalam beberapa subkomponen.
+\textit{Node} adalah satuan fungsional utama yang berperan sebagai entitas dalam sistem \textit{database} terdistribusi yang dikembangkan. Sesuai dengan perancangan pada bagian \ref{subsection:rancangan-struktural}, \textit{Node} dibangun secara modular dengan beberapa komponen yang tergabung dalam beberapa subkomponen. Subkomponen dapat berbentuk kelas atau kumpulan fungsi yang memiliki tanggung jawab spesifik dalam sistem.
 
 \begin{enumerate}
     \item Komponen konsensus: Komponen ini bertanggung jawab mengelola \textit{state} dari \textit{Node} dan memastikan konsistensi data antar-\textit{Node} dalam sistem. Komponen ini menggunakan algoritma konsensus OmniPaxos yang telah dipilih pada bagian \ref{subsubsection:pemilihan-algoritma-konsensus}.

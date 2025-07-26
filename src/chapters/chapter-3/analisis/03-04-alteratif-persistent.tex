@@ -3,6 +3,8 @@
 
 Komponen \textit{Persistent Database} berperan sebagai penyimpanan data \textit{persistent} untuk memenuhi kebutuhan yang sudah disebutkan di bagian \ref{subsection:analisis-permasalahan}. Tabel \ref{tab:tools-db} menunjukkan perbandingan beberapa kakas \textit{persistent database} yang dipertimbangkan untuk digunakan dalam eksperimen ini.
 
+Dari kakas-kakas tersebut, dipilih RocksDB sebagai kakas untuk eksperimen ini. Selain RocksDB, LevelDB juga merupakan kandidat yang kuat untuk eksperimen ini karena sifatnya yang simpel. Namun, pada akhirnya, RocksDB dipilih karena pengembangannya yang masih aktif, kinerja \textit{write} yang lebih tinggi, serta fitur-fitur tambahan seperti \textit{compression} dan penyimpanan data dalam \textit{byte}.
+
 \begin{table}[h]
     \centering
     \caption{Perbandingan kakas persistent database}
@@ -10,14 +12,12 @@ Komponen \textit{Persistent Database} berperan sebagai penyimpanan data \textit{
         \begin{tabular}{|l|p{5cm}|p{5cm}|p{3cm}|}
             \hline
             \rowcolor{black!10} Kakas & Kelebihan & Kekurangan & Notes \\ \hline
-            Cassandra & +Horizontal Scalability baik \newline +Sudah ada referensi implementasi erasure coding pada paper lain & -Eventual Consistency \newline -Latensi tinggi untuk operasi write \newline -Sangat Kompleks & Utamanya Wide-Column Store\\ \hline
-            ScyllaDB & +Lebih efisien dan performant dibandingkan Cassandra \newline +Memiliki pilihan strong consistency & -Lebih kompleks dibandingkan Cassandra \newline -Ekosistem terbatas & Mirip dan kompatibel dengan Cassandra. \\ \hline
-            RocksDB & +Kinerja tinggi untuk operasi write \newline +Recovery menggunakan write ahead log & -Single Node \newline -Keterbatasan pada concurrent writes & Pengembangan LevelDB\\ \hline
-            LevelDB & +Simpel \newline +Penggunaan memori kecil \newline +Kinerja tinggi untuk operasi write & -Fitur terbatas seperti compression dan data terbatas pada string \newline -Operasi write skala besar masih lebih lambat dibandingkan RocksDB \newline -Keterbatasan pada concurrent writes & Dasar dari RocksDB\\ \hline
+            Cassandra & +Horizontal Scalability baik \newline +Ada referensi implementasi \textit{erasure coding} & -\textit{Eventual Consistency} \newline -Latensi tinggi \textit{write} \newline -Sangat Kompleks & Utamanya Wide-Column Store\\ \hline
+            ScyllaDB & +Lebih efisien dan performant dibandingkan Cassandra \newline +Ada pilihan \textit{strong consistency} & -Lebih kompleks dibandingkan Cassandra \newline -Ekosistem terbatas & Mirip dan kompatibel dengan Cassandra. \\ \hline
+            RocksDB & +Kinerja tinggi \textit{write} \newline +Menggunakan \textit{write ahead log} & -Single Node \newline -Keterbatasan \textit{concurrent writes} & Pengembangan LevelDB\\ \hline
+            LevelDB & +Simpel \newline +Penggunaan memori kecil \newline +Kinerja tinggi \textit{write} & -Fitur terbatas seperti \textit{compression} dan hanya \textit{string} \newline -Operasi \textit{write} skala besar masih lebih lambat dibandingkan RocksDB \newline -Keterbatasan \textit{concurrent writes} & Dasar dari RocksDB\\ \hline
             MongoDB & +Support query kompleks \newline +Penggunaan fleksibel & -Operasi kurang optimal \newline -Konsumsi memori besar \newline -Storage overhead besar & Utamanya Dokumen database\\ \hline
         \end{tabular}
     }
     \label{tab:tools-db}
 \end{table}
-
-Dari kakas-kakas tersebut, dipilih RocksDB sebagai kakas untuk eksperimen ini. Selain RocksDB, LevelDB juga merupakan kandidat yang kuat untuk eksperimen ini karena sifatnya yang simpel. Namun, pada akhirnya, RocksDB dipilih karena pengembangannya yang masih aktif, kinerja \textit{write} yang lebih tinggi, serta fitur-fitur tambahan seperti \textit{compression} dan penyimpanan data dalam \textit{byte}.

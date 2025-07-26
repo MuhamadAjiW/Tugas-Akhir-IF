@@ -3,7 +3,29 @@
 
 % Berdasarkan latar belakang yang telah diuraikan pada \ref{sec:latar-belakang}, penggunaan \textit{erasure coding} pada sebuah sistem dapat mengurangi kebutuhan penyimpanan data dengan tetap menjaga integritas dan ketahanan data. Walaupun membutuhkan sumber daya komputasi dalam penerapannya, pengurangan ukuran data keseluruhan yang diperlukan menyebabkan juga turunnya ukuran data yang perlu dikirim ke \textit{node} lainnya.Hal ini menyebabkan mungkinnya terdapat suatu kondisi ketika {response time} yang diperlukan untuk melakukan operasi pada \textit{erasure coding} lebih rendah jika dibandingkan dengan melakukan operasi yang sama pada sistem yang menggunakan \textit{replikasi} untuk mencapai ketahanan tersebut.
 
-Berdasarkan latar belakang dan studi literatur yang telah ditentukan, \textit{erasure coding} memiliki potensi untuk menghasilkan \textit{response time} yang lebih rendah dibandingkan dengan sistem berbasis \textit{replikasi} karena walaupun membutuhkan komputasi, ukuran data yang dikirimkan untuk ketahanan lebih rendah dibandingkan replikasi. Riset ini akan menganalisis faktor-faktor untuk mencapai kondisi tersebut. Faktor yang dianalisis antara lain ukuran data yang besar dan jaringan yang lambat. Dengan demikian, diperlukan sistem yang dapat mensimulasikan operasi pada sistem \textit{erasure coding} dan replikasi sekaligus memvariasikan faktor-faktor tersebut dalam operasinya tanpa memengaruhi kinerja sistem di sisi lain.
+Berdasarkan latar belakang dan studi literatur yang telah ditentukan, \textit{erasure coding} memiliki dinamika yang berbeda dengan replikasi. Dari dinamika tersebut \textit{erasure coding} dapat menghasilkan \textit{response time} yang lebih rendah dibandingkan dengan sistem berbasis \textit{replikasi} dan sebaliknya. Hal ini disebabkan oleh \textit{trade-off} kinerja dari komputasi dan \textit{input/output} sistem.
+
+Variabel-variabel yang mempengaruhi kinerja kedua sistem antara lain adalah:
+\begin{enumerate}
+    \item Ukuran data
+    
+    Variabel ini mempengaruhi komputasi yang diperlukan dan juga pengiriman data. Dihipotesiskan untuk berbanding lurus dengan kinerja \textit{erasure coding} karena pengurangan \textit{input/output} umumnya lebih besar dibandingkan dengan kebutuhan komputasi.
+
+    \item Bandwidth jaringan, disk, dan memory
+    
+    Variabel ini mempengaruhi kecepatan pengiriman data. Dihipotesiskan untuk berbanding terbalik degan kinerja \textit{erasure coding} karena pengurangan \textit{input/output} dari \textit{erasure coding} mejadi lebih signifikan.
+
+    \item Kemampuan komputasi dari sistem
+    
+    Variabel ini mempengaruhi kecepatan komputasi yang diperlukan untuk melakukan operasi pada \textit{erasure coding} dan replikasi. Dihipotesiskan untuk berbanding lurus dengan kinerja \textit{erasure coding}.
+    
+    \item Konfigurasi sistem
+    
+    Variabel ini mempengaruhi jumlah \textit{node} yang digunakan untuk menyimpan data dan juga jumlah \textit{node} yang digunakan untuk menyimpan data \textit{parity}. Dihipotesiskan bahwa konfigurasi sistem dengan ketahanan lebih tinggi lebih mudah diraih pada \textit{erasure coding}.
+
+\end{enumerate}
+
+Berdasarkan batasan masalah pada bagian \ref{sec:batasan-masalah}, riset ini akan menganalisis faktor-faktor untuk mencapai kondisi tersebut. Faktor yang dianalisis adalah ukuran data dan kecepatan jaringan. Dengan demikian, diperlukan sistem yang dapat mensimulasikan operasi pada sistem \textit{erasure coding} dan replikasi sekaligus memvariasikan faktor-faktor tersebut dalam operasinya tanpa memengaruhi kinerja sistem di sisi lain.
 
 Dari permasalahan tersebut, dirumuskan kebutuhan sebuah perangkat lunak antara lain
 \begin{enumerate}

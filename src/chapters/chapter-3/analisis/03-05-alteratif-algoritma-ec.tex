@@ -22,3 +22,5 @@ Terdapat beberapa algoritma yang dipertimbangkan untuk implementasi \textit{eras
 \end{table}
 
 Distance adalah nilai \textit{overhead} memori algoritma tersebut dalam mengatasi kegagalan \textit{node}. Nilai distance optimal adalah $k + m = n$ dimana $k$ adalah jumlah \textit{data block}, $m$ adalah jumlah \textit{parity block}, dan $n$ adalah jumlah total \textit{block} yang dibutuhkan. Simbol yang sama digunakan untuk redundansi. Penjelasan implementasi dapat dilihat pada referensi masing-masing algoritma.
+
+Pemilihan algoritma \textit{erasure coding} Reed-Solomon didasarkan pada beberapa pertimbangan. Pertama, Reed-Solomon memiliki basis \textit{block} yang cocok digunakan untuk pembagian \textit{node}. Kedua, algoritma ini digunakan termasuk pada penelitian sebelumnya pada bagian \ref{subsection:paxos-erasure} dan \ref{subsection:craft}. Ketiga, implementasi Reed-Solomon telah tersedia dalam berbagai pustaka sehingga memudahkan integrasi ke dalam sistem yang ada.
