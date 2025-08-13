@@ -15,10 +15,18 @@ Analisis kinerja operasi \textit{write} merupakan inti dari penilitian ini, sepe
       \caption{Kinerja Operasi Write pada Internet Cepat dan Payload Kecil}
       \label{fig:write-smload-fastnet}
   \end{figure}
-  
-  Interpretasi dari hasil ini terletak pada dinamika komponen latensi. Pada jaringan dengan \textit{bandwidth} tinggi seperti 10 Gbps, waktu yang dibutuhan untuk mentransfer data menjadi kecil. Selain itu, data yang kecil membuat operasi terkait data seperti penulisan pada \textit{memory} dan \textit{disk} menjadi kecil juga. Dengan kecilnya waktu transfer dan operasi terkait data, faktor penentu \textit{response time} adalah biaya komputasi dan \textit{overhead} pemrosesan pada setiap node.
+
+  Interpretasi dari hasil ini terletak pada dinamika komponen latensi. Pada jaringan dengan \textit{bandwidth} tinggi seperti 10 Gbps, waktu yang dibutuhkan untuk mentransfer data menjadi kecil. Selain itu, data yang kecil membuat operasi terkait data seperti penulisan pada \textit{memory} dan \textit{disk} menjadi kecil juga. Dengan kecilnya waktu transfer dan operasi terkait data, faktor penentu \textit{response time} adalah biaya komputasi dan \textit{overhead} pemrosesan pada setiap node. Hal ini dibuktikan dengan hasil \textit{trace} pada setiap operasi eksternal dari \textit{node} yang memiliki waktu hampir sama baik untuk replikasi dan juga \textit{erasure coding}. Sisa waktu yang tidak terdapat pada grafik ini berarti merupakan waktu yang diperlukan untuk proses konsensus dan juga \textit{erasure coding}. Hasil \textit{trace} dapat dilihat pada Gambar \ref{fig:write-smload-fastnet-trace}.
 
   Dalam skenario ini, proses \textit{erasure coding} yang lebih kompleks membutuhkan waktu yang lebih lama dibandingkan dengan proses replikasi yang lebih sederhana. Lingkungan seperti ini umum ditemukan pada komunikasi antar-\textit{server} dalam satu pusat data modern dengan penggunaan transaksi data berukuran kecil seperti pembaruan metadata, status sesi, atau operasi konfigurasi singkat.
+
+  \begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{resources/chapter-4/write_smload_fastnet_trace.png}
+
+    \caption{Trace Operasi pada Internet Cepat dan Payload Kecil}
+    \label{fig:write-smload-fastnet-trace}
+  \end{figure}
   
   \item Skenario 2: Internet lambat dan \textit{payload} besar
   
@@ -32,7 +40,15 @@ Analisis kinerja operasi \textit{write} merupakan inti dari penilitian ini, sepe
       \label{fig:write-bigload-slownet}
   \end{figure}
 
-  Hasil dari skenario ini mengkonfirmasi bahwa \textit{erasure coding} dapat mengungguli replikasi dalam kondisi tertentu, yaitu dalam skenario dengan \textit{bandwidth} rendah dan untuk \textit{payload} yang besar. Dalam kondisi ini, waktu transfer data menjadi faktor dominan dalam \textit{response time}. Proses \textit{erasure coding} walaupun lebih kompleks, dapat memberikan \textit{latensi} lebih cepat karena mengurangi jumlah data yang harus ditransfer serta dioperasikan. Lingkungan seperti ini umum ditemukan pada aplikasi yang beroperasi dengan sumber daya jaringan terbatas, seperti aplikasi \textit{internet of things} yang tersebar di area luas, \textit{edge computing}, atau pencadangan data melalui koneksi internet yang lambat. 
+  Hasil dari skenario ini mengkonfirmasi bahwa \textit{erasure coding} dapat mengungguli replikasi dalam kondisi tertentu, yaitu dalam skenario dengan \textit{bandwidth} rendah dan untuk \textit{payload} yang besar. Dalam kondisi ini, waktu transfer data menjadi faktor dominan dalam \textit{response time}. Proses \textit{erasure coding} walaupun lebih kompleks, dapat memberikan \textit{latensi} lebih cepat karena mengurangi jumlah data yang harus ditransfer serta dioperasikan. Lingkungan seperti ini umum ditemukan pada aplikasi yang beroperasi dengan sumber daya jaringan terbatas, seperti aplikasi \textit{internet of things} yang tersebar di area luas, \textit{edge computing}, atau pencadangan data melalui koneksi internet yang lambat. Hal ini dibuktikan dengan hasil \textit{trace} yang menunjukkan peningkatan signifikan dari waktu \textit{set} untuk replikasi pada \textit{persistent store}. Hasil \textit{trace} dapat dilihat pada Gambar \ref{fig:write-bigload-slownet-trace}.
+
+  \begin{figure}[ht]
+      \centering
+      \includegraphics[width=0.8\textwidth]{resources/chapter-4/write_bigload_slownet_trace.png}
+
+      \caption{Trace Operasi pada Internet Lambat dan Payload Besar}
+      \label{fig:write-bigload-slownet-trace}
+  \end{figure}
 
   \item Skenario 3: Internet menengah dan \textit{payload} besar
   
