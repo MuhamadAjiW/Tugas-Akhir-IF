@@ -17,9 +17,11 @@
 \begin{singlespace}
   \small
   Algoritma \textit{erasure coding} dapat mengurangi jumlah data yang ditransfer dalam sebuah sistem terdistribusi. Dengan operasi \textit{I/O} yang melibatkan transfer data menjadi faktor utama dalam kinerja sistem terdistribusi, \textit{erasure coding} menjadi solusi yang menarik untuk meningkatkan efisiensi penyimpanan dan kinerja sistem. Penelitian ini bertujuan menganalisis kinerja \textit{erasure coding} dibandingkan replikasi pada sistem \textit{key-value store database} terdistribusi, khususnya pada \textit{response time} sistem dalam operasi \textit{write} dan \textit{read}.
-  
-  Dalam memenuhi tujuan tersebut, penelitian ini mengimplementasikan sistem database terdistribusi yang mendukung kedua mekanisme redundansi tersebut serta membuat sistem \textit{benchmark} yang dapat memvariasikan parameter \textit{bandwidth} jaringan dan ukuran \textit{payload}. Hasil penelitian menunjukkan bahwa \textit{erasure coding} memiliki kondisi ketika \textit{response time} lebih rendah dibandingkan replikasi pada operasi write. Kondisi tersebut adalah ketika bandwidth jaringan terbatas dan ukuran payload cukup besar. Namun, replikasi konsisten mengungguli \textit{erasure coding} dalam operasi \textit{read} karena kompleksitas rekonstruksi data. Penggunaan \textit{erasure coding} tidak sesuai untuk \textit{distributed key-value store database} yang beroperasi dengan data kecil di \textit{data center} berkapasitas tinggi. Akan tetapi, \textit{erasure coding} masih dapat dipertimbangkan untuk sistem yang menangani data besar dengan infrastruktur jaringan terbatas dan sistem yang perlu efisiensi penyimpanan tinggi.
-  
+
+  Dalam memenuhi tujuan tersebut, penelitian ini mengimplementasikan sistem database terdistribusi yang mendukung kedua mekanisme redundansi tersebut serta membuat sistem \textit{benchmark} yang dapat memvariasikan parameter \textit{bandwidth} jaringan dan ukuran \textit{payload}. Untuk analisis pada penelitian ini, digunakan \textit{bandwidth} sebesar 1Mbps, 10-70Mbps, dan 10Gbps. Sementara itu, ukuran \textit{payload} yang digunakan adalah 1KB dan 200-1000KB. 
+
+  Hasil penelitian menunjukkan bahwa \textit{erasure coding} memiliki \textit{response time} lebih rendah dibandingkan replikasi pada operasi \textit{write} ketika bandwidth jaringan terbatas dan ukuran payload cukup besar. Namun, replikasi konsisten mengungguli \textit{erasure coding} dalam operasi \textit{read} karena kompleksitas rekonstruksi data. Penggunaan \textit{erasure coding} lebih unggul untuk \textit{distributed key-value store database} yang beroperasi dengan data besar di lingkungan dengan jaringan terbatas. Namun, replikasi unggul untuk sistem yang menangani data kecil dengan infrastruktur jaringan baik.
+
   \textbf{\textit{Kata kunci: Sistem Terdistribusi, Erasure Coding, Replikasi, Database, Key-Value Store }}
   
 \end{singlespace}
