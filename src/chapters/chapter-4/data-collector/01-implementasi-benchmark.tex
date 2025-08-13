@@ -20,7 +20,7 @@ Fungsi-fungsi yang dikelompokkan menjadi konfigurasi sistem adalah sebagai berik
 
   \item validate\_config
 
-  Memeriksa apakah konfigurasi yang diberikan valid dan sesuai dengan yang diharapkan. Jika konfigurasi tidak valid, fungsi ini akan memberikan pesan kesalahan yang sesuai. Konfigurasi ditentukan pada file ./etc/config.json yang berisi tentang informasi \textit{node}. Untuk masing-masing node, konfigurasi yang ada adalah \textit{ip}, \textit{port}, \textit{port http}, \textit{path} untuk \textit{transaction log}, dan \textit{path} untuk data persisten \textit{key-value store database}. Konfigurasi global yang ada selain konfigurasi masing-masing node adalah \textit{storage}, yaitu jumlah \textit{data shard} dan \textit{parity shard} untuk erasure coding serta ukuran \textit{payload} maksimal yang akan diterima sistem.
+  Memeriksa apakah konfigurasi yang diberikan valid dan sesuai dengan yang diharapkan. Jika konfigurasi tidak valid, fungsi ini akan memberikan pesan kesalahan yang sesuai. Konfigurasi pada file ./etc/config.json berisi tentang informasi \textit{node}. Untuk masing-masing node, konfigurasi yang ada adalah \textit{ip}, \textit{port}, \textit{port http}, \textit{path} untuk \textit{transaction log}, dan \textit{path} untuk data persisten \textit{key-value store database}. Konfigurasi global yang ada selain konfigurasi masing-masing node adalah \textit{storage}, yaitu jumlah \textit{data shard} dan \textit{parity shard} untuk erasure coding serta ukuran \textit{payload} maksimal yang akan diterima sistem.
 
   \item clean
 
@@ -41,11 +41,11 @@ Fungsi-fungsi yang dikelompokkan menjadi manajemen \textit{node} adalah sebagai 
 \begin{enumerate}
   \item run\_node
 
-  Menjalankan satu \textit{node} dari sistem \textit{key-value store database} sesuai dengan konfigurasi yang telah ditentukan. Konfigurasi ditentukan pada file ./etc/config.json yang berisi tentang informasi \textit{node}. Untuk masing-masing node, konfigurasi yang ada adalah \textit{ip}, \textit{port}, \textit{port http}, \textit{path} untuk \textit{transaction log}, dan \textit{path} untuk data persisten \textit{key-value store database}.
+  Menjalankan satu \textit{node} dari sistem \textit{key-value store database} sesuai dengan konfigurasi. Konfigurasi terdapat pada file ./etc/config.json. File ini berisi tentang informasi \textit{node}. Untuk masing-masing node, konfigurasi yang ada adalah \textit{ip}, \textit{port}, \textit{port http}, \textit{path} untuk \textit{transaction log}, dan \textit{path} untuk data persisten \textit{key-value store database}.
 
   \item run\_all
   
-  Menjalankan semua \textit{node} dari sistem \textit{key-value store database} sesuai dengan konfigurasi yang telah ditentukan. Konfigurasi ditentukan pada file ./etc/config.json yang berisi tentang informasi \textit{node}. Konfigurasi global yang ada selain konfigurasi masing-masing node adalah \textit{storage}, yaitu jumlah \textit{data shard} dan \textit{parity shard} untuk erasure coding serta ukuran \textit{payload} maksimal yang akan diterima sistem.
+  Menjalankan semua \textit{node} dari sistem \textit{key-value store database} sesuai dengan konfigurasi. Konfigurasi terdapat pada file ./etc/config.json. File ini berisis tentang informasi \textit{node}. Konfigurasi global yang ada selain konfigurasi masing-masing node adalah \textit{storage}, yaitu jumlah \textit{data shard} dan \textit{parity shard} untuk erasure coding serta ukuran \textit{payload} maksimal yang akan diterima sistem.
   
   \item stop\_all
   
@@ -66,7 +66,7 @@ Fungsi-fungsi yang dikelompokkan menjadi eksekutor \textit{benchmark} utama adal
   
   \item run\_bench\_suite
   
-  Menjalankan seluruh rangkaian pengujian \textit{benchmark} dengan semua kombinasi variabel yang ditentukan. Fungsi ini menjalankan benchmark komprehensif dengan replikasi dan \textit{erasure coding}, read dan write, variasi \textit{bandwidth}, \textit{virtual users}, dan \textit{payload size} yang ditentukan.
+  Menjalankan seluruh rangkaian pengujian \textit{benchmark} dengan semua kombinasi variabel berdasarkan konfigurasi pada file ./etc/bench.json. Fungsi ini menjalankan benchmark komprehensif dengan replikasi dan \textit{erasure coding}, read dan write, variasi \textit{bandwidth}, \textit{virtual users}, dan \textit{payload size}.
 \end{enumerate}
 
 Pada scripts.js, selain fungsi-fungsi yang disebutkan sebelumnya, terdapat juga variabel-variabel untuk konfigurasi \textit{benchmark} yang akan dilakukan menggunakan run\_bench\_suite. Variabel-variabel tersebut adalah:
@@ -82,7 +82,7 @@ Selain komponen yang terdapat pada scripts.js, bagian dari komponen \textit{benc
 \begin{enumerate}
   \item ./benchmark/script-write.js
 
-  File ini berisi skrip JavaScript yang digunakan untuk melakukan pengujian tulis (write) pada sistem \textit{key-value store database} menggunakan k6. Skrip ini akan mengirimkan permintaan \textit{write} ke sistem dan mengukur kinerja respons. Nilai yang dikirim di-\textit{encode} menjadi \textit{base64} untuk memastikan bahwa data yang dikirim dapat diterima oleh sistem. Oleh karena itu, ukuran \textit{payload} yang dikirim akan lebih besar dari ukuran yang ditentukan dalam konfigurasi. Akan tetapi, hal ini membuat gambaran kinerja sistem menjadi lebih fleksibel karena dapat menyimpan data dalam bentuk apapun.
+  File ini berisi skrip JavaScript yang digunakan untuk melakukan pengujian tulis (write) pada sistem \textit{key-value store database} menggunakan k6. Skrip ini akan mengirimkan permintaan \textit{write} ke sistem dan mengukur kinerja respons. Nilai yang dikirim di-\textit{encode} menjadi \textit{base64} untuk memastikan bahwa data yang dikirim dapat diterima oleh sistem. Oleh karena itu, ukuran \textit{payload} yang dikirim akan lebih besar dari ukuran pada konfigurasi. Akan tetapi, hal ini membuat gambaran kinerja sistem menjadi lebih fleksibel karena dapat menyimpan data dalam bentuk apapun.
 
   \item ./benchmark/script-read.js
   

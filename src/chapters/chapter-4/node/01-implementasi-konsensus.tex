@@ -45,10 +45,10 @@ Menyesuaikan dengan keperluan implementasi \textit{Key-value store database}, ni
             \hline
             \rowcolor{black!10} Tipe Operasi & Deskripsi \\ \hline
             OperationType::NULL & Operasi \textit{placeholder} atau fungsi kontrol yang tidak berhubungan dengan \textit{database} \\ \hline
-            OperationType::GET & Operasi untuk mengambil nilai dari \textit{key-value pair} yang ditentukan. \\ \hline
+            OperationType::GET & Operasi untuk mengambil nilai dari \textit{key-value pair}. \\ \hline
             OperationType::RECONSTRUCT & Operasi untuk melakukan rekonstruksi data pada \textit{key-value pair} untuk \textit{erasure coding}. \\ \hline
-            OperationType::SET & Operasi untuk menyimpan atau memperbarui nilai pada \textit{key-value pair} yang ditentukan. \\ \hline
-            OperationType::DELETE & Operasi untuk menghapus \textit{key value pair} yang ditentukan dari \textit{database}. \\ \hline
+            OperationType::SET & Operasi untuk menyimpan atau memperbarui nilai pada \textit{key-value pair}. \\ \hline
+            OperationType::DELETE & Operasi untuk menghapus \textit{key value pair} dari \textit{database}. \\ \hline
           \end{tabular}
     }
     \label{tab:omnipaxos-operations}
@@ -57,8 +57,8 @@ Menyesuaikan dengan keperluan implementasi \textit{Key-value store database}, ni
 
 Beberapa poin tambahan terkait mekanisme komponen konsensus yang diimplementasikan adalah sebagai berikut:
 \begin{enumerate}
-  \item Penyebaran data yang telah di-\textit{erasure coding} dilakukan pada saat fase \textit{accept} pada algoritma konsensus. Data yang telah di-\textit{erasure coding} akan disebarkan ke \textit{node} lain sebagai bagian dari proses replikasi data dengan data yang disimpan masing-masing \textit{node} berbeda satu sama lain tergantung pada konfigurasi \textit{erasure coding} yang telah ditentukan.
-  \item Kuorum dari konsensus yang dilakukan pada sistem \textit{erasure coding} adalah sejumlah \textit{data-shard} yang ditentukan pada konfigurasi \textit{erasure coding} service. Hal ini membuat konsensus bersifat mirip dengan konsensus pada sistem yang dijelaskan di Bagian \ref{subsection:paxos-erasure}.
+  \item Penyebaran data yang telah di-\textit{erasure coding} dilakukan pada saat fase \textit{accept} pada algoritma konsensus. Data yang telah di-\textit{erasure coding} akan disebarkan ke \textit{node} lain sebagai bagian dari proses replikasi data dengan data yang disimpan masing-masing \textit{node} berbeda satu sama lain tergantung pada konfigurasi \textit{erasure coding}.
+  \item Kuorum dari konsensus yang dilakukan pada sistem \textit{erasure coding} adalah sejumlah \textit{data-shard} yang diatur pada konfigurasi \textit{erasure coding} service. Hal ini membuat konsensus bersifat mirip dengan konsensus pada sistem yang dijelaskan di Bagian \ref{subsection:paxos-erasure}.
   \item Data \textit{erasure coding} yang disebarkan memiliki \textit{metadata} yang berisi informasi tentang \textit{index} dari \textit{shard} yang diterima untuk keperluan rekonstruksi data.
   \item Data \textit{erasure coding} yang disebarkan memiliki \textit{metadata} berisi informasi versi. Hal ini diperlukan untuk memastikan bahwa data yang diterima oleh \textit{node} lain adalah versi yang sama dengan node yang lain. Jika versi data yang diterima berbeda, maka \textit{node} tidak menggunakan data tersebut dalam rekonstruksi data.
   \item Pengujian terkait konsensus dilakukan dengan menggunakan \textit{test} yang sudah ada pada pustaka OmniPaxos ditambah dengan \textit{test} baru terkait \textit{erasure coding}. Pengujian ini dijalankan dengan lingkungan \textit{test} yang terdapat pada bahasa pemrograman Rust. Pengujian ini mencakup pengujian konsensus dasar, pengujian replikasi data, dan pengujian rekonstruksi data menggunakan \textit{erasure coding}. Hasil dari pengujian ini menunjukkan bahwa implementasi konsensus dapat berfungsi dengan baik dan memenuhi kebutuhan sistem.

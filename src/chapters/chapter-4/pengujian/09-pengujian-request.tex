@@ -8,7 +8,7 @@ Pengujian request dengan ukuran data bervariasi dengan kode pengujian P-11 dilak
 \begin{enumerate}
     \item Menunggu hingga sistem siap menerima \textit{request}. Konfirmasi dapat dilakukan dengan mengirim \textit{request} HTTP pada \textit{endpoint} /status dan memastikan bahwa sistem sudah memiliki \textit{leader}.
     \item Mengatur variabel \textit{size} pada file scripts.js dengan ukuran data yang bervariasi. Variabel ini menentukan seberapa besar data yang akan disimpan dalam sistem.
-    \item Menjalankan perintah run\_bench\_suite pada file scripts.sh untuk menjalankan pengujian dengan ukuran data yang telah ditentukan.
+    \item Menjalankan perintah run\_bench\_suite pada file scripts.sh untuk menjalankan pengujian dengan ukuran data.
 \end{enumerate}
 
 Hasil yang diharapkan setelah tes dijalankan adalah sistem dapat memulai \textit{benchmark} dengan \textit{request} dengan ukuran data yang bervariasi secara otomatis. Perlu dipastikan juga dalam penjalanan run\_bench\_suite tidak terdapat balikan \textit{error} dari sistem.
