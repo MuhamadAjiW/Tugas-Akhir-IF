@@ -4,8 +4,7 @@
 Penilitian ini telah menganalisis kinerja \textit{erasure coding} pada \textit{database} terdsitribusi dengan membandingkannya dengan sistem replikasi. Berdasarkan hasil analisis yang sudah dipaparkan, berikut adalah kesimpulan pada penilitian ini:
 
 \begin{enumerate}
-  \item Penggunaan \textit{erasure coding} untuk \textit{use case} sebagai \textit{distributed key-value store database} yang memiliki karakteristik data kecil membuat \textit{erasure coding} menjadi solusi yang tidak layak untuk \textit{use case} tersebut ketika dibandingkan dengan replikasi. Hal ini diiringi dengan kemajuan teknologi jaringan yang membuat \textit{bandwidth} dan latensi jaringan menjadi lebih cepat.
+  \item Penggunaan \textit{erasure coding} memiliki keunggulan pada operasi \textit{write} untuk data besar dan \textit{bandwidth} kecil. Penggunaan sebagai \textit{distributed key-value store database} yang memiliki karakteristik data kecil membuat \textit{erasure coding} menjadi solusi kasus khusus ketika data cukup besar dan \textit{bandwidth} cukup kecil. Selain pada kondisi kasus khusus tersebut, replikasi lebih unggul.
   \item Berdasarkan hasil analisis, kondisi ketika \textit{response time} operasi \textit{database} terdistribusi berbasis \textit{erasure coding} lebih rendah dibandingkan \textit{database} serupa yang menggunakan sistem replikasi untuk operasi \textit{write} adalah ketika \textit{bandwidth} dan \textit{payload size} dari operasi \textit{write} cukup besar. Namun, tidak terdapat kondisi untuk operasi \textit{read} dengan \textit{erasure coding} tidak pernah mengungguli kinerja replikasi.
   \item Kelebihan \textit{erasure coding} adalah untuk \textit{use case} yang memiliki karakteristik data besar. Selain dari \textit{response time} operasi \textit{write} adalah penyimpanan data yang lebih kecil, \textit{erasure coding} menghemat biaya penyimpanan data.
 \end{enumerate}
-
