@@ -1,7 +1,7 @@
 \subsection{Alur Transaksi}
 \label{subsection:system-flow}
 
-Mengikuti batasan pada bagian \ref{sec:batasan-masalah}, transaksi yang akan diimplementasikan dalam sistem ini adalah transaksi \textit{write} dan \textit{read}. Sistem akan mendukung dua skema penyimpanan, yaitu replikasi dan \textit{erasure coding}, yang akan mempengaruhi alur transaksi.
+Mengikuti batasan pada Bagian \ref{sec:batasan-masalah}, transaksi yang akan diimplementasikan dalam sistem ini adalah transaksi \textit{write} dan \textit{read}. Sistem akan mendukung dua skema penyimpanan, yaitu replikasi dan \textit{erasure coding}, yang akan mempengaruhi alur transaksi.
 
 \begin{figure}[!ht]
     \centering
@@ -10,7 +10,7 @@ Mengikuti batasan pada bagian \ref{sec:batasan-masalah}, transaksi yang akan dii
     \label{fig:flow-write-mermaidjs}
 \end{figure}
 
-Alur untuk transaksi \textit{write} dapat dilihat pada gambar \ref{fig:flow-write-mermaidjs} dengan \textit{request} masuk ke \textit{Node}. Node kemudian akan melakukan operasi \textit{erasure coding} lalu menyebarkan \textit{shard} ke \textit{Node} lain sesuai dengan algoritma konsensus yang digunakan. Operasi \textit{write} dianggap selesai setelah konsensus mencapai kuorum.
+Alur untuk transaksi \textit{write} dapat dilihat pada Gambar \ref{fig:flow-write-mermaidjs} dengan \textit{request} masuk ke \textit{Node}. Node kemudian akan melakukan operasi \textit{erasure coding} lalu menyebarkan \textit{shard} ke \textit{Node} lain sesuai dengan algoritma konsensus yang digunakan. Operasi \textit{write} dianggap selesai setelah konsensus mencapai kuorum.
 
 \begin{figure}[!ht]
     \centering
@@ -19,4 +19,4 @@ Alur untuk transaksi \textit{write} dapat dilihat pada gambar \ref{fig:flow-writ
     \label{fig:flow-read-mermaidjs}
 \end{figure}
 
-Alur untuk transaksi \textit{read} dapat dilihat pada gambar \ref{fig:flow-read-mermaidjs} dengan \textit{request} masuk ke \textit{Node} yang tersedia. \textit{node} melakukan operasi \textit{read} pada \textit{key-value store} dan mengembalikan hasil operasi ke \textit{client} jika tersedia. Jika tidak, maka \textit{Node} melakukan rekonstruksi data dari \textit{erasure-coded persistent data} yang tersebar pada \textit{node-node} lainnya. Pada replikasi, data diambil dari \textit{Node} lain yang memiliki data yang sama.
+Alur untuk transaksi \textit{read} dapat dilihat pada Gambar \ref{fig:flow-read-mermaidjs} dengan \textit{request} masuk ke \textit{Node} yang tersedia. \textit{node} melakukan operasi \textit{read} pada \textit{key-value store} dan mengembalikan hasil operasi ke \textit{client} jika tersedia. Jika tidak, maka \textit{Node} melakukan rekonstruksi data dari \textit{erasure-coded persistent data} yang tersebar pada \textit{node-node} lainnya. Pada replikasi, data diambil dari \textit{Node} lain yang memiliki data yang sama.

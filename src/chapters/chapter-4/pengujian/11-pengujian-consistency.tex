@@ -4,7 +4,7 @@
 Pengujian ini mencakup non-fungsional NF-1, yaitu bahwa sistem harus menyediakan \textit{consistency} yang tinggi dengan \textit{request} ke \textit{node} manapun harus menghasilkan hasil yang sama. Pengujian dilakukan dengan kode pengujian P-12. Disebabkan kebutuhan ini sulit untuk diuji secara langsung, maka pengujian dilakukan dengan mendekati kebutuhan ini. 
 
 
-Pengujian \textit{consistency} dengan kode pengujian P-13 dilakukan dengan menjalankan operasi \textit{write} dan \textit{read} dengan hampir bersamaan pada beberapa \textit{node} yang berbeda. Pengujian ini dilakukan dengan memanfaatkan \textit{script} oneshot.js yang sudah dijelaskan pada bagian \ref{subsubsection:implementasi-benchmark}. Berikut langkah-langkah yang dilakukan dalam pengujian ini:
+Pengujian \textit{consistency} dengan kode pengujian P-13 dilakukan dengan menjalankan operasi \textit{write} dan \textit{read} dengan hampir bersamaan pada beberapa \textit{node} yang berbeda. Pengujian ini dilakukan dengan memanfaatkan \textit{script} oneshot.js yang sudah dijelaskan pada Bagian \ref{subsubsection:implementasi-benchmark}. Berikut langkah-langkah yang dilakukan dalam pengujian ini:
 
 \begin{enumerate}
     \item Menunggu hingga sistem siap menerima \textit{request}. Konfirmasi dapat dilakukan dengan mengirim \textit{request} HTTP pada \textit{endpoint} /status dan memastikan bahwa sistem sudah memiliki \textit{leader}.

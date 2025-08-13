@@ -1,7 +1,7 @@
 \subsubsection{Setup Benchmark}
 \label{subsubsection:setup-benchmark}
 
-Pengaturan variabel yang digunakan dalam \textit{benchmark} dilakukan pada file \textit{scripts.js} seperti yang sudah dijelaskan pada bagian \ref{subsubsection:implementasi-benchmark}. Skenario \textit{benchmark} dibagi menjadi tiga dengan mempertimbangkan hipotesis pengaruh variabel yang dinyatakan pada bagian \ref{sec:rumusan-masalah}. Skenario tersebut adalah sebagai berikut:
+Pengaturan variabel yang digunakan dalam \textit{benchmark} dilakukan pada file \textit{scripts.js} seperti yang sudah dijelaskan pada Bagian \ref{subsubsection:implementasi-benchmark}. Skenario \textit{benchmark} dibagi menjadi tiga dengan mempertimbangkan hipotesis pengaruh variabel yang dinyatakan pada Bagian \ref{sec:rumusan-masalah}. Skenario tersebut adalah sebagai berikut:
 
 \begin{enumerate}
   \item Internet cepat dan \textit{payload} kecil
@@ -18,7 +18,7 @@ Pengaturan variabel yang digunakan dalam \textit{benchmark} dilakukan pada file 
   
 \end{enumerate}
 
-Dari skenario-skenario tersebut, diturunkan beberapa variabel yang akan digunakan pada \textit{benchmark}. Menggunakan sistem \textit{benchmark} yang telah dibuat, variabel ini akan dijalankan untuk semua kombinasi yang dapat dibentuk. Variabel-variabel tersebut dapat dilihat pada tabel \ref{tab:variabel-benchmark}.
+Dari skenario-skenario tersebut, diturunkan beberapa variabel yang akan digunakan pada \textit{benchmark}. Menggunakan sistem \textit{benchmark} yang telah dibuat, variabel ini akan dijalankan untuk semua kombinasi yang dapat dibentuk. Variabel-variabel tersebut dapat dilihat pada Tabel \ref{tab:variabel-benchmark}.
 
 \begin{table}[ht]
   \centering
@@ -33,6 +33,6 @@ Dari skenario-skenario tersebut, diturunkan beberapa variabel yang akan digunaka
   \end{tabular}
 \end{table}
 
-Terkait ukuran \textit{payload}, nilai yang diambil adalah berdasarkan ukuran \textit{payload} yang umum digunakan pada aplikasi \textit{key-value store} seperti yang dijelaskan pada bagian \ref{sec:key-value-database}. Penambahan linear dilakukan untuk mempermudah analisis data dan mendapatkan pola yang lebih jelas. Selain itu, untuk bandwidth, nilai yang diambil adalah berdasarkan kecepatan internet yang umum digunakan di Indonesia lalu dilakukan penambahan linear dengan alasan yang sama. Nilai-nilai tersebut diambil dari data yang tersedia pada situs Speedtest Global Index \cite{ookla2025speedtest}.
+Terkait ukuran \textit{payload}, nilai yang diambil adalah berdasarkan ukuran \textit{payload} yang umum digunakan pada aplikasi \textit{key-value store} seperti yang dijelaskan pada Bagian \ref{sec:key-value-database}. Penambahan linear dilakukan untuk mempermudah analisis data dan mendapatkan pola yang lebih jelas. Selain itu, untuk bandwidth, nilai yang diambil adalah berdasarkan kecepatan internet yang umum digunakan di Indonesia lalu dilakukan penambahan linear dengan alasan yang sama. Nilai-nilai tersebut diambil dari data yang tersedia pada situs Speedtest Global Index \cite{ookla2025speedtest}.
 
 Dalam sekali \textit{benchmark}, \textit{client} akan dijalankan selama 180 detik untuk melakukan \textit{request} secara terus menerus. Hal ini dilakukan untuk mendapat data yang lebih akurat dan mengurangi pengaruh \textit{outlier} yang mungkin terjadi. Namun, disebabkan lingkungan yang digunakan dalam \textit{benchmark} merupakan komputer pribadi, maka hasil \textit{benchmark} tidak bebas dari gangguan eksternal sehingga hasil dapat tidak konsisten dalam beberapa percobaan.

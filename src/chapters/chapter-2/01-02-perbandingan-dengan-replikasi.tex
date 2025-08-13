@@ -4,14 +4,14 @@ Replikasi menyeluruh dengan menyalin data bit-per-bit adalah salah satu cara umu
 
 Sebagai contoh, untuk menyimpan data dengan nilai ketahanan empat kegagalan, replikasi mengharuskan data untuk ditulis lima kali di tempat yang berbeda. Seperti yang sudah dijelaskan sebelumnya, penggunaan penyimpanan pada \textit{Erasure coding} lebih sedikit jika dibandingkan dengan replikasi. Sebagai contoh, \textit{erasure coding} berpendekatan kode Reed-Solomon dengan konfigurasi $(12, 4)$, yaitu dua belas fragmen data dan empat fragmen kode, akan mengurangi penyimpanan sebanyak 1.33x jika dibandingkan dengan replikasi untuk tingkat ketahanan yang sama.
 
-Untuk meraih ketahanan pesan $t$, replikasi menggunakan penyimpanan $M$ sebanyak yang dapat dihitung pada persamaan \ref{eq:replication_storage}.
+Untuk meraih ketahanan pesan $t$, replikasi menggunakan penyimpanan $M$ sebanyak yang dapat dihitung pada Persamaan \ref{eq:replication_storage}.
 
 \begin{equation}
     M = \text{Ukuran pesan} \times (t + 1)
     \label{eq:replication_storage}
 \end{equation}
 
-Dibandingkan \textit{erasure coding} yang menggunakan reed-solomon, dapat dihitung rasio penyimpanan \textit{erasure coding} dengan replikasi $R$, yaitu pada persamaan \ref{eq:erasure_storage_simplified}.
+Dibandingkan \textit{erasure coding} yang menggunakan reed-solomon, dapat dihitung rasio penyimpanan \textit{erasure coding} dengan replikasi $R$, yaitu pada Persamaan \ref{eq:erasure_storage_simplified}.
 
 \begin{equation}
     R = \frac{\text{Ukuran pesan} \times (t + 1)}{\text{Ukuran pesan} \times \frac{\text{k + t}}{k}}

@@ -73,7 +73,7 @@ Ada beberapa cara untuk menghasilkan kode Reed-Solomon yang sistematis. Salah sa
     \label{eq:encoding_matrix}
 \end{align}
 
-Matrix \ref{eq:encoding_matrix} adalah gabungan matriks identitas dengan matriks Vandermonde. Matriks Vandermonde adalah sebuah matriks dengan progresi geometris di setiap barisnya. Matriks ini memfasilitasi evaluasi polinomial dengan kolom ke $j$ berkorespondensi dengan $j - 1$ dari poin evaluasi. Sifat penting dari matriks ini \textit{non-singular}, yaitu determinan dari matriks Vandermonde dihitung dan tidak nol jika dan hanya jika semua $a_i$ berbeda. Sehingga didapat persamaan untuk pemetaan linear $C(m) = Gm$ untuk matriks $G$ berukuran ${n} \times {k}$ dengan elemen dari $F$
+Matrix pada Persamaan\ref{eq:encoding_matrix} adalah gabungan matriks identitas dengan matriks Vandermonde. Matriks Vandermonde adalah sebuah matriks dengan progresi geometris di setiap barisnya. Matriks ini memfasilitasi evaluasi polinomial dengan kolom ke $j$ berkorespondensi dengan $j - 1$ dari poin evaluasi. Sifat penting dari matriks ini \textit{non-singular}, yaitu determinan dari matriks Vandermonde dihitung dan tidak nol jika dan hanya jika semua $a_i$ berbeda. Sehingga didapat persamaan untuk pemetaan linear $C(m) = Gm$ untuk matriks $G$ berukuran ${n} \times {k}$ dengan elemen dari $F$
 
 \begin{align}
     C(m) = Gm = 
@@ -93,7 +93,7 @@ Matrix \ref{eq:encoding_matrix} adalah gabungan matriks identitas dengan matriks
     \label{eq:encoding_equation}
 \end{align}
 
-Pada matriks \ref{eq:encoding_equation}, tidak semua kolom $g_{x,y}$ perlu digunakan. Dapat ditentukan kolom yang digunakan sejumlah $t \le n - k$ untuk dapat membenarkan $t$ kehilangan pada lokasi yang diketahui dan diberikan kepada algoritma \parencite{riley2001introduction}. Pemulihan dilakukan seperti pada persamaan \ref{eq:recovery_equation}.
+Pada Persamaan \ref{eq:encoding_equation}, tidak semua kolom $g_{x,y}$ pada matrix perlu digunakan. Dapat ditentukan kolom yang digunakan sejumlah $t \le n - k$ untuk dapat membenarkan $t$ kehilangan pada lokasi yang diketahui dan diberikan kepada algoritma \parencite{riley2001introduction}. Pemulihan dilakukan seperti pada Persamaan \ref{eq:recovery_equation}.
 
 \begin{align}
     G' \times m &= C(m)' \notag \\
@@ -103,21 +103,21 @@ Pada matriks \ref{eq:encoding_equation}, tidak semua kolom $g_{x,y}$ perlu digun
     \label{eq:recovery_equation}
 \end{align}
 
-Berdasarkan pengkodean yang dilakukan, kode Reed-Solomon menyediakan ketahanan sejumlah $t$ kegagalan dengan penggunaan penyimpanan $M$ yang dapat dihitung dengan rumus \ref{eq:ec_storage}
+Berdasarkan pengkodean yang dilakukan, kode Reed-Solomon menyediakan ketahanan sejumlah $t$ kegagalan dengan penggunaan penyimpanan $M$ yang dapat dihitung dengan Persamaan \ref{eq:ec_storage}
 
 \begin{equation}
     M = \text{Ukuran pesan} \times \frac{k + t}{k}
     \label{eq:ec_storage}
 \end{equation}
 
-Namun, perlu diingat bahwa untuk \textit{erasure coding} mencapai ukuran tersebut, perhitungan matriks seperti yang sudah dijelaskan sebelumnya perlu dilakukan. Perhitungan matriks Reed-Solomon memiliki kompleksitas yang bergantung pada konfigurasi serta ukuran pesan yang digunakan. Dengan demikian, kompleksitas komputasi untuk kode Reed-Solomon adalah perkalian matriks yang dapat dinyatakan dengan rumus \ref{eq:ec_complexity} dengan $n$ adalah jumlah \textit{node} data ($k$) dan \textit{node parity} ($t$).
+Namun, perlu diingat bahwa untuk \textit{erasure coding} mencapai ukuran tersebut, perhitungan matriks seperti yang sudah dijelaskan sebelumnya perlu dilakukan. Perhitungan matriks Reed-Solomon memiliki kompleksitas yang bergantung pada konfigurasi serta ukuran pesan yang digunakan. Dengan demikian, kompleksitas komputasi untuk kode Reed-Solomon adalah perkalian matriks yang dapat dinyatakan dengan Notasi \ref{eq:ec_complexity} dengan $n$ adalah jumlah \textit{node} data ($k$) dan \textit{node parity} ($t$).
 
 \begin{equation}
     O(k \cdot n \cdot \frac{\text{Ukuran Pesan}}{k})
     \label{eq:ec_complexity}
 \end{equation}
 
-Perhitungan $k$ baris adalah perkalian matriks identitas dan disederhanakan dengan menyalin data. Oleh sebab itu, kompleksitas yang membutuhkan komputasi signifikan adalah perkalian matriks yang dilakukan pada $t$ baris. Dengan demikian, kompleksitas komputasi untuk kode Reed-Solomon adalah seperti yang dinyatakan pada rumus \ref{eq:ec_complexity_final}.
+Perhitungan $k$ baris adalah perkalian matriks identitas dan disederhanakan dengan menyalin data. Oleh sebab itu, kompleksitas yang membutuhkan komputasi signifikan adalah perkalian matriks yang dilakukan pada $t$ baris. Dengan demikian, kompleksitas komputasi untuk kode Reed-Solomon adalah seperti yang dinyatakan pada Persamaan \ref{eq:ec_complexity_final}.
 
 \begin{equation}
     O(k \cdot t \cdot \frac{\text{Ukuran Pesan}}{k}) = O(t \cdot \text{Ukuran Pesan})

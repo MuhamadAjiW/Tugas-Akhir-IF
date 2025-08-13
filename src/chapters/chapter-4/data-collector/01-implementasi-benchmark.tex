@@ -1,11 +1,11 @@
 \subsubsection{Implementasi Komponen Benchmark}
 \label{subsubsection:implementasi-benchmark}
 
-Seperti yang dijelaskan pada rancangan di bagian \ref{subsubsection:detail-data-benchmark}, komponen \textit{benchmark} bertanggung jawab untuk melakukan pengujian kinerja dari \textit{key-value store database} yang sudah dibangun. Dalam melakukan pengujian kinerja tersebut, komponen ini juga memiliki kemampuan untuk mengelola sistem yang sedang diuji, termasuk memulai, menghentikan, dan menghapus data dari masing-masing \textit{node} dari \textit sistem {key-value store database}.
+Seperti yang dijelaskan pada rancangan di Bagian \ref{subsubsection:detail-data-benchmark}, komponen \textit{benchmark} bertanggung jawab untuk melakukan pengujian kinerja dari \textit{key-value store database} yang sudah dibangun. Dalam melakukan pengujian kinerja tersebut, komponen ini juga memiliki kemampuan untuk mengelola sistem yang sedang diuji, termasuk memulai, menghentikan, dan menghapus data dari masing-masing \textit{node} dari \textit sistem {key-value store database}.
 
-Implementasi komponen \textit{benchmark} dilakukan dengan menggunakan bahasa bash untuk mengelola proses sistem dan menggunakan Javascript sebagai \textit{client}. Implementasi menggunakan bahasa bash terdapat pada file scripts.sh dengan bentuk fungsi. Beberapa fungsi dapat dipanggil secara manual melalui terminal oleh pengguna seperti yang sudah disebutkan sebelumnya pada bagian \ref{subsubsection:data-collector}.
+Implementasi komponen \textit{benchmark} dilakukan dengan menggunakan bahasa bash untuk mengelola proses sistem dan menggunakan Javascript sebagai \textit{client}. Implementasi menggunakan bahasa bash terdapat pada file scripts.sh dengan bentuk fungsi. Beberapa fungsi dapat dipanggil secara manual melalui terminal oleh pengguna seperti yang sudah disebutkan sebelumnya pada Bagian \ref{subsubsection:data-collector}.
 
-Seperti yang dapat dilihat pada gambar \ref{fig:benchmark-structure}, komponen \textit{benchmark} memiliki beberapa fungsi yang dapat dikelompokkan menjadi konfigurasi sistem atau utilitas, manajemen \textit{node}, dan eksekutor \textit{benchmark} utama.
+Seperti yang dapat dilihat pada Gambar \ref{fig:benchmark-structure}, komponen \textit{benchmark} memiliki beberapa fungsi yang dapat dikelompokkan menjadi konfigurasi sistem atau utilitas, manajemen \textit{node}, dan eksekutor \textit{benchmark} utama.
 
 Fungsi-fungsi yang dikelompokkan menjadi konfigurasi sistem adalah sebagai berikut:
 

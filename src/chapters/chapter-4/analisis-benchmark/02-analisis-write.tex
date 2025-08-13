@@ -1,12 +1,12 @@
 \subsubsection{Analisis Operasi Write}
 \label{subsubsection:analisis-operasi-write}
 
-Analisis kinerja operasi \textit{write} merupakan inti dari penilitian ini, seperti yang sudah dijelaskan pada bagian \ref{sec:rumusan-masalah}. Analisis ini bertujuan untuk memvalidasi bahwa \textit{erasure coding} dapat mengungguli replikasi dalam kondisi tertentu. Analisis kinerja operasi \textit{write} akan dibagi berdasarkan skenario yang sudah disebutkan pada bagian \ref{subsubsection:setup-benchmark}. Setiap skenario akan dianalisis berdasarkan hasil \textit{benchmark} yang telah dilakukan.
+Analisis kinerja operasi \textit{write} merupakan inti dari penilitian ini, seperti yang sudah dijelaskan pada Bagian \ref{sec:rumusan-masalah}. Analisis ini bertujuan untuk memvalidasi bahwa \textit{erasure coding} dapat mengungguli replikasi dalam kondisi tertentu. Analisis kinerja operasi \textit{write} akan dibagi berdasarkan skenario yang sudah disebutkan pada Bagian \ref{subsubsection:setup-benchmark}. Setiap skenario akan dianalisis berdasarkan hasil \textit{benchmark} yang telah dilakukan.
 
 \begin{enumerate}
   \item Skenario 1: Internet cepat dan \textit{payload} kecil
 
-  Pada skenario pertama yang dirancang sebagai kondisi ekstrem yang menguntungkan replikasi, hasil \textit{benchmark} menunjukkan bahwa sistem replikasi memiliki \textit{response time} yang lebih rendah dibandingkan sistem berbasis \textit{erasure coding}. Perbedaan kinerja ini dapat dilihat pada gambar \ref{fig:write-smload-fastnet}.
+  Pada skenario pertama yang dirancang sebagai kondisi ekstrem yang menguntungkan replikasi, hasil \textit{benchmark} menunjukkan bahwa sistem replikasi memiliki \textit{response time} yang lebih rendah dibandingkan sistem berbasis \textit{erasure coding}. Perbedaan kinerja ini dapat dilihat pada Gambar \ref{fig:write-smload-fastnet}.
 
   \begin{figure}[ht]
       \centering
@@ -36,7 +36,7 @@ Analisis kinerja operasi \textit{write} merupakan inti dari penilitian ini, sepe
 
   \item Skenario 3: Internet menengah dan \textit{payload} besar
   
-  Dengan didapatkannya bahwa \textit{erasure coding} dapat mengungguli replikasi pada skenario kedua, skenario ketiga dirancang untuk mengeksplorasi titik perbatasan ketika keunggulan kinerja beralih dari sistem \textit{erasure coding} ke sistem replikasi. Seperti yang sudah dijelaskan pada bagian \ref{subsubsection:setup-benchmark}, skenario ini dirancang dengan merepresentasikan kondisi jaringan dengan \textit{bandwidth} rata-rata internet di Indonesia pada saat penulisan, yaitu 40 Mbps, dengan penambahan atau pengurangan linear.
+  Dengan didapatkannya bahwa \textit{erasure coding} dapat mengungguli replikasi pada skenario kedua, skenario ketiga dirancang untuk mengeksplorasi titik perbatasan ketika keunggulan kinerja beralih dari sistem \textit{erasure coding} ke sistem replikasi. Seperti yang sudah dijelaskan pada Bagian \ref{subsubsection:setup-benchmark}, skenario ini dirancang dengan merepresentasikan kondisi jaringan dengan \textit{bandwidth} rata-rata internet di Indonesia pada saat penulisan, yaitu 40 Mbps, dengan penambahan atau pengurangan linear.
   
   \begin{figure}[ht]
     \centering
@@ -56,7 +56,7 @@ Analisis kinerja operasi \textit{write} merupakan inti dari penilitian ini, sepe
     \label{fig:write-bigload-avgnet-heatmap}
   \end{figure}
 
-  Untuk memudahkan visualisasi, gambar \ref{fig:write-bigload-avgnet-heatmap} menunjukkan rasio kinerja dari hasil \textit{benchmark} terhadap \textit{payload} dan \textit{bandwidth} yang digunakan dalam persen. Warna biru dan nilai negatif menunjukkan keunggulan sistem berbasis \textit{erasure coding}, sedangkan warna merah dan nilai positif menunjukkan keunggulan sistem berbasis replikasi. Titik impas terlihat pada area transisi antara warna biru dan merah.  Kode yang digunakan untuk menghasilkan gambar ini dapat dilihat pada repository Github hasil implementasi. Transisi ini dapat dilihat pada gambar tersebut, namun tidak didapat titik yang tepat.
+  Untuk memudahkan visualisasi, Gambar \ref{fig:write-bigload-avgnet-heatmap} menunjukkan rasio kinerja dari hasil \textit{benchmark} terhadap \textit{payload} dan \textit{bandwidth} yang digunakan dalam persen. Warna biru dan nilai negatif menunjukkan keunggulan sistem berbasis \textit{erasure coding}, sedangkan warna merah dan nilai positif menunjukkan keunggulan sistem berbasis replikasi. Titik impas terlihat pada area transisi antara warna biru dan merah.  Kode yang digunakan untuk menghasilkan gambar ini dapat dilihat pada repository Github hasil implementasi. Transisi ini dapat dilihat pada gambar tersebut, namun tidak didapat titik yang tepat.
 
   Untuk menggambarkan perolehan titik impas, dapat dibuat diagram garis yang menunjukkan rata-rata \textit{response time} sistem berbasis \textit{erasure coding} dan replikasi terhadap \textit{bandwidth} dan ukuran \textit{payload}. Gambar \ref{fig:write-bigload-avgnet-line} menunjukkan diagram garis tersebut. Diagram ini memberikan gambaran visual yang jelas tentang bagaimana kinerja kedua sistem berubah seiring dengan variasi \textit{bandwidth} dan ukuran \textit{payload}.
 
@@ -81,7 +81,7 @@ Analisis kinerja operasi \textit{write} merupakan inti dari penilitian ini, sepe
 
   Dari \textit{scatter plot} tersebut, terlihat bahwa hubungan dari \textit{bandwidth} dan ukuran \textit{payload} terhadap \textit{response time} tidak linear. Data yang dimiliki hanya sedikit, yaitu 25 data, sehingga regresi yang dilakukan harus mempertimbangkan risiko \textit{overfitting} yang tinggi. Selain itu, disebabkan lingkungan eksperimen dilakukan pada komputer pribadi, \textit{noise} dari eksperimen dapat mempengaruhi hasil. Dengan mempertimbangkan semua hal tersebut, regresi dilakukan dengan model \textit{ridge regression}. Model ini dipilih karena dapat menangani data yang memiliki banyak \textit{noise} serta mengurangi risiko \textit{overfitting} dengan menambahkan bias pada model regresi.
 
-  Model \textit{ridge regression} gabungan dari \textit{bandwidth} dan \textit{payload} terhadap \textit{response time} menghasilkan model tiga dimensi seperti yang ditunjukkan pada gambar \ref{fig:write-bigload-avgnet-regression}.
+  Model \textit{ridge regression} gabungan dari \textit{bandwidth} dan \textit{payload} terhadap \textit{response time} menghasilkan model tiga dimensi seperti yang ditunjukkan pada Gambar \ref{fig:write-bigload-avgnet-regression}.
 
   \begin{figure}[ht]
     \centering

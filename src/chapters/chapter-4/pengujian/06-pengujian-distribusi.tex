@@ -1,7 +1,7 @@
 \subsubsection{Pengujian distribusi data}
 \label{subsubsection:pengujian-distribusi-data}
 
-Pengujian ini mencakup fungsional F-5, yaitu bahwa sistem harus dapat mendistribusikan data atau sebagian data ke \textit{node} lain untuk keperluan ketahanan data. Pengujian dilakukan dengan kode pengujian P-8. Pengujian ini menggunakan \textit{script} pembantu oneshot.js yang sudah dijelaskan pada bagian \ref{subsubsection:implementasi-benchmark}. 
+Pengujian ini mencakup fungsional F-5, yaitu bahwa sistem harus dapat mendistribusikan data atau sebagian data ke \textit{node} lain untuk keperluan ketahanan data. Pengujian dilakukan dengan kode pengujian P-8. Pengujian ini menggunakan \textit{script} pembantu oneshot.js yang sudah dijelaskan pada Bagian \ref{subsubsection:implementasi-benchmark}. 
 
 Pengujian distribusi data dengan kode pengujian P-8 dilakukan dengan menuliskan \textit{key-value pair} ke dalam sistem. Setelah itu, dilakukan melakukan \textit{request} GET ke \textit{endpoint} /fragment ke beberapa node lain untuk sistem \textit{erasure coding} dan \textit{endpoint} /read untuk sistem replikasi. Berikut langkah-langkah yang dilakukan dalam pengujian ini:
 

@@ -1,9 +1,9 @@
 \subsubsection{Implementasi Memory Store}
 \label{subsubsection:implementasi-memory-store}
 
-Komponen \textit{Memory Store} diimplementasikan menggunakan pustaka moka sesuai dengan rancangan yang telah ditetapkan pada bagian \ref{subsubsection:detail-in-memory-store}. Komponen ini berperan sebagai \textit{cache} dari \textit{key-value store database} yang diimplementasikan. Untuk kedua jenis penyimpanan, baik replikasi maupun \textit{erasure coding}, komponen ini menyimpan data utuh. Tujuan utamanya adalah untuk meningkatkan kinerja sistem dengan mengurangi latensi akses \textit{disk} yang lebih lambat dibandingkan akses \textit{memory}. Selain itu, untuk \textit{erasure coding}, komponen ini juga mengurangi operasi rekonstruksi data yang memerlukan waktu lama untuk operasi \textit{read}.
+Komponen \textit{Memory Store} diimplementasikan menggunakan pustaka moka sesuai dengan rancangan yang telah ditetapkan pada Bagian \ref{subsubsection:detail-in-memory-store}. Komponen ini berperan sebagai \textit{cache} dari \textit{key-value store database} yang diimplementasikan. Untuk kedua jenis penyimpanan, baik replikasi maupun \textit{erasure coding}, komponen ini menyimpan data utuh. Tujuan utamanya adalah untuk meningkatkan kinerja sistem dengan mengurangi latensi akses \textit{disk} yang lebih lambat dibandingkan akses \textit{memory}. Selain itu, untuk \textit{erasure coding}, komponen ini juga mengurangi operasi rekonstruksi data yang memerlukan waktu lama untuk operasi \textit{read}.
 
-Pada implementasinya, komponen ini terdapat pada kelas KvMemory yang merupakan \textit{wrapper} dari pustaka moka. Kelas ini menyediakan antarmuka yang terdapat pada tabel \ref{tab:memory-store-interface}.
+Pada implementasinya, komponen ini terdapat pada kelas KvMemory yang merupakan \textit{wrapper} dari pustaka moka. Kelas ini menyediakan antarmuka yang terdapat pada Tabel \ref{tab:memory-store-interface}.
 
 \begin{table}[h]
     \centering

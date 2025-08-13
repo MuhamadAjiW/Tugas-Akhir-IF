@@ -1,11 +1,11 @@
 \subsubsection{Implementasi Komponen Log Management}
 \label{subsubsection:implementasi-log-management}
 
-Implementasi komponen \textit{log management} dilakukan dengan mengikuti rancangan yang telah ditetapkan pada bagian \ref{subsubsection:detail-data-log-management}. Komponen ini bertanggung jawab untuk mengelola dan menyimpan log dari sistem yang diuji.
+Implementasi komponen \textit{log management} dilakukan dengan mengikuti rancangan yang telah ditetapkan pada Bagian \ref{subsubsection:detail-data-log-management}. Komponen ini bertanggung jawab untuk mengelola dan menyimpan log dari sistem yang diuji.
 
-Mirip seperti komponen \textit{benchmark}, komponen \textit{log management} juga diimplementasikan dalam bahasa bash untuk mengelola proses sistem. Implementasi menggunakan bahasa bash tergabung dengan komponen \textit{benchmark} pada file scripts.sh. Selain itu, ada juga fungsi yang dapat dipanggil secara manual melalui terminal oleh pengguna seperti yang sudah disebutkan sebelumnya pada bagian \ref{subsubsection:data-collector}.
+Mirip seperti komponen \textit{benchmark}, komponen \textit{log management} juga diimplementasikan dalam bahasa bash untuk mengelola proses sistem. Implementasi menggunakan bahasa bash tergabung dengan komponen \textit{benchmark} pada file scripts.sh. Selain itu, ada juga fungsi yang dapat dipanggil secara manual melalui terminal oleh pengguna seperti yang sudah disebutkan sebelumnya pada Bagian \ref{subsubsection:data-collector}.
 
-Seperti yang dapat dilihat pada gambar \ref{fig:log-management-structure}, komponen \textit{log management} memiliki fungsi yang digunakan untuk melakukan \textit{parse} dari hasil \textit{trace} dan \textit{log} serta fungsi untuk melakukan pengelolaan file untuk menghasilkan laporan. Fungsi-fungsi tersebut adalah sebagai berikut:
+Seperti yang dapat dilihat pada Gambar \ref{fig:log-management-structure}, komponen \textit{log management} memiliki fungsi yang digunakan untuk melakukan \textit{parse} dari hasil \textit{trace} dan \textit{log} serta fungsi untuk melakukan pengelolaan file untuk menghasilkan laporan. Fungsi-fungsi tersebut adalah sebagai berikut:
 
 \begin{enumerate}
   \item collect\_trace\_during\_benchmark
@@ -18,4 +18,4 @@ Seperti yang dapat dilihat pada gambar \ref{fig:log-management-structure}, kompo
 
 \end{enumerate}
 
-Hasil dari pengorganisasian file kemudian akan diolah lebih lanjut untuk menghasilkan laporan analisis. Pengolahan ini dilakukan dengan menggunakan bahasa pemrograman Python menggunakan Jupyter Notebook. Hasil dari pengolahan ini akan dijelaskan lebih lanjut pada bagian \ref{sec:evaluasi}.
+Hasil dari pengorganisasian file kemudian akan diolah lebih lanjut untuk menghasilkan laporan analisis. Pengolahan ini dilakukan dengan menggunakan bahasa pemrograman Python menggunakan Jupyter Notebook. Hasil dari pengolahan ini akan dijelaskan lebih lanjut pada Bagian \ref{sec:evaluasi}.

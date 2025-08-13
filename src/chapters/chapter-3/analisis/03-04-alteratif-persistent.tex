@@ -1,7 +1,7 @@
 \subsubsection{Pemilihan Persistent Database}
 \label{subsubsection:persistent-database}
 
-Komponen \textit{Persistent Database} berperan sebagai penyimpanan data \textit{persistent} untuk memenuhi kebutuhan yang sudah disebutkan di bagian \ref{subsection:analisis-permasalahan}. Tabel \ref{tab:tools-db} menunjukkan perbandingan beberapa kakas \textit{persistent database} yang dipertimbangkan untuk digunakan dalam eksperimen ini.
+Komponen \textit{Persistent Database} berperan sebagai penyimpanan data \textit{persistent} untuk memenuhi kebutuhan yang sudah disebutkan di Bagian \ref{subsection:analisis-permasalahan}. Tabel \ref{tab:tools-db} menunjukkan perbandingan beberapa kakas \textit{persistent database} yang dipertimbangkan untuk digunakan dalam eksperimen ini.
 
 Dari kakas-kakas tersebut, dipilih RocksDB sebagai kakas untuk eksperimen ini. Selain RocksDB, LevelDB juga merupakan kandidat yang kuat untuk eksperimen ini karena sifatnya yang simpel. Namun, pada akhirnya, RocksDB dipilih karena pengembangannya yang masih aktif, kinerja \textit{write} yang lebih tinggi, serta fitur-fitur tambahan seperti \textit{compression} dan penyimpanan data dalam \textit{byte}.
 

@@ -4,7 +4,7 @@
 Pengujian ini mencakup non-fungsional NF-5, yaitu bahwa sistem harus dapat memberikan \textit{response time} yang rendah untuk operasi \textit{write} dan \textit{read}. Pengujian dilakukan dengan kode pengujian P-16. Disebabkan kebutuhan ini sulit untuk diuji secara langsung, maka pengujian ini hanya mencakup memperlihatkan kinerja \textit{response time} sistem.
 
 
-Pengujian \textit{response time} minimal dengan kode pengujian P-16 dilakukan dengan menjalankan perintah run\_bench\_suite pada file scripts.sh yang sudah dijelaskan pada bagian \ref{subsection:setup-pengujian}. Berikut langkah-langkah yang dilakukan dalam pengujian ini:
+Pengujian \textit{response time} minimal dengan kode pengujian P-16 dilakukan dengan menjalankan perintah run\_bench\_suite pada file scripts.sh yang sudah dijelaskan pada Bagian \ref{subsection:setup-pengujian}. Berikut langkah-langkah yang dilakukan dalam pengujian ini:
 
 \begin{enumerate}
   \item Menunggu hingga sistem siap menerima \textit{request}. Konfirmasi dapat dilakukan dengan mengirim \textit{request} HTTP pada \textit{endpoint} /status dan memastikan bahwa sistem sudah memiliki \textit{leader}.
