@@ -1,0 +1,122 @@
+\section{Introduction}
+
+With the development of computing technology, data storage continues to grow to high values. The development of data usage and storage is driven by the emergence of cloud computing technology, data needs for artificial intelligence training based on machine learning, and general improvement in data quality in files.
+
+Along with this, the use of systems has become increasingly intensive. This intensive use creates a need for high resilience so that these systems can continue to operate, especially in facing the possibility of component failure and data loss \cite{weatherspoon2002erasure}. In this case, data redundancy solutions become very important. Traditionally, replication techniques are used to duplicate data to multiple nodes. However, with the growing need for data in operations, this approach consumes increasingly large storage capacity and significantly increases operational costs.
+
+Another solution to address these failures is erasure coding. With the application of erasure coding, data storage requirements can be reduced while maintaining data integrity and resilience, especially in distributed system environments using multiple devices simultaneously \cite{balaji2018erasure}. However, erasure coding requires higher computational resources compared to replication in its implementation. This causes high latency and response time from the services created. In fact, many application services make low latency a requirement in their operations \cite{dean2013tail}.
+
+However, besides adding computation, the application of erasure coding in a system reduces the overall data size to provide data integrity and resilience. Reducing data size can also cause a decrease in the size of data sent to other nodes. Thus, erasure coding has the potential to have conditions when the data size is large enough and the network is slow enough that the response time is lower in certain operations compared to performing the same operations on a replication system.
+
+\section{Related Work}
+
+Several studies have explored the application of erasure coding in distributed storage systems. Weatherspoon and Kubiatowicz \cite{weatherspoon2002erasure} demonstrated the effectiveness of erasure codes in providing fault tolerance with lower storage overhead compared to replication. Balaji et al. \cite{balaji2018erasure} analyzed the trade-offs between storage efficiency and computational overhead in erasure-coded systems.
+
+Recent work has focused on optimizing erasure coding for specific workloads and system architectures. However, limited research has specifically addressed the performance characteristics of erasure coding in distributed key-value store databases, particularly regarding response time thresholds where erasure coding outperforms replication.
+
+\section{System Design and Implementation}
+
+\subsection{Architecture Overview}
+
+The implemented system consists of several key components:
+\begin{itemize}
+\item \textbf{Node}: Basic unit of the distributed system that manages data
+\item \textbf{Data Collector}: External script for experimental data collection
+\item \textbf{Benchmark Component}: Performs performance testing with parameter variations
+\item \textbf{In-memory Key-Value Store}: Cache to improve read operation performance
+\item \textbf{Persistent Database}: RocksDB for permanent data storage
+\end{itemize}
+
+\subsection{Implementation Details}
+
+The system is developed using Rust programming language with the following technologies:
+\begin{itemize}
+\item \textbf{Persistent Storage}: RocksDB
+\item \textbf{Erasure Coding Algorithm}: Reed-Solomon
+\item \textbf{Consensus Protocol}: OmniPaxos
+\item \textbf{Benchmarking Tools}: k6 and mpstat
+\end{itemize}
+
+The system supports both erasure coding and replication mechanisms, allowing direct performance comparison under identical conditions. The Reed-Solomon algorithm is configured with static data and parity shard settings, while the consensus protocol ensures data consistency across distributed nodes.
+
+\section{Experimental Setup and Methodology}
+
+\subsection{Test Environment}
+
+The experiments are conducted in a virtual machine environment with traffic control for network simulation. This setup allows precise control over network bandwidth and latency parameters, enabling systematic analysis of performance characteristics.
+
+\subsection{Parameter Variations}
+
+The benchmark system varies two key parameters:
+\begin{itemize}
+\item \textbf{Network Bandwidth}: 1Mbps, 10-70Mbps, and 10Gbps
+\item \textbf{Payload Size}: 1KB and 200-1000KB
+\end{itemize}
+
+These parameter ranges are chosen to represent different operational scenarios, from resource-constrained environments to high-performance data centers.
+
+\subsection{Performance Metrics}
+
+The primary performance metric is response time for both write and read operations. Additional metrics include:
+\begin{itemize}
+\item Storage efficiency
+\item Network utilization
+\item CPU usage during encoding/decoding operations
+\end{itemize}
+
+\section{Results and Analysis}
+
+\subsection{Write Operation Performance}
+
+The experimental results demonstrate that erasure coding exhibits a threshold condition where response time becomes lower than replication for write operations. This threshold occurs when:
+\begin{itemize}
+\item Network bandwidth is limited ($\leq$10Mbps)
+\item Payload size is sufficiently large ($\geq$500KB)
+\end{itemize}
+
+Under these conditions, the reduced data transfer requirements of erasure coding compensate for the additional computational overhead, resulting in improved overall response time.
+
+\subsection{Read Operation Performance}
+
+For read operations, replication consistently outperforms erasure coding across all tested parameter combinations. This performance difference is attributed to the complexity of data reconstruction in erasure coding, which requires:
+\begin{itemize}
+\item Retrieval of multiple data fragments
+\item Computational overhead for reconstruction
+\item Additional network communication for fragment collection
+\end{itemize}
+
+\subsection{Storage Efficiency}
+
+Erasure coding demonstrates significant advantages in storage efficiency, requiring approximately 50\% less storage space compared to triple replication while maintaining equivalent fault tolerance capabilities.
+
+\section{Discussion}
+
+\subsection{Practical Implications}
+
+The findings suggest that erasure coding is most suitable for distributed key-value store databases operating under specific conditions:
+\begin{itemize}
+\item Large data objects (>500KB)
+\item Limited network bandwidth environments
+\item Write-heavy workloads
+\item Storage cost optimization requirements
+\end{itemize}
+
+For typical key-value store applications handling small data objects in high-bandwidth environments, replication remains the preferred approach due to superior read performance and lower computational complexity.
+
+\subsection{Limitations}
+
+The current implementation has several limitations:
+\begin{itemize}
+\item Static erasure coding configuration
+\item Limited to read and write operations
+\item Local testing environment with network simulation
+\item Static cluster membership configuration
+\end{itemize}
+
+\section{Conclusion}
+
+This research demonstrates that erasure coding has threshold conditions where it outperforms replication in distributed key-value store databases for write operations. Specifically, erasure coding shows superior performance when network bandwidth is limited and payload sizes are large. However, replication consistently outperforms erasure coding for read operations due to data reconstruction complexity.
+
+The choice between erasure coding and replication should consider workload characteristics, data size patterns, network infrastructure, and the read/write operation ratio. For systems handling large data with limited network resources, erasure coding provides both performance and storage efficiency benefits. For typical key-value store applications with small data objects, replication remains the optimal choice.
+
+Future work should explore adaptive systems that can dynamically switch between erasure coding and replication based on real-time workload characteristics and system conditions.

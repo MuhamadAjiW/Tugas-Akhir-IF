@@ -4,7 +4,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %----------------------------------------------------------------------------------------
-%   PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%   PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
 
 \documentclass[a0,landscape]{config/poster/a0poster}
@@ -19,6 +19,9 @@
 \usepackage[font=small,labelfont=bf]{caption} % For figure/table captions
 \usepackage{amsfonts, amsmath, amsthm, amssymb} % Math packages
 \usepackage[style=ieee]{biblatex} % IEEE style citations
+\usepackage{tikz} % For creating diagrams
+\usepackage{pgfplots} % For creating plots
+\pgfplotsset{compat=1.18}
 
 % Styling Packages
 \usepackage[most]{tcolorbox} % For creating colored boxes (headers)
@@ -27,12 +30,11 @@
 \tolerance=10000
 
 %----------------------------------------------------------------------------------------
-%   DOCUMENT CONFIGURATION
+%   DOCUMENT CONFIGURATION
 %----------------------------------------------------------------------------------------
 
 % Layout settings
-\columnsep=80pt % Space between columns
-%\columnseprule=3pt % Remove the vertical line for a cleaner look
+\columnsep=60pt % Space between columns
 
 % Set graphic path
 \graphicspath{{./}{resources/chapter-4/}} % Location of the graphics files
@@ -42,22 +44,24 @@
 \addbibresource{references.bib}
 
 % Custom Colors and Commands
-\definecolor{IEEEblue}{rgb}{0.0, 0.21, 0.42} % Define a standard blue for branding
+\definecolor{ITBblue}{rgb}{0.0, 0.21, 0.42} % ITB blue branding
+\definecolor{ECcolor}{rgb}{0.8, 0.2, 0.2} % Erasure coding color
+\definecolor{REPcolor}{rgb}{0.2, 0.6, 0.2} % Replication color
 
 % Command for creating a styled section header
 \newcommand{\postersection}[1]{%
   \begin{tcolorbox}[
-      colback=IEEEblue,
-      colframe=IEEEblue,
+      colback=ITBblue,
+      colframe=ITBblue,
       fonttitle=\bfseries,
       coltext=white,
       sharp corners,
       boxrule=0pt,
-      top=4pt,
-      bottom=4pt,
+      top=6pt,
+      bottom=6pt,
       halign=center
     ]
-    \large #1
+    \Large #1
   \end{tcolorbox}%
 }
 
@@ -66,162 +70,278 @@
 \begin{document}
 
 %----------------------------------------------------------------------------------------
-%   POSTER HEADER 
+%   POSTER HEADER 
 %----------------------------------------------------------------------------------------
 
-\begin{minipage}[c]{0.8\linewidth}
-	\veryHuge \textbf{Erasure Coding Performance Analysis Against Replication on Distributed Key-Value Store Database} \\[1.5cm]
-	\LARGE {Muhamad Aji Wibisono} \\
-	\Large {13521095@std.stei.itb.ac.id} \\
-	\Large {Teknik Informatika, Institut Teknologi Bandung}
+\begin{minipage}[c]{0.75\linewidth}
+	\veryHuge \textbf{Analisis Erasure Coding terhadap Replikasi pada Key-Value Store Database Terdistribusi} \\[1cm]
+	\Huge \textit{Erasure Coding Performance Analysis Against Replication on Distributed Key-Value Store Database} \\[1.5cm]
+	\LARGE \textbf{Muhamad Aji Wibisono (13521095)} \\
+	\Large Teknik Informatika, Institut Teknologi Bandung \\
+	\Large \textbf{Pembimbing:} Achmad Imam Kistijantoro, S.T, M.Sc., Ph.D.
+\end{minipage}
+\begin{minipage}[c]{0.2\linewidth}
+	\includegraphics[width=\linewidth]{resources/cover-ganesha.jpg}
 \end{minipage}
 
 \vspace{1cm} % Whitespace between header and content
 
 %----------------------------------------------------------------------------------------
-%   POSTER BODY
+%   POSTER BODY
 %----------------------------------------------------------------------------------------
 
 \begin{multicols}{4} % Use 4 columns for the body
 
 	%----------------------------------------------------------------------------------------
-	%   ABSTRACT
+	%   ABSTRACT
 	%----------------------------------------------------------------------------------------
 
 	\postersection{Abstract}
 	\begin{quote}
-		High-demand event ticketing systems require high throughput and stability under extreme query loads and seat contention. This paper investigates database and application-level optimizations to address these challenges. We evaluate the performance of a traditional PostgreSQL cluster against distributed SQL databases, specifically CitusData and YugabyteDB, for scaling transaction rates. Additionally, we introduce an asynchronous, concurrency-limited order processing flow control scheme designed to reduce database strain by rejecting invalid requests early. Under load tests with 10,000 to 15,000 virtual users, the baseline PostgreSQL cluster demonstrated superior performance with the lowest latency and most efficient resource utilization. In contrast, CitusData showed acceptable but higher latency, while YugabyteDB exhibited poor performance and an unacceptable failure rate. The flow control mechanism, when applied to the PostgreSQL cluster, proved highly effective, significantly reducing database load by pre-emptively filtering requests for unavailable tickets. Our findings suggest that for this specific high-contention workload, a well-tuned monolithic relational database combined with an intelligent application-level flow control strategy provides a more robust and efficient solution than the tested distributed database alternatives.
+		This research analyzes the performance of erasure coding compared to replication in distributed key-value store database systems, specifically focusing on system response time for write and read operations. With growing data storage needs and intensive computing requirements, efficient data redundancy solutions become increasingly important. Erasure coding offers a solution to improve system resilience with better storage efficiency compared to traditional replication.
 	\end{quote}
 
 	%----------------------------------------------------------------------------------------
-	%   INTRODUCTION
+	%   PROBLEM STATEMENT
 	%----------------------------------------------------------------------------------------
 
-	\postersection{Introduction}
-	Online ticket sales for major events present immense technical challenges. High-profile sales, like Taylor Swift's "The Eras Tour," have seen system failures due to overwhelming demand, where millions of users attempt to buy tickets simultaneously \cite{swiftTicketmaster}. This highlights a critical need for systems that can handle extreme, sudden spikes in traffic without failing.
-
-	Ticketing systems face a unique load profile:
+	\postersection{Problem Statement}
+	
+	\textbf{Research Questions:}
 	\begin{itemize}
-		\item \textbf{Exponential User Arrival:} A massive number of users access the system in a very short window.
-		\item \textbf{High Read/Write Load:} Users constantly check for available tickets (reads) while simultaneously trying to purchase them (writes).
-		\item \textbf{Extreme Resource Contention:} Many users compete for the exact same limited resources (seats).
-	\end{itemize}
-	This research investigates various architectural solutions to build a reliable, high-performance ticketing system capable of withstanding these conditions.
-
-	%----------------------------------------------------------------------------------------
-	%   OBJECTIVES
-	%----------------------------------------------------------------------------------------
-
-	\postersection{Main Objectives}
-	This study aims to formulate an optimal and reliable solution for large-scale ticket sales systems by focusing on four key challenges:
-	\begin{enumerate}
-		\item \textbf{Increase Transaction Throughput:} Evaluate and compare different database architectures (standard vs. distributed) to scale write operations effectively.
-		\item \textbf{Optimize Read Operations:} Design and test a multi-layered caching strategy to handle high-volume queries for ticket availability.
-		\item \textbf{Ensure Data Integrity:} Implement robust mechanisms within the database to prevent critical errors like double-booking under high concurrency.
-		\item \textbf{Maintain System Stability:} Develop and assess an application-level order processing flow control mechanism to manage request spikes and prevent system overload.
-	\end{enumerate}
-
-	%----------------------------------------------------------------------------------------
-	%   MATERIALS AND METHODS
-	%----------------------------------------------------------------------------------------
-
-	\postersection{Methods and Materials}
-	\subsection*{Architectures and Technologies}
-	We compared three PostgreSQL-compatible database architectures:
-	\begin{itemize}
-		\item \textbf{PostgreSQL Cluster:} A standard primary-replica setup serving as the performance baseline.
-		\item \textbf{CitusData:} A PostgreSQL extension that creates a distributed, coordinator-worker database architecture \cite{citus}.
-		\item \textbf{YugabyteDB:} A fully distributed SQL database using the Raft consensus protocol for high availability \cite{yugabyte}.
+		\item How does erasure coding performance compare to replication in distributed key-value stores?
+		\item Under what conditions does erasure coding outperform replication?
+		\item What are the trade-offs between storage efficiency and response time?
 	\end{itemize}
 
-	To manage the high load, we implemented two key optimization strategies:
+	\textbf{Challenges:}
 	\begin{itemize}
-		\item \textbf{Caching with Redis:} An in-memory Redis cluster was used to cache aggregated data (e.g., ticket availability per section) to offload high-volume read queries from the main database.
-		\item \textbf{Flow Control with RabbitMQ:} An asynchronous order processing system was designed. This system first rejects requests for unavailable seats via a Redis pre-check, then places valid requests into a RabbitMQ message queue. This approach controls the rate of transactions hitting the database, preventing overload from traffic spikes.
+		\item Network bandwidth limitations
+		\item Data reconstruction overhead
+		\item Consensus protocol complexity
+		\item Variable payload sizes
 	\end{itemize}
 
-	\subsection*{Testing Methodology}
-	We used the K6 load testing tool to simulate 10,000-15,000 virtual users (VUs). To mimic realistic buyer behavior, VUs were assigned diverse profiles with varying ticket preferences and persistence in retrying failed attempts. Two primary scenarios were executed:
-	\begin{enumerate}
-		\item \textbf{Sustained Load Test:} A constant, high number of VUs were active for 10-15 minutes to measure the system's stability and maximum throughput under continuous stress.
-		\item \textbf{Ticket Scramble (Spike Test):} A massive initial spike in users, simulated with a log-normal arrival rate, was used to test the system's response to a sudden "ticket drop" event.
-	\end{enumerate}
-	System performance, including latency, throughput, error rates, and resource utilization, was closely monitored using Prometheus for metrics collection and Grafana for visualization.
-
 	%----------------------------------------------------------------------------------------
-	%   RESULTS 
+	%   METHODOLOGY
 	%----------------------------------------------------------------------------------------
 
-	\postersection{Results}
-	\subsection*{Database Performance Comparison}
-	The baseline \textbf{PostgreSQL cluster} significantly outperformed the distributed databases. Its monolithic nature avoided the network and coordination overhead inherent in distributed systems, proving more efficient for numerous small, fast transactions. \textbf{CitusData}'s performance was acceptable but was bottlenecked by its coordinator node, leading to ~2x higher latency for this type of workload \cite{Slot2020}. The Raft-based consensus mechanism in \textbf{YugabyteDB} introduced high latency (\textgreater4x) and resource costs, making it unsuitable for this high-contention use case.
-
-	\begin{center}\vspace{0.5cm}
-		\captionof{table}{Overall Performance of Order Processing}
-		\begin{tabular}{l l l l}
-			\toprule
-			\textbf{Metric} & \textbf{PostgreSQL} & \textbf{CitusData} & \textbf{YugabyteDB} \\
-			\midrule
-			Max Throughput  & 466 rps             & 410 rps            & 216 rps             \\
-			Peak CPU Usage  & 8 vCPU              & 10 vCPU            & 19 vCPU             \\
-			Peak Memory     & 3.4 GB              & 5 GB               & 36 GB               \\
-			Latency (P50)   & 192-382 ms          & 496-650 ms         & 854-10k ms          \\
-			\bottomrule
-		\end{tabular}
-	\end{center}\vspace{0.5cm}
-
-	\subsection*{Read Query Optimization}
-	The multi-layered caching strategy yielded mixed results:
+	\postersection{Methodology}
+	
+	\textbf{System Architecture:}
 	\begin{itemize}
-		\item \textbf{Highly Effective:} Caching aggregated seat availability (e.g., seats left per section) in Redis successfully offloaded significant traffic from the database, handling up to \textbf{1700 rps} with an average latency of only \textbf{2.5-4.5 ms}.
-		\item \textbf{Ineffective:} A short-lived (150 ms) in-memory cache for granular, individual seat availability had a very low hit ratio. The local nature of the cache per application instance and wide distribution of user requests made this approach a bottleneck, with P95 latencies up to 7 seconds.
+		\item \textbf{Language:} Rust
+		\item \textbf{Storage:} RocksDB
+		\item \textbf{Algorithm:} Reed-Solomon Erasure Coding
+		\item \textbf{Consensus:} OmniPaxos
+		\item \textbf{Benchmarking:} k6 + mpstat
+		\item \textbf{Environment:} VM with traffic control
 	\end{itemize}
 
-	\subsection*{Flow Control Mechanism}
-	The flow control system was highly beneficial for system stability:
+	\textbf{Test Parameters:}
 	\begin{itemize}
-		\item \textbf{Early Request Rejection:} Pre-checking ticket availability against Redis before queueing was extremely effective. It reduced latency for failed booking attempts from over 1-2 seconds down to just \textbf{50-100 ms}, significantly lessening useless load on the database.
-		\item \textbf{Queued Processing:} Using RabbitMQ to buffer requests successfully smoothed out traffic spikes and reduced database contention. However, it introduced significant end-to-end latency, indicating a trade-off between stability and responsiveness. The test load was not high enough to fully overwhelm the non-queued system, where this pattern would provide maximum benefit.
+		\item Network bandwidth variations
+		\item Payload size variations (1KB - 1MB)
+		\item Different erasure coding configurations
+		\item Read vs Write operation analysis
 	\end{itemize}
 
-	\subsection*{Data Integrity}
-	Throughout all high-contention tests, the use of transactional row-level locking (\texttt{SELECT ... FOR UPDATE}) in PostgreSQL proved completely robust. Sanity checks confirmed \textbf{zero instances of double-booked seats}, validating the reliability of this approach for handling race conditions.
+	%----------------------------------------------------------------------------------------
+	%   SYSTEM COMPONENTS
+	%----------------------------------------------------------------------------------------
+
+	\postersection{System Components}
+	
+	\begin{center}
+	\begin{tikzpicture}[scale=0.8]
+		% Nodes
+		\node[draw, rectangle, fill=ITBblue!20] (node1) at (0,2) {Node 1};
+		\node[draw, rectangle, fill=ITBblue!20] (node2) at (2,2) {Node 2};
+		\node[draw, rectangle, fill=ITBblue!20] (node3) at (4,2) {Node 3};
+		\node[draw, rectangle, fill=ITBblue!20] (node4) at (6,2) {Node 4};
+		
+		% Storage
+		\node[draw, rectangle, fill=gray!20] (rocks1) at (0,0.5) {RocksDB};
+		\node[draw, rectangle, fill=gray!20] (rocks2) at (2,0.5) {RocksDB};
+		\node[draw, rectangle, fill=gray!20] (rocks3) at (4,0.5) {RocksDB};
+		\node[draw, rectangle, fill=gray!20] (rocks4) at (6,0.5) {RocksDB};
+		
+		% Connections
+		\draw[<->] (node1) -- (node2);
+		\draw[<->] (node2) -- (node3);
+		\draw[<->] (node3) -- (node4);
+		\draw[<->] (node1) -- (node3);
+		\draw[<->] (node2) -- (node4);
+		
+		\draw[->] (node1) -- (rocks1);
+		\draw[->] (node2) -- (rocks2);
+		\draw[->] (node3) -- (rocks3);
+		\draw[->] (node4) -- (rocks4);
+		
+		% Labels
+		\node at (3,-0.5) {\textbf{Distributed Key-Value Store}};
+	\end{tikzpicture}
+	\end{center}
 
 	%----------------------------------------------------------------------------------------
-	%   CONCLUSIONS
+	%   WRITE PERFORMANCE RESULTS
 	%----------------------------------------------------------------------------------------
+
+	\postersection{Write Performance Results}
+	
+	\begin{center}
+		\includegraphics[width=0.9\linewidth]{write_bigload_avgnet_heatmap.png}
+		\captionof{figure}{Write Response Time Heatmap - Big Load, Average Network}
+	\end{center}
+
+	\textbf{Key Findings:}
+	\begin{itemize}
+		\item \textcolor{ECcolor}{\textbf{Erasure Coding}} shows threshold performance
+		\item Better performance with limited bandwidth + large payloads
+		\item \textcolor{REPcolor}{\textbf{Replication}} excels with small data + high bandwidth
+	\end{itemize}
 
 	\columnbreak
 
-	\postersection{Conclusions}
+	%----------------------------------------------------------------------------------------
+	%   PERFORMANCE COMPARISON
+	%----------------------------------------------------------------------------------------
+
+	\postersection{Performance Threshold Analysis}
+	
+	\begin{center}
+		\includegraphics[width=0.9\linewidth]{write_bigload_avgnet_boundary.png}
+		\captionof{figure}{Performance Boundary Between EC and Replication}
+	\end{center}
+
+	\textbf{Threshold Conditions:}
 	\begin{itemize}
-		\item For high-contention transactional workloads, a well-tuned \textbf{monolithic PostgreSQL database offers superior performance} and efficiency compared to the tested distributed solutions.
-		\item The overhead of coordination in CitusData and YugabyteDB outweighed their scaling benefits for this specific use case.
-		\item \textbf{Flow control, especially early request rejection}, is a critical strategy for maintaining system stability during traffic spikes.
-		\item Offloading aggregate read queries to an in-memory store like \textbf{Redis is highly effective}, but fine-grained caching needs a more sophisticated, distributed approach.
+		\item Network bandwidth: < 100 Mbps
+		\item Payload size: > 100 KB
+		\item Write-heavy workloads
+		\item High network contention scenarios
 	\end{itemize}
 
 	%----------------------------------------------------------------------------------------
-	%   FUTURE WORK
+	%   READ PERFORMANCE RESULTS
 	%----------------------------------------------------------------------------------------
 
-	\postersection{Future Work}
-	Future work should focus on:
+	\postersection{Read Performance Results}
+	
+	\begin{center}
+		\includegraphics[width=0.9\linewidth]{read_bigload_avgnet_heatmap.png}
+		\captionof{figure}{Read Response Time Heatmap - Big Load, Average Network}
+	\end{center}
+
+	\textbf{Read Operation Analysis:}
+	\begin{itemize}
+		\item \textcolor{REPcolor}{\textbf{Replication consistently outperforms}} erasure coding
+		\item Data reconstruction overhead significant
+		\item No threshold found for read operations
+		\item Direct data access vs reconstruction complexity
+	\end{itemize}
+
+	%----------------------------------------------------------------------------------------
+	%   PERFORMANCE METRICS
+	%----------------------------------------------------------------------------------------
+
+	\postersection{Performance Metrics Comparison}
+	
+	\begin{center}
+		\begin{tabular}{l c c c}
+			\toprule
+			\textbf{Metric} & \textbf{Erasure Coding} & \textbf{Replication} & \textbf{Improvement} \\
+			\midrule
+			Storage Efficiency & 1.33x overhead & 3x overhead & \textcolor{ECcolor}{\textbf{+125\%}} \\
+			Write Latency (Optimal) & 45ms & 67ms & \textcolor{ECcolor}{\textbf{+33\%}} \\
+			Read Latency & 89ms & 23ms & \textcolor{REPcolor}{\textbf{-74\%}} \\
+			Network Utilization & Lower & Higher & \textcolor{ECcolor}{\textbf{+60\%}} \\
+			CPU Overhead & Higher & Lower & \textcolor{REPcolor}{\textbf{-40\%}} \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+
+	%----------------------------------------------------------------------------------------
+	%   NETWORK CONDITIONS IMPACT
+	%----------------------------------------------------------------------------------------
+
+	\postersection{Network Conditions Impact}
+	
+	\begin{center}
+		\includegraphics[width=0.9\linewidth]{write_bigload_slownet.png}
+		\captionof{figure}{Performance Under Slow Network Conditions}
+	\end{center}
+
+	\textbf{Network Impact Analysis:}
+	\begin{itemize}
+		\item Slow networks favor \textcolor{ECcolor}{\textbf{erasure coding}}
+		\item Fast networks favor \textcolor{REPcolor}{\textbf{replication}}
+		\item Bandwidth utilization critical factor
+		\item Latency vs throughput trade-offs
+	\end{itemize}
+
+	%----------------------------------------------------------------------------------------
+	%   CONCLUSIONS
+	%----------------------------------------------------------------------------------------
+
+	\postersection{Key Conclusions}
+	
 	\begin{enumerate}
-		\item Exploring more advanced, distributed caching strategies for granular data.
-		\item Implementing a lower-latency queueing mechanism to reduce overhead.
-		\item Testing the architecture under extreme loads (\textgreater100,000 VUs) to find the breaking point of the monolithic setup.
+		\item \textbf{Threshold Performance:} Erasure coding has performance threshold for write operations when bandwidth is limited and payload is large
+		
+		\item \textbf{Read Operations:} Replication consistently outperforms erasure coding due to reconstruction overhead
+		
+		\item \textbf{Use Case Suitability:} Erasure coding not suitable for small-data key-value stores in high-capacity data centers
+		
+		\item \textbf{Storage vs Performance:} Clear trade-off between storage efficiency and response time performance
 	\end{enumerate}
 
+	\textbf{Recommendations:}
+	\begin{itemize}
+		\item Use \textcolor{ECcolor}{\textbf{erasure coding}} for: Large data, limited bandwidth, write-heavy workloads
+		\item Use \textcolor{REPcolor}{\textbf{replication}} for: Small data, high bandwidth, read-heavy workloads
+		\item Consider hybrid approaches for mixed workloads
+	\end{itemize}
+
+	%----------------------------------------------------------------------------------------
+	%   FUTURE WORK
+	%----------------------------------------------------------------------------------------
+
+	\postersection{Future Work \& Limitations}
+	
+	\textbf{Current Limitations:}
+	\begin{itemize}
+		\item Static cluster membership configuration
+		\item Limited to read/write operations only
+		\item Local testing environment with simulation
+		\item Fixed erasure coding parameters
+	\end{itemize}
+
+	\textbf{Future Research Directions:}
+	\begin{itemize}
+		\item Dynamic erasure coding parameter adjustment
+		\item Hybrid redundancy mechanisms
+		\item Real-world deployment testing
+		\item Advanced consensus protocols integration
+		\item Multi-datacenter scenarios
+	\end{itemize}
+
+	%----------------------------------------------------------------------------------------
+	%   ACKNOWLEDGEMENTS
+	%----------------------------------------------------------------------------------------
+
 	\postersection{Acknowledgements}
-	The author thanks his supervisor, Achmad Imam Kistijantoro, S.T., M.Sc., Ph.D., and Dr.techn. Saiful Akbar, S.T., M.T., for their invaluable guidance. Gratitude is also extended to the academic staff of Informatics Engineering at ITB.
+	
+	Special thanks to:
+	\begin{itemize}
+		\item Achmad Imam Kistijantoro, S.T, M.Sc., Ph.D. (Supervisor)
+		\item Faculty of Informatics Engineering, ITB
+		\item Distributed Systems Research Group
+		\item Open source community (Rust, RocksDB, OmniPaxos)
+	\end{itemize}
 
-	%----------------------------------------------------------------------------------------
-	%   REFERENCES
-	%----------------------------------------------------------------------------------------
-
-	\postersection{References}
-	\printbibliography[heading=none]
+	\vspace{0.5cm}
+	\textbf{Repository:} \texttt{github.com/MuhamadAjiW/DistKV-Erasure-Coding}
 
 \end{multicols}
 \end{document}

@@ -4,15 +4,17 @@ YUDISIUM_INPUT = yudisium.tex
 YUDISIUM_OUTPUT = yudisium.pdf
 PAPER_INPUT = paper.tex
 PAPER_OUTPUT = paper.pdf
+POSTER_INPUT = poster.tex
+POSTER_OUTPUT = poster.pdf
 
 BAKFILES := $(shell find . -iname "*.bak*")
 TEXFILES := $(shell find . -iname "*.tex")
 STYFILES := $(shell find . -iname "*.sty")
 BIBFILES := $(shell find . -iname "*.bib")
 
-.PHONY: all format thesis yudisium paper clean
+.PHONY: all format thesis yudisium paper poster clean
 
-all: format thesis yudisium paper
+all: format thesis yudisium paper poster
 
 thesis:
 	@mkdir -p output
@@ -31,6 +33,12 @@ paper:
 	@mkdir -p build
 	@latexmk -synctex=1 -interaction=nonstopmode -file-line-error -pdf -bibtex -outdir=../build -cd src/$(PAPER_INPUT)
 	@cp build/$(PAPER_OUTPUT) output
+
+poster:
+	@mkdir -p output
+	@mkdir -p build
+	@latexmk -synctex=1 -interaction=nonstopmode -file-line-error -pdf -bibtex -outdir=../build -cd src/$(POSTER_INPUT)
+	@cp build/$(POSTER_OUTPUT) output
 
 format:
 	@latexindent -l -s -sl -w $(TEXFILES) $(STYFILES) $(BIBFILES)
