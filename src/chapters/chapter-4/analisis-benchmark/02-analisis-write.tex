@@ -64,6 +64,8 @@ Analisis kinerja operasi \textit{write} merupakan inti dari penilitian ini, sepe
 
   Skenario ini menggunakan kombinasi \textit{payload} dan \textit{bandwidth} yang beragam sehingga memberikan diagram dengan grafik yang lebih kompleks. Gambar \ref{fig:write-bigload-avgnet} menunjukkan hasil \textit{benchmark} untuk skenario ini. Dari grafik tersebut, terlihat bahwa keunggulan \textit{erasure coding} semakin berkurang seiring dengan peningkatan \textit{bandwidth} dan penurunan ukuran \textit{payload}. Pada titik tertentu, sistem berbasis replikasi mulai mengungguli sistem berbasis \textit{erasure coding}. Titik impas terjadi ketika penghematan waktu dari transfer data yang lebih sedikit pada \textit{erasure coding} setara dengan penambahan waktu dari proses komputasi \textit{encoding}.
 
+  Untuk memudahkan visualisasi, Gambar \ref{fig:write-bigload-avgnet-heatmap} menunjukkan rasio kinerja dari hasil \textit{benchmark} terhadap \textit{payload} dan \textit{bandwidth} yang digunakan dalam persen. Warna biru dan nilai negatif menunjukkan keunggulan sistem berbasis \textit{erasure coding}, sedangkan warna merah dan nilai positif menunjukkan keunggulan sistem berbasis replikasi. Titik impas terlihat pada area transisi antara warna biru dan merah.  Kode yang digunakan untuk menghasilkan gambar ini dapat dilihat pada repository Github hasil implementasi. Terdapat anomali yang terjadi ketika \textit{payload} terlalu besar dan \textit{bandwidth} terlalu rendah, hal ini disebabkan oleh \textit{timeout} dan kegagalan jaringan yang terjadi pada antarmuka \textit{client}.
+
   \begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\textwidth]{resources/chapter-4/write_bigload_avgnet_heatmap.png}
@@ -72,18 +74,15 @@ Analisis kinerja operasi \textit{write} merupakan inti dari penilitian ini, sepe
     \label{fig:write-bigload-avgnet-heatmap}
   \end{figure}
 
-  Untuk memudahkan visualisasi, Gambar \ref{fig:write-bigload-avgnet-heatmap} menunjukkan rasio kinerja dari hasil \textit{benchmark} terhadap \textit{payload} dan \textit{bandwidth} yang digunakan dalam persen. Warna biru dan nilai negatif menunjukkan keunggulan sistem berbasis \textit{erasure coding}, sedangkan warna merah dan nilai positif menunjukkan keunggulan sistem berbasis replikasi. Titik impas terlihat pada area transisi antara warna biru dan merah.  Kode yang digunakan untuk menghasilkan gambar ini dapat dilihat pada repository Github hasil implementasi. Terdapat anomali yang terjadi ketika \textit{payload} terlalu besar dan \textit{bandwidth} terlalu rendah, hal ini disebabkan oleh \textit{timeout} dan kegagalan jaringan yang terjadi pada antarmuka \textit{client}.
+  Untuk menggambarkan perolehan titik impas, dapat dibuat diagram garis yang menunjukkan rata-rata \textit{response time} sistem berbasis \textit{erasure coding} dan replikasi terhadap \textit{bandwidth} dan ukuran \textit{payload}. Gambar \ref{fig:write-bigload-avgnet-line} menunjukkan diagram garis tersebut.
 
-  Untuk menggambarkan perolehan titik impas, dapat dibuat diagram garis yang menunjukkan rata-rata \textit{response time} sistem berbasis \textit{erasure coding} dan replikasi terhadap \textit{bandwidth} dan ukuran \textit{payload}. Gambar \ref{fig:write-bigload-avgnet-line} menunjukkan diagram garis tersebut. Diagram ini memberikan gambaran visual yang jelas tentang bagaimana kinerja kedua sistem berubah seiring dengan variasi \textit{bandwidth} dan ukuran \textit{payload}.
-
-  \begin{figure}[ht]
+  \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{resources/chapter-4/write_bigload_avgnet_line.png}
 
     \caption{Diagram Garis Write pada Internet Menengah dan Payload Besar}
     \label{fig:write-bigload-avgnet-line}
   \end{figure}
-
   
   Namun, untuk mendapatkan nilai yang tepat untuk titik impas antara sistem berbasis \textit{erasure coding} dan sistem berbasis replikasi, perlu dilakukan analisis lebih lanjut. Analisis untuk mendapatkan titik impas dilakukan secara menurunkan hasil \textit{benchmark} yang sudah dilakukan menjadi fungsi menggunakan pendekatan regresi. Fungsi ini kemudian digunakan untuk memperkirakan titik impas. Sebelum melakukan regresi, perlu dilihat \textit{scatter plot} dari hasil \textit{benchmark} sebagai gambaran visual relasi antara \textit{bandwidth}, ukuran \textit{payload}, dan \textit{response time}. Gambar \ref{fig:write-bigload-avgnet-scatter} menunjukkan \textit{scatter plot} tersebut.
 
