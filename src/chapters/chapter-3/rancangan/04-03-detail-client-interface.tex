@@ -6,10 +6,10 @@ Antarmuka \textit{client} bertanggung jawab untuk menyediakan akses ke sistem ba
 Antarmuka \textit{client} akan dibuat memanfaatkan protokol HTTP. Alasan dari pemilihan protokol HTTP adalah karena protokol ini sudah umum digunakan dan didukung oleh banyak bahasa pemrograman maupun alat. Selain itu, protokol HTTP juga mudah digunakan dan dapat diakses melalui berbagai platform, termasuk web browser. Dukungan alat terhadap protokol HTTP akan memudahkan pengembangan dan pengujian sistem. Dengan menggunakan protokol HTTP, pengembangan dan pengujian sistem akan dilakukan dengan alat yang sudah umum digunakan seperti Postman, curl, dan k6. Selain itu, penggunaan protokol HTTP juga memungkinkan perbandingan dengan sistem lain tanpa perlu mengubah antarmuka yang ada. Rancangan antarmuka \textit{client} dapat dilihat pada Gambar \ref{fig:client-interface-component}.
 
 \begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.45\textwidth]{resources/chapter-3/client-interface-component.png}
-    \caption{Komponen Antarmuka Client}
-    \label{fig:client-interface-component}
+	\centering
+	\includegraphics[width=0.45\textwidth]{resources/chapter-3/client-interface-component.png}
+	\caption{Komponen Antarmuka Client}
+	\label{fig:client-interface-component}
 \end{figure}
 
 Antarmuka tersebut akan terhubung pada \textit{endpoint} HTTP yang disediakan. Fungsi yang ada akan dieksekusi ketika \textit{request} diterima pada \textit{endpoint} yang sesuai.

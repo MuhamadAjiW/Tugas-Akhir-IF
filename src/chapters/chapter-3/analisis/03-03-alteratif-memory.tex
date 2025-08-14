@@ -4,22 +4,22 @@
 Komponen \textit{In-Memory Key-Value Store} berperan sebagai \textit{cache} khususnya untuk mengurangi rekonstruksi data pada \textit{erasure coding} dan mengurangi latensi akses data dalam operasi \textit{read}. Tabel \ref{tab:tools-kv} menunjukkan perbandingan beberapa kakas \textit{in-memory key-value store} yang dipertimbangkan untuk digunakan dalam eksperimen ini.
 
 \begin{table}[h]
-    \centering
-    \caption{Perbandingan kakas in-memory key-value store}
-    \resizebox{\textwidth}{!}{
-        \begin{tabular}{|l|p{5cm}|p{5cm}|p{3cm}|}
-            \hline
-            \rowcolor{black!10} Kakas & Kelebihan & Kekurangan & Notes \\ \hline
-            Redis & +Support struktur data kompleks \newline +Support transaksi kompleks & -Eksternal, tidak ada integrated rust \newline -Single Threaded \newline -Kompleks & Ada support untuk replikasi \\ \hline
-            DragonflyDB & +Multithreaded \newline +Support struktur data kompleks \newline +Support transaksi kompleks & -Eksternal, tidak ada integrated rust \newline -Lebih kompleks dari Memcached, lebih simpel dari Redis \newline -Relatif baru, komunitas terbatas dibanding kedua alternatif & Rilis 2023, Ada support untuk replikasi\\ \hline
-            Memcached & +Simpel \newline +Multithreaded & -Eksternal, tidak ada integrated rust \newline -Struktur data terbatas \newline -Transaksi terbatas & Sangat minimalis \\ \hline
-            cached & +Library internal \newline +API sederhana \newline  +Support macro untuk cache function & -Fitur terbatas (tidak sekompleks Moka) \newline -Kurang optimal untuk skala besar & Belum ada versi release 1.0 tetapi repositori masih aktif\\ \hline
-            moka & +Library internal \newline +Thread-safe \newline +Fitur eviction/TTL & -Fitur terbatas dibanding Redis/Dragonfly \newline -Kurang optimal untuk skala besar & Belum ada versi release 1.0 tetapi repositori masih aktif\\ \hline
-            lru & +Library internal \newline +Implementasi sederhana & -Terlalu sederhana \newline -Transaksi tidak bisa async \newline -Kurang optimal untuk skala besar & Belum ada versi release 1.0 tetapi repositori masih aktif\\ \hline
-            HashMap Manual & +Kontrol penuh pada implementasi \newline +Tanpa dependensi eksternal & -Perlu banyak implementasi manual & Cocok untuk eksperimen kecil, perlu implementasi manual untuk fitur cache seperti TTL dan \textit{multithreading}\\ \hline
-        \end{tabular}
-    }
-    \label{tab:tools-kv}
+	\centering
+	\caption{Perbandingan kakas in-memory key-value store}
+	\resizebox{\textwidth}{!}{
+		\begin{tabular}{|l|p{5cm}|p{5cm}|p{3cm}|}
+			\hline
+			\rowcolor{black!10} Kakas & Kelebihan                                                                                    & Kekurangan                                                                                                                                                                   & Notes                                                                                                             \\ \hline
+			Redis                     & +Support struktur data kompleks \newline +Support transaksi kompleks                         & -Eksternal, tidak ada integrated rust \newline -Single Threaded \newline -Kompleks                                                                                           & Ada support untuk replikasi                                                                                       \\ \hline
+			DragonflyDB               & +Multithreaded \newline +Support struktur data kompleks \newline +Support transaksi kompleks & -Eksternal, tidak ada integrated rust \newline -Lebih kompleks dari Memcached, lebih simpel dari Redis \newline -Relatif baru, komunitas terbatas dibanding kedua alternatif & Rilis 2023, Ada support untuk replikasi                                                                           \\ \hline
+			Memcached                 & +Simpel \newline +Multithreaded                                                              & -Eksternal, tidak ada integrated rust \newline -Struktur data terbatas \newline -Transaksi terbatas                                                                          & Sangat minimalis                                                                                                  \\ \hline
+			cached                    & +Library internal \newline +API sederhana \newline  +Support macro untuk cache function      & -Fitur terbatas (tidak sekompleks Moka) \newline -Kurang optimal untuk skala besar                                                                                           & Belum ada versi release 1.0 tetapi repositori masih aktif                                                         \\ \hline
+			moka                      & +Library internal \newline +Thread-safe \newline +Fitur eviction/TTL                         & -Fitur terbatas dibanding Redis/Dragonfly \newline -Kurang optimal untuk skala besar                                                                                         & Belum ada versi release 1.0 tetapi repositori masih aktif                                                         \\ \hline
+			lru                       & +Library internal \newline +Implementasi sederhana                                           & -Terlalu sederhana \newline -Transaksi tidak bisa async \newline -Kurang optimal untuk skala besar                                                                           & Belum ada versi release 1.0 tetapi repositori masih aktif                                                         \\ \hline
+			HashMap Manual            & +Kontrol penuh pada implementasi \newline +Tanpa dependensi eksternal                        & -Perlu banyak implementasi manual                                                                                                                                            & Cocok untuk eksperimen kecil, perlu implementasi manual untuk fitur cache seperti TTL dan \textit{multithreading} \\ \hline
+		\end{tabular}
+	}
+	\label{tab:tools-kv}
 \end{table}
 
 Dari kakas-kakas tersebut, dipilih Moka sebagai kakas untuk eksperimen ini. Alasan utama pemilihan Moka adalah karena dapat diintegrasikan langsung sebagai library tanpa overhead komunikasi jaringan dan memiliki fitur yang cukup lengkap seperti \textit{eviction} dan \textit{time-to-live} (TTL). Selain itu, Moka juga memiliki performa yang baik untuk operasi \textit{read} dan \textit{write} yang tinggi, sehingga cocok untuk eksperimen ini.

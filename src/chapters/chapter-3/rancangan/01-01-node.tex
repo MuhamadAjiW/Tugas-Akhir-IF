@@ -4,18 +4,18 @@
 \textit{Node} adalah satuan fungsional utama yang berperan sebagai entitas dalam sistem \textit{database} terdistribusi yang dikembangkan. Sesuai dengan perancangan pada Bagian \ref{subsection:rancangan-struktural}, \textit{Node} dibangun secara modular dengan beberapa komponen yang tergabung dalam beberapa subkomponen. Subkomponen dapat berbentuk kelas atau kumpulan fungsi yang memiliki tanggung jawab spesifik dalam sistem.
 
 \begin{enumerate}
-    \item Komponen konsensus: Komponen ini bertanggung jawab mengelola \textit{state} dari \textit{Node} dan memastikan konsistensi data antar-\textit{Node} dalam sistem. Komponen ini menggunakan algoritma konsensus OmniPaxos yang telah dipilih pada Bagian \ref{subsubsection:pemilihan-algoritma-konsensus}.
-    \item Komponen antarmuka client: Komponen ini menyediakan antarmuka bagi klien untuk berinteraksi dengan \textit{Node}. Antarmuka ini mendukung operasi \textit{read} dan \textit{write} data.
-    \item Komponen komunikasi antar-\textit{Node}: Komponen ini mengelola komunikasi antar-\text{Node} dalam sistem. Komunikasi diperlukan untuk melakukan konsensus, replikasi data, dan pemulihan data.
-    \item Komponen \textit{persistent store}: Komponen ini bertanggung jawab untuk menyimpan data secara \textit{persistent}. Data yang disimpan pada komponen ini akan direplikasi atau di-\textit{erasure coding} untuk memastikan ketersediaan dan keandalan data.
-    \item Komponen \textit{in-memory store}: Komponen ini berfungsi sebagai \textit{cache} untuk meningkatkan kinerja sistem. Penyimpanan data pada komponen ini tidak menerapkan \textit{erasure coding} untuk mengurangi latensi pada operasi \textit{read}.
+	\item Komponen konsensus: Komponen ini bertanggung jawab mengelola \textit{state} dari \textit{Node} dan memastikan konsistensi data antar-\textit{Node} dalam sistem. Komponen ini menggunakan algoritma konsensus OmniPaxos yang telah dipilih pada Bagian \ref{subsubsection:pemilihan-algoritma-konsensus}.
+	\item Komponen antarmuka client: Komponen ini menyediakan antarmuka bagi klien untuk berinteraksi dengan \textit{Node}. Antarmuka ini mendukung operasi \textit{read} dan \textit{write} data.
+	\item Komponen komunikasi antar-\textit{Node}: Komponen ini mengelola komunikasi antar-\text{Node} dalam sistem. Komunikasi diperlukan untuk melakukan konsensus, replikasi data, dan pemulihan data.
+	\item Komponen \textit{persistent store}: Komponen ini bertanggung jawab untuk menyimpan data secara \textit{persistent}. Data yang disimpan pada komponen ini akan direplikasi atau di-\textit{erasure coding} untuk memastikan ketersediaan dan keandalan data.
+	\item Komponen \textit{in-memory store}: Komponen ini berfungsi sebagai \textit{cache} untuk meningkatkan kinerja sistem. Penyimpanan data pada komponen ini tidak menerapkan \textit{erasure coding} untuk mengurangi latensi pada operasi \textit{read}.
 \end{enumerate}
 
 Merujuk analisis kebutuhan sistem pada Bagian \ref{subsection:analisis-permasalahan}, \textit{Node} memenuhi kebutuhan 1 dan 2, yaitu:
 
 \begin{enumerate}
-    \item Sistem harus dapat mensimulasikan kondisi \textit{database} terdistribusi yang menggunakan replikasi ataupun \textit{erasure coding}.
-    \item Sistem harus dapat menyimpan data secara \textit{persistent} untuk mensimulasikan kegagalan dan pemulihan.
+	\item Sistem harus dapat mensimulasikan kondisi \textit{database} terdistribusi yang menggunakan replikasi ataupun \textit{erasure coding}.
+	\item Sistem harus dapat menyimpan data secara \textit{persistent} untuk mensimulasikan kegagalan dan pemulihan.
 \end{enumerate}
 
 Sedangkan merujuk kebutuhan fungsional dan non-fungsional pada Bagian \ref{subsection:system-requirements}, \textit{Node} memenuhi kebutuhan fungsional F-1, F-2, F-4, F-5, F-6, F-7, dan F-8 serta non-fungsional NF-1, NF-2, NF-3, dan NF-4.

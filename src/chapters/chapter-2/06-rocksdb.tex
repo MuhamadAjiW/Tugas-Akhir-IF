@@ -17,6 +17,6 @@ RocksDB memiliki mekanisme untuk memastikan bahwa data yang ditulis tetap persis
 
 \subsection{Support untuk Replikasi dan Backup}
 
-RocksDB adalah \textit{single-node library}, artinya RocksDB tidak menyediakan mekanisme replikasi dan \textit{backup} secara bawaan. Aplikasi-aplikasi yang menggunakan RocksDB bertanggung jawab untuk replikasi dan \textit{backup} jika dibutuhkan. Setiap aplikasi mengimplementasikan fungsi ini dengan caranya masing-masing \parencite{dong2021rocksdb}. 
+RocksDB adalah \textit{single-node library}, artinya RocksDB tidak menyediakan mekanisme replikasi dan \textit{backup} secara bawaan. Aplikasi-aplikasi yang menggunakan RocksDB bertanggung jawab untuk replikasi dan \textit{backup} jika dibutuhkan. Setiap aplikasi mengimplementasikan fungsi ini dengan caranya masing-masing \parencite{dong2021rocksdb}.
 
 Hal ini memberikan fleksibilitas kepada pengembang untuk memilih metode implementasi replikasi dan \textit{backup} yang sesuai dengan kebutuhan. Khususnya pada eksperimen ini, fleksibilitas tersebut memungkinkan metode implementasi yang bervariasi untuk meningkatkan ketahanan dari sistem yang dibuat.

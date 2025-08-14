@@ -8,13 +8,13 @@ Mirip seperti komponen \textit{benchmark}, komponen \textit{log management} juga
 Seperti yang dapat dilihat pada Gambar \ref{fig:log-management-structure}, komponen \textit{log management} memiliki fungsi yang digunakan untuk melakukan \textit{parse} dari hasil \textit{trace} dan \textit{log} serta fungsi untuk melakukan pengelolaan file untuk menghasilkan laporan. Fungsi-fungsi tersebut adalah sebagai berikut:
 
 \begin{enumerate}
-  \item collect\_trace\_during\_benchmark
-  
-  Mengumpulkan data \textit{log} dan \textit{trace} selama eksekusi \textit{benchmark} k6 berjalan. Fungsi ini mengumpulkan \textit{output} dari \textit{node} tertentu, membersihkan \textit{null bytes} dan menyimpannya dalam format terstruktur dengan metadata JSON yang mencakup informasi \textit{timestamp}, tipe tes, mode, parameter \textit{benchmark}, dan ukuran file \textit{log}.
+	\item collect\_trace\_during\_benchmark
 
-  \item organize\_files
-  
-  Mengorganisir file hasil \textit{benchmark} ke dalam direktori yang sesuai berdasarkan jenis pengujian. Fungsi ini akan memberikan \textit{permission} dari file ke \textit{user} aktif, membuat direktori baru untuk setiap kategori pengujian berdasarkan konfigurasi yang digunakan, dan memindahkan file hasil \textit{benchmark} ke dalam direktori tersebut. Hal ini bertujuan untuk memudahkan pengelolaan dan analisis data hasil pengujian.
+	      Mengumpulkan data \textit{log} dan \textit{trace} selama eksekusi \textit{benchmark} k6 berjalan. Fungsi ini mengumpulkan \textit{output} dari \textit{node} tertentu, membersihkan \textit{null bytes} dan menyimpannya dalam format terstruktur dengan metadata JSON yang mencakup informasi \textit{timestamp}, tipe tes, mode, parameter \textit{benchmark}, dan ukuran file \textit{log}.
+
+	\item organize\_files
+
+	      Mengorganisir file hasil \textit{benchmark} ke dalam direktori yang sesuai berdasarkan jenis pengujian. Fungsi ini akan memberikan \textit{permission} dari file ke \textit{user} aktif, membuat direktori baru untuk setiap kategori pengujian berdasarkan konfigurasi yang digunakan, dan memindahkan file hasil \textit{benchmark} ke dalam direktori tersebut. Hal ini bertujuan untuk memudahkan pengelolaan dan analisis data hasil pengujian.
 
 \end{enumerate}
 

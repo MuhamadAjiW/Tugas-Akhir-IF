@@ -6,18 +6,18 @@ Komponen \textit{Memory Store} diimplementasikan menggunakan pustaka moka sesuai
 Pada implementasinya, komponen ini terdapat pada kelas KvMemory yang merupakan \textit{wrapper} dari pustaka moka. Kelas ini menyediakan antarmuka yang terdapat pada Tabel \ref{tab:memory-store-interface}.
 
 \begin{table}[h]
-    \centering
-    \caption{Antarmuka Persistent Store}
-    \resizebox{\textwidth}{!}{
-        \begin{tabular}{|l|p{7cm}|p{4cm}|}
-            \hline
-            \rowcolor{black!10} Method & Fungsi & Arguments \\ \hline
-            get & Mengambil nilai berdasarkan kunci. Nilai adalah berupa \textit{binary array} untuk mempercepat operasi & \{\texttt{"key": str}\} \\ \hline
-            set & Menyimpan \textit{key-value pair}. & \{\texttt{"key": str, "value": str}\} \\ \hline
-            remove & Menghapus \textit{key-value pair} & \{\texttt{"key": str}\} \\ \hline
-        \end{tabular}
-    }
-    \label{tab:memory-store-interface}
+	\centering
+	\caption{Antarmuka Persistent Store}
+	\resizebox{\textwidth}{!}{
+		\begin{tabular}{|l|p{7cm}|p{4cm}|}
+			\hline
+			\rowcolor{black!10} Method & Fungsi                                                                                                 & Arguments                             \\ \hline
+			get                        & Mengambil nilai berdasarkan kunci. Nilai adalah berupa \textit{binary array} untuk mempercepat operasi & \{\texttt{"key": str}\}               \\ \hline
+			set                        & Menyimpan \textit{key-value pair}.                                                                     & \{\texttt{"key": str, "value": str}\} \\ \hline
+			remove                     & Menghapus \textit{key-value pair}                                                                      & \{\texttt{"key": str}\}               \\ \hline
+		\end{tabular}
+	}
+	\label{tab:memory-store-interface}
 \end{table}
 
 Berbeda dengan implementasi \textit{Persistent Store}, komponen \textit{Memory Store} tidak menggunakan kelas \textit{generic}. Hal ini karena peran komponen ini sebagai \textit{cache} tidak memerlukan banyak pengolahan data setelah diambil dari \textit{memory}. Dengan menggunakan tipe data \textit{binary array}, data yang diambil dari \textit{memory} dapat langsung dikirimkan ke jaringan tanpa perlu diserialisasi ulang.

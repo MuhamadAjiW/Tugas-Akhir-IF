@@ -3,27 +3,26 @@
 \addcontentsline{toc}{chapter}{ABSTRACT}
 
 \begin{center}
-  \center
-  \begin{singlespace}
-    \large\bfseries\MakeUppercase{Erasure Coding Performance Analysis Against Replication on Distributed Key-Value Store Database}
-    
-    \normalfont\normalsize
-    By:
-    
-    \bfseries \theauthor
-  \end{singlespace}
+	\center
+	\begin{singlespace}
+		\large\bfseries\MakeUppercase{Erasure Coding Performance Analysis Against Replication on Distributed Key-Value Store Database}
+
+		\normalfont\normalsize
+		By:
+
+		\bfseries \theauthor
+	\end{singlespace}
 \end{center}
 
-
 \begin{singlespace}
-  \small
-  Erasure coding algorithms can reduce the amount of data transferred in a distributed system. With I/O operations involving data transfer being a major factor in distributed system performance, erasure coding becomes an attractive solution to improve storage efficiency and system performance. This research aims to analyze the performance of erasure coding compared to replication in distributed key-value store databases, specifically focusing on the system's response time in write and read operations.
+	\small
+	Erasure coding algorithms can reduce the amount of data transferred in a distributed system. With I/O operations involving data transfer being a major factor in distributed system performance, erasure coding becomes an attractive solution to improve storage efficiency and system performance. This research aims to analyze the performance of erasure coding compared to replication in distributed key-value store databases, specifically focusing on the system's response time in write and read operations.
 
-  To achieve this goal, a distributed database system supporting both redundancy mechanisms is implemented, along with a benchmarking system that can vary network bandwidth and payload size parameters. For the analysis, this research utilizes bandwidths of 1Mbps, 10-70Mbps, and 10Gbps. Meanwhile, the payload sizes used are 1KB and 200-1000KB.
+	To achieve this goal, a distributed database system supporting both redundancy mechanisms is implemented, along with a benchmarking system that can vary network bandwidth and payload size parameters. For the analysis, this research utilizes bandwidths of 1Mbps, 10-70Mbps, and 10Gbps. Meanwhile, the payload sizes used are 1KB and 200-1000KB.
 
-  The research results show that erasure coding has a threshold condition when the response time is lower than replication in write operation. This condition occurs when the network bandwidth is limited and the payload size is sufficiently large. However, replication consistently outperforms erasure coding in read operations due to the complexity of data reconstruction. The use of erasure coding is better fit for distributed key-value store databases that operate with large data in environments with limited network infrastructure. However, replication is superior for systems handling small data with good network infrastructure.
+	The research results show that erasure coding has a threshold condition when the response time is lower than replication in write operation. This condition occurs when the network bandwidth is limited and the payload size is sufficiently large. However, replication consistently outperforms erasure coding in read operations due to the complexity of data reconstruction. The use of erasure coding is better fit for distributed key-value store databases that operate with large data in environments with limited network infrastructure. However, replication is superior for systems handling small data with good network infrastructure.
 
-  \textbf{\textit{Keywords: Distributed System, Erasure Coding, Replication, Database, Key-Value Store }}
+	\textbf{\textit{Keywords: Distributed System, Erasure Coding, Replication, Database, Key-Value Store }}
 \end{singlespace}
 \clearpage
 

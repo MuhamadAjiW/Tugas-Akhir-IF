@@ -8,8 +8,8 @@ Komponen internal lain dalam \textit{Node} adalah jalur komunikasi \textit{messa
 Implementasi \textit{erasure coding} bukan terdapat pada \textit{Node} melainkan pada komponen OmniPaxos. Alasan untuk hal ini adalah kompleksitas perubahan dari konsensus yang perlu dilakukan ketika operasi diubah menjadi menggunakan \textit{erasure coding}. Dengan demikian, komponen OmniPaxos akan menangani operasi \textit{erasure coding} dan replikasi data, sementara \textit{Node} akan menerima hasil dari OmniPaxos untuk melanjutkan operasi ke penyimpanan data dan komunikasi antar-\textit{Node}. Detail implementasi \textit{erasure coding} akan dibahas pada Bagian \ref{subsubsection:detail-komponen-konsensus}.
 
 \begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.95\textwidth]{resources/chapter-3/node-architecture.png}
-    \caption{Struktur Node}
-    \label{fig:node-structure}
+	\centering
+	\includegraphics[width=0.95\textwidth]{resources/chapter-3/node-architecture.png}
+	\caption{Struktur Node}
+	\label{fig:node-structure}
 \end{figure}

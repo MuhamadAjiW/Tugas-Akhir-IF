@@ -4,23 +4,23 @@
 Antarmuka \textit{client} diimplementasikan menggunakan pustaka actix-web. Pustaka ini menyediakan \textit{web server} dengan antarmuka HTTP. Peran dari komponen ini adalah untuk menerima operasi dari \textit{client}. Gambaran peran dari komponen ini dapat dilihat pada Gambar \ref{fig:client-interface-component} dan pemetaan endpoint dapat dilihat pada Tabel \ref{tab:client-interface-endpoint}.
 
 \begin{table}[h]
-    \centering
-    \caption{Endpoint dari Antarmuka Client}
-    \resizebox{\textwidth}{!}{
-        \begin{tabular}{|l|l|p{5cm}|p{5cm}|}
-            \hline
-            \rowcolor{black!10} Method & Endpoint & Fungsi & Request Body \\ \hline
-            GET & \text{/health} & Memeriksa status kesehatan server & -- \\ \hline
-            GET & \text{/status} & Mendapatkan informasi node & -- \\ \hline
-            GET & \text{/cluster} & Mendapatkan status cluster & -- \\ \hline
-            GET & \text{/docs} & Mendapatkan dokumentasi API & -- \\ \hline
-            POST & \text{/get} & Mengambil nilai berdasarkan kunci & \{\texttt{"key": str}\} \\ \hline
-            POST & \text{/put} & Menyimpan pasangan kunci-nilai & \{\texttt{"key": str, "value": str}\} \\ \hline
-            POST & \text{/delete} & Menghapus pasangan kunci-nilai & \{\texttt{"key": str}\} \\ \hline
-            POST & \text{/bulk} & Melakukan beberapa operasi dalam satu permintaan (maksimum 100 operasi) & \{\texttt{"key": str}\} \\ \hline
-        \end{tabular}
-    }
-    \label{tab:client-interface-endpoint}
+	\centering
+	\caption{Endpoint dari Antarmuka Client}
+	\resizebox{\textwidth}{!}{
+		\begin{tabular}{|l|l|p{5cm}|p{5cm}|}
+			\hline
+			\rowcolor{black!10} Method & Endpoint        & Fungsi                                                                  & Request Body                          \\ \hline
+			GET                        & \text{/health}  & Memeriksa status kesehatan server                                       & --                                    \\ \hline
+			GET                        & \text{/status}  & Mendapatkan informasi node                                              & --                                    \\ \hline
+			GET                        & \text{/cluster} & Mendapatkan status cluster                                              & --                                    \\ \hline
+			GET                        & \text{/docs}    & Mendapatkan dokumentasi API                                             & --                                    \\ \hline
+			POST                       & \text{/get}     & Mengambil nilai berdasarkan kunci                                       & \{\texttt{"key": str}\}               \\ \hline
+			POST                       & \text{/put}     & Menyimpan pasangan kunci-nilai                                          & \{\texttt{"key": str, "value": str}\} \\ \hline
+			POST                       & \text{/delete}  & Menghapus pasangan kunci-nilai                                          & \{\texttt{"key": str}\}               \\ \hline
+			POST                       & \text{/bulk}    & Melakukan beberapa operasi dalam satu permintaan (maksimum 100 operasi) & \{\texttt{"key": str}\}               \\ \hline
+		\end{tabular}
+	}
+	\label{tab:client-interface-endpoint}
 \end{table}
 
 Antarmuka \textit{client} menyediakan endpoint untuk operasi \textit{bulk} untuk optimasi kinerja, namun antarmuka ini tidak digunakan dalam pengumpulan data. Hal ini karena pengumpulan data dilakukan dengan cara satu per satu lebih mencerminkan cara kerja \textit{client} yang sebenarnya. Selain itu, antarmuka ini juga menyediakan endpoint untuk mendapatkan status dari node dan cluster, serta dokumentasi API yang berguna untuk \textit{troubleshooting} dan pengembangan. Implementasi antarmuka \textit{client} terdapat dalam fungsi run\_http\_loop pada kelas Node.

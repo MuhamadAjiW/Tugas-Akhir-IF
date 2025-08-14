@@ -3,34 +3,34 @@
 
 Kakas yang digunakan dalam implementasi ini adalah sebagai berikut:
 \begin{enumerate}
-  \item Bahasa Pemrograman:
-    \begin{enumerate}
-      \item Rust: Digunakan untuk mengimplementasikan \textit{Node} dan sistem \textit{distributed key-value store database} secara keseluruhan.
-      \item Bash: Digunakan untuk \textit{shell scripting} dalam automatisasi, melakukan pengelolaan node dan bagian dari \textit{Data Collector}.
-      \item JavaScript: Digunakan untuk menulis skrip k6 dalam \textit{Data Collector} untuk melakukan pengujian beban dan pengumpulan data.
-    \end{enumerate}
-  \item Kakas dalam bahasa Rust:
-    \begin{enumerate}
-      \item bincode: Digunakan untuk serialisasi dan deserialisasi biner dalam komunikasi antarnode dan penyimpanan.
-      \item tokio: \textit{runtime} async untuk \textit{Non-blocking I/O} berkinerja tinggi.
-      \item serde: Digunakan sebagai kerangka kerja serialisasi dan deserialisasi biner bersamaan dengan bincode untuk transformasi data.
-      \item actix-web: Digunakan sebagai \textit{framework web} untuk HTTP \textit{server} pada node.
-      \item tracing, tracing-subscriber, tracing-appender: Digunakan untuk instrumentasi \textit{logging} dan \textit{tracing}.
-      \item clap: Digunakan untuk parsing argumen baris perintah untuk binari node.
-      \item moka: Digunakan untuk \textit{in-memory store}.
-      \item rand: Digunakan sebagai generator bilangan acak untuk keperluan konsensus.
-      \item rocksdb: Digunakan sebagai \textit{storage engine} untuk persistent key-value store lokal setiap node.
-    \end{enumerate}
-  \item Kakas dalam bahasa JavaScript:
-    \begin{enumerate}
-      \item k6: Digunakan untuk mengeksekusi skenario \textit{read/write} dan menghasilkan metrik JSON.
-    \end{enumerate}
-  \item Kakas lainnya:
-    \begin{enumerate}
-      \item GNU Screen: Digunakan untuk menjalankan beberapa session terminal node terpisah yang dapat dipantau.
-      \item jq: Digunakan untuk memanipulasi dan memvalidasi konfigurasi JSON sebelum menjalankan sistem.
-      \item iptables: Digunakan untuk menandai paket TCP dan mengontrol \textit{bandwidth}.
-      \item tc: Digunakan untuk mengatur antrian paket dan pembatasan bandwidth (netem) pada loopback.
-      \item sysstat: Digunakan untuk merekam statistik CPU secara \textit{real-time} saat pengujian berlangsung.
-    \end{enumerate}
+	\item Bahasa Pemrograman:
+	      \begin{enumerate}
+		      \item Rust: Digunakan untuk mengimplementasikan \textit{Node} dan sistem \textit{distributed key-value store database} secara keseluruhan.
+		      \item Bash: Digunakan untuk \textit{shell scripting} dalam automatisasi, melakukan pengelolaan node dan bagian dari \textit{Data Collector}.
+		      \item JavaScript: Digunakan untuk menulis skrip k6 dalam \textit{Data Collector} untuk melakukan pengujian beban dan pengumpulan data.
+	      \end{enumerate}
+	\item Kakas dalam bahasa Rust:
+	      \begin{enumerate}
+		      \item bincode: Digunakan untuk serialisasi dan deserialisasi biner dalam komunikasi antarnode dan penyimpanan.
+		      \item tokio: \textit{runtime} async untuk \textit{Non-blocking I/O} berkinerja tinggi.
+		      \item serde: Digunakan sebagai kerangka kerja serialisasi dan deserialisasi biner bersamaan dengan bincode untuk transformasi data.
+		      \item actix-web: Digunakan sebagai \textit{framework web} untuk HTTP \textit{server} pada node.
+		      \item tracing, tracing-subscriber, tracing-appender: Digunakan untuk instrumentasi \textit{logging} dan \textit{tracing}.
+		      \item clap: Digunakan untuk parsing argumen baris perintah untuk binari node.
+		      \item moka: Digunakan untuk \textit{in-memory store}.
+		      \item rand: Digunakan sebagai generator bilangan acak untuk keperluan konsensus.
+		      \item rocksdb: Digunakan sebagai \textit{storage engine} untuk persistent key-value store lokal setiap node.
+	      \end{enumerate}
+	\item Kakas dalam bahasa JavaScript:
+	      \begin{enumerate}
+		      \item k6: Digunakan untuk mengeksekusi skenario \textit{read/write} dan menghasilkan metrik JSON.
+	      \end{enumerate}
+	\item Kakas lainnya:
+	      \begin{enumerate}
+		      \item GNU Screen: Digunakan untuk menjalankan beberapa session terminal node terpisah yang dapat dipantau.
+		      \item jq: Digunakan untuk memanipulasi dan memvalidasi konfigurasi JSON sebelum menjalankan sistem.
+		      \item iptables: Digunakan untuk menandai paket TCP dan mengontrol \textit{bandwidth}.
+		      \item tc: Digunakan untuk mengatur antrian paket dan pembatasan bandwidth (netem) pada loopback.
+		      \item sysstat: Digunakan untuk merekam statistik CPU secara \textit{real-time} saat pengujian berlangsung.
+	      \end{enumerate}
 \end{enumerate}

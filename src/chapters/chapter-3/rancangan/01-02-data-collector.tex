@@ -6,16 +6,16 @@
 Secara umum, struktur \textit{Data Collector} terdiri dari:
 
 \begin{enumerate}
-    \item Komponen benchmark: Komponen ini bertanggung jawab untuk menjalankan \textit{benchmark} dengan melakukan \textit{request} dan transaksi pada sistem. Variasi ukuran data, jumlah transaksi, dan pengukuran \textit{response time} dilakukan pada komponen ini. Komponen ini juga mengelola pengulangan eksperimen untuk mendapatkan data yang representatif.
-    \item Komponen \textit{log management}: Komponen ini mengelola pencatatan dan pelacakan operasi yang dilakukan oleh sistem secara keseluruhan. \textit{Log} dari operasi dihasilkan oleh sistem, komponen ini hanya mengelola penyimpanan data eksperimen yang telah dikumpulkan menjadi bentuk yang dapat dianalisis.
+	\item Komponen benchmark: Komponen ini bertanggung jawab untuk menjalankan \textit{benchmark} dengan melakukan \textit{request} dan transaksi pada sistem. Variasi ukuran data, jumlah transaksi, dan pengukuran \textit{response time} dilakukan pada komponen ini. Komponen ini juga mengelola pengulangan eksperimen untuk mendapatkan data yang representatif.
+	\item Komponen \textit{log management}: Komponen ini mengelola pencatatan dan pelacakan operasi yang dilakukan oleh sistem secara keseluruhan. \textit{Log} dari operasi dihasilkan oleh sistem, komponen ini hanya mengelola penyimpanan data eksperimen yang telah dikumpulkan menjadi bentuk yang dapat dianalisis.
 \end{enumerate}
 
 Merujuk pada Bagian \ref{subsection:analisis-permasalahan}, \textit{Data Collector} memenuhi kebutuhan 3 dan 4, yaitu:
 
 \begin{enumerate}
-    \setcounter{enumi}{2}
-    \item Sistem harus dapat memvariasikan ukuran data, tingkat ketahanan, kecepatan jaringan, dan kemampuan komputasi.
-    \item Sistem harus dapat menjalankan eksperimen berulang kali untuk mendapatkan data persentil dari eksperimen.
+	\setcounter{enumi}{2}
+	\item Sistem harus dapat memvariasikan ukuran data, tingkat ketahanan, kecepatan jaringan, dan kemampuan komputasi.
+	\item Sistem harus dapat menjalankan eksperimen berulang kali untuk mendapatkan data persentil dari eksperimen.
 \end{enumerate}
 
 Sedangkan merujuk kebutuhan fungsional dan non-fungsional pada Bagian \ref{subsection:system-requirements}, \textit{Data Collector} memenuhi kebutuhan fungsional F-3, F-9, dan F-10

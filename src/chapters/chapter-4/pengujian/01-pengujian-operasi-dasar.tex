@@ -6,10 +6,10 @@ Pengujian ini mencakup fungsional F-1, yaitu bahwa sistem harus dapat melakukan 
 Pengujian operasi \textit{write} dengan kode pengujian P-1 dilakukan dengan skenario pengguna menuliskan \textit{key-value pair} ke dalam sistem. Nilai \textit{key} dan \textit{value} akan bersifat acak. Berikut langkah-langkah yang dilakukan dalam pengujian ini:
 
 \begin{enumerate}
-  \item Menunggu hingga sistem siap menerima \textit{request}. Konfirmasi dapat dilakukan dengan mengirim \textit{request} HTTP pada \textit{endpoint} /status dan memastikan bahwa sistem sudah memiliki \textit{leader}.
-  \item Menjalankan \textit{script} oneshot.js dengan argumen \textit{write} untuk melakukan pengujian operasi dasar. \textit{Script} ini akan mengirimkan \textit{request} \textit{write} ke sistem.
-  \item Mengirim request HTTP pada \textit{endpoint} /log untuk memastikan bahwa sistem telah menerima \textit{request} \textit{write} dan telah menyimpan data yang dituliskan.
-  \item Mengulangi pengujian dengan sistem \textit{erasure coding} dan juga dengan sistem replikasi.
+	\item Menunggu hingga sistem siap menerima \textit{request}. Konfirmasi dapat dilakukan dengan mengirim \textit{request} HTTP pada \textit{endpoint} /status dan memastikan bahwa sistem sudah memiliki \textit{leader}.
+	\item Menjalankan \textit{script} oneshot.js dengan argumen \textit{write} untuk melakukan pengujian operasi dasar. \textit{Script} ini akan mengirimkan \textit{request} \textit{write} ke sistem.
+	\item Mengirim request HTTP pada \textit{endpoint} /log untuk memastikan bahwa sistem telah menerima \textit{request} \textit{write} dan telah menyimpan data yang dituliskan.
+	\item Mengulangi pengujian dengan sistem \textit{erasure coding} dan juga dengan sistem replikasi.
 \end{enumerate}
 
 Hasil yang diharapkan setelah tes dijalankan adalah sistem menyimpan \textit{log} yang berisi \textit{key-value pair} yang telah dituliskan. Untuk \textit{erasure coding}, log yang disimpan harus berisi \textit{key-value pair} yang telah di-\textit{encode} sesuai dengan konfigurasi serta berbeda-beda untuk setiap \textit{node} sesuai dengan index \textit{fragment} yang diterima.
@@ -17,10 +17,10 @@ Hasil yang diharapkan setelah tes dijalankan adalah sistem menyimpan \textit{log
 Pengujian operasi \textit{read} dengan kode pengujian P-2 dilakukan dengan skenario pengguna membaca \textit{key-value pair} yang sudah dituliskan sebelumnya. Berikut langkah-langkah yang dilakukan dalam pengujian ini:
 
 \begin{enumerate}
-  \item Menunggu hingga sistem siap menerima \textit{request}. Konfirmasi dapat dilakukan dengan mengirim \textit{request} HTTP pada \textit{endpoint} /status dan memastikan bahwa sistem sudah memiliki \textit{leader}.
-  \item Menjalankan \textit{script} oneshot.js dengan argumen \textit{read} untuk melakukan pengujian operasi dasar. \textit{Script} ini akan mengirimkan \textit{request} \textit{read} ke sistem.
-  \item Mengirim request HTTP pada \textit{endpoint} /log untuk memastikan bahwa sistem mengembalikan nilai \textit{request} \textit{read} yang sesuai dengan nilai yang disimpan pada \textit{log}.
-  \item Mengulangi pengujian dengan sistem \textit{erasure coding} dan juga dengan sistem replikasi.
+	\item Menunggu hingga sistem siap menerima \textit{request}. Konfirmasi dapat dilakukan dengan mengirim \textit{request} HTTP pada \textit{endpoint} /status dan memastikan bahwa sistem sudah memiliki \textit{leader}.
+	\item Menjalankan \textit{script} oneshot.js dengan argumen \textit{read} untuk melakukan pengujian operasi dasar. \textit{Script} ini akan mengirimkan \textit{request} \textit{read} ke sistem.
+	\item Mengirim request HTTP pada \textit{endpoint} /log untuk memastikan bahwa sistem mengembalikan nilai \textit{request} \textit{read} yang sesuai dengan nilai yang disimpan pada \textit{log}.
+	\item Mengulangi pengujian dengan sistem \textit{erasure coding} dan juga dengan sistem replikasi.
 \end{enumerate}
 
 Hasil yang diharapkan setelah tes dijalankan adalah sistem mengembalikan nilai \textit{key-value pair} yang telah dituliskan sebelumnya. Untuk \textit{erasure coding}, sistem harus dapat mengembalikan nilai \textit{key-value pair} yang utuh dan bukan nilai \textit{fragment} yang di-\textit{encode}.

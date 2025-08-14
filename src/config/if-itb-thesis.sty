@@ -86,35 +86,35 @@
 \TOCclone[\lopname]{toc}{atoc}
 \addtocontents{atoc}{\protect\value{tocdepth}=-1}
 \newcommand\listofappendices{
-  \cleardoublepage
-  \phantomsection
-  \listofatoc
-  \addcontentsline{toc}{chapter}{\lopname}
+	\cleardoublepage
+	\phantomsection
+	\listofatoc
+	\addcontentsline{toc}{chapter}{\lopname}
 }
 
 \newcommand*\savedtocdepth{}
 \AtBeginDocument{%
-  \edef\savedtocdepth{\the\value{tocdepth}}%
+	\edef\savedtocdepth{\the\value{tocdepth}}%
 }
 
 \let\originalappendix\appendix
 \renewcommand\appendix{%
-  \originalappendix
-  \cleardoublepage
-  \addtocontents{toc}{\protect\value{tocdepth}=-1}%
-  \addtocontents{atoc}{\protect\value{tocdepth}=\savedtocdepth}%
+	\originalappendix
+	\cleardoublepage
+	\addtocontents{toc}{\protect\value{tocdepth}=-1}%
+	\addtocontents{atoc}{\protect\value{tocdepth}=\savedtocdepth}%
 
-  \titlecontents{chapter}
-  [0pt]
-  {\bfseries}
-  {Lampiran \thecontentslabel.\quad}
-  {}
-  {\hfill\contentspage}
+	\titlecontents{chapter}
+	[0pt]
+	{\bfseries}
+	{Lampiran \thecontentslabel.\quad}
+	{}
+	{\hfill\contentspage}
 
-  \titleformat{\chapter}[block]
-  {\bfseries}
-  {\chaptertitlename\ \thechapter.\quad}{0pt}
-  {\bfseries}
+	\titleformat{\chapter}[block]
+	{\bfseries}
+	{\chaptertitlename\ \thechapter.\quad}{0pt}
+	{\bfseries}
 }
 
 % Hilangkan titik pada toc
@@ -145,10 +145,10 @@
 % Masukin Daftar Pustaka ke toc
 \let\originalprintbibliography\printbibliography
 \renewcommand\printbibliography{%
-  \phantomsection
-  \cleardoublepage
-  \originalprintbibliography
-  \addcontentsline{toc}{chapter}{\bibname}
+	\phantomsection
+	\cleardoublepage
+	\originalprintbibliography
+	\addcontentsline{toc}{chapter}{\bibname}
 }
 
 % Line satu setengah spasi

@@ -7,21 +7,21 @@ Berdasarkan latar belakang dan studi literatur yang telah dijelaskan sebelumnya,
 
 Variabel-variabel yang mempengaruhi kinerja kedua sistem antara lain adalah:
 \begin{enumerate}
-    \item Ukuran data
-    
-    Variabel ini mempengaruhi komputasi yang diperlukan dan juga pengiriman data. Dihipotesiskan untuk berbanding lurus dengan kinerja \textit{erasure coding} karena pengurangan \textit{input/output} umumnya lebih besar dibandingkan dengan kebutuhan komputasi.
+	\item Ukuran data
 
-    \item Bandwidth jaringan, disk, dan memory
-    
-    Variabel ini mempengaruhi kecepatan pengiriman data. Dihipotesiskan untuk berbanding terbalik degan kinerja \textit{erasure coding} karena pengurangan \textit{input/output} dari \textit{erasure coding} mejadi lebih signifikan.
+	      Variabel ini mempengaruhi komputasi yang diperlukan dan juga pengiriman data. Dihipotesiskan untuk berbanding lurus dengan kinerja \textit{erasure coding} karena pengurangan \textit{input/output} umumnya lebih besar dibandingkan dengan kebutuhan komputasi.
 
-    \item Kemampuan komputasi dari sistem
-    
-    Variabel ini mempengaruhi kecepatan komputasi yang diperlukan untuk melakukan operasi pada \textit{erasure coding} dan replikasi. Dihipotesiskan untuk berbanding lurus dengan kinerja \textit{erasure coding}.
-    
-    \item Konfigurasi sistem
-    
-    Variabel ini mempengaruhi jumlah \textit{node} yang digunakan untuk menyimpan data dan juga jumlah \textit{node} yang digunakan untuk menyimpan data \textit{parity}. Dihipotesiskan bahwa konfigurasi sistem dengan ketahanan lebih tinggi lebih mudah diraih pada \textit{erasure coding}.
+	\item Bandwidth jaringan, disk, dan memory
+
+	      Variabel ini mempengaruhi kecepatan pengiriman data. Dihipotesiskan untuk berbanding terbalik degan kinerja \textit{erasure coding} karena pengurangan \textit{input/output} dari \textit{erasure coding} mejadi lebih signifikan.
+
+	\item Kemampuan komputasi dari sistem
+
+	      Variabel ini mempengaruhi kecepatan komputasi yang diperlukan untuk melakukan operasi pada \textit{erasure coding} dan replikasi. Dihipotesiskan untuk berbanding lurus dengan kinerja \textit{erasure coding}.
+
+	\item Konfigurasi sistem
+
+	      Variabel ini mempengaruhi jumlah \textit{node} yang digunakan untuk menyimpan data dan juga jumlah \textit{node} yang digunakan untuk menyimpan data \textit{parity}. Dihipotesiskan bahwa konfigurasi sistem dengan ketahanan lebih tinggi lebih mudah diraih pada \textit{erasure coding}.
 
 \end{enumerate}
 
@@ -30,9 +30,9 @@ Berdasarkan batasan masalah pada Bagian \ref{sec:batasan-masalah}, riset ini aka
 Dari permasalahan tersebut, dirumuskan kebutuhan sebuah perangkat lunak antara lain
 \begin{enumerate}
 
-    \item Sistem harus dapat mensimulasikan kondisi \textit{database} terdistribusi yang menggunakan replikasi ataupun \textit{erasure coding}.
-    \item Sistem harus dapat menyimpan data secara \textit{persistent}.
-    \item Sistem harus dapat memvariasikan ukuran data dan kecepatan jaringan.
-    \item Sistem harus dapat menjalankan eksperimen berulang kali untuk mendapatkan data dari eksperimen.
+	\item Sistem harus dapat mensimulasikan kondisi \textit{database} terdistribusi yang menggunakan replikasi ataupun \textit{erasure coding}.
+	\item Sistem harus dapat menyimpan data secara \textit{persistent}.
+	\item Sistem harus dapat memvariasikan ukuran data dan kecepatan jaringan.
+	\item Sistem harus dapat menjalankan eksperimen berulang kali untuk mendapatkan data dari eksperimen.
 
 \end{enumerate}

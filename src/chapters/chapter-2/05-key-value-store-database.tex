@@ -8,16 +8,16 @@
 Solusi \textit{key-value database} dapat ditemukan pada penggunaan berikut \parencite{aws_keyvalue_docs}:
 
 \begin{enumerate}
-  \item \textbf{Caching}: Menyimpan data yang sering diakses untuk meningkatkan performa aplikasi.
-  \item \textbf{Session Store}: Menyimpan data sesi pengguna pada aplikasi web.
-  \item \textbf{Configuration Management}: Menyimpan konfigurasi aplikasi yang dapat diambil berdasarkan kunci tertentu.
-  \item \textbf{Real-time Recommendation}: Menyimpan data rekomendasi yang sering berubah dan diakses secara cepat.
+	\item \textbf{Caching}: Menyimpan data yang sering diakses untuk meningkatkan performa aplikasi.
+	\item \textbf{Session Store}: Menyimpan data sesi pengguna pada aplikasi web.
+	\item \textbf{Configuration Management}: Menyimpan konfigurasi aplikasi yang dapat diambil berdasarkan kunci tertentu.
+	\item \textbf{Real-time Recommendation}: Menyimpan data rekomendasi yang sering berubah dan diakses secara cepat.
 \end{enumerate}
 
 Penggunaan-penggunaan tersebut memiliki karakteristik data:
 \begin{enumerate}
-  \item \textbf{Berukuran kecil hingga sedang}. Nilai (value) yang disimpan biasanya tidak masif, melainkan berupa potongan data seperti objek JSON, string konfigurasi, atau informasi sesi yang ringkas. Sebagai contoh, sistem \textit{key-value store} yang sudah ada seperti Memcached memiliki batas ukuran senilai 1 MB per item \parencite{memcached_docs}, DynamoDB memiliki batas ukuran senilai 400 KB \parencite{dynamodb_docs}, DragonflyDB memiliki batas ukuran 256 MB \parencite{dragonflydb_docs}, dan Redis memiliki batas ukuran 512 MB per key \parencite{redis_docs}.
-  \item \textbf{Memerlukan skalabilitas dan ketersediaan tinggi}. Berdasarkan penggunaan yang disebutkan sebelumnya, akses data perlu dilakukan dengan cepat dan sistem penyimpanan harus dapat diskalakan dengan mudah.
-  \item \textbf{Diakses secara keseluruhan sebagai satu unit}. Dalam penggunaan-penggunaan tersebut, data pada value dibaca atau ditulis sebagai satu blok utuh. Operasi jarang ditujukan untuk memanipulasi sebagian kecil dari isi value, melainkan mengambil atau mengganti seluruhnya berdasarkan key.
+	\item \textbf{Berukuran kecil hingga sedang}. Nilai (value) yang disimpan biasanya tidak masif, melainkan berupa potongan data seperti objek JSON, string konfigurasi, atau informasi sesi yang ringkas. Sebagai contoh, sistem \textit{key-value store} yang sudah ada seperti Memcached memiliki batas ukuran senilai 1 MB per item \parencite{memcached_docs}, DynamoDB memiliki batas ukuran senilai 400 KB \parencite{dynamodb_docs}, DragonflyDB memiliki batas ukuran 256 MB \parencite{dragonflydb_docs}, dan Redis memiliki batas ukuran 512 MB per key \parencite{redis_docs}.
+	\item \textbf{Memerlukan skalabilitas dan ketersediaan tinggi}. Berdasarkan penggunaan yang disebutkan sebelumnya, akses data perlu dilakukan dengan cepat dan sistem penyimpanan harus dapat diskalakan dengan mudah.
+	\item \textbf{Diakses secara keseluruhan sebagai satu unit}. Dalam penggunaan-penggunaan tersebut, data pada value dibaca atau ditulis sebagai satu blok utuh. Operasi jarang ditujukan untuk memanipulasi sebagian kecil dari isi value, melainkan mengambil atau mengganti seluruhnya berdasarkan key.
 \end{enumerate}
 

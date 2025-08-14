@@ -8,10 +8,10 @@ Dalam gambaran umum arsitektur sistem, sistem \textit{Key-Value Store} terdistri
 Sementara itu, \textit{Data collector} merupakan \textit{script} eksternal yang tidak memiliki peran dalam sistem terdistribusi, namun berfungsi untuk mengumpulkan data eksperimen. Keterhubungan \textit{Data Collector} terbatas pada komponen \textit{benchmark} yang dapat mengatur konfigurasi dari sistem yang akan diujikan. Detail dari masing-masing komponen akan dijelaskan pada Bagian \ref{subsection:detail-komponen}. Ilustrasi keseluruhan arsitektur sistem yang memuat semua detail dapat dilihat pada Bagian \ref{appendix:detailed-architecture}.
 
 \begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.75\textwidth]{resources/chapter-3/general-architecture.png}
-    \caption{Gambaran Arsitektur Sistem Eksperimen}
-    \label{fig:general-architecture}
+	\centering
+	\includegraphics[width=0.75\textwidth]{resources/chapter-3/general-architecture.png}
+	\caption{Gambaran Arsitektur Sistem Eksperimen}
+	\label{fig:general-architecture}
 \end{figure}
 
 % Arsitektur dari sistem mengasumsikan kebutuhan untuk konsistensi yang tinggi. Untuk mencapai konsistensi tersebut, operasi \textit{write} dilakukan secara \textit{synchronous} dengan distribusi replikasi dan \textit{erasure coding} dianggap selesai ketika nilai ketahanan yang diinginkan sudah tercapai.

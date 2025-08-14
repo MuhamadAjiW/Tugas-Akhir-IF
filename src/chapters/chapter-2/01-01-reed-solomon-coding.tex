@@ -62,66 +62,66 @@ Kode Reed-Solomon dikarakterisasi dengan tiga parameter: jumlah alfabet $q$ yang
 Ada beberapa cara untuk menghasilkan kode Reed-Solomon yang sistematis. Salah satunya adalah dengan menggunakan interpolasi lagrange untuk dalam perhitungan polinomial $p_m$ sehingga $p_m(a_i) = m_i \text{ untuk semua } i \in \{0,\ldots,k-1\}$ \parencite{plank1996tutorial}. Untuk menghasilkan matriks pengkodean sistematis, matriks Vandermonde A dikalikan dengan \textit{inverse} dari submatriks kuadrat kiri A.
 
 \begin{align}
-    G = {(\text{Sub kuadrat kiri } A)}^{-1} \cdot A = 
-    \begin{bmatrix}
-        1 & 0 & 0 & \cdots & 0 & g_{1,k+1} & \cdots & g_{1,n} \\
-        0 & 1 & 0 & \cdots & 0 & g_{2,k+1} & \cdots & g_{2,n} \\
-        0 & 0 & 1 & \cdots & 0 & g_{3,k+1} & \cdots & g_{3,n} \\
-        \vdots & \vdots & \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
-        0 & \cdots & 0 & \cdots & 1 & g_{k,k+1} & \cdots & g_{k,n}
-    \end{bmatrix}
-    \label{eq:encoding_matrix}
+	G = {(\text{Sub kuadrat kiri } A)}^{-1} \cdot A =
+	\begin{bmatrix}
+		1      & 0      & 0      & \cdots & 0      & g_{1,k+1} & \cdots & g_{1,n} \\
+		0      & 1      & 0      & \cdots & 0      & g_{2,k+1} & \cdots & g_{2,n} \\
+		0      & 0      & 1      & \cdots & 0      & g_{3,k+1} & \cdots & g_{3,n} \\
+		\vdots & \vdots & \vdots & \ddots & \vdots & \vdots    & \ddots & \vdots  \\
+		0      & \cdots & 0      & \cdots & 1      & g_{k,k+1} & \cdots & g_{k,n}
+	\end{bmatrix}
+	\label{eq:encoding_matrix}
 \end{align}
 
 Matrix pada Persamaan\ref{eq:encoding_matrix} adalah gabungan matriks identitas dengan matriks Vandermonde. Matriks Vandermonde adalah sebuah matriks dengan progresi geometris di setiap barisnya. Matriks ini memfasilitasi evaluasi polinomial dengan kolom ke $j$ berkorespondensi dengan $j - 1$ dari poin evaluasi. Sifat penting dari matriks ini \textit{non-singular}, yaitu determinan dari matriks Vandermonde dihitung dan tidak nol jika dan hanya jika semua $a_i$ berbeda. Sehingga didapat persamaan untuk pemetaan linear $C(m) = Gm$ untuk matriks $G$ berukuran ${n} \times {k}$ dengan elemen dari $F$
 
 \begin{align}
-    C(m) = Gm = 
-    \begin{bmatrix}
-        1 & 0 & 0 & \cdots & 0 & g_{1,k+1} & \cdots & g_{1,n} \\
-        0 & 1 & 0 & \cdots & 0 & g_{2,k+1} & \cdots & g_{2,n} \\
-        0 & 0 & 1 & \cdots & 0 & g_{3,k+1} & \cdots & g_{3,n} \\
-        \vdots & \vdots & \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
-        0 & \cdots & 0 & \cdots & 1 & g_{k,k+1} & \cdots & g_{k,n}
-    \end{bmatrix}
-    \begin{bmatrix}
-        m_0 \\
-        m_1 \\
-        \vdots \\
-        m_{k-1}
-    \end{bmatrix}
-    \label{eq:encoding_equation}
+	C(m) = Gm =
+	\begin{bmatrix}
+		1      & 0      & 0      & \cdots & 0      & g_{1,k+1} & \cdots & g_{1,n} \\
+		0      & 1      & 0      & \cdots & 0      & g_{2,k+1} & \cdots & g_{2,n} \\
+		0      & 0      & 1      & \cdots & 0      & g_{3,k+1} & \cdots & g_{3,n} \\
+		\vdots & \vdots & \vdots & \ddots & \vdots & \vdots    & \ddots & \vdots  \\
+		0      & \cdots & 0      & \cdots & 1      & g_{k,k+1} & \cdots & g_{k,n}
+	\end{bmatrix}
+	\begin{bmatrix}
+		m_0    \\
+		m_1    \\
+		\vdots \\
+		m_{k-1}
+	\end{bmatrix}
+	\label{eq:encoding_equation}
 \end{align}
 
 Pada Persamaan \ref{eq:encoding_equation}, tidak semua kolom $g_{x,y}$ pada matrix perlu digunakan. Kolom sejumlah $t \le n - k$ dapat membenarkan $t$ kehilangan pada lokasi yang diketahui dan diberikan kepada algoritma \parencite{riley2001introduction}. Pemulihan dilakukan seperti pada Persamaan \ref{eq:recovery_equation}.
 
 \begin{align}
-    G' \times m &= C(m)' \notag \\
-    G'^{-1} \times G' \times m &= G'^{-1} \times C(m)' \notag \\
-    1 \times m &= G'^{-1} \times C(m)' \notag \\
-    m &= G'^{-1} \times C(m)'
-    \label{eq:recovery_equation}
+	G' \times m                & = C(m)' \notag                \\
+	G'^{-1} \times G' \times m & = G'^{-1} \times C(m)' \notag \\
+	1 \times m                 & = G'^{-1} \times C(m)' \notag \\
+	m                          & = G'^{-1} \times C(m)'
+	\label{eq:recovery_equation}
 \end{align}
 
 Berdasarkan pengkodean yang dilakukan, kode Reed-Solomon menyediakan ketahanan sejumlah $t$ kegagalan dengan penggunaan penyimpanan $M$ yang dapat dihitung dengan Persamaan \ref{eq:ec_storage}
 
 \begin{equation}
-    M = \text{Ukuran pesan} \times \frac{k + t}{k}
-    \label{eq:ec_storage}
+	M = \text{Ukuran pesan} \times \frac{k + t}{k}
+	\label{eq:ec_storage}
 \end{equation}
 
 Namun, perlu diingat bahwa untuk \textit{erasure coding} mencapai ukuran tersebut, perhitungan matriks seperti yang sudah dijelaskan sebelumnya perlu dilakukan. Perhitungan matriks Reed-Solomon memiliki kompleksitas yang bergantung pada konfigurasi serta ukuran pesan yang digunakan. Dengan demikian, kompleksitas komputasi untuk kode Reed-Solomon adalah perkalian matriks yang dapat dinyatakan dengan Notasi \ref{eq:ec_complexity} dengan $n$ adalah jumlah \textit{node} data ($k$) dan \textit{node parity} ($t$).
 
 \begin{equation}
-    O(k \cdot n \cdot \frac{\text{Ukuran Pesan}}{k})
-    \label{eq:ec_complexity}
+	O(k \cdot n \cdot \frac{\text{Ukuran Pesan}}{k})
+	\label{eq:ec_complexity}
 \end{equation}
 
 Perhitungan $k$ baris adalah perkalian matriks identitas dan disederhanakan dengan menyalin data. Oleh sebab itu, kompleksitas yang membutuhkan komputasi signifikan adalah perkalian matriks yang dilakukan pada $t$ baris. Dengan demikian, kompleksitas komputasi untuk kode Reed-Solomon adalah seperti yang dinyatakan pada Persamaan \ref{eq:ec_complexity_final}.
 
 \begin{equation}
-    O(k \cdot t \cdot \frac{\text{Ukuran Pesan}}{k}) = O(t \cdot \text{Ukuran Pesan})
-    \label{eq:ec_complexity_final}
+	O(k \cdot t \cdot \frac{\text{Ukuran Pesan}}{k}) = O(t \cdot \text{Ukuran Pesan})
+	\label{eq:ec_complexity_final}
 \end{equation}
 
 Dari persamaan tersebut, dapat dilihat bahwa perhitungan ini akan menambah \textit{response time} dari operasi relatif terhadap ukuran pesan yang digunakan.

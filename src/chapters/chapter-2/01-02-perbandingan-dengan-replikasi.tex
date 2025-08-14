@@ -7,24 +7,23 @@ Sebagai contoh, untuk menyimpan data dengan nilai ketahanan empat kegagalan, rep
 Untuk meraih ketahanan pesan $t$, replikasi menggunakan penyimpanan $M$ sebanyak yang dapat dihitung pada Persamaan \ref{eq:replication_storage}.
 
 \begin{equation}
-    M = \text{Ukuran pesan} \times (t + 1)
-    \label{eq:replication_storage}
+	M = \text{Ukuran pesan} \times (t + 1)
+	\label{eq:replication_storage}
 \end{equation}
 
 Dibandingkan \textit{erasure coding} yang menggunakan reed-solomon, dapat dihitung rasio penyimpanan \textit{erasure coding} dengan replikasi $R$, yaitu pada Persamaan \ref{eq:erasure_storage_simplified}.
 
 \begin{equation}
-    R = \frac{\text{Ukuran pesan} \times (t + 1)}{\text{Ukuran pesan} \times \frac{\text{k + t}}{k}}
-    \label{eq:erasure_storage}
+	R = \frac{\text{Ukuran pesan} \times (t + 1)}{\text{Ukuran pesan} \times \frac{\text{k + t}}{k}}
+	\label{eq:erasure_storage}
 \end{equation}
 
 \begin{equation}
-    R = \frac{k + kt}{k + t}
-    \label{eq:erasure_storage_simplified}
+	R = \frac{k + kt}{k + t}
+	\label{eq:erasure_storage_simplified}
 \end{equation}
 
 % Setelah penyederhanaan, didapatkan
-
 
 % Berdasarkan persamaan tersebut didapatkan bahwa penyimpanan replikasi akan selalu lebih besar dibandingkan \textit{erasure coding}. Perbedaan penyimpanan yang digunakan terpengaruhi oleh $t$, ketahanan dari sistem, dan $k$, jumlah persebaran yang digunakan pada kode Reed-solomon.
 Berdasarkan persamaan tersebut didapatkan perbedaan penyimpanan yang digunakan terpengaruhi oleh $t$, ketahanan dari sistem, dan $k$, jumlah persebaran yang digunakan pada kode Reed-solomon. Untuk tingkat ketahanan yang sama, penyimpanan replikasi akan selalu lebih besar dibandingkan \textit{erasure coding} kecuali jika $k$ bernilai satu.
