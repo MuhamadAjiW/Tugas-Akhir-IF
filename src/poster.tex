@@ -17,6 +17,7 @@
 \usepackage{graphicx} % For including images
 \usepackage{booktabs} % For professional tables
 \usepackage[font=small,labelfont=bf]{caption} % For figure/table captions
+\captionsetup{font=footnotesize,aboveskip=1pt,belowskip=0pt}
 \usepackage{amsfonts, amsmath, amsthm, amssymb} % Math packages
 \usepackage[style=ieee]{biblatex} % IEEE style citations
 \usepackage{tikz} % For creating diagrams
@@ -35,15 +36,15 @@
 %----------------------------------------------------------------------------------------
 
 % Layout settings
-\columnsep=6pt % Slightly smaller space between columns to save width
+\columnsep=4pt % Smaller space between columns to save width
 
 % Reduce vertical spacing for captions so figures use less vertical real-estate
-\setlength{\abovecaptionskip}{2pt}
+\setlength{\abovecaptionskip}{1pt}
 \setlength{\belowcaptionskip}{0pt}
 \setlength{\parskip}{0pt}
 
 % Tighter list spacing globally
-\setlist[itemize]{leftmargin=*, itemsep=1pt, topsep=0pt, parsep=0pt, partopsep=0pt}
+\setlist[itemize]{leftmargin=*, itemsep=0pt, topsep=0pt, parsep=0pt, partopsep=0pt}
 
 % Set graphic path
 \graphicspath{{./}{resources/chapter-4/}} % Location of the graphics files
@@ -83,34 +84,19 @@
 % Make header span the full text width so the multicols environment
 % computes the column widths against the full page and not an inset
 \begin{minipage}[c]{\linewidth}
-\Huge \textbf{Analisis Kinerja Erasure Coding vs Replikasi pada Key-Value Store Terdistribusi} \\
-\large \textit{Erasure Coding Performance Analysis Against Replication} \\
-\normalsize \textbf{Muhamad Aji Wibisono (13521095)} \\
-\normalsize Program Studi Teknik Informatika, Institut Teknologi Bandung \\
+\Huge \textbf{Analisis Kinerja Erasure Coding vs Replikasi \newline pada Key-Value Store Terdistribusi} \\
+\small \textit{Erasure Coding Performance Analysis Against Replication on Distributed Key-Value Store Database} \\
+\small \textbf{Muhamad Aji Wibisono (13521095)} \\
+\small Program Studi Teknik Informatika, Institut Teknologi Bandung \\
 \end{minipage}
 
-\vspace{0.05cm} % Whitespace between header and content (further reduced)
 
 %----------------------------------------------------------------------------------------
 %   POSTER BODY
 %----------------------------------------------------------------------------------------
 
 \begin{multicols}{2} % Use 2 columns for the body
-\small % slightly reduce body text size to fit one page
-\vspace{0.05cm}
-
-% Helper to insert an image that spans two columns in multicols
-% Use 2*\columnwidth + \columnsep so the image occupies two of the multicols columns
-\newcommand{\twocolimg}[2]{%
-	\begin{center}
-		\parbox{\dimexpr2\columnwidth+\columnsep\relax}{%
-			\centering
-			% Use full width of the 2-column box and keep aspect ratio
-			\includegraphics[width=\linewidth,keepaspectratio]{#1}
-			\captionof{figure}{#2}
-		}
-	\end{center}
-}
+\normalsize % slightly larger body text while keeping one page
 
 % One-column image helper: image will occupy a single multicols column (width=\columnwidth)
 \newcommand{\onecolimg}[2]{%
@@ -128,20 +114,18 @@
 %----------------------------------------------------------------------------------------
 
 \postersection{Ringkasan}
-\begin{quote}
-	Penelitian ini menganalisis kinerja \textit{erasure coding} dibandingkan replikasi pada \textit{distributed key-value store}, berfokus pada \textit{response time} operasi \textit{write} dan \textit{read}. Motivasi utamanya adalah kebutuhan efisiensi penyimpanan dan ketahanan data dengan tetap menjaga kinerja. Hasil utama: terdapat kondisi ambang (threshold) di mana \textit{erasure coding} mengungguli replikasi pada operasi \textit{write}; sedangkan pada operasi \textit{read}, replikasi selalu lebih cepat karena biaya rekonstruksi pada \textit{erasure coding}.
-\end{quote}
+\noindent Penelitian ini menganalisis kinerja \textit{erasure coding} dibandingkan replikasi pada \textit{distributed key-value store}, berfokus pada \textit{response time} operasi \textit{write} dan \textit{read}. Motivasi utamanya adalah kebutuhan efisiensi penyimpanan dan ketahanan data dengan tetap menjaga kinerja. Hasil utama: terdapat kondisi ambang (threshold) di mana \textit{erasure coding} mengungguli replikasi pada operasi \textit{write}; sedangkan pada operasi \textit{read}, replikasi selalu lebih cepat karena biaya rekonstruksi pada \textit{erasure coding}.
 
 %----------------------------------------------------------------------------------------
 %   PERTANYAAN & TUJUAN
 %----------------------------------------------------------------------------------------
 
 \postersection{Pertanyaan Riset dan Tujuan}
-	extbf{Pertanyaan:}
+			\textbf{Pertanyaan:}
 \begin{itemize}[leftmargin=*, itemsep=2pt]
 	\item Dalam kondisi apa \textit{erasure coding} memiliki \textit{response time} lebih rendah daripada replikasi?
 \end{itemize}
-	extbf{Tujuan:}
+			\textbf{Tujuan:}
 \begin{itemize}[leftmargin=*, itemsep=2pt]
 	\item Menilai kelayakan kinerja \textit{erasure coding} pada \textit{key-value store} terdistribusi dan menemukan ambang kinerja tersebut.
 \end{itemize}
@@ -151,12 +135,12 @@
 %----------------------------------------------------------------------------------------
 
 \postersection{Metode dan Sistem}
-	extbf{Arsitektur:}
+			\textbf{Arsitektur:}
 \begin{itemize}[leftmargin=*, itemsep=2pt]
 	\item Rust + RocksDB (\textit{persistent store}), OmniPaxos (konsensus), Reed–Solomon (\textit{erasure coding}).
 	\item Antarmuka klien sederhana; \textit{in-memory store} hanya untuk optimasi (diabaikan saat evaluasi \textit{read}).
 \end{itemize}
-		extbf{Benchmark:}
+			\textbf{Benchmark:}
 \begin{itemize}[leftmargin=*, itemsep=2pt]
 	\item Variasi \textit{bandwidth}: 1 Mbps; 10–70 Mbps (rata-rata Indonesia ±40 Mbps); 10 Gbps.
 	\item Ukuran \textit{payload}: 1 KB; 200–1000 KB.
@@ -222,12 +206,12 @@
 %----------------------------------------------------------------------------------------
 
 \postersection{Kesimpulan dan Rekomendasi}
-	extbf{Kesimpulan:}
+			\textbf{Kesimpulan:}
 \begin{itemize}[leftmargin=*, itemsep=2pt]
 	\item EC unggul pada \textit{write} untuk data besar di jaringan terbatas; replikasi unggul pada \textit{read} dan pada data kecil/jaringan cepat.
 	\item Tidak ada skenario \textit{read} di mana EC mengalahkan replikasi tanpa bantuan \textit{cache}.
 \end{itemize}
-		extbf{Rekomendasi Penggunaan:}
+			\textbf{Rekomendasi Penggunaan:}
 \begin{itemize}[leftmargin=*, itemsep=2pt]
 	\item \textbf{Pilih EC}: arsip/\textit{edge}/link terbatas, beban \textit{write} dominan, objek besar, hemat penyimpanan penting.
 	\item \textbf{Pilih replikasi}: \textit{DC} ber-\textit{bandwidth} tinggi, objek kecil, \textit{read}-heavy, latensi ketat.
@@ -239,12 +223,12 @@
 %----------------------------------------------------------------------------------------
 
 \postersection{Keterbatasan dan Pekerjaan Lanjutan}
-	extbf{Keterbatasan:}
+			\textbf{Keterbatasan:}
 \begin{itemize}[leftmargin=*, itemsep=2pt]
 	\item Keanggotaan kluster statis; lingkungan uji lokal dengan \textit{traffic shaping}.
 	\item Parameter EC tetap; tidak mengevaluasi pemulihan kegagalan/rekonfigurasi.
 \end{itemize}
-		extbf{Lanjutan:}
+			\textbf{Lanjutan:}
 \begin{itemize}[leftmargin=*, itemsep=2pt]
 	\item Penalaan/parallelisasi EC, model hibrida EC+replikasi, uji lintas \textit{datacenter}, dan skenario nyata berjarak.
 \end{itemize}
@@ -260,14 +244,16 @@
 	\item Komunitas sumber terbuka (Rust, RocksDB, OmniPaxos).
 \end{itemize}
 
-\vspace{0.3cm}
-		extbf{Repo Implementasi:} \texttt{github.com/MuhamadAjiW/DistKV-Erasure-Coding}
+\vspace{0.1cm}
+			\textbf{Repo Implementasi:}
+			
+			\url{github.com/MuhamadAjiW/DistKV-Erasure-Coding}
 
 % Place the two write-related single-column figures at the end of the poster
 % so they render after all the textual content and do not overlap.
-\vspace{0.1cm}
+\vspace{0.02cm}
 \onecolimg{write_bigload_avgnet_heatmap.png}{Heatmap \textit{Write}: Internet Menengah, Payload Besar}
-\vspace{0.1cm}
+\vspace{0.02cm}
 \onecolimg{write_bigload_avgnet_boundary.png}{Batas Kinerja EC vs Replikasi (Model Regresi)}
 
 \end{multicols}
