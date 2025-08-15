@@ -35,7 +35,7 @@
 %----------------------------------------------------------------------------------------
 
 % Layout settings
-\columnsep=8pt % Space between columns (further reduced to give more room for 4 columns)
+\columnsep=8pt % Space between columns (suitable for a 2-column poster)
 
 % Reduce vertical spacing for captions so figures use less vertical real-estate
 \setlength{\abovecaptionskip}{8pt}
@@ -93,19 +93,35 @@
 %   POSTER BODY
 %----------------------------------------------------------------------------------------
 
-\begin{multicols}{4} % Use 4 columns for the body
-	\vspace{0.1cm}
+\begin{multicols}{2} % Use 2 columns for the body
+\vspace{0.1cm}
 
 % Helper to insert an image that spans two columns in multicols
+% Use 2*\columnwidth + \columnsep so the image occupies two of the multicols columns
 \newcommand{\twocolimg}[2]{%
 	\begin{center}
-			\parbox{0.48\textwidth\relax}{% approximate two columns width (2*0.24)
-				\centering
-				\includegraphics[width=\linewidth,height=0.12\textheight,keepaspectratio]{#1}
-				\captionof{figure}{#2}
-			}
+		\parbox{\dimexpr2\columnwidth+\columnsep\relax}{%
+			\centering
+			% Use full width of the 2-column box and keep aspect ratio
+			\includegraphics[width=\linewidth,keepaspectratio]{#1}
+			\captionof{figure}{#2}
+		}
 	\end{center}
 }
+
+	% One-column image helper: image will occupy a single multicols column (width=\columnwidth)
+	\newcommand{\onecolimg}[2]{%
+		\begin{center}
+			\parbox{\columnwidth}{%
+				\centering
+				\includegraphics[width=\linewidth,keepaspectratio]{#1}
+				\captionof{figure}{#2}
+			}
+		\end{center}
+	}
+
+			% The two large write-related figures were moved to the end of the poster
+			% (to avoid overlapping flowing text in the multicols layout)
 	% (temporary TEST-GRID removed) -- layout testing complete
 
 	%----------------------------------------------------------------------------------------
@@ -168,8 +184,6 @@
 
 	\postersection{Write Performance Results}
 	
-					\twocolimg{write_bigload_avgnet_heatmap.png}{Write Response Time Heatmap - Big Load, Average Network}
-
 	\textbf{Key Findings:}
 	\begin{itemize}
 		\item \textcolor{ECcolor}{\textbf{Erasure Coding}} shows threshold performance
@@ -185,8 +199,6 @@
 
 	\postersection{Performance Threshold Analysis}
 	
-					\twocolimg{write_bigload_avgnet_boundary.png}{Performance Boundary Between EC and Replication}
-
 	\textbf{Threshold Conditions:}
 	\begin{itemize}
 		\item Network bandwidth: < 100 Mbps
@@ -201,9 +213,9 @@
 
 	\postersection{Read Performance Results}
 	
-					\twocolimg{read_bigload_avgnet_heatmap.png}{Read Response Time Heatmap - Big Load, Average Network}
+			% Read operation analysis kept, image removed to focus poster on write-related figures
 
-	\textbf{Read Operation Analysis:}
+				extbf{Read Operation Analysis:}
 	\begin{itemize}
 		\item \textcolor{REPcolor}{\textbf{Replication consistently outperforms}} erasure coding
 		\item Data reconstruction overhead significant
@@ -237,9 +249,9 @@
 
 	\postersection{Network Conditions Impact}
 	
-					\twocolimg{write_bigload_slownet.png}{Performance Under Slow Network Conditions}
+	% Network impact discussion retained; image removed to keep poster focused on the two write-related figures
 
-	\textbf{Network Impact Analysis:}
+			extbf{Network Impact Analysis:}
 	\begin{itemize}
 		\item Slow networks favor \textcolor{ECcolor}{\textbf{erasure coding}}
 		\item Fast networks favor \textcolor{REPcolor}{\textbf{replication}}
@@ -309,6 +321,13 @@
 
 	\vspace{0.5cm}
 	\textbf{Repository:} \texttt{github.com/MuhamadAjiW/DistKV-Erasure-Coding}
+
+	% Place the two write-related single-column figures at the end of the poster
+	% so they render after all the textual content and do not overlap.
+	\vspace{0.2cm}
+	\onecolimg{write_bigload_avgnet_heatmap.png}{Write Response Time Heatmap - Big Load, Average Network}
+	\vspace{0.2cm}
+	\onecolimg{write_bigload_avgnet_boundary.png}{Performance Boundary Between EC and Replication}
 
 \end{multicols}
 \end{document}
