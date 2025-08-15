@@ -81,15 +81,16 @@
 %   POSTER HEADER 
 %----------------------------------------------------------------------------------------
 
-% Make header span the full text width so the multicols environment
-% computes the column widths against the full page and not an inset
+\hspace{-0.5cm} 
 \begin{minipage}[c]{\linewidth}
+\vspace*{0.5cm}
 \Huge \textbf{Analisis Kinerja Erasure Coding vs Replikasi \newline pada Key-Value Store Terdistribusi} \\
-\small \textit{Erasure Coding Performance Analysis Against Replication on Distributed Key-Value Store Database} \\
-\small \textbf{Muhamad Aji Wibisono (13521095)} \\
-\small Program Studi Teknik Informatika, Institut Teknologi Bandung \\
+\newline
+\noindent \small \textit{Erasure Coding Performance Analysis Against Replication on Distributed Key-Value Store Database} \\
+\noindent \small \textbf{Muhamad Aji Wibisono (13521095)} \\
+\noindent \small Program Studi Teknik Informatika, Institut Teknologi Bandung \\
 \end{minipage}
-\vspace*{-1.6cm} % tighten space between header and body (use * to override page-break glue)
+\vspace*{-0.75cm}
 \noindent
 
 %----------------------------------------------------------------------------------------
@@ -116,18 +117,20 @@
 
 \postersection{Ringkasan}
 \noindent Penelitian ini menganalisis kinerja \textit{erasure coding} dibandingkan replikasi pada \textit{distributed key-value store}, berfokus pada \textit{response time} operasi \textit{write} dan \textit{read}. Motivasi utamanya adalah kebutuhan efisiensi penyimpanan dan ketahanan data dengan tetap menjaga kinerja. Hasil utama: terdapat kondisi ambang (threshold) di mana \textit{erasure coding} mengungguli replikasi pada operasi \textit{write}; sedangkan pada operasi \textit{read}, replikasi selalu lebih cepat karena biaya rekonstruksi pada \textit{erasure coding}.
+\newline
+\vspace*{-0.5cm}
+
+\noindent \textbf{Kata kunci:} Erasure coding, replikasi, key-value store, kinerja, \textit{distributed systems}
 
 %----------------------------------------------------------------------------------------
 %   PERTANYAAN & TUJUAN
 %----------------------------------------------------------------------------------------
 
 \postersection{Pertanyaan Riset dan Tujuan}
-			\textbf{Pertanyaan:}
-\begin{itemize}[leftmargin=*, itemsep=2pt]
+\begin{itemize}
 	\item Dalam kondisi apa \textit{erasure coding} memiliki \textit{response time} lebih rendah daripada replikasi?
 \end{itemize}
-			\textbf{Tujuan:}
-\begin{itemize}[leftmargin=*, itemsep=2pt]
+\begin{itemize}
 	\item Menilai kelayakan kinerja \textit{erasure coding} pada \textit{key-value store} terdistribusi dan menemukan ambang kinerja tersebut.
 \end{itemize}
 
@@ -136,13 +139,11 @@
 %----------------------------------------------------------------------------------------
 
 \postersection{Metode dan Sistem}
-			\textbf{Arsitektur:}
-\begin{itemize}[leftmargin=*, itemsep=2pt]
+\begin{itemize}
 	\item Rust + RocksDB (\textit{persistent store}), OmniPaxos (konsensus), Reed–Solomon (\textit{erasure coding}).
 	\item Antarmuka klien sederhana; \textit{in-memory store} hanya untuk optimasi (diabaikan saat evaluasi \textit{read}).
 \end{itemize}
-			\textbf{Benchmark:}
-\begin{itemize}[leftmargin=*, itemsep=2pt]
+\begin{itemize}
 	\item Variasi \textit{bandwidth}: 1 Mbps; 10–70 Mbps (rata-rata Indonesia ±40 Mbps); 10 Gbps.
 	\item Ukuran \textit{payload}: 1 KB; 200–1000 KB.
 	\item Beban kerja: \textit{write} dan \textit{read}. Pengukuran: \textit{response time} end-to-end.
@@ -153,7 +154,7 @@
 %----------------------------------------------------------------------------------------
 
 \postersection{Hasil: Operasi Write}
-\begin{itemize}[leftmargin=*, itemsep=2pt]
+\begin{itemize}
 	\item \textbf{Internet cepat, payload kecil} (10 Gbps, \textasciitilde1 KB): replikasi lebih cepat; biaya komputasi \textit{encoding} mendominasi.
 	\item \textbf{Internet lambat, payload besar} (\textless{}\,10 Mbps; 200–1000 KB): \textit{erasure coding} lebih cepat; pengurangan data kirim mengalahkan biaya \textit{encoding}.
 	\item \textbf{Internet menengah, payload besar} (10–70 Mbps): terdapat \textbf{ambang} peralihan; bergantung kombinasi \textit{bandwidth} dan ukuran data.
@@ -164,7 +165,7 @@
 %----------------------------------------------------------------------------------------
 
 \postersection{Analisis Ambang Kinerja}
-\begin{itemize}[leftmargin=*, itemsep=2pt]
+\begin{itemize}
 	\item Pemodelan batas menggunakan \textit{ridge regression} dari hasil \textit{benchmark} (25 titik data) untuk memetakan area unggul EC vs replikasi.
 	\item Kurva batas menunjukkan area kombinasi \textit{bandwidth}-ukuran data di mana EC unggul pada \textit{write}. Lihat figur batas di akhir poster.
 	\item Model valid pada lingkungan uji; faktor lain (CPU/disk) tidak dimodelkan eksplisit.
@@ -175,7 +176,7 @@
 %----------------------------------------------------------------------------------------
 
 \postersection{Hasil: Operasi Read}
-\begin{itemize}[leftmargin=*, itemsep=2pt]
+\begin{itemize}
 	\item Replikasi selalu lebih cepat; EC membutuhkan rekonstruksi data (mengumpulkan \textit{shard} + \textit{decode}).
 	\item Tidak ditemukan ambang di mana EC mengungguli replikasi.
 	\item Dengan \textit{in-memory store}, beban \textit{decode} berkurang proporsional \textit{hit rate}; diabaikan pada evaluasi inti.
@@ -186,7 +187,7 @@
 %----------------------------------------------------------------------------------------
 
 \postersection{Ringkasan Temuan}
-\begin{itemize}[leftmargin=*, itemsep=2pt]
+\begin{itemize}
 	\item Trade-off utama: \textbf{Efisiensi penyimpanan} (EC) vs \textbf{kesederhanaan dan \textit{latency} baca} (replikasi).
 	\item EC unggul pada \textit{write} saat data besar dan jaringan terbatas; replikasi unggul pada data kecil dan/atau jaringan cepat.
 	\item Di \textit{key-value store} praktis (objek kecil, \textit{DC} ber-\textit{bandwidth} tinggi), replikasi cenderung pilihan default; EC berguna untuk skenario khusus/arsip/edge.
@@ -197,7 +198,7 @@
 %----------------------------------------------------------------------------------------
 
 \postersection{Implikasi Kondisi Jaringan}
-\begin{itemize}[leftmargin=*, itemsep=2pt]
+\begin{itemize}
 	\item Jaringan lambat mendukung EC (data kirim lebih sedikit); jaringan cepat mendukung replikasi (overhead komputasi EC tidak terbayar).
 	\item Perpindahan batas dipengaruhi ukuran data, \textit{bandwidth}, dan biaya komputasi.
 \end{itemize}
@@ -208,12 +209,11 @@
 
 \postersection{Kesimpulan dan Rekomendasi}
 			\textbf{Kesimpulan:}
-\begin{itemize}[leftmargin=*, itemsep=2pt]
+\begin{itemize}
 	\item EC unggul pada \textit{write} untuk data besar di jaringan terbatas; replikasi unggul pada \textit{read} dan pada data kecil/jaringan cepat.
 	\item Tidak ada skenario \textit{read} di mana EC mengalahkan replikasi tanpa bantuan \textit{cache}.
 \end{itemize}
-			\textbf{Rekomendasi Penggunaan:}
-\begin{itemize}[leftmargin=*, itemsep=2pt]
+\begin{itemize}
 	\item \textbf{Pilih EC}: arsip/\textit{edge}/link terbatas, beban \textit{write} dominan, objek besar, hemat penyimpanan penting.
 	\item \textbf{Pilih replikasi}: \textit{DC} ber-\textit{bandwidth} tinggi, objek kecil, \textit{read}-heavy, latensi ketat.
 	\item Hybrid: replikasi untuk data kecil/sering dibaca; EC untuk data besar/arsip.
@@ -224,13 +224,11 @@
 %----------------------------------------------------------------------------------------
 
 \postersection{Keterbatasan dan Pekerjaan Lanjutan}
-			\textbf{Keterbatasan:}
-\begin{itemize}[leftmargin=*, itemsep=2pt]
+\begin{itemize}
 	\item Keanggotaan kluster statis; lingkungan uji lokal dengan \textit{traffic shaping}.
 	\item Parameter EC tetap; tidak mengevaluasi pemulihan kegagalan/rekonfigurasi.
 \end{itemize}
-			\textbf{Lanjutan:}
-\begin{itemize}[leftmargin=*, itemsep=2pt]
+\begin{itemize}
 	\item Penalaan/parallelisasi EC, model hibrida EC+replikasi, uji lintas \textit{datacenter}, dan skenario nyata berjarak.
 \end{itemize}
 
@@ -239,7 +237,7 @@
 %----------------------------------------------------------------------------------------
 
 \postersection{Ucapan Terima Kasih}
-\begin{itemize}[leftmargin=*, itemsep=2pt]
+\begin{itemize}
 	\item Pembimbing: Achmad Imam Kistijantoro, S.T., M.Sc., Ph.D.
 	\item Fakultas Teknik Informatika ITB, Distributed Systems Research Group.
 	\item Komunitas sumber terbuka (Rust, RocksDB, OmniPaxos).
@@ -256,6 +254,5 @@
 \onecolimg{write_bigload_avgnet_heatmap.png}{Heatmap \textit{Write}: Internet Menengah, Payload Besar}
 \vspace{0.02cm}
 \onecolimg{write_bigload_avgnet_boundary.png}{Batas Kinerja EC vs Replikasi (Model Regresi)}
-\vspace{1.2cm} % add bottom margin so content doesn't run to the page edge
 \end{multicols}
 \end{document}
