@@ -78,10 +78,6 @@
 	\Huge \textit{Erasure Coding Performance Analysis Against Replication on Distributed Key-Value Store Database} \\[1.5cm]
 	\LARGE \textbf{Muhamad Aji Wibisono (13521095)} \\
 	\Large Teknik Informatika, Institut Teknologi Bandung \\
-	\Large \textbf{Pembimbing:} Achmad Imam Kistijantoro, S.T, M.Sc., Ph.D.
-\end{minipage}
-\begin{minipage}[c]{0.2\linewidth}
-	\includegraphics[width=\linewidth]{resources/cover-ganesha.jpg}
 \end{minipage}
 
 \vspace{1cm} % Whitespace between header and content
@@ -145,43 +141,6 @@
 		\item Different erasure coding configurations
 		\item Read vs Write operation analysis
 	\end{itemize}
-
-	%----------------------------------------------------------------------------------------
-	%   SYSTEM COMPONENTS
-	%----------------------------------------------------------------------------------------
-
-	\postersection{System Components}
-	
-	\begin{center}
-	\begin{tikzpicture}[scale=0.8]
-		% Nodes
-		\node[draw, rectangle, fill=ITBblue!20] (node1) at (0,2) {Node 1};
-		\node[draw, rectangle, fill=ITBblue!20] (node2) at (2,2) {Node 2};
-		\node[draw, rectangle, fill=ITBblue!20] (node3) at (4,2) {Node 3};
-		\node[draw, rectangle, fill=ITBblue!20] (node4) at (6,2) {Node 4};
-		
-		% Storage
-		\node[draw, rectangle, fill=gray!20] (rocks1) at (0,0.5) {RocksDB};
-		\node[draw, rectangle, fill=gray!20] (rocks2) at (2,0.5) {RocksDB};
-		\node[draw, rectangle, fill=gray!20] (rocks3) at (4,0.5) {RocksDB};
-		\node[draw, rectangle, fill=gray!20] (rocks4) at (6,0.5) {RocksDB};
-		
-		% Connections
-		\draw[<->] (node1) -- (node2);
-		\draw[<->] (node2) -- (node3);
-		\draw[<->] (node3) -- (node4);
-		\draw[<->] (node1) -- (node3);
-		\draw[<->] (node2) -- (node4);
-		
-		\draw[->] (node1) -- (rocks1);
-		\draw[->] (node2) -- (rocks2);
-		\draw[->] (node3) -- (rocks3);
-		\draw[->] (node4) -- (rocks4);
-		
-		% Labels
-		\node at (3,-0.5) {\textbf{Distributed Key-Value Store}};
-	\end{tikzpicture}
-	\end{center}
 
 	%----------------------------------------------------------------------------------------
 	%   WRITE PERFORMANCE RESULTS
