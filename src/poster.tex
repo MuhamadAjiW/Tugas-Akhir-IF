@@ -35,11 +35,15 @@
 %----------------------------------------------------------------------------------------
 
 % Layout settings
-\columnsep=8pt % Space between columns (suitable for a 2-column poster)
+\columnsep=6pt % Slightly smaller space between columns to save width
 
 % Reduce vertical spacing for captions so figures use less vertical real-estate
-\setlength{\abovecaptionskip}{8pt}
-\setlength{\belowcaptionskip}{4pt}
+\setlength{\abovecaptionskip}{2pt}
+\setlength{\belowcaptionskip}{0pt}
+\setlength{\parskip}{0pt}
+
+% Tighter list spacing globally
+\setlist[itemize]{leftmargin=*, itemsep=1pt, topsep=0pt, parsep=0pt, partopsep=0pt}
 
 % Set graphic path
 \graphicspath{{./}{resources/chapter-4/}} % Location of the graphics files
@@ -56,21 +60,19 @@
 % Command for creating a styled section header
 \newcommand{\postersection}[1]{%
 	\begin{tcolorbox}[
-			colback=ITBblue,
-			colframe=ITBblue,
-			fonttitle=\bfseries,
-			coltext=white,
-			sharp corners,
-			boxrule=0pt,
-			top=0pt,
-			bottom=0pt,
-			halign=center
-		]
-		\normalsize #1
+		colback=ITBblue,
+		colframe=ITBblue,
+		fonttitle=\bfseries,
+		coltext=white,
+		sharp corners,
+		boxrule=0pt,
+		top=0pt,
+		bottom=0pt,
+		halign=center
+	]
+	\normalsize #1
 	\end{tcolorbox}%
 }
-
-%----------------------------------------------------------------------------------------
 
 \begin{document}
 
@@ -81,10 +83,10 @@
 % Make header span the full text width so the multicols environment
 % computes the column widths against the full page and not an inset
 \begin{minipage}[c]{\linewidth}
-\Huge \textbf{Analisis Erasure Coding terhadap Replikasi pada Key-Value Store} \\
+\Huge \textbf{Analisis Kinerja Erasure Coding vs Replikasi pada Key-Value Store Terdistribusi} \\
 \large \textit{Erasure Coding Performance Analysis Against Replication} \\
 \normalsize \textbf{Muhamad Aji Wibisono (13521095)} \\
-\normalsize Teknik Informatika, Institut Teknologi Bandung \\
+\normalsize Program Studi Teknik Informatika, Institut Teknologi Bandung \\
 \end{minipage}
 
 \vspace{0.05cm} % Whitespace between header and content (further reduced)
@@ -94,7 +96,8 @@
 %----------------------------------------------------------------------------------------
 
 \begin{multicols}{2} % Use 2 columns for the body
-\vspace{0.1cm}
+\small % slightly reduce body text size to fit one page
+\vspace{0.05cm}
 
 % Helper to insert an image that spans two columns in multicols
 % Use 2*\columnwidth + \columnsep so the image occupies two of the multicols columns
@@ -109,225 +112,163 @@
 	\end{center}
 }
 
-	% One-column image helper: image will occupy a single multicols column (width=\columnwidth)
-	\newcommand{\onecolimg}[2]{%
-		\begin{center}
-			\parbox{\columnwidth}{%
-				\centering
-				\includegraphics[width=\linewidth,keepaspectratio]{#1}
-				\captionof{figure}{#2}
-			}
-		\end{center}
-	}
-
-			% The two large write-related figures were moved to the end of the poster
-			% (to avoid overlapping flowing text in the multicols layout)
-	% (temporary TEST-GRID removed) -- layout testing complete
-
-	%----------------------------------------------------------------------------------------
-	%   ABSTRACT
-	%----------------------------------------------------------------------------------------
-
-	\postersection{Abstract}
-	\begin{quote}
-		This research analyzes the performance of erasure coding compared to replication in distributed key-value store database systems, specifically focusing on system response time for write and read operations. With growing data storage needs and intensive computing requirements, efficient data redundancy solutions become increasingly important. Erasure coding offers a solution to improve system resilience with better storage efficiency compared to traditional replication.
-	\end{quote}
-
-	%----------------------------------------------------------------------------------------
-	%   PROBLEM STATEMENT
-	%----------------------------------------------------------------------------------------
-
-	\postersection{Problem Statement}
-	
-	\textbf{Research Questions:}
-	\begin{itemize}
-		\item How does erasure coding performance compare to replication in distributed key-value stores?
-		\item Under what conditions does erasure coding outperform replication?
-		\item What are the trade-offs between storage efficiency and response time?
-	\end{itemize}
-
-	\textbf{Challenges:}
-	\begin{itemize}
-		\item Network bandwidth limitations
-		\item Data reconstruction overhead
-		\item Consensus protocol complexity
-		\item Variable payload sizes
-	\end{itemize}
-
-	%----------------------------------------------------------------------------------------
-	%   METHODOLOGY
-	%----------------------------------------------------------------------------------------
-
-	\postersection{Methodology}
-	
-	\textbf{System Architecture:}
-	\begin{itemize}
-		\item \textbf{Language:} Rust
-		\item \textbf{Storage:} RocksDB
-		\item \textbf{Algorithm:} Reed-Solomon Erasure Coding
-		\item \textbf{Consensus:} OmniPaxos
-		\item \textbf{Benchmarking:} k6 + mpstat
-		\item \textbf{Environment:} VM with traffic control
-	\end{itemize}
-
-	\textbf{Test Parameters:}
-	\begin{itemize}
-		\item Network bandwidth variations
-		\item Payload size variations (1KB - 1MB)
-		\item Different erasure coding configurations
-		\item Read vs Write operation analysis
-	\end{itemize}
-
-	%----------------------------------------------------------------------------------------
-	%   WRITE PERFORMANCE RESULTS
-	%----------------------------------------------------------------------------------------
-
-	\postersection{Write Performance Results}
-	
-	\textbf{Key Findings:}
-	\begin{itemize}
-		\item \textcolor{ECcolor}{\textbf{Erasure Coding}} shows threshold performance
-		\item Better performance with limited bandwidth + large payloads
-		\item \textcolor{REPcolor}{\textbf{Replication}} excels with small data + high bandwidth
-	\end{itemize}
-
-	% removed manual \columnbreak to allow multicols to balance columns automatically
-
-	%----------------------------------------------------------------------------------------
-	%   PERFORMANCE COMPARISON
-	%----------------------------------------------------------------------------------------
-
-	\postersection{Performance Threshold Analysis}
-	
-	\textbf{Threshold Conditions:}
-	\begin{itemize}
-		\item Network bandwidth: < 100 Mbps
-		\item Payload size: > 100 KB
-		\item Write-heavy workloads
-		\item High network contention scenarios
-	\end{itemize}
-
-	%----------------------------------------------------------------------------------------
-	%   READ PERFORMANCE RESULTS
-	%----------------------------------------------------------------------------------------
-
-	\postersection{Read Performance Results}
-	
-			% Read operation analysis kept, image removed to focus poster on write-related figures
-
-				extbf{Read Operation Analysis:}
-	\begin{itemize}
-		\item \textcolor{REPcolor}{\textbf{Replication consistently outperforms}} erasure coding
-		\item Data reconstruction overhead significant
-		\item No threshold found for read operations
-		\item Direct data access vs reconstruction complexity
-	\end{itemize}
-
-	%----------------------------------------------------------------------------------------
-	%   PERFORMANCE METRICS
-	%----------------------------------------------------------------------------------------
-
-	\postersection{Performance Metrics Comparison}
-	
+% One-column image helper: image will occupy a single multicols column (width=\columnwidth)
+\newcommand{\onecolimg}[2]{%
 	\begin{center}
-		\begin{tabular}{l c c c}
-			\toprule
-			\textbf{Metric} & \textbf{Erasure Coding} & \textbf{Replication} & \textbf{Improvement} \\
-			\midrule
-			Storage Efficiency & 1.33x overhead & 3x overhead & \textcolor{ECcolor}{\textbf{+125\%}} \\
-			Write Latency (Optimal) & 45ms & 67ms & \textcolor{ECcolor}{\textbf{+33\%}} \\
-			Read Latency & 89ms & 23ms & \textcolor{REPcolor}{\textbf{-74\%}} \\
-			Network Utilization & Lower & Higher & \textcolor{ECcolor}{\textbf{+60\%}} \\
-			CPU Overhead & Higher & Lower & \textcolor{REPcolor}{\textbf{-40\%}} \\
-			\bottomrule
-		\end{tabular}
+		\parbox{\columnwidth}{%
+			\centering
+			\includegraphics[width=\linewidth,height=0.18\textheight,keepaspectratio]{#1}
+			\captionof{figure}{#2}
+		}
 	\end{center}
+}
 
-	%----------------------------------------------------------------------------------------
-	%   NETWORK CONDITIONS IMPACT
-	%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%   RINGKASAN
+%----------------------------------------------------------------------------------------
 
-	\postersection{Network Conditions Impact}
-	
-	% Network impact discussion retained; image removed to keep poster focused on the two write-related figures
+\postersection{Ringkasan}
+\begin{quote}
+	Penelitian ini menganalisis kinerja \textit{erasure coding} dibandingkan replikasi pada \textit{distributed key-value store}, berfokus pada \textit{response time} operasi \textit{write} dan \textit{read}. Motivasi utamanya adalah kebutuhan efisiensi penyimpanan dan ketahanan data dengan tetap menjaga kinerja. Hasil utama: terdapat kondisi ambang (threshold) di mana \textit{erasure coding} mengungguli replikasi pada operasi \textit{write}; sedangkan pada operasi \textit{read}, replikasi selalu lebih cepat karena biaya rekonstruksi pada \textit{erasure coding}.
+\end{quote}
 
-			extbf{Network Impact Analysis:}
-	\begin{itemize}
-		\item Slow networks favor \textcolor{ECcolor}{\textbf{erasure coding}}
-		\item Fast networks favor \textcolor{REPcolor}{\textbf{replication}}
-		\item Bandwidth utilization critical factor
-		\item Latency vs throughput trade-offs
-	\end{itemize}
+%----------------------------------------------------------------------------------------
+%   PERTANYAAN & TUJUAN
+%----------------------------------------------------------------------------------------
 
-	%----------------------------------------------------------------------------------------
-	%   CONCLUSIONS
-	%----------------------------------------------------------------------------------------
+\postersection{Pertanyaan Riset dan Tujuan}
+	extbf{Pertanyaan:}
+\begin{itemize}[leftmargin=*, itemsep=2pt]
+	\item Dalam kondisi apa \textit{erasure coding} memiliki \textit{response time} lebih rendah daripada replikasi?
+\end{itemize}
+	extbf{Tujuan:}
+\begin{itemize}[leftmargin=*, itemsep=2pt]
+	\item Menilai kelayakan kinerja \textit{erasure coding} pada \textit{key-value store} terdistribusi dan menemukan ambang kinerja tersebut.
+\end{itemize}
 
-	\postersection{Key Conclusions}
-	
-	\begin{enumerate}
-		\item \textbf{Threshold Performance:} Erasure coding has performance threshold for write operations when bandwidth is limited and payload is large
-		
-		\item \textbf{Read Operations:} Replication consistently outperforms erasure coding due to reconstruction overhead
-		
-		\item \textbf{Use Case Suitability:} Erasure coding not suitable for small-data key-value stores in high-capacity data centers
-		
-		\item \textbf{Storage vs Performance:} Clear trade-off between storage efficiency and response time performance
-	\end{enumerate}
+%----------------------------------------------------------------------------------------
+%   METODE
+%----------------------------------------------------------------------------------------
 
-	\textbf{Recommendations:}
-	\begin{itemize}
-		\item Use \textcolor{ECcolor}{\textbf{erasure coding}} for: Large data, limited bandwidth, write-heavy workloads
-		\item Use \textcolor{REPcolor}{\textbf{replication}} for: Small data, high bandwidth, read-heavy workloads
-		\item Consider hybrid approaches for mixed workloads
-	\end{itemize}
+\postersection{Metode dan Sistem}
+	extbf{Arsitektur:}
+\begin{itemize}[leftmargin=*, itemsep=2pt]
+	\item Rust + RocksDB (\textit{persistent store}), OmniPaxos (konsensus), Reed–Solomon (\textit{erasure coding}).
+	\item Antarmuka klien sederhana; \textit{in-memory store} hanya untuk optimasi (diabaikan saat evaluasi \textit{read}).
+\end{itemize}
+		extbf{Benchmark:}
+\begin{itemize}[leftmargin=*, itemsep=2pt]
+	\item Variasi \textit{bandwidth}: 1 Mbps; 10–70 Mbps (rata-rata Indonesia ±40 Mbps); 10 Gbps.
+	\item Ukuran \textit{payload}: 1 KB; 200–1000 KB.
+	\item Beban kerja: \textit{write} dan \textit{read}. Pengukuran: \textit{response time} end-to-end.
+\end{itemize}
 
-	%----------------------------------------------------------------------------------------
-	%   FUTURE WORK
-	%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%   HASIL WRITE
+%----------------------------------------------------------------------------------------
 
-	\postersection{Future Work \& Limitations}
-	
-	\textbf{Current Limitations:}
-	\begin{itemize}
-		\item Static cluster membership configuration
-		\item Limited to read/write operations only
-		\item Local testing environment with simulation
-		\item Fixed erasure coding parameters
-	\end{itemize}
+\postersection{Hasil: Operasi Write}
+\begin{itemize}[leftmargin=*, itemsep=2pt]
+	\item \textbf{Internet cepat, payload kecil} (10 Gbps, \textasciitilde1 KB): replikasi lebih cepat; biaya komputasi \textit{encoding} mendominasi.
+	\item \textbf{Internet lambat, payload besar} (\textless{}\,10 Mbps; 200–1000 KB): \textit{erasure coding} lebih cepat; pengurangan data kirim mengalahkan biaya \textit{encoding}.
+	\item \textbf{Internet menengah, payload besar} (10–70 Mbps): terdapat \textbf{ambang} peralihan; bergantung kombinasi \textit{bandwidth} dan ukuran data.
+\end{itemize}
 
-	\textbf{Future Research Directions:}
-	\begin{itemize}
-		\item Dynamic erasure coding parameter adjustment
-		\item Hybrid redundancy mechanisms
-		\item Real-world deployment testing
-		\item Advanced consensus protocols integration
-		\item Multi-datacenter scenarios
-	\end{itemize}
+%----------------------------------------------------------------------------------------
+%   AMBANG KINERJA
+%----------------------------------------------------------------------------------------
 
-	%----------------------------------------------------------------------------------------
-	%   ACKNOWLEDGEMENTS
-	%----------------------------------------------------------------------------------------
+\postersection{Analisis Ambang Kinerja}
+\begin{itemize}[leftmargin=*, itemsep=2pt]
+	\item Pemodelan batas menggunakan \textit{ridge regression} dari hasil \textit{benchmark} (25 titik data) untuk memetakan area unggul EC vs replikasi.
+	\item Kurva batas menunjukkan area kombinasi \textit{bandwidth}-ukuran data di mana EC unggul pada \textit{write}. Lihat figur batas di akhir poster.
+	\item Model valid pada lingkungan uji; faktor lain (CPU/disk) tidak dimodelkan eksplisit.
+\end{itemize}
 
-	\postersection{Acknowledgements}
-	
-	Special thanks to:
-	\begin{itemize}
-		\item Achmad Imam Kistijantoro, S.T, M.Sc., Ph.D. (Supervisor)
-		\item Faculty of Informatics Engineering, ITB
-		\item Distributed Systems Research Group
-		\item Open source community (Rust, RocksDB, OmniPaxos)
-	\end{itemize}
+%----------------------------------------------------------------------------------------
+%   HASIL READ
+%----------------------------------------------------------------------------------------
 
-	\vspace{0.5cm}
-	\textbf{Repository:} \texttt{github.com/MuhamadAjiW/DistKV-Erasure-Coding}
+\postersection{Hasil: Operasi Read}
+\begin{itemize}[leftmargin=*, itemsep=2pt]
+	\item Replikasi selalu lebih cepat; EC membutuhkan rekonstruksi data (mengumpulkan \textit{shard} + \textit{decode}).
+	\item Tidak ditemukan ambang di mana EC mengungguli replikasi.
+	\item Dengan \textit{in-memory store}, beban \textit{decode} berkurang proporsional \textit{hit rate}; diabaikan pada evaluasi inti.
+\end{itemize}
 
-	% Place the two write-related single-column figures at the end of the poster
-	% so they render after all the textual content and do not overlap.
-	\vspace{0.2cm}
-	\onecolimg{write_bigload_avgnet_heatmap.png}{Write Response Time Heatmap - Big Load, Average Network}
-	\vspace{0.2cm}
-	\onecolimg{write_bigload_avgnet_boundary.png}{Performance Boundary Between EC and Replication}
+%----------------------------------------------------------------------------------------
+%   RINGKASAN TEMUAN
+%----------------------------------------------------------------------------------------
+
+\postersection{Ringkasan Temuan}
+\begin{itemize}[leftmargin=*, itemsep=2pt]
+	\item Trade-off utama: \textbf{Efisiensi penyimpanan} (EC) vs \textbf{kesederhanaan dan \textit{latency} baca} (replikasi).
+	\item EC unggul pada \textit{write} saat data besar dan jaringan terbatas; replikasi unggul pada data kecil dan/atau jaringan cepat.
+	\item Di \textit{key-value store} praktis (objek kecil, \textit{DC} ber-\textit{bandwidth} tinggi), replikasi cenderung pilihan default; EC berguna untuk skenario khusus/arsip/edge.
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+%   KONDISI JARINGAN
+%----------------------------------------------------------------------------------------
+
+\postersection{Implikasi Kondisi Jaringan}
+\begin{itemize}[leftmargin=*, itemsep=2pt]
+	\item Jaringan lambat mendukung EC (data kirim lebih sedikit); jaringan cepat mendukung replikasi (overhead komputasi EC tidak terbayar).
+	\item Perpindahan batas dipengaruhi ukuran data, \textit{bandwidth}, dan biaya komputasi.
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+%   KESIMPULAN
+%----------------------------------------------------------------------------------------
+
+\postersection{Kesimpulan dan Rekomendasi}
+	extbf{Kesimpulan:}
+\begin{itemize}[leftmargin=*, itemsep=2pt]
+	\item EC unggul pada \textit{write} untuk data besar di jaringan terbatas; replikasi unggul pada \textit{read} dan pada data kecil/jaringan cepat.
+	\item Tidak ada skenario \textit{read} di mana EC mengalahkan replikasi tanpa bantuan \textit{cache}.
+\end{itemize}
+		extbf{Rekomendasi Penggunaan:}
+\begin{itemize}[leftmargin=*, itemsep=2pt]
+	\item \textbf{Pilih EC}: arsip/\textit{edge}/link terbatas, beban \textit{write} dominan, objek besar, hemat penyimpanan penting.
+	\item \textbf{Pilih replikasi}: \textit{DC} ber-\textit{bandwidth} tinggi, objek kecil, \textit{read}-heavy, latensi ketat.
+	\item Hybrid: replikasi untuk data kecil/sering dibaca; EC untuk data besar/arsip.
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+%   KETERBATASAN
+%----------------------------------------------------------------------------------------
+
+\postersection{Keterbatasan dan Pekerjaan Lanjutan}
+	extbf{Keterbatasan:}
+\begin{itemize}[leftmargin=*, itemsep=2pt]
+	\item Keanggotaan kluster statis; lingkungan uji lokal dengan \textit{traffic shaping}.
+	\item Parameter EC tetap; tidak mengevaluasi pemulihan kegagalan/rekonfigurasi.
+\end{itemize}
+		extbf{Lanjutan:}
+\begin{itemize}[leftmargin=*, itemsep=2pt]
+	\item Penalaan/parallelisasi EC, model hibrida EC+replikasi, uji lintas \textit{datacenter}, dan skenario nyata berjarak.
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+%   UCAPAN TERIMA KASIH
+%----------------------------------------------------------------------------------------
+
+\postersection{Ucapan Terima Kasih}
+\begin{itemize}[leftmargin=*, itemsep=2pt]
+	\item Pembimbing: Achmad Imam Kistijantoro, S.T., M.Sc., Ph.D.
+	\item Fakultas Teknik Informatika ITB, Distributed Systems Research Group.
+	\item Komunitas sumber terbuka (Rust, RocksDB, OmniPaxos).
+\end{itemize}
+
+\vspace{0.3cm}
+		extbf{Repo Implementasi:} \texttt{github.com/MuhamadAjiW/DistKV-Erasure-Coding}
+
+% Place the two write-related single-column figures at the end of the poster
+% so they render after all the textual content and do not overlap.
+\vspace{0.1cm}
+\onecolimg{write_bigload_avgnet_heatmap.png}{Heatmap \textit{Write}: Internet Menengah, Payload Besar}
+\vspace{0.1cm}
+\onecolimg{write_bigload_avgnet_boundary.png}{Batas Kinerja EC vs Replikasi (Model Regresi)}
 
 \end{multicols}
 \end{document}
