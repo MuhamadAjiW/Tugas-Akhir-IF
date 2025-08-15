@@ -141,27 +141,34 @@
 
 \setlength{\headheight}{0 cm}
 \setlength{\headsep}{0 cm}
-\setlength{\topmargin}{5 cm} %% 3 cm for unprintable at top
-			     %% (landscape) + 2 cm from border
-\setlength{\oddsidemargin}{5 cm} %% 3 cm for unprintable at left
-			    	 %% (landscape) + 2 cm from border
+\setlength{\topmargin}{0.5 cm} %% further reduce top margin to increase usable area
+                             %% (was 1cm)
+\setlength{\oddsidemargin}{0.5 cm} %% further reduce side margin to increase usable area
+                             %% (was 1cm)
 \setlength{\topskip}{0 cm}
 
+% Input size declarations
 \input{a0size.sty}
 
-\renewcommand{\tiny}{\fontsize{12}{14}\selectfont}
-\renewcommand{\scriptsize}{\fontsize{14.4}{18}\selectfont}   
-\renewcommand{\footnotesize}{\fontsize{17.28}{22}\selectfont}
-\renewcommand{\small}{\fontsize{20.74}{25}\selectfont}
-\renewcommand{\normalsize}{\fontsize{24.88}{30}\selectfont}
-\renewcommand{\large}{\fontsize{29.86}{37}\selectfont}
-\renewcommand{\Large}{\fontsize{35.83}{45}\selectfont}
-\renewcommand{\LARGE}{\fontsize{43}{54}\selectfont}
-\renewcommand{\huge}{\fontsize{51.6}{64}\selectfont}
-\renewcommand{\Huge}{\fontsize{61.92}{77}\selectfont}
-\newcommand{\veryHuge}{\fontsize{74.3}{93}\selectfont}
-\newcommand{\VeryHuge}{\fontsize{89.16}{112}\selectfont}
-\newcommand{\VERYHuge}{\fontsize{107}{134}\selectfont}
+% Adjust text area to match the reduced margins (0.5cm each side / 0.5cm top & bottom).
+% The class originally assumed larger margins; after reducing \topmargin and \oddsidemargin
+% we recompute the text area so content can expand downward and use the full printable area.
+\setlength{\textwidth}{\dimexpr\paperwidth-1cm\relax} % left+right = 1cm
+\setlength{\textheight}{\dimexpr\paperheight-1cm\relax} % top+bottom = 1cm
+
+\renewcommand{\tiny}{\fontsize{10}{12}\selectfont}
+\renewcommand{\scriptsize}{\fontsize{12}{14}\selectfont}
+\renewcommand{\footnotesize}{\fontsize{14}{18}\selectfont}
+\renewcommand{\small}{\fontsize{16}{20}\selectfont}
+\renewcommand{\normalsize}{\fontsize{20}{24}\selectfont}
+\renewcommand{\large}{\fontsize{24}{28}\selectfont}
+\renewcommand{\Large}{\fontsize{28}{34}\selectfont}
+\renewcommand{\LARGE}{\fontsize{32}{40}\selectfont}
+\renewcommand{\huge}{\fontsize{36}{44}\selectfont}
+\renewcommand{\Huge}{\fontsize{44}{54}\selectfont}
+\newcommand{\veryHuge}{\fontsize{52}{62}\selectfont}
+\newcommand{\VeryHuge}{\fontsize{62}{74}\selectfont}
+\newcommand{\VERYHuge}{\fontsize{74}{88}\selectfont}
 
 \setlength\smallskipamount{6pt plus 2pt minus 2pt}
 \setlength\medskipamount{12pt plus 4pt minus 4pt}

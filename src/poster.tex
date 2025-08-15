@@ -7,7 +7,7 @@
 %   PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
 
-\documentclass[a0,landscape]{config/poster/a0poster}
+\documentclass[a2,portrait]{config/poster/a0poster}
 \usepackage{config/poster/a0size}
 
 % Core Packages
@@ -22,6 +22,7 @@
 \usepackage{tikz} % For creating diagrams
 \usepackage{pgfplots} % For creating plots
 \pgfplotsset{compat=1.18}
+\usepackage{enumitem} % compact lists
 
 % Styling Packages
 \usepackage[most]{tcolorbox} % For creating colored boxes (headers)
@@ -34,7 +35,11 @@
 %----------------------------------------------------------------------------------------
 
 % Layout settings
-\columnsep=60pt % Space between columns
+\columnsep=8pt % Space between columns (further reduced to give more room for 4 columns)
+
+% Reduce vertical spacing for captions so figures use less vertical real-estate
+\setlength{\abovecaptionskip}{8pt}
+\setlength{\belowcaptionskip}{4pt}
 
 % Set graphic path
 \graphicspath{{./}{resources/chapter-4/}} % Location of the graphics files
@@ -50,19 +55,19 @@
 
 % Command for creating a styled section header
 \newcommand{\postersection}[1]{%
-  \begin{tcolorbox}[
-      colback=ITBblue,
-      colframe=ITBblue,
-      fonttitle=\bfseries,
-      coltext=white,
-      sharp corners,
-      boxrule=0pt,
-      top=6pt,
-      bottom=6pt,
-      halign=center
-    ]
-    \Large #1
-  \end{tcolorbox}%
+	\begin{tcolorbox}[
+			colback=ITBblue,
+			colframe=ITBblue,
+			fonttitle=\bfseries,
+			coltext=white,
+			sharp corners,
+			boxrule=0pt,
+			top=0pt,
+			bottom=0pt,
+			halign=center
+		]
+		\normalsize #1
+	\end{tcolorbox}%
 }
 
 %----------------------------------------------------------------------------------------
@@ -73,20 +78,35 @@
 %   POSTER HEADER 
 %----------------------------------------------------------------------------------------
 
-\begin{minipage}[c]{0.75\linewidth}
-	\veryHuge \textbf{Analisis Erasure Coding terhadap Replikasi pada Key-Value Store Database Terdistribusi} \\[1cm]
-	\Huge \textit{Erasure Coding Performance Analysis Against Replication on Distributed Key-Value Store Database} \\[1.5cm]
-	\LARGE \textbf{Muhamad Aji Wibisono (13521095)} \\
-	\Large Teknik Informatika, Institut Teknologi Bandung \\
+% Make header span the full text width so the multicols environment
+% computes the column widths against the full page and not an inset
+\begin{minipage}[c]{\linewidth}
+\Huge \textbf{Analisis Erasure Coding terhadap Replikasi pada Key-Value Store} \\
+\large \textit{Erasure Coding Performance Analysis Against Replication} \\
+\normalsize \textbf{Muhamad Aji Wibisono (13521095)} \\
+\normalsize Teknik Informatika, Institut Teknologi Bandung \\
 \end{minipage}
 
-\vspace{1cm} % Whitespace between header and content
+\vspace{0.05cm} % Whitespace between header and content (further reduced)
 
 %----------------------------------------------------------------------------------------
 %   POSTER BODY
 %----------------------------------------------------------------------------------------
 
 \begin{multicols}{4} % Use 4 columns for the body
+	\vspace{0.1cm}
+
+% Helper to insert an image that spans two columns in multicols
+\newcommand{\twocolimg}[2]{%
+	\begin{center}
+			\parbox{0.48\textwidth\relax}{% approximate two columns width (2*0.24)
+				\centering
+				\includegraphics[width=\linewidth,height=0.12\textheight,keepaspectratio]{#1}
+				\captionof{figure}{#2}
+			}
+	\end{center}
+}
+	% (temporary TEST-GRID removed) -- layout testing complete
 
 	%----------------------------------------------------------------------------------------
 	%   ABSTRACT
@@ -148,10 +168,7 @@
 
 	\postersection{Write Performance Results}
 	
-	\begin{center}
-		\includegraphics[width=0.9\linewidth]{write_bigload_avgnet_heatmap.png}
-		\captionof{figure}{Write Response Time Heatmap - Big Load, Average Network}
-	\end{center}
+					\twocolimg{write_bigload_avgnet_heatmap.png}{Write Response Time Heatmap - Big Load, Average Network}
 
 	\textbf{Key Findings:}
 	\begin{itemize}
@@ -160,7 +177,7 @@
 		\item \textcolor{REPcolor}{\textbf{Replication}} excels with small data + high bandwidth
 	\end{itemize}
 
-	\columnbreak
+	% removed manual \columnbreak to allow multicols to balance columns automatically
 
 	%----------------------------------------------------------------------------------------
 	%   PERFORMANCE COMPARISON
@@ -168,10 +185,7 @@
 
 	\postersection{Performance Threshold Analysis}
 	
-	\begin{center}
-		\includegraphics[width=0.9\linewidth]{write_bigload_avgnet_boundary.png}
-		\captionof{figure}{Performance Boundary Between EC and Replication}
-	\end{center}
+					\twocolimg{write_bigload_avgnet_boundary.png}{Performance Boundary Between EC and Replication}
 
 	\textbf{Threshold Conditions:}
 	\begin{itemize}
@@ -187,10 +201,7 @@
 
 	\postersection{Read Performance Results}
 	
-	\begin{center}
-		\includegraphics[width=0.9\linewidth]{read_bigload_avgnet_heatmap.png}
-		\captionof{figure}{Read Response Time Heatmap - Big Load, Average Network}
-	\end{center}
+					\twocolimg{read_bigload_avgnet_heatmap.png}{Read Response Time Heatmap - Big Load, Average Network}
 
 	\textbf{Read Operation Analysis:}
 	\begin{itemize}
@@ -226,10 +237,7 @@
 
 	\postersection{Network Conditions Impact}
 	
-	\begin{center}
-		\includegraphics[width=0.9\linewidth]{write_bigload_slownet.png}
-		\captionof{figure}{Performance Under Slow Network Conditions}
-	\end{center}
+					\twocolimg{write_bigload_slownet.png}{Performance Under Slow Network Conditions}
 
 	\textbf{Network Impact Analysis:}
 	\begin{itemize}
