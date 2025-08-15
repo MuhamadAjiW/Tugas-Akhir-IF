@@ -54,15 +54,33 @@
 \addbibresource{references.bib}
 
 % Custom Colors and Commands
-\definecolor{ITBblue}{rgb}{0.0, 0.21, 0.42} % ITB blue branding
+\definecolor{MainBlue}{rgb}{0.0, 0.21, 0.42}
 \definecolor{ECcolor}{rgb}{0.8, 0.2, 0.2} % Erasure coding color
 \definecolor{REPcolor}{rgb}{0.2, 0.6, 0.2} % Replication color
+% Background gradient: subtle light-blue tint using eso-pic + TikZ
+\usepackage{eso-pic} % place things on the page background
+\usetikzlibrary{shadings,calc} % for gradient shadings and coordinate calculations
+
+\makeatletter
+\AddToShipoutPictureBG{%
+	% Use absolute page coordinates to avoid clipping by class margins; draw with 2cm bleed
+	\AtPageLowerLeft{%
+		\begin{tikzpicture}[remember picture,overlay]
+				\shade[top color=MainBlue!12,bottom color=white]
+					($(current page.south west)+(-5cm,-5cm)$) rectangle ($(current page.north east)+(5cm,5cm)$);
+			% very light radial vignette in the center for depth; use current page center
+				\shade[inner color=MainBlue!6,outer color=white,opacity=0.08]
+					(current page.center) circle (1.05\paperheight);
+		\end{tikzpicture}%
+	}%
+}
+\makeatother
 
 % Command for creating a styled section header
 \newcommand{\postersection}[1]{%
 	\begin{tcolorbox}[
-		colback=ITBblue,
-		colframe=ITBblue,
+		colback=MainBlue,
+		colframe=MainBlue,
 		fonttitle=\bfseries,
 		coltext=white,
 		sharp corners,
