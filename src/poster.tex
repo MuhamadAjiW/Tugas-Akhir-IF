@@ -209,9 +209,9 @@
 
 \postersection{Ringkasan Temuan}
 \begin{itemize}
-	\item Trade-off utama: \textbf{Efisiensi penyimpanan} (EC) vs \textbf{kesederhanaan dan \textit{latency} baca} (replikasi).
+	\item Trade-off utama: \textbf{Efisiensi penyimpanan} (EC) vs \textbf{kesederhanaan dan \textit{latency write}} (replikasi).
 	\item EC unggul pada \textit{write} saat data besar dan jaringan terbatas; replikasi unggul pada data kecil dan/atau jaringan cepat.
-	\item Di \textit{key-value store} praktis (objek kecil, \textit{DC} ber-\textit{bandwidth} tinggi), replikasi cenderung pilihan default; EC berguna untuk skenario khusus/arsip/edge.
+	\item Di \textit{key-value store} praktis (objek kecil, \textit{Data Center} ber-\textit{bandwidth} tinggi), replikasi cenderung pilihan default; EC berguna untuk skenario khusus/arsip/edge.
 \end{itemize}
 
 %----------------------------------------------------------------------------------------
@@ -236,8 +236,7 @@
 \end{itemize}
 \begin{itemize}
 	\item \textbf{Pilih EC}: arsip/\textit{edge}/link terbatas, beban \textit{write} dominan, objek besar, hemat penyimpanan penting.
-	\item \textbf{Pilih replikasi}: \textit{DC} ber-\textit{bandwidth} tinggi, objek kecil, \textit{read}-heavy, latensi ketat.
-	\item Hybrid: replikasi untuk data kecil/sering dibaca; EC untuk data besar/arsip.
+	\item \textbf{Pilih replikasi}: \textit{Data Center} ber-\textit{bandwidth} tinggi, objek kecil, \textit{read}-heavy, latensi ketat.
 \end{itemize}
 
 %----------------------------------------------------------------------------------------
@@ -247,10 +246,12 @@
 \postersection{Keterbatasan dan Pekerjaan Lanjutan}
 \begin{itemize}
 	\item Keanggotaan kluster statis; lingkungan uji lokal dengan \textit{traffic shaping}.
-	\item Parameter EC tetap; tidak mengevaluasi pemulihan kegagalan/rekonfigurasi.
+	\item Parameter EC tetap; tidak mengevaluasi pemulihan kegagalan.
 \end{itemize}
 \begin{itemize}
-	\item Penalaan/parallelisasi EC, model hibrida EC+replikasi, uji lintas \textit{datacenter}, dan skenario nyata berjarak.
+	\item Optimalisasi EC
+	\item Model \textit{hybrid} dengan implementasi gabungan \textit{erasure coding} dan replikasi
+	\item Uji lintas perangkat dan skenario nyata.
 \end{itemize}
 
 %----------------------------------------------------------------------------------------
