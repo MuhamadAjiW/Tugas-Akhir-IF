@@ -21,6 +21,11 @@ Where $T_{network\_reduced} < T_{network\_full}$ due to the smaller total data v
 However, besides adding computation, the application of erasure coding in a system reduces the overall data size to provide data integrity and resilience. For resilience of $t$ and node count of $k$, reed-solomon based erasure coding systems has a storage ratio compared to replication that can be expressed as:
 
 \begin{equation}
+	R = \frac{\text{Message Size} \times (t + 1)}{\text{Message Size} \times \frac{\text{k + t}}{k}}
+	\label{eq:erasure_storage}
+\end{equation}
+
+\begin{equation}
 	R = \frac{k + kt}{k + t}
 \end{equation}
 
@@ -87,160 +92,200 @@ This parameter matrix generates 25 experimental conditions which will be used fo
 
 The benchmark system implements three distinct testing scenarios designed to explore different operational environments:
 
-\textbf{Scenario 1 - High Performance Environment}: Simulates modern data center conditions with high bandwidth (10 Gbps) and small payloads (1KB), an extreme condition designed to favor replication performance.
-
-\textbf{Scenario 2 - Resource Constrained Environment}: Models edge computing or IoT scenarios with limited bandwidth (1 Mbps) and large payloads (200-1000KB), an extreme condition designed to favor erasure coding performance.
-
-\textbf{Scenario 3 - Realistic Network Conditions}: Represents typical internet connectivity with moderate bandwidth (10-70 Mbps) and variable payload sizes, designed to identify performance crossover points.
+\begin{itemize}
+\item \textbf{Scenario 1 - High Performance Environment}: Simulates modern data center conditions with high bandwidth (10 Gbps) and small payloads (1KB), an extreme condition designed to favor replication performance.
+\item \textbf{Scenario 2 - Resource Constrained Environment}: Models edge computing or IoT scenarios with limited bandwidth (1 Mbps) and large payloads (200-1000KB), an extreme condition designed to favor erasure coding performance.
+\item \textbf{Scenario 3 - Realistic Network Conditions}: Represents typical internet connectivity with moderate bandwidth (10-70 Mbps) and variable payload sizes, designed to identify performance crossover points.
+\end{itemize}
 
 \section{Results and Analysis}
 
-\subsection{Write Operation Performance}
+This section presents the evaluation conducted using the implemented system with three distinct scenarios designed to explore different operational environments. The analysis focuses on write and read operations performance under varying network bandwidth and payload size conditions.
 
-The experimental results demonstrate that erasure coding exhibits a threshold condition where response time becomes lower than replication for write operations. Through comprehensive benchmarking across three distinct scenarios, we identify specific conditions where this performance crossover occurs.
+\subsection{Write Operation Analysis}
 
-\subsubsection{Extreme Scenarios Analysis}
+The write operation analysis validates the hypothesis that erasure coding can outperform replication under specific conditions. Three scenarios were evaluated:
 
-Figure \ref{fig:write-performance-comparison} illustrates the performance characteristics under two extreme conditions. In high-bandwidth environments (10 Gbps) with small payloads (1KB), replication consistently outperforms erasure coding due to the computational overhead of encoding operations. However, in constrained bandwidth environments (1 Mbps) with large payloads (200-1000KB), erasure coding demonstrates superior performance by reducing the total data transmission requirements.
-
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=\columnwidth]{resources/chapter-4/write_bigload_slownet.png}
-    \caption{Write Performance on Low Bandwidth with Large Payload}
-    \label{fig:write-performance-comparison}
-\end{figure}
-
-\subsubsection{Mathematical Performance Modeling}
-
-To precisely determine the performance crossover points, we conducted regression analysis using ridge regression to model the relationship between bandwidth, payload size, and response time. The resulting three-dimensional performance model reveals the boundary conditions where erasure coding outperforms replication.
+\textbf{Scenario 1 - High Performance Environment (10 Gbps, 1KB payload):} Results confirm replication superiority in high-bandwidth, small-payload conditions. With minimal data transfer time, computational overhead becomes the dominant factor. Erasure coding's encoding complexity results in higher response times compared to replication's simpler operations. This environment is typical of modern data center inter-server communications, as shown in Figure \ref{fig:write-smload-fastnet}.
 
 \begin{figure}[ht]
-    \centering
-    \includegraphics[width=\columnwidth]{resources/chapter-4/write_bigload_avgnet_regression.png}
-    \caption{Three-Dimensional Performance Model for Write Operations}
-    \label{fig:write-regression-model}
+\centering
+\includegraphics[width=\columnwidth]{resources/chapter-4/write_smload_fastnet.png}
+\caption{Write Performance in High Bandwidth, Small Payload Environment}
+\label{fig:write-smload-fastnet}
 \end{figure}
 
-\subsubsection{Performance Boundary Analysis}
-
-Figure \ref{fig:performance-boundary} presents the derived performance boundary curve, which mathematically defines the threshold conditions. Points above the curve indicate scenarios where erasure coding outperforms replication, while points below favor replication. This boundary demonstrates that erasure coding becomes advantageous when:
-\begin{itemize}
-\item Network bandwidth is limited ($\leq$10Mbps for payloads $\geq$500KB)
-\item Payload size is sufficiently large relative to available bandwidth
-\item The ratio of encoding overhead to transmission time reduction favors erasure coding
-\end{itemize}
+\textbf{Scenario 2 - Resource Constrained Environment (1 Mbps, 200KB-1MB payload):} Results demonstrate erasure coding's advantage in bandwidth-limited scenarios with large payloads. Data transfer time becomes the dominant factor, and erasure coding's reduced data volume transmission outweighs its computational overhead. This environment represents edge computing, IoT deployments, or backup operations over limited connections, as illustrated in Figure \ref{fig:write-bigload-slownet}.
 
 \begin{figure}[ht]
-    \centering
-    \includegraphics[width=\columnwidth]{resources/chapter-4/write_bigload_avgnet_boundary.png}
-    \caption{Performance Boundary Analysis Between Erasure Coding and Replication}
-    \label{fig:performance-boundary}
+\centering
+\includegraphics[width=\columnwidth]{resources/chapter-4/write_bigload_slownet.png}
+\caption{Write Performance in Low Bandwidth, Large Payload Environment}
+\label{fig:write-bigload-slownet}
 \end{figure}
 
-\subsubsection{Performance Heatmap Visualization}
-
-The comprehensive performance analysis across varying bandwidth and payload combinations is visualized in Figure \ref{fig:write-heatmap}. Blue regions indicate erasure coding superiority, while red regions show replication advantages. This visualization clearly demonstrates the parameter space where each approach excels.
+\textbf{Scenario 3 - Realistic Network Conditions (10-70 Mbps, variable payload):} This scenario reveals the performance crossover point between erasure coding and replication. Using ridge regression analysis on the 25 experimental data points, a mathematical boundary curve was derived to predict optimal system selection based on bandwidth and payload size parameters. Figure \ref{fig:write-bigload-avgnet} demonstrates the complex performance relationships in this scenario.
 
 \begin{figure}[ht]
-    \centering
-    \includegraphics[width=\columnwidth]{resources/chapter-4/write_bigload_avgnet_heatmap.png}
-    \caption{Performance Heatmap: Erasure Coding vs Replication for Write Operations}
-    \label{fig:write-heatmap}
+\centering
+\includegraphics[width=\columnwidth]{resources/chapter-4/write_bigload_avgnet.png}
+\caption{Write Performance in Moderate Bandwidth, Variable Payload Environment}
+\label{fig:write-bigload-avgnet}
 \end{figure}
 
-\subsection{Read Operation Performance}
+The regression analysis produces a three-dimensional model where the intersection of erasure coding and replication performance surfaces defines the threshold boundary. Values above this curve favor erasure coding, while values below favor replication. The model accounts for the fundamental trade-off between computational overhead and network transfer efficiency.
 
-For read operations, replication consistently outperforms erasure coding across all tested parameter combinations. This performance difference is mathematically proven through latency analysis.
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\columnwidth]{resources/chapter-4/write_bigload_avgnet_heatmap.png}
+\caption{Performance Ratio Heatmap for Write Operations}
+\label{fig:write-heatmap}
+\end{figure}
 
-\subsubsection{Mathematical Latency Analysis}
+The heatmap visualization in Figure \ref{fig:write-heatmap} shows the performance ratio between erasure coding and replication across different bandwidth and payload combinations. Blue regions indicate conditions where erasure coding outperforms replication, while red regions favor replication. The color intensity corresponds to the magnitude of performance difference. The transition zone reveals the performance crossover boundary where system selection becomes critical. Erasure coding advantages are concentrated in low bandwidth and large payload conditions, while replication dominance occurs with high bandwidth and smaller payloads.
 
-The latency for erasure coded reads can be expressed as:
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\columnwidth]{resources/chapter-4/write_bigload_avgnet_regression.png}
+\caption{Three-Dimensional Regression Model for Write Performance}
+\label{fig:write-regression}
+\end{figure}
+
+The three-dimensional regression model shown in Figure \ref{fig:write-regression} employs ridge regression to handle the limited dataset and experimental noise. Separate models are constructed for erasure coding and replication response times as functions of bandwidth and payload size. The intersection of these surfaces defines the performance threshold boundary.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\columnwidth]{resources/chapter-4/write_bigload_avgnet_boundary.png}
+\caption{Performance Threshold Boundary Analysis}
+\label{fig:write-boundary}
+\end{figure}
+
+The boundary curve analysis in Figure \ref{fig:write-boundary} derives a mathematical model for the performance crossover point. The curve represents conditions where erasure coding and replication achieve equivalent performance. Values above the curve favor erasure coding, while values below favor replication, enabling quantitative system selection decisions based on operational parameters.
+
+\subsection{Read Operation Analysis}
+
+Read operation analysis confirms the hypothesis that replication consistently outperforms erasure coding across all tested conditions. The mathematical foundation for this consistent advantage can be expressed as:
+
 \begin{equation}
 L_{EC} = T_{data} + T_{reconstruction} + T_{shard}
-\label{eq:ec-read-latency}
 \end{equation}
 
-While replication read latency is simply:
 \begin{equation}
 L_{REP} = T_{data}
-\label{eq:rep-read-latency}
 \end{equation}
 
-The performance difference is therefore:
 \begin{equation}
-\Delta L = L_{EC} - L_{REP} = T_{reconstruction} + T_{shard}
-\label{eq:read-latency-diff}
+\Delta L = T_{reconstruction} + T_{shard} > 0
 \end{equation}
 
-This fundamental difference ensures that replication will always outperform erasure coding for read operations, as reconstruction and shard retrieval operations add unavoidable overhead.
+Where $\Delta L$ represents the additional latency inherent to erasure coding due to data reconstruction requirements. This overhead remains positive regardless of network conditions or payload size.
+
+The implementation includes an in-memory store optimization that can reduce this penalty based on cache hit rates:
+
+\begin{equation}
+\Delta L = (T_{reconstruction} + T_{shard}) \times (1 - \text{hit rate})
+\end{equation}
+
+However, achieving 100\% hit rates is impractical due to memory constraints, maintaining replication's fundamental read advantage.
+
+The read performance analysis across different scenarios confirms this consistent replication superiority. Figure \ref{fig:read-fastnet} demonstrates that even in high-bandwidth environments with small payloads, replication maintains lower response times than erasure coding due to the absence of reconstruction overhead.
 
 \begin{figure}[ht]
-    \centering
-    \includegraphics[width=\columnwidth]{resources/chapter-4/read_bigload_avgnet_heatmap.png}
-    \caption{Read Performance Heatmap Showing Consistent Replication Advantage}
-    \label{fig:read-heatmap}
+\centering
+\includegraphics[width=\columnwidth]{resources/chapter-4/read_smload_fastnet.png}
+\caption{Read Performance in High Bandwidth Environment}
+\label{fig:read-fastnet}
 \end{figure}
 
-\subsubsection{Impact of In-Memory Caching}
+Similarly, Figure \ref{fig:read-slownet} shows that even under bandwidth-constrained conditions with large payloads—where erasure coding excels in write operations—replication continues to outperform erasure coding for read operations. This finding is particularly significant because it demonstrates that the conditions favoring erasure coding in write scenarios do not translate to read performance benefits. The reconstruction process required by erasure coding consistently adds latency regardless of network conditions, as the system must gather sufficient data shards from multiple nodes and perform computational reconstruction before delivering the result to the client. This overhead remains constant and unavoidable, creating a fundamental performance penalty that cannot be mitigated through network optimization or payload size adjustments.
 
-The implementation includes an in-memory store that can mitigate read performance penalties. With caching, the effective erasure coding read latency becomes:
-\begin{equation}
-L_{EC} = T_{data} + (T_{reconstruction} + T_{shard}) \times (1 - \text{hit rate})
-\label{eq:ec-read-latency-cached}
-\end{equation}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\columnwidth]{resources/chapter-4/read_bigload_slownet.png}
+\caption{Read Performance in Low Bandwidth Environment}
+\label{fig:read-slownet}
+\end{figure}
 
-This demonstrates that high cache hit rates can significantly reduce the performance gap, though replication maintains its fundamental advantage.
+The comprehensive heatmap analysis in Figure \ref{fig:read-heatmap} visualizes this consistent pattern across all tested parameter combinations. Unlike the write operation heatmap which shows distinct regions favoring each approach, the read heatmap displays uniform replication superiority across the entire parameter space.
 
-\subsection{Storage Efficiency}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\columnwidth]{resources/chapter-4/read_bigload_avgnet_heatmap.png}
+\caption{Read Performance Heatmap Analysis}
+\label{fig:read-heatmap}
+\end{figure}
 
-Erasure coding demonstrates significant advantages in storage efficiency. This storage efficiency becomes particularly valuable in large-scale deployments where storage costs are significant.
+Figure \ref{fig:read-line} provides a line chart comparison that illustrates the performance gap between erasure coding and replication across different conditions. The visualization clearly shows the persistent performance advantage of replication, with response times consistently lower than erasure coding across all tested parameter combinations. The parallel trajectories of the performance curves indicate that no convergence point exists, mathematically confirming the absence of a performance threshold for read operations. This contrasts sharply with the write operation analysis where performance curves intersect at specific conditions. The consistent separation between the curves demonstrates that the fundamental overhead of data reconstruction in erasure coding systems cannot be overcome through parameter optimization, making replication the universally preferred choice for read-intensive workloads regardless of network or payload characteristics.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\columnwidth]{resources/chapter-4/read_bigload_avgnet_line.png}
+\caption{Read Performance Comparison Across Conditions}
+\label{fig:read-line}
+\end{figure}
+
+\subsection{Performance Threshold Analysis}
+
+The experimental results establish a clear performance threshold for write operations. Erasure coding demonstrates superior performance when:
+- Payload size exceeds the threshold defined by the boundary curve
+- Network bandwidth is sufficiently limited
+- The ratio of encoding overhead to transfer time savings favors erasure coding
+
+For read operations, no such threshold exists - replication maintains consistent superiority across all tested conditions due to the unavoidable reconstruction overhead in erasure coding systems.
 
 \section{Discussion}
 
-\subsection{Theoretical Framework and Practical Implications}
+The experimental results provide comprehensive insights into the performance characteristics of erasure coding versus replication in distributed key-value store systems. The findings reveal a nuanced performance landscape that challenges simplistic assumptions about system optimization.
 
-The research establishes a theoretical framework for understanding the performance trade-offs between erasure coding and replication in distributed key-value stores. The mathematical modeling reveals that the performance crossover is fundamentally governed by the relationship between computational overhead and network transmission efficiency.
+\subsection{Threshold Performance Validation}
 
-The derived performance boundary curve provides practical guidance for system architects. Erasure coding is most suitable for distributed key-value store databases operating under specific conditions:
+The research successfully validates the existence of a performance threshold for write operations where erasure coding can outperform replication. This threshold is mathematically definable through the boundary curve derived from regression analysis, providing a practical tool for system architects to make informed decisions based on expected workload characteristics.
+
+The threshold occurs when the computational overhead of erasure coding ($T_{encoding}$) is offset by the reduced network transfer time due to smaller data volumes. This relationship is environment-dependent and varies with hardware capabilities, network infrastructure, and data characteristics.
+
+\subsection{Asymmetric Performance Characteristics}
+
+A critical finding is the asymmetric nature of performance benefits between read and write operations. While write operations exhibit threshold behavior as demonstrated in Figures \ref{fig:write-heatmap} and \ref{fig:write-boundary}, read operations show consistent replication superiority across all conditions as evidenced in Figures \ref{fig:read-fastnet}, \ref{fig:read-slownet}, \ref{fig:read-heatmap}, and \ref{fig:read-line}. This asymmetry stems from the fundamental requirement for data reconstruction in erasure coding systems and has significant implications for system design:
+
 \begin{itemize}
-\item Large data objects (>500KB) where encoding overhead is amortized
-\item Limited network bandwidth environments (<10Mbps)
-\item Write-heavy workloads where storage efficiency is critical
-\item Geographically distributed systems with high inter-node latency
-\item Cost-sensitive deployments prioritizing storage optimization
+\item Systems with write-heavy workloads may benefit from erasure coding under appropriate conditions
+\item Read-intensive applications consistently favor replication
+\item Mixed workloads require careful analysis of read/write ratios and access patterns
 \end{itemize}
 
-\subsection{System Design Considerations}
+\subsection{Practical Implementation Considerations}
 
-The analysis reveals several critical design considerations:
+The research reveals several practical considerations for real-world deployments:
 
-\textbf{Adaptive System Architecture}: The clear delineation of performance boundaries suggests that adaptive systems could dynamically switch between erasure coding and replication based on real-time workload characteristics, data size patterns, and network conditions.
+\begin{itemize}
+\item \textbf{Data Center Environments:} High-bandwidth, low-latency networks with predominantly small payloads favor replication. The computational overhead of erasure coding cannot be justified when network transfer times are minimal.
+\item \textbf{Edge Computing and IoT:} Bandwidth-constrained environments with larger data objects can benefit from erasure coding's reduced network utilization, despite computational overhead.
+\item \textbf{Hybrid Approaches:} The clear threshold boundary suggests potential for adaptive systems that dynamically select between erasure coding and replication based on current network conditions and data characteristics.
+\end{itemize}
 
-\textbf{Caching Strategy}: The mathematical analysis of in-memory caching demonstrates that strategic caching can significantly mitigate read performance penalties in erasure coded systems. Systems with predictable access patterns could leverage high cache hit rates to approach replication performance for reads while maintaining erasure coding benefits for writes.
+\subsection{Storage Efficiency Trade-offs}
 
-\textbf{Workload Characterization}: The fundamental performance differences between read and write operations suggest that workload characterization is crucial for system optimization. Write-heavy workloads with large objects benefit most from erasure coding, while read-heavy workloads favor replication.
-
-\subsection{Broader Implications for Distributed Systems}
-
-The findings have broader implications beyond key-value stores:
-
-\textbf{Edge Computing}: In edge computing scenarios with limited bandwidth to central data centers, erasure coding provides both performance and storage benefits for large data synchronization tasks.
-
-\textbf{IoT Data Management}: Internet of Things applications generating large sensor data payloads can benefit from erasure coding when transmitting over constrained networks.
-
-\textbf{Backup and Archival Systems}: Long-term storage systems handling large files benefit significantly from erasure coding's storage efficiency while tolerating higher read latencies.
+While performance analysis focuses on response time, storage efficiency remains a crucial factor. Erasure coding provides significant storage savings compared to replication, which must be weighed against performance implications. For the tested configuration (4 data shards, 2 parity shards), erasure coding achieves approximately 33\% storage efficiency improvement over 3-way replication.
 
 \subsection{Limitations and Model Validity}
 
-The current implementation and analysis have several important limitations:
+The regression model and boundary curve are valid within the experimental conditions and may not generalize to different hardware configurations, network topologies, or erasure coding parameters. The model does not account for:
 
-\textbf{Static Configuration}: The erasure coding implementation uses fixed parameters (data and parity shards), limiting adaptability to varying workload characteristics.
+\begin{itemize}
+\item CPU performance variations
+\item Memory hierarchy effects
+\item Disk I/O characteristics
+\item Network topology complexity
+\item Failure recovery scenarios
+\end{itemize}
 
-\textbf{Environmental Constraints}: The regression model is valid only under the specific experimental conditions and hardware configurations tested. Different computational capabilities, memory speeds, or network characteristics would require model recalibration.
+Future work should validate these findings across diverse hardware platforms and network configurations to establish broader applicability.
 
-\textbf{Simplified Workload}: The analysis focuses solely on read and write operations without considering complex transaction patterns, consistency requirements, or failure scenarios that occur in production systems.
+\subsection{Implications for Distributed Key-Value Stores}
 
-\textbf{Network Simulation}: Testing was conducted in controlled virtual environments with simulated network conditions, which may not fully capture the complexity and variability of real-world network behavior.
+For typical distributed key-value store applications characterized by small objects and high-performance data center networks, replication emerges as the preferred approach. Erasure coding becomes viable only in specialized scenarios with large objects or bandwidth constraints.
+
+The research suggests that erasure coding adoption in key-value stores should be carefully evaluated against specific deployment characteristics rather than applied universally. The mathematical framework provided enables quantitative decision-making based on measured or expected system parameters.
 
 \section{Conclusion}
 
