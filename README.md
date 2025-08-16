@@ -5,7 +5,7 @@ Program Studi Teknik Informatika
 
 **Penulis:** Muhamad Aji Wibisono (13521095)  
 **Pembimbing:** Achmad Imam Kistijantoro, S.T, M.Sc., Ph.D.  
-**Tanggal:** 1 Agustus 2025  
+**Tanggal:** 16 Agustus 2025  
 **Repository Implementasi:** [DistKV-Erasure-Coding](https://github.com/MuhamadAjiW/DistKV-Erasure-Coding)
 
 ## Deskripsi
