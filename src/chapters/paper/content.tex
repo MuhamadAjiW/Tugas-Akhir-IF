@@ -1,11 +1,6 @@
 \section{Introduction}
 
-With the development of computing technology, data storage continues to grow to high values. The development of data usage and storage is\begin{figure}[ht]
-    \centering
-    \includegraphics[width=\columnwidth]{resources/chapter-4/write_bigload_avgnet_regression.png}
-    \caption{Three-Dimensional Performance Model for Write Operations}
-    \label{fig:write-regression-model}
-\end{figure}n by the emergence of cloud computing technology, data needs for artificial intelligence training based on machine learning, and general improvement in data quality in files.
+With the development of computing technology, data storage usage continues to grow to high values. The development of data usage and storage is driven by the emergence of cloud computing technology, data needs for artificial intelligence training based on machine learning, and general improvement in data quality in files.
 
 Along with this, the use of systems has become increasingly intensive. This intensive use creates a need for high resilience so that these systems can continue to operate, especially in facing the possibility of component failure and data loss \cite{weatherspoon2002erasure}. In this case, data redundancy solutions become very important. Traditionally, replication techniques are used to duplicate data to multiple nodes. However, with the growing need for data in operations, this approach consumes increasingly large storage capacity and significantly increases operational costs.
 
@@ -23,13 +18,19 @@ T_{REP} = T_{network\_full} + T_{consensus}
 
 Where $T_{network\_reduced} < T_{network\_full}$ due to the smaller total data volume transmitted in erasure coding, but $T_{encoding} > 0$ represents the computational overhead. The performance crossover occurs when $T_{EC} < T_{REP}$.
 
-However, besides adding computation, the application of erasure coding in a system reduces the overall data size to provide data integrity and resilience. Reducing data size can also cause a decrease in the size of data sent to other nodes. Thus, erasure coding has the potential to have conditions when the data size is large enough and the network is slow enough that the response time is lower in certain operations compared to performing the same operations on a replication system.
+However, besides adding computation, the application of erasure coding in a system reduces the overall data size to provide data integrity and resilience. For resilience of $t$ and node count of $k$, reed-solomon based erasure coding systems has a storage ratio compared to replication that can be expressed as:
+
+\begin{equation}
+	R = \frac{k + kt}{k + t}
+\end{equation}
+
+Reducing data size can also cause a decrease in the size of data sent to other nodes. Thus, erasure coding has the potential to have conditions when the data size is large enough and the network is slow enough that the response time is lower in certain operations compared to performing the same operations on a replication system.
 
 \section{Related Work}
 
 Several studies have explored the application of erasure coding in distributed storage systems. Weatherspoon and Kubiatowicz \cite{weatherspoon2002erasure} demonstrated the effectiveness of erasure codes in providing fault tolerance with lower storage overhead compared to replication. Balaji et al. \cite{balaji2018erasure} analyzed the trade-offs between storage efficiency and computational overhead in erasure-coded systems.
 
-Recent work has focused on optimizing erasure coding for specific workloads and system architectures. However, limited research has specifically addressed the performance characteristics of erasure coding in distributed key-value store databases, particularly regarding response time thresholds where erasure coding outperforms replication.
+Other researches have shown that erasure coding indeed has an impact on distributed systems compared to replication \cite{mu2014paxos} \cite{wang2020craft}. But these researches did not sufficiently show where the two approaches diverge in terms of performance metrics and did not provide an open-source implementation for further exploration.
 
 \section{System Design and Implementation}
 
@@ -46,102 +47,51 @@ The implemented distributed key-value store system employs a modular architectur
 \item \textbf{Consensus Layer}: OmniPaxos protocol ensuring data consistency across distributed nodes
 \end{itemize}
 
+The system is designed to be able to test configuration differences without major changes, allowing for various experimentation regarding the comparison between erasure coding and replication.
+
 \subsection{Erasure Coding Implementation}
 
 The erasure coding implementation utilizes Reed-Solomon algorithms with configurable data and parity shard ratios. The encoding process transforms original data into multiple fragments, where any subset of fragments can reconstruct the original data. This approach provides fault tolerance equivalent to replication while requiring significantly less storage space.
 
-The system implements static erasure coding configuration with:
-\begin{itemize}
-\item Reed-Solomon encoding with systematic codes
-\item Configurable data-to-parity shard ratios
-\item Parallel encoding/decoding operations
-\item Fragment distribution across multiple nodes
-\end{itemize}
-
 \subsection{Consensus and Consistency}
 
-The OmniPaxos consensus protocol ensures strong consistency across all nodes regardless of the storage mechanism used. This protocol choice enables fair performance comparison between erasure coding and replication by maintaining identical consistency guarantees.
+The OmniPaxos consensus protocol used in this experimentation is modified to be able to utilize both erasure coding and replication by forking the OmniPaxos implementation repository with minimum changes on the protocol. This modified protocol enables fair performance comparison between erasure coding and replication by maintaining identical consistency guarantees. The modified protocol should have the same performance characteristics as the original OmniPaxos implementation by Ng \cite{ng2023omni}.
 
 \subsection{Performance Monitoring and Tracing}
 
-The system incorporates comprehensive performance monitoring capabilities:
+Additionally, the system incorporates partial performance monitoring capabilities:
 \begin{itemize}
-\item Operation-level latency tracing
-\item Network bandwidth utilization monitoring  
-\item CPU usage tracking during encoding/decoding
-\item Memory allocation and garbage collection profiling
-\item Disk I/O performance analysis
+\item Operation-level tracing
+\item CPU usage tracking during system runtime
 \end{itemize}
 
-These monitoring capabilities enable detailed analysis of performance bottlenecks and validation of theoretical predictions.
+These monitoring capabilities allows the analysis of performance bottlenecks and validation of theoretical predictions.
 
-\section{Experimental Setup and Methodology}
+\section{Experimental Setup}
 
-\subsection{Controlled Test Environment}
+\subsection{Test Environment}
 
-The experiments are conducted in a carefully controlled virtual machine environment with advanced traffic control capabilities for precise network simulation. This setup enables systematic variation of network parameters while maintaining reproducible conditions across multiple test runs.
+The experiments are conducted on a single virtual machine with local network. The setup allows for variation in system performance with simulated network conditions. However, it is important to note that this environment may not fully capture the complexities of real-world distributed systems.
 
-The experimental infrastructure includes:
+\subsection{Parameters}
+
+There are many variables that affects the response time performance for both replicated and erasure coding based systems. This experiment varies two critical parameters:
 \begin{itemize}
-\item Virtualized compute nodes with controlled resource allocation
-\item Software-defined network simulation with configurable bandwidth and latency
-\item Automated benchmarking framework for systematic parameter sweeping
-\item Comprehensive performance monitoring and data collection systems
+\item \textbf{Network Bandwidth}: 1Mbps, 10-70Mbps (incremental with 15Mbps steps), and 10Gbps
+\item \textbf{Payload Size}: 1MB, 200KB-1000KB (incremental with 200KB steps)
 \end{itemize}
 
-\subsection{Multi-Scenario Testing Framework}
+This parameter matrix generates 25 experimental conditions which will be used for the performance analysis.
+
+\subsection{Testing Scenarios}
 
 The benchmark system implements three distinct testing scenarios designed to explore different operational environments:
 
-\textbf{Scenario 1 - High Performance Environment}: Simulates modern data center conditions with high bandwidth (10 Gbps) and small payloads (1KB), designed to favor replication performance.
+\textbf{Scenario 1 - High Performance Environment}: Simulates modern data center conditions with high bandwidth (10 Gbps) and small payloads (1KB), an extreme condition designed to favor replication performance.
 
-\textbf{Scenario 2 - Resource Constrained Environment}: Models edge computing or IoT scenarios with limited bandwidth (1 Mbps) and large payloads (200-1000KB), designed to potentially favor erasure coding.
+\textbf{Scenario 2 - Resource Constrained Environment}: Models edge computing or IoT scenarios with limited bandwidth (1 Mbps) and large payloads (200-1000KB), an extreme condition designed to favor erasure coding performance.
 
 \textbf{Scenario 3 - Realistic Network Conditions}: Represents typical internet connectivity with moderate bandwidth (10-70 Mbps) and variable payload sizes, designed to identify performance crossover points.
-
-\subsection{Parameter Space Exploration}
-
-The experimental design systematically varies two critical parameters:
-\begin{itemize}
-\item \textbf{Network Bandwidth}: 1Mbps, 10-70Mbps (incremental), and 10Gbps
-\item \textbf{Payload Size}: 1KB, 200KB, 400KB, 600KB, 800KB, and 1000KB
-\end{itemize}
-
-This parameter matrix generates 25 distinct experimental conditions, enabling comprehensive analysis of the performance landscape and mathematical modeling of system behavior.
-
-\subsection{Advanced Performance Metrics}
-
-Beyond basic response time measurements, the system collects comprehensive performance data:
-
-\textbf{Latency Components}:
-\begin{itemize}
-\item Network transmission time
-\item Encoding/decoding computational overhead
-\item Consensus protocol latency
-\item Storage I/O operations time
-\item Memory allocation and management overhead
-\end{itemize}
-
-\textbf{System Resource Utilization}:
-\begin{itemize}
-\item CPU utilization during encoding operations
-\item Memory consumption patterns
-\item Network bandwidth utilization efficiency
-\item Storage space requirements and efficiency
-\end{itemize}
-
-\subsection{Statistical Analysis Framework}
-
-The experimental methodology incorporates rigorous statistical analysis:
-\begin{itemize}
-\item Multiple trial runs for statistical significance
-\item Ridge regression modeling to handle noise and prevent overfitting
-\item Three-dimensional performance surface modeling
-\item Boundary condition analysis for performance crossover identification
-\item Confidence interval calculation for performance predictions
-\end{itemize}
-
-This comprehensive methodology ensures robust and reproducible results while enabling mathematical modeling of system performance characteristics.
 
 \section{Results and Analysis}
 
@@ -243,7 +193,7 @@ This demonstrates that high cache hit rates can significantly reduce the perform
 
 \subsection{Storage Efficiency}
 
-Erasure coding demonstrates significant advantages in storage efficiency, requiring approximately 50\% less storage space compared to triple replication while maintaining equivalent fault tolerance capabilities. This storage efficiency becomes particularly valuable in large-scale deployments where storage costs are significant.
+Erasure coding demonstrates significant advantages in storage efficiency. This storage efficiency becomes particularly valuable in large-scale deployments where storage costs are significant.
 
 \section{Discussion}
 
@@ -294,42 +244,26 @@ The current implementation and analysis have several important limitations:
 
 \section{Conclusion}
 
-This research provides a comprehensive performance analysis of erasure coding versus replication in distributed key-value store databases, establishing both theoretical foundations and practical guidelines for system design decisions.
+This research provides a comprehensive performance analysis of erasure coding versus replication in distributed key-value store databases, establishing both theoretical foundations and practical guidelines for system design decisions. The analysis demonstrates that the choice between erasure coding and replication is not binary but depends on a complex interplay of system characteristics, workload patterns, and performance requirements.
 
-\subsection{Key Contributions}
+\subsection{Key Results}
 
-The study makes several significant contributions to the field:
-
-\textbf{Mathematical Performance Modeling}: We developed a rigorous mathematical framework using regression analysis that precisely defines the performance boundary between erasure coding and replication. This model enables system architects to predict performance characteristics based on bandwidth and payload size parameters.
-
-\textbf{Quantitative Performance Boundaries}: The research establishes that erasure coding outperforms replication for write operations when network bandwidth is limited ($\leq$10Mbps) and payload sizes are large ($\geq$500KB). These thresholds provide concrete guidance for technology selection.
-
-\textbf{Fundamental Read Operation Analysis}: Through mathematical proof, we demonstrate that replication will always outperform erasure coding for read operations due to the unavoidable overhead of data reconstruction and shard retrieval, quantified as $\Delta L = T_{reconstruction} + T_{shard}$.
-
-\textbf{Storage Efficiency Quantification}: Erasure coding achieves approximately 50\% storage reduction compared to triple replication while maintaining equivalent fault tolerance, providing significant cost benefits in large-scale deployments.
-
-\subsection{Practical Design Guidelines}
-
-The findings establish clear guidelines for distributed system design:
-
-1. **Write-Optimized Systems**: For applications with large data objects and write-heavy workloads operating over constrained networks, erasure coding provides both performance and storage benefits.
-
-2. **Read-Optimized Systems**: Applications prioritizing read performance should use replication, potentially enhanced with erasure coding for archival or backup purposes.
-
-3. **Hybrid Approaches**: The clear performance boundaries suggest that adaptive systems could dynamically switch between approaches based on real-time conditions.
-
-4. **Cache-Enhanced Erasure Coding**: High cache hit rates can significantly mitigate read performance penalties, making erasure coding viable for mixed workloads with predictable access patterns.
+\begin{itemize}
+\item \textbf{Write performance}: Erasure coding has an advantage for write operations when data objects are large and network bandwidth is low. In distributed key-value stores dominated by small objects, erasure coding is applicable only in the special case of sufficiently large objects and limited bandwidth; otherwise replication is preferable.
+\item \textbf{Conditions for write improvement}: Based on the analysis, erasure-coded write response time is lower than replication when bandwidth and payload size for write operations are sufficiently large. No tested condition showed erasure coding outperforming replication for read operations.
+\item \textbf{Storage efficiency}: For use cases with large objects, erasure coding reduces stored data volume compared to replication and thus reduces storage cost.
+\end{itemize}
 
 \subsection{Future Research Directions}
 
-The research opens several avenues for future investigation:
+The research suggests several avenues for future investigation:
 
-\textbf{Adaptive Systems}: Development of systems that can dynamically switch between erasure coding and replication based on real-time workload characteristics, network conditions, and performance requirements.
+\begin{itemize}
+\item \textbf{Recovery Analysis}: Erasure coding has a different recovery model compared to replication, which may impact performance and fault tolerance. Future work could explore the trade-offs involved in recovery strategies for both approaches.
+\item \textbf{Additional Variables}: Future research could investigate other variables that impact the performance of erasure coding and replication, such as system configurations, hardware performance impacts, and system architecture.
+\item \textbf{Hybrid Systems}: Development of systems that combines erasure coding and replication based on workload characteristics, network conditions, and performance requirements.
+\item \textbf{Erasure Coding Optimizations}: The exploration of advanced erasure coding techniques, such as locally repairable codes and adaptive coding strategies, to enhance performance and reduce overhead.
+\item \textbf{Real-world Validation}: Validation in actual production environments to verify the analysis result under real-world conditions with complex failure patterns and varying workloads.
+\end{itemize}
 
-\textbf{Advanced Encoding Schemes}: Investigation of variable-parameter erasure coding schemes that can adapt encoding ratios based on current system conditions and performance requirements.
-
-\textbf{Production Validation}: Large-scale validation in production environments to verify the mathematical models under real-world conditions with complex failure patterns and varying workloads.
-
-\textbf{Multi-Dimensional Optimization}: Extension of the analysis to include additional factors such as power consumption, CPU utilization, and memory usage in the optimization framework.
-
-The research demonstrates that the choice between erasure coding and replication is not binary but depends on a complex interplay of system characteristics, workload patterns, and performance requirements. By providing quantitative analysis and mathematical modeling, this work enables informed decision-making in the design of high-performance distributed storage systems.
+The implementation and experimental artifacts are available in the project's open-source repository \cite{ajiw2025distkv}.
