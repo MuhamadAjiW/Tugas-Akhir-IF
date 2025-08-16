@@ -134,7 +134,10 @@
 %----------------------------------------------------------------------------------------
 
 \postersection{Ringkasan}
-\noindent Penelitian ini menganalisis kinerja \textit{erasure coding} dibandingkan replikasi pada \textit{distributed key-value store}, berfokus pada \textit{response time} operasi \textit{write} dan \textit{read}. Motivasi utamanya adalah kebutuhan efisiensi penyimpanan dan ketahanan data dengan tetap menjaga kinerja. Hasil utama: terdapat kondisi ambang (threshold) di mana \textit{erasure coding} mengungguli replikasi pada operasi \textit{write}; sedangkan pada operasi \textit{read}, replikasi selalu lebih cepat karena biaya rekonstruksi pada \textit{erasure coding}.
+\noindent Penelitian ini menganalisis kinerja \textit{erasure coding} dibandingkan replikasi pada \textit{distributed key-value store}, berfokus pada \textit{response time} operasi \textit{write} dan \textit{read}. Motivasi utamanya adalah kebutuhan efisiensi penyimpanan dan ketahanan data dengan tetap menjaga kinerja.
+
+
+\noindent Hasil utama: terdapat \textit{threshold} ketika \textit{erasure coding} mengungguli replikasi pada operasi \textit{write}; sedangkan pada operasi \textit{read}, replikasi selalu lebih cepat karena biaya rekonstruksi pada \textit{erasure coding}.
 \newline
 \vspace*{-0.5cm}
 
@@ -185,7 +188,7 @@
 \postersection{Analisis Ambang Kinerja}
 \begin{itemize}
 	\item Pemodelan batas menggunakan \textit{ridge regression} dari hasil \textit{benchmark} (25 titik data) untuk memetakan area unggul EC vs replikasi.
-	\item Kurva batas menunjukkan area kombinasi \textit{bandwidth}-ukuran data di mana EC unggul pada \textit{write}. Lihat figur batas di akhir poster.
+	\item Kurva batas menunjukkan area kombinasi \textit{bandwidth}-ukuran data ketika EC unggul pada \textit{write}. Lihat figur batas di akhir poster.
 	\item Model valid pada lingkungan uji; faktor lain (CPU/disk) tidak dimodelkan eksplisit.
 \end{itemize}
 
@@ -196,7 +199,7 @@
 \postersection{Hasil: Operasi Read}
 \begin{itemize}
 	\item Replikasi selalu lebih cepat; EC membutuhkan rekonstruksi data (mengumpulkan \textit{shard} + \textit{decode}).
-	\item Tidak ditemukan ambang di mana EC mengungguli replikasi.
+	\item Tidak ditemukan ambang ketika EC mengungguli replikasi.
 	\item Dengan \textit{in-memory store}, beban \textit{decode} berkurang proporsional \textit{hit rate}; diabaikan pada evaluasi inti.
 \end{itemize}
 
@@ -229,7 +232,7 @@
 			\textbf{Kesimpulan:}
 \begin{itemize}
 	\item EC unggul pada \textit{write} untuk data besar di jaringan terbatas; replikasi unggul pada \textit{read} dan pada data kecil/jaringan cepat.
-	\item Tidak ada skenario \textit{read} di mana EC mengalahkan replikasi tanpa bantuan \textit{cache}.
+	\item Tidak ada skenario \textit{read} ketika EC mengalahkan replikasi tanpa bantuan \textit{cache}.
 \end{itemize}
 \begin{itemize}
 	\item \textbf{Pilih EC}: arsip/\textit{edge}/link terbatas, beban \textit{write} dominan, objek besar, hemat penyimpanan penting.
@@ -258,7 +261,7 @@
 \begin{itemize}
 	\item Pembimbing: Achmad Imam Kistijantoro, S.T., M.Sc., Ph.D.
 	\item Fakultas Teknik Informatika ITB, Distributed Systems Research Group.
-	\item Komunitas sumber terbuka (Rust, RocksDB, OmniPaxos).
+	\item Komunitas \textit{open-source} (Rust, RocksDB, OmniPaxos).
 \end{itemize}
 
 \vspace{0.1cm}
